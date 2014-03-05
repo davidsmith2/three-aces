@@ -8,9 +8,9 @@ define([
             name: '',
             description: '',
             category: '',
-            price: 0,
-            sizeName: '',
-            sizePrice: 0
+            price: null,
+            sizeName: null,
+            sizePrice: null
         }
     });
 

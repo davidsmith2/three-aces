@@ -1,29 +1,45 @@
-    <legend>Add a Menu Item</legend>
-    <label class="clearfix">
-        <span class="label">Name</span>
-        <input name="name" value="test" type="text" />
-    </label>
-    <label class="clearfix">
-        <span class="label">Description</span>
-        <input name="description" value="test" type="text" />
-    </label>
-    <label class="clearfix">
-        <span class="label">Category</span>
-        <input name="category" value="test" type="text" />
-    </label>
-    <label class="clearfix">
-        <span class="label">Price</span>
-        <input name="price" value="0" type="text" />
-    </label>
-    <label class="clearfix">
-        <span class="label">Size name</span>
-        <input name="sizeName" value="test" type="text" />
-    </label>
-    <label class="clearfix">
-        <span class="label">Size price</span>
-        <input name="sizePrice" value="0" type="text" />
-    </label>
     <fieldset>
+        <label class="clearfix">
+            <span class="label">Name</span>
+            <input name="name" value="test" type="text" />
+        </label>
+        <label class="clearfix">
+            <span class="label">Description</span>
+            <input name="description" value="test" type="text" />
+        </label>
+        <label class="clearfix">
+            <span class="label">Category</span>
+            <input name="category" value="test" type="text" />
+        </label>
+    </fieldset>
+    <fieldset name="sizeTypes">
+        <div class="clearfix">
+            <span class="label">Size type</span>
+            <div class="inputs">
+                <input checked id="singleSize" name="sizeType" type="radio" value="singleSize" />
+                <label for="singleSize">Single</label>
+                <input id="multiSize" name="sizeType" type="radio" value="multiSize" />
+                <label for="multiSize">Multi</label>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset name="singleSize">
+        <label class="clearfix">
+            <span class="label">Price</span>
+            <input name="price" value="0" type="text" />
+        </label>
+    </fieldset>
+    <fieldset class="hide" name="multiSize">
+        <label class="clearfix">
+            <span class="label">Size name</span>
+            <input name="sizeName" value="test" type="text" />
+        </label>
+        <label class="clearfix">
+            <span class="label">Size price</span>
+            <input name="sizePrice" value="0" type="text" />
+        </label>
+    </fieldset>
+    <fieldset name="buttons">
         <input class="btn btn-primary" type="submit" value="Save" />
         <input class="btn btn-secondary" type="reset" value="Reset" />
     </fieldset>

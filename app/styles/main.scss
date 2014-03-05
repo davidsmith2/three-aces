@@ -14,7 +14,7 @@ footer {
     border-top: 1px solid #e5e5e5;
 }
 
-label > .label {
+.label {
     float: left;
     font-weight: normal;
     padding: 0.67em;
@@ -22,20 +22,22 @@ label > .label {
     width: 20%;
 }
 
-label > input {
+fieldset[name=sizeTypes] > div {
+    margin-bottom:15px;
+}
+
+label > input,
+.inputs {
     float: right;
     width: 70%;
 }
 
-legend,
-fieldset {
-    text-align: center;
+.inputs > label {
+    display: inline;
+    margin-right:1em;
 }
 
-fieldset {
+fieldset[name=buttons] {
     clear: both;
-}
-
-legend {
-    border-bottom: none;
+    text-align: center;
 }

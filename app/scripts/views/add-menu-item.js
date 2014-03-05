@@ -11,7 +11,8 @@ define([
         tagName: 'form',
         template: template,
         events: {
-            'submit': 'handleSubmit'
+            'submit': 'handleSubmit',
+            'click input[name=sizeType]': 'handleSizeTypeClick'
         },
         handleSubmit: function (e) {
             e.preventDefault();
@@ -29,6 +30,24 @@ define([
                 $(el).val('');
             });
             this.collection.create(formData);
+        },
+        handleSizeTypeClick: function (e) {
+            this.toggleSizeTypes(e.target);
+        },
+        toggleSizeTypes: function (target) {
+            if ($(target).val() === 'singleSize') {
+                this.showSingleSizeType();
+            } else {
+                this.showMultiSizeType();
+            }
+        },
+        showSingleSizeType: function () {
+            this.$('fieldset[name=multiSize]').hide();
+            this.$('fieldset[name=singleSize]').show();
+        },
+        showMultiSizeType: function () {
+            this.$('fieldset[name=singleSize]').hide();
+            this.$('fieldset[name=multiSize]').show();
         }
     });
 

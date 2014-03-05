@@ -1,24 +1,36 @@
 define([
 	'backbone',
 	'communicator',
-	'hbs!tmpl/welcome'
-],
-
-function( Backbone, Communicator, Welcome_tmpl ) {
+	'collections/menu-items',
+	'models/menu-item',
+	'views/add-menu-item'
+], function( Backbone, Communicator, MenuItemsCollection, MenuItemModel, AddMenuItemView ) {
     'use strict';
-
-	var welcomeTmpl = Welcome_tmpl;
 
 	var App = new Backbone.Marionette.Application();
 
 	/* Add application regions here */
-	App.addRegions({});
+	App.addRegions({
+		r1: '#r1'
+	});
+
+	App.on('initialize:after', function () {
+		var menuItemsCollection = new MenuItemsCollection();
+		menuItemsCollection.fetch();
+		menuItemsCollection.on('sync', function () {
+			var addMenuItemView = new AddMenuItemView({
+				collection: menuItemsCollection
+			});
+			App.r1.show(addMenuItemView);
+		});
+	});
 
 	/* Add initializers here */
 	App.addInitializer( function () {
-		document.body.innerHTML = welcomeTmpl({ success: "CONGRATS!" });
-		Communicator.mediator.trigger("APP:START");
+		//document.body.innerHTML = intakeTmpl({});
+		Communicator.mediator.trigger('APP:START');
 	});
 
 	return App;
+
 });

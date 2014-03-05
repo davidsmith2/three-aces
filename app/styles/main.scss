@@ -1,6 +1,41 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 400px;
+header,
+footer {
+    margin: 1em;
+    padding: 1em;
+}
+
+header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+footer {
+    border-top: 1px solid #e5e5e5;
+}
+
+label > .label {
+    float: left;
+    font-weight: normal;
+    padding: 0.67em;
+    text-align: right;
+    width: 20%;
+}
+
+label > input {
+    float: right;
+    width: 70%;
+}
+
+legend,
+fieldset {
+    text-align: center;
+}
+
+fieldset {
+    clear: both;
+}
+
+legend {
+    border-bottom: none;
 }

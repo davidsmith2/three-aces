@@ -1,6 +1,6 @@
 require.config({
 
-    baseUrl: "/scripts",
+    baseUrl: '/scripts',
 
     /* starting point for application */
     deps: ['backbone.marionette', 'bootstrap', 'main'],
@@ -35,7 +35,7 @@ require.config({
 
         /* Alias text.js for template loading and shortcut the templates dir to tmpl */
         text: '../bower_components/requirejs-text/text',
-        tmpl: "../templates",
+        tmpl: '../templates',
 
         /* handlebars from the require handlerbars plugin below */
         handlebars: '../bower_components/require-handlebars-plugin/Handlebars',
@@ -43,7 +43,9 @@ require.config({
         /* require handlebars plugin - Alex Sexton */
         i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
-        hbs: '../bower_components/require-handlebars-plugin/hbs'
+        hbs: '../bower_components/require-handlebars-plugin/hbs',
+
+        'backbone-relational': '../bower_components/backbone-relational/backbone-relational'
     },
 
     hbs: {

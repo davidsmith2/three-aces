@@ -7,7 +7,7 @@ define([
     'use strict';
 
     var AddMenuItemSizeView = Backbone.Marionette.ItemView.extend({
-        className: 'row',
+        className: 'control-group row',
         template: template,
         events: {
             'click .addMenuItemSize': 'add',

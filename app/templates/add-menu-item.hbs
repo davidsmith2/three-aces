@@ -1,41 +1,45 @@
+<h2>Add a Menu Item</h2>
 <form class="form-horizontal" id="formAddMenuItem">
     <fieldset>
         <legend>General Information</legend>
         <div class="control-group">
             <label for="inputName">Name</label>
-            <input id="inputName" name="name" type="text" value="test" />
+            <input class="input-xlarge" id="inputName" name="name" type="text" />
         </div>
         <div class="control-group">
             <label for="inputDescription">Description</label>
-            <input id="inputDescription" name="description" type="text" value="test" />
+            <textarea class="textarea-xlarge" id="inputDescription" name="description" rows="3" type="text"></textarea>
         </div>
         <div class="control-group">
             <label for="inputCategory">Category</label>
-            <input id="inputCategory" name="category" type="text" value="test" />
+            <input class="input-medium" id="inputCategory" name="category" type="text" />
         </div>
     </fieldset>
     <fieldset>
         <legend>Pricing</legend>
         <div class="control-group">
-            <label class="radio inline">
-                <input checked name="sizeType" type="radio" value="singleSize" /> This item comes in one size
+            <label class="radio">
+                <input checked name="sizeType" type="radio" value="singleSize" />
+                This item comes in one size
             </label>
-            <label class="radio inline">
-                <input name="sizeType" type="radio" value="multiSize" /> This item comes in multiple sizes
+            <label class="radio">
+                <input name="sizeType" type="radio" value="multiSize" />
+                This item comes in multiple sizes
             </label>
         </div>
         <div class="control-group row" id="price">
             <label class="span2 input-prepend">
                 <span class="add-on">Price</span>
-                <input class="input-small" name="price" type="text" value="0" />
+                <input class="input-small" name="price" type="text" />
             </label>
         </div>
         <div class="control-group hide" id="sizes">
         </div>
     </fieldset>
     <fieldset>
-        <div class="control-group text-center">
-            <button class="btn" type="submit">Save</button>
+        <div class="control-group text-center padding-1 border-1">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-secondary" type="reset">Reset</button>
         </div>
     </fieldset>
 </form>

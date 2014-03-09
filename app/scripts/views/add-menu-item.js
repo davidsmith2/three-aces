@@ -20,16 +20,13 @@ define([
             return this;
         },
         events: {
-            'click input[name=sizeType]': 'handleSizeTypeClick',
-            'submit': 'handleSubmit'
+            'submit': 'save',
+            'click input[name=sizeType]': 'toggleSizeTypes'
         },
-        handleSubmit: function (e) {
+        save: function (e) {
             e.preventDefault();
-            this.save(e.target);
-        },
-        save: function (target) {
             var formData = {};
-            $(target).find('input[name]').each(function (i, el) {
+            $(e.target).find('input[name]').each(function (i, el) {
                 var name = el.name,
                     val = $(el).val();
 
@@ -40,11 +37,8 @@ define([
             });
             this.collection.create(formData);
         },
-        handleSizeTypeClick: function (e) {
-            this.toggleSizeTypes(e.target);
-        },
-        toggleSizeTypes: function (target) {
-            if ($(target).val() === 'singleSize') {
+        toggleSizeTypes: function (e) {
+            if ($(e.target).val() === 'singleSize') {
                 this.showSingleSizeType();
             } else {
                 this.showMultiSizeType();

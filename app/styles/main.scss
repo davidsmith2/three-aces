@@ -4,50 +4,15 @@
     margin-bottom: 0;
 }
 
-/*
-header,
-footer {
-    margin: 1em;
-    padding: 1em;
+.padding-1 {
+    padding: 1em; 
+
 }
 
-header {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-footer {
+.border-1 {
     border-top: 1px solid #e5e5e5;
 }
 
-.label {
-    float: left;
-    font-weight: normal;
-    padding: 0.67em;
-    text-align: right;
-    width: 20%;
+.textarea-xlarge {
+    width: 270px;
 }
-
-label > input,
-.inputs {
-    float: right;
-    width: 70%;
-}
-
-.inputs > label {
-    display: inline;
-    margin-right:1em;
-}
-
-fieldset {
-    margin-bottom: 15px;
-}
-
-fieldset[name=prices] label {
-    display: inline;
-}
-
-fieldset[name=buttons] {
-    clear: both;
-    text-align: center;
-}
-*/

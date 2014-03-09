@@ -16,9 +16,11 @@ define([
 
 	App.on('initialize:after', function () {
 		var menuItemsCollection = new MenuItemsCollection();
+		var menuItemModel = new MenuItemModel();
 		menuItemsCollection.fetch();
 		menuItemsCollection.on('sync', function () {
 			var addMenuItemView = new AddMenuItemView({
+				model: menuItemModel,
 				collection: menuItemsCollection
 			});
 			App.r1.show(addMenuItemView);

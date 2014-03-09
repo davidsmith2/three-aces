@@ -2,17 +2,26 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'hbs!tmpl/add-menu-item'
-], function ($, _, Backbone, template) {
+    'hbs!tmpl/add-menu-item',
+    'collections/menu-item-sizes',
+    'models/menu-item-size',
+    'views/add-menu-item-size'
+], function ($, _, Backbone, template, MenuItemSizesCollection, MenuItemSizeModel, AddMenuItemSizeView) {
     'use strict';
 
     var AddMenuItemView = Backbone.Marionette.ItemView.extend({
-        id: 'add-menu-item',
-        tagName: 'form',
         template: template,
+        initialize: function () {
+            this.on('render', this.initSizesCollection, this);
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            this.trigger('render');
+            return this;
+        },
         events: {
-            'submit': 'handleSubmit',
-            'click input[name=sizeType]': 'handleSizeTypeClick'
+            'click input[name=sizeType]': 'handleSizeTypeClick',
+            'submit': 'handleSubmit'
         },
         handleSubmit: function (e) {
             e.preventDefault();
@@ -42,12 +51,36 @@ define([
             }
         },
         showSingleSizeType: function () {
-            this.$('fieldset[name=multiSize]').hide();
-            this.$('fieldset[name=singleSize]').show();
+            this.$('#sizes').hide();
+            this.$('#price').show();
         },
         showMultiSizeType: function () {
-            this.$('fieldset[name=singleSize]').hide();
-            this.$('fieldset[name=multiSize]').show();
+            this.$('#price').hide();
+            this.$('#sizes').show();
+        },
+        initSizesCollection: function () {
+            var sizesCollection = new MenuItemSizesCollection();
+            sizesCollection.fetch();
+            sizesCollection.on('sync', this.initSizeView, this);
+        },
+        initSizeView: function (sizesCollection) {
+            var sizeView = new AddMenuItemSizeView({
+                collection: sizesCollection,
+                model: new MenuItemSizeModel()
+            });
+            this.$('#sizes').append(sizeView.render().el);
+            sizeView.on('add', this.addSize, this);
+            sizeView.on('delete', this.deleteSize, this);
+        },
+        addSize: function (sizesCollection) {
+            if (sizesCollection.length < 5) {
+                this.initSizeView(sizesCollection);
+            }
+        },
+        deleteSize: function (sizesCollection) {
+            if (!sizesCollection.length) {
+                this.initSizeView(sizesCollection);
+            }
         }
     });
 

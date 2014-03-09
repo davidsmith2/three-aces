@@ -17,16 +17,21 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 
 	/* schemas */
+    var menuItemSizeSchema = new mongoose.Schema({
+        size: String,
+        price: Number
+    });
+
     var menuItemSchema = new mongoose.Schema({
         name: String,
         description: String,
         category: String,
         price: Number,
-        sizeName: String,
-        sizePrice: Number
+        sizes: [menuItemSizeSchema]
     });
 
     /* models */
+    var MenuItemSize = mongoose.model( 'menuItemSize', menuItemSizeSchema );
     var MenuItem = mongoose.model( 'menuItem', menuItemSchema );
 
 	var app = express();
@@ -74,13 +79,11 @@ db.once('open', function callback () {
             name: req.body.name,
             description: req.body.description,
             category: req.body.category,
-            price: req.body.price,
-            sizeName: req.body.sizeName,
-            sizePrice: req.body.sizePrice
+            price: req.body.price
         });
         menuItem.save(function(err){
             if (!err) {
-                return console.log('post');
+                return console.log('menu item created');
             } else {
                 return console.log(err);
             }
@@ -94,11 +97,9 @@ db.once('open', function callback () {
             menuItem.description = req.body.description;
             menuItem.category = req.body.category;
             menuItem.price = req.body.price;
-            menuItem.sizeName = req.body.sizeName;
-            menuItem.sizePrice = req.body.sizePrice;
             return menuItem.save(function(err){
                 if (!err) {
-                    console.log('put');
+                    console.log('menu item updated');
                 } else {
                     console.log(err);
                 }
@@ -111,10 +112,63 @@ db.once('open', function callback () {
         return MenuItem.findById(req.params.id, function(err, menuItem){
             return menuItem.remove(function(err){
                 if (!err) {
-                    console.log('delete');
+                    console.log('menu item deleted');
                     return res.send('');
                 } else {
+                    return console.log(err);
+                }
+            });
+        });
+    });
+
+    app.get('/api/menu-item-size', function(req, res){
+        return MenuItemSize.find(function(err, menuItemSizes){
+            if (!err) {
+                return res.send(menuItemSizes);
+            } else {
+                return console.log(err);
+            }
+        });
+    });
+
+    app.post('/api/menu-item-size', function(req, res){
+        var menuItemSize = new MenuItemSize({
+            size: req.body.size,
+            price: req.body.price
+        });
+        menuItemSize.save(function(err){
+            if (!err) {
+                return console.log('menu item size created');
+            } else {
+                return console.log(err);
+            }
+        });
+        return res.send(menuItemSize);
+    });
+
+    app.put('/api/menu-item-size/:id', function(req, res){
+        return MenuItemSize.findById(req.params.id, function(err, menuItemSize){
+            menuItemSize.size = req.body.size;
+            menuItemSize.price = req.body.price;
+            return menuItemSize.save(function(err){
+                if (!err) {
+                    console.log('menu item size updated');
+                } else {
                     console.log(err);
+                }
+                return res.send(menuItemSize);
+            });
+        });
+    });
+
+    app['delete']('/api/menu-item-size/:id', function(req, res){
+        return MenuItemSize.findById(req.params.id, function(err, menuItemSize){
+            return menuItemSize.remove(function(err){
+                if (!err) {
+                    console.log('menu item size deleted');
+                    return res.send('');
+                } else {
+                    return console.log(err);
                 }
             });
         });

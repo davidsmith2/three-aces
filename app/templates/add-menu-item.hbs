@@ -1,45 +1,41 @@
+<form class="form-horizontal" id="formAddMenuItem">
     <fieldset>
-        <label class="clearfix">
-            <span class="label">Name</span>
-            <input name="name" value="test" type="text" />
-        </label>
-        <label class="clearfix">
-            <span class="label">Description</span>
-            <input name="description" value="test" type="text" />
-        </label>
-        <label class="clearfix">
-            <span class="label">Category</span>
-            <input name="category" value="test" type="text" />
-        </label>
-    </fieldset>
-    <fieldset name="sizeTypes">
-        <div class="clearfix">
-            <span class="label">Size type</span>
-            <div class="inputs">
-                <input checked id="singleSize" name="sizeType" type="radio" value="singleSize" />
-                <label for="singleSize">Single</label>
-                <input id="multiSize" name="sizeType" type="radio" value="multiSize" />
-                <label for="multiSize">Multi</label>
-            </div>
+        <legend>General Information</legend>
+        <div class="control-group">
+            <label for="inputName">Name</label>
+            <input id="inputName" name="name" type="text" value="test" />
+        </div>
+        <div class="control-group">
+            <label for="inputDescription">Description</label>
+            <input id="inputDescription" name="description" type="text" value="test" />
+        </div>
+        <div class="control-group">
+            <label for="inputCategory">Category</label>
+            <input id="inputCategory" name="category" type="text" value="test" />
         </div>
     </fieldset>
-    <fieldset name="singleSize">
-        <label class="clearfix">
-            <span class="label">Price</span>
-            <input name="price" value="0" type="text" />
-        </label>
+    <fieldset>
+        <legend>Pricing</legend>
+        <div class="control-group">
+            <label class="radio inline">
+                <input checked name="sizeType" type="radio" value="singleSize" /> This item comes in one size
+            </label>
+            <label class="radio inline">
+                <input name="sizeType" type="radio" value="multiSize" /> This item comes in multiple sizes
+            </label>
+        </div>
+        <div class="control-group row" id="price">
+            <label class="span2 input-prepend">
+                <span class="add-on">Price</span>
+                <input class="input-small" name="price" type="text" value="0" />
+            </label>
+        </div>
+        <div class="control-group hide" id="sizes">
+        </div>
     </fieldset>
-    <fieldset class="hide" name="multiSize">
-        <label class="clearfix">
-            <span class="label">Size name</span>
-            <input name="sizeName" value="test" type="text" />
-        </label>
-        <label class="clearfix">
-            <span class="label">Size price</span>
-            <input name="sizePrice" value="0" type="text" />
-        </label>
+    <fieldset>
+        <div class="control-group text-center">
+            <button class="btn" type="submit">Save</button>
+        </div>
     </fieldset>
-    <fieldset name="buttons">
-        <input class="btn btn-primary" type="submit" value="Save" />
-        <input class="btn btn-secondary" type="reset" value="Reset" />
-    </fieldset>
+</form>

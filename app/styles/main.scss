@@ -1,5 +1,10 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
+#formAddMenuItem legend {
+    margin-bottom: 0;
+}
+
+/*
 header,
 footer {
     margin: 1em;
@@ -22,10 +27,6 @@ footer {
     width: 20%;
 }
 
-fieldset[name=sizeTypes] > div {
-    margin-bottom:15px;
-}
-
 label > input,
 .inputs {
     float: right;
@@ -37,7 +38,16 @@ label > input,
     margin-right:1em;
 }
 
+fieldset {
+    margin-bottom: 15px;
+}
+
+fieldset[name=prices] label {
+    display: inline;
+}
+
 fieldset[name=buttons] {
     clear: both;
     text-align: center;
 }
+*/

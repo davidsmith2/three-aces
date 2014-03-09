@@ -3,12 +3,12 @@ define([
     'underscore',
     'backbone',
     'hbs!tmpl/menu-item'
-], function ($, _, Backbone, MenuItem_tmpl) {
+], function ($, _, Backbone, template) {
     'use strict';
 
     var MenuItemView = Backbone.Marionette.ItemView.extend({
         tagName: 'li',
-        template: MenuItem_tmpl
+        template: template
     });
 
     return MenuItemView;

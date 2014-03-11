@@ -60,9 +60,7 @@ define([
         initSizeView: function (sizesCollection) {
             var sizeView = new AddMenuItemSizeView({
                 collection: sizesCollection,
-                model: new MenuItemSizeModel({
-                    menuItem: this.model.cid
-                })
+                model: new MenuItemSizeModel()
             });
             this.$('#sizes').append(sizeView.render().el);
             sizeView.on('add', this.addSize, this);

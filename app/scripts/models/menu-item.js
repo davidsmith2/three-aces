@@ -14,7 +14,8 @@ define([
                 key: 'sizes',
                 relatedModel: MenuItemSizeModel,
                 reverseRelation: {
-                    key: 'menuItem'
+                    key: 'menuItem',
+                    includeInJSON: '_id'
                 }
             }
         ],

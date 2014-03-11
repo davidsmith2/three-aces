@@ -23,7 +23,7 @@ define([
             e.preventDefault();
             formData.size = this.$('input[name=sizeName]').val();
             formData.price = parseFloat(this.$('input[name=sizePrice]').val(), 2);
-            this.model.save(formData);
+            this.collection.create(formData);
             this.$('.addMenuItemSize').hide();
             this.$('.deleteMenuItemSize').show();
             this.trigger('add', this.collection);

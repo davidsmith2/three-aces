@@ -8,7 +8,6 @@ define([
         urlRoot: '/api/menu-item-size',
         idAttribute: '_id',
         defaults: {
-            menuItem: '',
             size: '',
             price: 0
         }

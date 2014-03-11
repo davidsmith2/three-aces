@@ -1,10 +1,14 @@
 define([
-    'backbone'
+    'backbone',
+    'backbone-relational'
 ], function (Backbone) {
     'use strict';
 
-    var MenuItemSizeModel = Backbone.Model.extend({
+    var MenuItemSizeModel = Backbone.RelationalModel.extend({
+        urlRoot: '/api/menu-item-size',
+        idAttribute: '_id',
         defaults: {
+            menuItem: '',
             size: '',
             price: 0
         }

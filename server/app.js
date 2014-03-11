@@ -19,7 +19,8 @@ db.once('open', function callback () {
 	/* schemas */
     var menuItemSizeSchema = new mongoose.Schema({
         size: String,
-        price: Number
+        price: Number,
+        menuItem: String
     });
 
     var menuItemSchema = new mongoose.Schema({
@@ -79,7 +80,8 @@ db.once('open', function callback () {
             name: req.body.name,
             description: req.body.description,
             category: req.body.category,
-            price: req.body.price
+            price: req.body.price,
+            sizes: req.body.sizes
         });
         menuItem.save(function(err){
             if (!err) {
@@ -97,6 +99,7 @@ db.once('open', function callback () {
             menuItem.description = req.body.description;
             menuItem.category = req.body.category;
             menuItem.price = req.body.price;
+            menuItem.sizes = req.body.sizes;
             return menuItem.save(function(err){
                 if (!err) {
                     console.log('menu item updated');
@@ -134,7 +137,8 @@ db.once('open', function callback () {
     app.post('/api/menu-item-size', function(req, res){
         var menuItemSize = new MenuItemSize({
             size: req.body.size,
-            price: req.body.price
+            price: req.body.price,
+            menuItem: req.body.menuItem
         });
         menuItemSize.save(function(err){
             if (!err) {
@@ -150,6 +154,7 @@ db.once('open', function callback () {
         return MenuItemSize.findById(req.params.id, function(err, menuItemSize){
             menuItemSize.size = req.body.size;
             menuItemSize.price = req.body.price;
+            menuItemSize.menuItem = req.body.menuItem;
             return menuItemSize.save(function(err){
                 if (!err) {
                     console.log('menu item size updated');

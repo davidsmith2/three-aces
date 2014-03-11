@@ -7,7 +7,7 @@ define([
     'use strict';
 
     var MenuItemView = Backbone.Marionette.ItemView.extend({
-        tagName: 'li',
+        tagName: 'tr',
         template: template
     });
 

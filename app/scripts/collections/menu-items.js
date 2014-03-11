@@ -1,12 +1,12 @@
 define([
     'backbone',
     'models/menu-item'
-], function (Backbone, MenuItem) {
+], function (Backbone, MenuItemModel) {
     'use strict';
 
     var MenuItemsCollection = Backbone.Collection.extend({
-        model: MenuItem,
-        url: '/api/menu-item'
+        url: '/api/menu-item',
+        model: MenuItemModel
     });
 
     return MenuItemsCollection;

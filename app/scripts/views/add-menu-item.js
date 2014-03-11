@@ -24,8 +24,8 @@ define([
             'click input[name=sizeType]': 'toggleSizeTypes'
         },
         save: function (e) {
-            e.preventDefault();
             var formData = {};
+            e.preventDefault();
             $(e.target).find('input[name]').each(function (i, el) {
                 var name = el.name,
                     val = $(el).val();
@@ -60,16 +60,16 @@ define([
         initSizeView: function (sizesCollection) {
             var sizeView = new AddMenuItemSizeView({
                 collection: sizesCollection,
-                model: new MenuItemSizeModel()
+                model: new MenuItemSizeModel({
+                    menuItem: this.model.cid
+                })
             });
             this.$('#sizes').append(sizeView.render().el);
             sizeView.on('add', this.addSize, this);
             sizeView.on('delete', this.deleteSize, this);
         },
         addSize: function (sizesCollection) {
-            if (sizesCollection.length < 5) {
-                this.initSizeView(sizesCollection);
-            }
+            this.initSizeView(sizesCollection);
         },
         deleteSize: function (sizesCollection) {
             if (!sizesCollection.length) {

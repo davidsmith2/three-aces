@@ -2,13 +2,15 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/menu-item'
-], function ($, _, Backbone, MenuItemView) {
+    'views/menu-item',
+    'hbs!tmpl/menu-items'
+], function ($, _, Backbone, MenuItemView, template) {
     'use strict';
 
-    var MenuItemsView = Backbone.Marionette.CollectionView.extend({
+    var MenuItemsView = Backbone.Marionette.CompositeView.extend({
         itemView: MenuItemView,
-        tagName: 'ul'
+        itemViewContainer: 'tbody',
+        template: template
     });
 
     return MenuItemsView;

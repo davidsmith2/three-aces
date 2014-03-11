@@ -1,16 +1,29 @@
 define([
-    'backbone'
-], function (Backbone) {
+    'backbone',
+    'models/menu-item-size',
+    'backbone-relational'
+], function (Backbone, MenuItemSizeModel) {
     'use strict';
 
-    var MenuItemModel = Backbone.Model.extend({
+    var MenuItemModel = Backbone.RelationalModel.extend({
+        urlRoot: '/api/menu-item',
+        idAttribute: '_id',
+        relations: [
+            {
+                type: Backbone.HasMany,
+                key: 'sizes',
+                relatedModel: MenuItemSizeModel,
+                reverseRelation: {
+                    key: 'menuItem'
+                }
+            }
+        ],
         defaults: {
             name: '',
             description: '',
             category: '',
-            price: null,
-            sizeName: null,
-            sizePrice: null
+            price: 0,
+            sizes: []
         }
     });
 

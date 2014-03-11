@@ -19,12 +19,11 @@ define([
             return this;
         },
         add: function (e) {
+            var formData = {};
             e.preventDefault();
-            this.model.set({
-                size: 'small',
-                price: 9.99
-            });
-            this.collection.add(this.model);
+            formData.size = this.$('input[name=sizeName]').val();
+            formData.price = parseFloat(this.$('input[name=sizePrice]').val(), 2);
+            this.model.save(formData);
             this.$('.addMenuItemSize').hide();
             this.$('.deleteMenuItemSize').show();
             this.trigger('add', this.collection);

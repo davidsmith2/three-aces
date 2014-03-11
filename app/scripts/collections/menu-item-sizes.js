@@ -1,12 +1,12 @@
 define([
     'backbone',
     'models/menu-item-size'
-], function (Backbone, MenuItemSize) {
+], function (Backbone, MenuItemSizeModel) {
     'use strict';
 
     var MenuItemSizesCollection = Backbone.Collection.extend({
-        model: MenuItemSize,
-        url: '/api/menu-item-size'
+        url: '/api/menu-item-size',
+        model: MenuItemSizeModel
     });
 
     return MenuItemSizesCollection;

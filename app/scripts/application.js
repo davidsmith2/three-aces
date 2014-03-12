@@ -4,16 +4,18 @@ define([
 	'collections/menu-items',
 	'models/menu-item',
 	'views/add-menu-item',
-	'views/menu-items'
-], function( Backbone, Communicator, MenuItemsCollection, MenuItemModel, AddMenuItemView, MenuItemsView ) {
+	'views/menu-items',
+	'views/nav'
+], function( Backbone, Communicator, MenuItemsCollection, MenuItemModel, AddMenuItemView, MenuItemsView, NavView ) {
     'use strict';
 
 	var App = new Backbone.Marionette.Application();
 
 	/* Add application regions here */
 	App.addRegions({
-		r1: '#r1',
-		r2: '#r2'
+		navRegion: '#nav',
+		mainRegion: '#main',
+		offScreenRegion: '#offscreen'
 	});
 
 	App.on('initialize:after', function () {
@@ -27,8 +29,10 @@ define([
 			var menuItemsView = new MenuItemsView({
 				collection: menuItemsCollection
 			});
-			App.r1.show(addMenuItemView);
-			App.r2.show(menuItemsView);
+			var navView = new NavView();
+			App.navRegion.show(navView);
+			App.mainRegion.show(menuItemsView);
+			App.offScreenRegion.show(addMenuItemView);
 		});
 	});
 

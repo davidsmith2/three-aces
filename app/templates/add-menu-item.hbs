@@ -1,9 +1,10 @@
 <div class="modal hide" id="addMenuItem">
-    <div class="modal-header">
-        <h2>Add a menu item</h2>
-    </div>
-    <div class="modal-body">
-        <form class="form-horizontal" id="formAddMenuItem">
+    <form class="form-horizontal" id="formAddMenuItem">
+        <div class="modal-header">
+            <button aria-hidden="true" class="close" type="button">&times;</button>
+            <h2>Add a menu item</h2>
+        </div>
+        <div class="modal-body">
             <fieldset>
                 <div class="control-group">
                     <label for="inputName">Name</label>
@@ -38,10 +39,10 @@
                 <div class="hide" id="sizes">
                 </div>
             </fieldset>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="submit">Save</button>
-        <button class="btn btn-secondary" type="reset">Reset</button>
-    </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-secondary" type="reset">Cancel</button>
+        </div>
+    </form>
 </div>

@@ -13,6 +13,9 @@ define([
             'click .addMenuItemSize': 'add',
             'click .deleteMenuItemSize': 'delete'
         },
+        initialize: function (options) {
+            this.sizesArr = options.sizesArr;
+        },
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
             this.$('.deleteMenuItemSize').hide();
@@ -23,15 +26,16 @@ define([
             e.preventDefault();
             formData.size = this.$('input[name=sizeName]').val();
             formData.price = parseFloat(this.$('input[name=sizePrice]').val(), 2);
-            this.collection.create(formData);
+            this.sizesArr.push(formData);
             this.$('.addMenuItemSize').hide();
             this.$('.deleteMenuItemSize').show();
-            this.trigger('add', this.collection);
+            this.trigger('add', this.sizesArr);
         },
         delete: function (e) {
+            var index = $(e.target).closest('.row').index();
             e.preventDefault();
-            this.collection.remove(this.model);
-            this.trigger('delete', this.collection);
+            this.sizesArr.splice(index, 1);
+            this.trigger('delete', this.sizesArr);
             this.remove();
         }
     });

@@ -15,9 +15,7 @@ define([
         addMenuItem: function (e) {
             var modalId = $(e.target).attr('href');
             e.preventDefault();
-            $(modalId).modal('show').on('show', function () {
-                $(this).css('background-color', 'red');
-            });
+            $(modalId).modal('show');
         }
     });
 

@@ -22,16 +22,18 @@ define([
 		var menuItemsCollection = new MenuItemsCollection();
 		menuItemsCollection.fetch();
 		menuItemsCollection.on('sync', function () {
+			var navView = new NavView();
 			var addMenuItemView = new AddMenuItemView({
 				collection: menuItemsCollection,
 				model: new MenuItemModel()
 			});
-			var menuItemsView = new MenuItemsView({
-				collection: menuItemsCollection
+			addMenuItemView.on('sizesSync', function () {
+				var menuItemsView = new MenuItemsView({
+					collection: menuItemsCollection
+				});
+				App.mainRegion.show(menuItemsView);
 			});
-			var navView = new NavView();
 			App.navRegion.show(navView);
-			App.mainRegion.show(menuItemsView);
 			App.offScreenRegion.show(addMenuItemView);
 		});
 	});

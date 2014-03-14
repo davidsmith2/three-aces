@@ -28,19 +28,20 @@ define([
             return this;
         },
         events: {
-            'click .close': 'close',
+            'click .close': 'dismiss',
             'click input[name=sizeType]': 'toggleSizeTypes',
-            'click button[type=submit]': 'save',
-            'click button[type=reset]': 'close'
+            'submit form': 'save',
+            'reset form': 'dismiss'
         },
         save: function (e) {
-            var formData = {};
+            var formData = {},
+                self = this;
             e.preventDefault();
-            $(e.target).find('input[name]').each(function (i, el) {
+            $(e.target).find('[name]').each(function (i, el) {
                 var name = el.name,
                     val = $(el).val();
 
-                if (val !== '') {
+                if (self.model.has(name) && val !== '') {
                     formData[name] = val;
                 }
                 $(el).val('');
@@ -49,7 +50,12 @@ define([
             if (this.sizesArr.length) {
                 this.collection.on('sync', this.saveSizes, this);
             }
-            this.close(e);
+            this.dismiss(e);
+        },
+        dismiss: function (e) {
+            var modalId = $(e.target).closest('.modal').attr('id');
+            e.preventDefault();
+            $('#' + modalId).modal('hide');
         },
         toggleSizeTypes: function (e) {
             if ($(e.target).val() === 'singleSize') {
@@ -71,8 +77,7 @@ define([
             this.sizesArr = sizes || [];
             sizeView = new AddMenuItemSizeView({
                 model: new MenuItemSizeModel(),
-                sizesArr: this.sizesArr,
-
+                sizesArr: this.sizesArr
             });
             this.$('#sizes').append(sizeView.render().el);
             sizeView.on('add', this.addSize, this);
@@ -92,10 +97,6 @@ define([
                 this.sizesCollection.create(this.sizesArr[i]);
             }
             this.trigger('saveSizes', this.sizesCollection);
-        },
-        close: function (e) {
-            var id = $(e.target).closest('.modal').attr('id');
-            $('#' + id).modal('hide');
         }
     });
 

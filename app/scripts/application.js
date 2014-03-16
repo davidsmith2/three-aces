@@ -1,17 +1,11 @@
 define([
-	'backbone',
-	'communicator',
-	'collections/menu-items',
-	'models/menu-item',
-	'views/add-menu-item',
-	'views/menu-items',
-	'views/nav'
-], function( Backbone, Communicator, MenuItemsCollection, MenuItemModel, AddMenuItemView, MenuItemsView, NavView ) {
+	'jquery',
+	'backbone.marionette'
+], function ($, Marionette) {
     'use strict';
 
-	var App = new Backbone.Marionette.Application();
+	var App = new Marionette.Application();
 
-	/* Add application regions here */
 	App.addRegions({
 		navRegion: '#nav',
 		mainRegion: '#main',
@@ -19,29 +13,19 @@ define([
 	});
 
 	App.on('initialize:after', function () {
-		var menuItemsCollection = new MenuItemsCollection();
-		menuItemsCollection.fetch();
-		menuItemsCollection.on('sync', function () {
-			var navView = new NavView();
-			var addMenuItemView = new AddMenuItemView({
-				collection: menuItemsCollection,
-				model: new MenuItemModel()
-			});
-			addMenuItemView.on('sizesSync', function () {
-				var menuItemsView = new MenuItemsView({
-					collection: menuItemsCollection
-				});
-				App.mainRegion.show(menuItemsView);
-			});
-			App.navRegion.show(navView);
-			App.offScreenRegion.show(addMenuItemView);
+		require([
+			'entities/menu-items',
+			'apps/menu-items/nav-controller',
+			'apps/menu-items/list/list-controller',
+		    'apps/menu-items/form/form-controller'
+		], function () {
+            var menuItems = App.request('menuItems:entities');
+            menuItems.done(function (collection) {
+	            App.MenuItemsApp.Nav.Controller.displayNav();
+	            App.MenuItemsApp.List.Controller.listMenuItems(collection);
+	            App.MenuItemsApp.Form.Controller.displayForm(collection);
+	        });
 		});
-	});
-
-	/* Add initializers here */
-	App.addInitializer( function () {
-		//document.body.innerHTML = intakeTmpl({});
-		Communicator.mediator.trigger('APP:START');
 	});
 
 	return App;

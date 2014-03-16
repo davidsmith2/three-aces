@@ -7,9 +7,9 @@ define([
     List = App.module('MenuItemsApp.List') || List;
 
     List.Controller = {
-        listMenuItems: function (menuItems) {
+        listMenuItems: function () {
             var menuItemsView = new App.MenuItemsApp.List.MenuItems({
-                collection: menuItems
+                collection: App.collections.menuItems
             });
             App.mainRegion.show(menuItemsView);
         }

@@ -12,6 +12,8 @@ define([
 		offScreenRegion: '#offscreen'
 	});
 
+	App.collections = {};
+
 	App.on('initialize:after', function () {
 		require([
 			'entities/menu-items',
@@ -19,12 +21,17 @@ define([
 			'apps/menu-items/list/list-controller',
 		    'apps/menu-items/form/form-controller'
 		], function () {
-            var menuItems = App.request('menuItems:entities');
-            menuItems.done(function (collection) {
-	            App.MenuItemsApp.Nav.Controller.displayNav();
-	            App.MenuItemsApp.List.Controller.listMenuItems(collection);
-	            App.MenuItemsApp.Form.Controller.displayForm(collection);
-	        });
+			var menuItemSizes = App.request('menuItemSizes:entities');
+			menuItemSizes.done(function (menuItemSizes) {
+	            var menuItems = App.request('menuItems:entities');
+				App.collections.menuItemSizes = menuItemSizes;
+	            menuItems.done(function (menuItems) {
+					App.collections.menuItems = menuItems;
+		            App.MenuItemsApp.Nav.Controller.displayNav();
+		            App.MenuItemsApp.List.Controller.listMenuItems();
+		            App.MenuItemsApp.Form.Controller.displayForm();
+		        });
+			});
 		});
 	});
 

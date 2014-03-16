@@ -64,22 +64,16 @@ define([
             this.collection.remove(size);
         },
         save: function (menuItem) {
-            var tmpCollection = this.collection,
-                permCollection;
-            if (tmpCollection.length > 1) {
-                permCollection = App.request('menuItemSizes:entities');
-                permCollection.done(function (_permCollection) {
-                    tmpCollection.each(function (model, index) {
-                        if (index < tmpCollection.length - 1) {
-                            model.set('menuItem', menuItem.get('_id'));
-                            _permCollection.create(model);
-                        }
-                    });
-                });
-            }
-        },
-        dismiss: function () {
-            this.collection.reset([]);
+            var tempCollection = this.collection,
+                permCollection = App.collections.menuItemSizes;
+            tempCollection.each(function (model, index) {
+                if (index < (tempCollection.length - 1)) {
+                    model.set('menuItem', menuItem.get('_id'));
+                    permCollection.create(model);
+                } else {
+                    tempCollection.reset([]);
+                }
+            });
         }
     });
 
@@ -92,7 +86,6 @@ define([
             });
             this.$('#sizes').append(sizesView.render().el);
             this.on('save', sizesView.save, sizesView);
-            this.on('dismiss', sizesView.dismiss, sizesView);
         },
         events: {
             'click .close': 'dismiss',

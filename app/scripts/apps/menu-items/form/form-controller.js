@@ -7,10 +7,10 @@ define([
     Form = App.module('MenuItemsApp.Form') || Form;
 
     Form.Controller = {
-        displayForm: function (menuItems) {
+        displayForm: function () {
             var addMenuItemView = new App.MenuItemsApp.Form.AddMenuItem({
                 model: new App.Entities.MenuItem(),
-                collection: menuItems
+                collection: App.collections.menuItems
             });
             App.offScreenRegion.show(addMenuItemView);
         }

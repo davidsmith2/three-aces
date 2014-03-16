@@ -30,6 +30,12 @@ define([
                 type: Backbone.HasMany,
                 key: 'sizes',
                 relatedModel: Entities.MenuItemSize,
+                autoFetch: {
+                    success: function (model, response) {
+                        console.log(model)
+                        console.log(response)
+                    }
+                },
                 reverseRelation: {
                     key: 'menuItem',
                     includeInJSON: '_id'

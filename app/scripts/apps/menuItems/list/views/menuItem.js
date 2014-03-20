@@ -1,7 +1,7 @@
 define([
     'backbone.marionette',
     'jquery',
-    'hbs!tmpl/menu-item',
+    'hbs!tmpl/menuItem',
     'apps/menuItems/list/views/menuItemSizes'
 ], function (Marionette, $, template, MenuItemSizes) {
     'use strict';

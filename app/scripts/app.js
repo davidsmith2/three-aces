@@ -4,39 +4,38 @@ define([
 ], function ($, Marionette) {
     'use strict';
 
-    var prepareData = function () {
+    var setData = function () {
 		require([
+			'requestManager',
 			'requestHandlers'
-		], function (requestHandlers) {
-			var requestHandler;
-			for (var i = 0, len = requestHandlers.length; i < len; i++) {
-				requestHandler = requestHandlers[i];
-				App.reqres.setHandler(requestHandler.name, requestHandler.handler);
+		], function (RequestManager, requestHandlers) {
+			var requestManager = new RequestManager();
+			for (var key in requestHandlers) {
+				requestManager.set(key, requestHandlers[key]);
 			}
-			getData();
+			getData(requestManager);
 		});
     };
 
-	var getData = function () {
-        var menuItemSizes = App.request('menuItemSizes:entities');
+	var getData = function (requestManager) {
+        var menuItemSizes = requestManager.get('menuItemSizes:entities');
         menuItemSizes.done(function (menuItemSizes) {
-            var menuItems = App.request('menuItems:entities');
+            var menuItems = requestManager.get('menuItems:entities');
             menuItems.done(function (menuItems) {
-				App.collections.menuItems = menuItems;
-				App.collections.menuItemSizes = menuItemSizes;
-				showData();
+				showData(menuItems, menuItemSizes);
 	        });
         });
 	};
 
-	var showData = function () {
+	var showData = function (menuItems, menuItemSizes) {
 		require([
 			'modules/nav',
+			'modules/list',
             'modules/form'
-		], function (NavModule, FormModule) {
+		], function (NavModule, ListModule, FormModule) {
 	        NavModule.API.start();
-	        FormModule.API.start();
-	        //ListModule.API.start();
+			ListModule.API.start(menuItems, menuItemSizes);
+	        FormModule.API.start(menuItems, menuItemSizes);
 		});
     };
 
@@ -50,7 +49,7 @@ define([
 
 	App.collections = {};
 
-	App.on('initialize:after', prepareData);
+	App.on('initialize:after', setData);
 
 	return App;
 

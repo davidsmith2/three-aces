@@ -7,8 +7,8 @@ define([
         name: 'MenuItemsApp.List'
     });
     ListModule.API = {
-        start: function () {
-            ListController.listMenuItems();
+        start: function (menuItems, menuItemSizes) {
+            ListController.listMenuItems(menuItems, menuItemSizes);
         }
     };
     return ListModule;

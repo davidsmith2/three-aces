@@ -3,7 +3,7 @@ define([
     'moduleFactory',
     'entities/menuItems',
     'entities/menuItemSizes'
-], function (ModuleFactory, $, MenuItems, MenuItemSizes) {
+], function ($, ModuleFactory, MenuItems, MenuItemSizes) {
     'use strict';
     var MenuItemsModule = ModuleFactory.createModule({
         name: 'Entities'

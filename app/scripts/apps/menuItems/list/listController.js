@@ -4,13 +4,13 @@ define([
 ], function (RegionShower, MenuItems) {
     'use strict';
     var ListController = {
-        listMenuItems: function () {
+        listMenuItems: function (menuItems, menuItemSizes) {
             var regionShower = new RegionShower();
             var region = 'mainRegion';
             var view = new MenuItems({
-                collection: {}
+                collection: menuItems
             });
-            regionShower(region, view);
+            regionShower.show(region, view);
         }
     };
     return ListController;

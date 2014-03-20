@@ -1,7 +1,6 @@
 require([
-	'application'
-],
-function (App) {
+	'app'
+], function (App) {
     'use strict';
     App.start();
 });

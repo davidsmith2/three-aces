@@ -1,0 +1,52 @@
+<div class="modal hide" id="addMenuItem">
+    <div class="modal-header">
+        <button aria-hidden="true" class="close" type="button">&times;</button>
+        <h2>Add a menu item</h2>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" id="formAddMenuItem">
+            <fieldset>
+                <div class="control-group">
+                    <label for="inputName">Name</label>
+                    <input class="input-xlarge" id="inputName" name="name" type="text" />
+                </div>
+                <div class="control-group">
+                    <label for="inputDescription">Description</label>
+                    <textarea class="textarea-xlarge" id="inputDescription" name="description" rows="3" type="text"></textarea>
+                </div>
+                <div class="control-group">
+                    <label for="inputCategory">Category</label>
+                    <input class="input-medium" id="inputCategory" name="category" type="text" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="control-group">
+                    <label class="radio">
+                        <input checked name="sizeType" type="radio" value="singleSize" />
+                        This item comes in one size
+                    </label>
+                    <label class="radio">
+                        <input name="sizeType" type="radio" value="multiSize" />
+                        This item comes in multiple sizes
+                    </label>
+                </div>
+                <div class="control-group" id="price">
+                    <label class="input-prepend">
+                        <span class="add-on">$</span>
+                        <input class="input-small" name="price" type="text" />
+                    </label>
+                </div>
+                <div class="hide" id="sizes">
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="control-group">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-secondary" type="reset">Cancel</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

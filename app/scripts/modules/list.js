@@ -1,15 +1,15 @@
 define([
     'moduleFactory',
     'apps/menuItems/list/listController'
-], function (ModuleFactory, ListController) {
+], function (ModuleFactory, listController) {
     'use strict';
-    var ListModule = ModuleFactory.createModule({
-        name: 'MenuItemsApp.List'
-    });
-    ListModule.API = {
-        start: function (menuItems, menuItemSizes) {
-            ListController.listMenuItems(menuItems, menuItemSizes);
+    var listModule;
+    return {
+        start: function (App, menuItems) {
+            listModule = App.module('MenuItemsApp.List');
+            listModule.addInitializer(function () {
+                listController.showView(App.vent, menuItems);
+            });
         }
     };
-    return ListModule;
 });

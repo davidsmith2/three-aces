@@ -4,16 +4,21 @@ define([
     'backbone.marionette',
     'jquery',
     'hbs!tmpl/addMenuItem',
-    'apps/menuItems/form/views/addMenuItemSizes'
+    'apps/menuItems/form/views/addMenuItemSizes',
+    'bootstrap'
 ], function (_, Backbone, Marionette, $, template, AddMenuItemSizes) {
     'use strict';
     var AddMenuItem = Marionette.ItemView.extend({
         template: template,
+        initialize: function () {
+            this.modalId = this.options.modalId;
+        },
         onRender: function () {
             var sizes = new Backbone.Collection();
             var sizesView = new AddMenuItemSizes({
                 collection: sizes
             });
+            this.$(this.modalId).modal('show');
             this.$('#sizes').append(sizesView.render().el);
             this.on('save', sizesView.save, sizesView);
         },

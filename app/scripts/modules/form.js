@@ -1,15 +1,15 @@
 define([
     'moduleFactory',
     'apps/menuItems/form/formController'
-], function (ModuleFactory, FormController) {
+], function (ModuleFactory, formController) {
     'use strict';
-    var FormModule = ModuleFactory.createModule({
-        name: 'MenuItemsApp.Form'
-    });
-    FormModule.API = {
-        start: function () {
-            return FormController.displayForm();
+    var formModule;
+    return {
+        start: function (App, menuItems, modalId) {
+            formModule = App.module('MenuItemsApp.Form');
+            formModule.addInitializer(function () {
+                formController.showView(App.vent, menuItems, modalId);
+            });
         }
     };
-    return FormModule;
 });

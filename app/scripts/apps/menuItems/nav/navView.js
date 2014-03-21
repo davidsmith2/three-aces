@@ -1,8 +1,7 @@
 define([
     'jquery',
     'backbone.marionette',
-    'hbs!tmpl/nav',
-    'bootstrap'
+    'hbs!tmpl/nav'
 ], function ($, Marionette, template) {
     'use strict';
     var NavView = Marionette.ItemView.extend({
@@ -13,7 +12,7 @@ define([
         addMenuItem: function (e) {
             var modalId = $(e.target).attr('href');
             e.preventDefault();
-            $(modalId).modal('show');
+            this.trigger('navView:addMenuItem', modalId);
         }
     });
     return NavView;

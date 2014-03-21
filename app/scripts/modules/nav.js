@@ -1,15 +1,17 @@
 define([
     'moduleFactory',
     'apps/menuItems/nav/navController'
-], function (ModuleFactory, NavController) {
+], function (ModuleFactory, navController) {
     'use strict';
-    var NavModule = ModuleFactory.createModule({
-        name: 'MenuItemsApp.Nav'
-    });
-    NavModule.API = {
-        start: function () {
-            return NavController.displayNav();
+    var navModule;
+    return {
+        start: function (App) {
+            navModule = App.module('MenuItemsApp.Nav');
+            navModule.addInitializer(function () {
+                navController.showView().on('navView:addMenuItem', function (modalId) {
+                    App.vent.trigger('UI:addMenuItem', modalId);
+                });
+            });
         }
     };
-    return NavModule;
 });

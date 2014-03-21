@@ -1,15 +1,16 @@
 define([
-    'regionShower',
-    'apps/menuItems/nav/navView'
-], function (RegionShower, NavView) {
+    'backbone',
+    'backbone.marionette',
+    'apps/menuItems/nav/navView',
+    'communicator'
+], function (Backbone, Marionette, NavView, communicator) {
     'use strict';
-    var NavController = {
-        displayNav: function () {
-            var regionShower = new RegionShower();
-            var region = 'navRegion';
+    var NavController = Backbone.Marionette.Controller.extend({
+        showView: function () {
             var view = new NavView();
-            regionShower.show(region, view);
+            communicator.reqres.request('RM:getRegion', 'navRegion').show(view);
+            return view;
         }
-    };
-    return NavController;
+    });
+    return new NavController();
 });

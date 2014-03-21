@@ -5,11 +5,8 @@ define([
     'entities/menuItemSizes'
 ], function ($, ModuleFactory, MenuItems, MenuItemSizes) {
     'use strict';
-    var MenuItemsModule = ModuleFactory.createModule({
-        name: 'Entities'
-    });
-    MenuItemsModule.API = {
-        getMenuItemEntities: function () {
+    return {
+        getMenuItems: function () {
             var menuItems = new MenuItems();
             var dfd = $.Deferred();
             menuItems.fetch({
@@ -17,7 +14,7 @@ define([
             });
             return dfd.promise();
         },
-        getMenuItemSizeEntities: function () {
+        getMenuItemSizes: function () {
             var menuItemSizes = new MenuItemSizes();
             var dfd = $.Deferred();
             menuItemSizes.fetch({
@@ -26,5 +23,4 @@ define([
             return dfd.promise();
         }
     };
-    return MenuItemsModule;
 });

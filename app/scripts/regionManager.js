@@ -8,13 +8,12 @@ function( Backbone, Communicator ) {
 	var RegionManager = Backbone.Marionette.Controller.extend({
 
 		initialize: function( options ) {
-			console.log("Initialize a Region Manager");
-
 			/* internal region manager */
 			this._regionManager = new Backbone.Marionette.RegionManager();
 
 			/* event API */
 			Communicator.reqres.setHandler("RM:addRegion", this.addRegion, this);
+			Communicator.reqres.setHandler("RM:addRegions", this.addRegions, this);
 			Communicator.reqres.setHandler("RM:removeRegion", this.removeRegion, this);
 			Communicator.reqres.setHandler("RM:getRegion", this.getRegion, this);
 		},
@@ -29,6 +28,12 @@ function( Backbone, Communicator ) {
 			}
 
 			return this._regionManager.addRegion( regionName, regionId );
+		},
+
+		addRegions: function (regions) {
+			for (var regionName in regions) {
+				this.addRegion( regionName, regions[regionName]);
+			}
 		},
 
 		/* remove region facade */

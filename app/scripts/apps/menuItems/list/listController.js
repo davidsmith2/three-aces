@@ -1,17 +1,18 @@
 define([
-    'regionShower',
-    'apps/menuItems/list/views/menuItems'
-], function (RegionShower, MenuItems) {
+    'jquery',
+    'backbone',
+    'backbone.marionette',
+    'apps/menuItems/list/views/menuItems',
+    'communicator'
+], function ($, Backbone, Marionette, MenuItems, communicator) {
     'use strict';
-    var ListController = {
-        listMenuItems: function (menuItems, menuItemSizes) {
-            var regionShower = new RegionShower();
-            var region = 'mainRegion';
+    var ListController = Backbone.Marionette.Controller.extend({
+        showView: function (vent, menuItems) {
             var view = new MenuItems({
                 collection: menuItems
             });
-            regionShower.show(region, view);
+            communicator.reqres.request('RM:getRegion', 'mainRegion').show(view);
         }
-    };
-    return ListController;
+    });
+    return new ListController();
 });

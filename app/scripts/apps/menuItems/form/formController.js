@@ -1,19 +1,22 @@
 define([
-    'regionShower',
+    'jquery',
+    'backbone',
+    'backbone.marionette',
     'apps/menuItems/form/views/addMenuItem',
-    'entities/menuItem'
-], function (RegionShower, AddMenuItem, MenuItem) {
+    'entities/menuItem',
+    'communicator',
+    'bootstrap'
+], function ($, Backbone, Marionette, AddMenuItem, MenuItem, communicator) {
     'use strict';
-    var FormController = {
-        displayForm: function () {
-            var regionShower = new RegionShower();
-            var region = 'offscreenRegion';
+    var FormController = Backbone.Marionette.Controller.extend({
+        showView: function (vent, menuItems, modalId) {
             var view = new AddMenuItem({
                 model: new MenuItem(),
-                collection: {}
+                collection: menuItems,
+                modalId: modalId
             });
-            regionShower.show(region, view);
+            communicator.reqres.request('RM:getRegion', 'offscreenRegion').show(view);
         }
-    };
-    return FormController;
+    });
+    return new FormController();
 });

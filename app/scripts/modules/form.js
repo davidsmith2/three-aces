@@ -1,7 +1,6 @@
 define([
-    'moduleFactory',
     'apps/menuItems/form/formController'
-], function (ModuleFactory, formController) {
+], function (formController) {
     'use strict';
     var formModule;
     return {

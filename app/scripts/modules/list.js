@@ -1,7 +1,6 @@
 define([
-    'moduleFactory',
     'apps/menuItems/list/listController'
-], function (ModuleFactory, listController) {
+], function (listController) {
     'use strict';
     var listModule;
     return {

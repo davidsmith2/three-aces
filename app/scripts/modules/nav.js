@@ -1,7 +1,6 @@
 define([
-    'moduleFactory',
     'apps/menuItems/nav/navController'
-], function (ModuleFactory, navController) {
+], function (navController) {
     'use strict';
     var navModule;
     return {

@@ -1,9 +1,8 @@
 define([
     'jquery',
-    'moduleFactory',
     'entities/menuItems',
     'entities/menuItemSizes'
-], function ($, ModuleFactory, MenuItems, MenuItemSizes) {
+], function ($, MenuItems, MenuItemSizes) {
     'use strict';
     return {
         getMenuItems: function () {

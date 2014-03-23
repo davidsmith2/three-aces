@@ -20,7 +20,7 @@ define([
             this.$('.addMenuItemSize').hide();
             this.$('.deleteMenuItemSize').show();
             formData.size = this.$('input[name=sizeName]').val();
-            formData.price = parseInt(this.$('input[name=sizePrice]').val(), 2);
+            formData.price = this.$('input[name=sizePrice]').val();
             this.model.set(formData);
             this.trigger('addSize');
         },

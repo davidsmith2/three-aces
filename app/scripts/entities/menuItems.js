@@ -4,8 +4,8 @@ define([
 ], function (Backbone, MenuItem) {
     'use strict';
     var MenuItems = Backbone.Collection.extend({
-        url: '/api/menu-item',
-        model: MenuItem
+        model: MenuItem,
+        url: '/api/menu-items'
     });
     return MenuItems;
 });

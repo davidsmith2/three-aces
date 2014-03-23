@@ -4,10 +4,10 @@ define([
     'use strict';
     var listModule;
     return {
-        start: function (App, menuItems) {
+        start: function (App) {
             listModule = App.module('MenuItemsApp.List');
             listModule.addInitializer(function () {
-                listController.showView(App.vent, menuItems);
+                listController.showView(App.vent, App.collections);
             });
         }
     };

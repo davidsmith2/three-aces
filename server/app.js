@@ -65,7 +65,7 @@ db.once('open', function callback () {
         res.send( 'api is running' );
     });
 
-    app.get('/api/menu-item', function(req, res){
+    app.get('/api/menu-items', function(req, res){
         return MenuItem.find(function(err, menuItems){
             if (!err) {
                 return res.send(menuItems);
@@ -75,7 +75,7 @@ db.once('open', function callback () {
         });
     });
 
-    app.post('/api/menu-item', function(req, res){
+    app.post('/api/menu-items', function(req, res){
         var menuItem = new MenuItem({
             name: req.body.name,
             description: req.body.description,
@@ -93,7 +93,7 @@ db.once('open', function callback () {
         return res.send(menuItem);
     });
 
-    app.put('/api/menu-item/:id', function(req, res){
+    app.put('/api/menu-items/:id', function(req, res){
         return MenuItem.findById(req.params.id, function(err, menuItem){
             menuItem.name = req.body.name;
             menuItem.description = req.body.description;
@@ -111,7 +111,7 @@ db.once('open', function callback () {
         });
     });
 
-    app['delete']('/api/menu-item/:id', function(req, res){
+    app['delete']('/api/menu-items/:id', function(req, res){
         return MenuItem.findById(req.params.id, function(err, menuItem){
             return menuItem.remove(function(err){
                 if (!err) {
@@ -124,7 +124,7 @@ db.once('open', function callback () {
         });
     });
 
-    app.get('/api/menu-item-size', function(req, res){
+    app.get('/api/menu-item-sizes', function(req, res){
         return MenuItemSize.find(function(err, menuItemSizes){
             if (!err) {
                 return res.send(menuItemSizes);
@@ -134,7 +134,7 @@ db.once('open', function callback () {
         });
     });
 
-    app.post('/api/menu-item-size', function(req, res){
+    app.post('/api/menu-item-sizes', function(req, res){
         var menuItemSize = new MenuItemSize({
             size: req.body.size,
             price: req.body.price,
@@ -150,7 +150,7 @@ db.once('open', function callback () {
         return res.send(menuItemSize);
     });
 
-    app.put('/api/menu-item-size/:id', function(req, res){
+    app.put('/api/menu-item-sizes/:id', function(req, res){
         return MenuItemSize.findById(req.params.id, function(err, menuItemSize){
             menuItemSize.size = req.body.size;
             menuItemSize.price = req.body.price;
@@ -166,7 +166,7 @@ db.once('open', function callback () {
         });
     });
 
-    app['delete']('/api/menu-item-size/:id', function(req, res){
+    app['delete']('/api/menu-item-sizes/:id', function(req, res){
         return MenuItemSize.findById(req.params.id, function(err, menuItemSize){
             return menuItemSize.remove(function(err){
                 if (!err) {

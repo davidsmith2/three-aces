@@ -4,10 +4,10 @@ define([
     'use strict';
     var formModule;
     return {
-        start: function (App, menuItems, modalId) {
+        start: function (App, modalId) {
             formModule = App.module('MenuItemsApp.Form');
             formModule.addInitializer(function () {
-                formController.showView(App.vent, menuItems, modalId);
+                formController.showView(App.vent, App.collections, modalId);
             });
         }
     };

@@ -10,15 +10,12 @@ define([
     'use strict';
     var AddMenuItem = Marionette.ItemView.extend({
         template: template,
-        initialize: function () {
-            this.modalId = this.options.modalId;
-        },
         onRender: function () {
             var sizes = new Backbone.Collection();
             var sizesView = new AddMenuItemSizes({
                 collection: sizes
             });
-            this.$(this.modalId).modal('show');
+            this.$(this.options.modalId).modal('show');
             this.$('#sizes').append(sizesView.render().el);
             this.on('save', sizesView.save, sizesView);
         },
@@ -55,9 +52,9 @@ define([
                 }
                 $(el).val('');
             });
-            this.collection.create(formData, {
-                success: function (response) {
-                    self.trigger('save', response);
+            this.options.collections.menuItems.create(formData, {
+                success: function (menuItem) {
+                    self.trigger('save', menuItem, self.options.collections.menuItemSizes);
                 }
             });
             this.dismiss(e);

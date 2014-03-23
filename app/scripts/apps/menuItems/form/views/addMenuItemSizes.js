@@ -32,9 +32,9 @@ define([
         onDeleteSize: function (size) {
             this.collection.remove(size);
         },
-        save: function (menuItem) {
+        save: function (menuItem, menuItemSizes) {
             var tempCollection = this.collection,
-                permCollection = App.collections.menuItemSizes;
+                permCollection = menuItemSizes;
             tempCollection.each(function (model, index) {
                 if (index < (tempCollection.length - 1)) {
                     model.set('menuItem', menuItem.get('_id'));

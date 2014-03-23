@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu_items>
-  <menu_item id="1">
+  <menu_item>
     <menu_item_name>Pizza With Tomato &amp; Cheese</menu_item_name>
     <menu_item_category>Pizzas</menu_item_category>
     <menu_item_sizes>
@@ -14,7 +14,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="2">
+  <menu_item>
     <menu_item_name>Pizza With Onions</menu_item_name>
     <menu_item_category>Pizzas</menu_item_category>
     <menu_item_sizes>
@@ -28,7 +28,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="3">
+  <menu_item>
     <menu_item_name>Pizza With Peppers</menu_item_name>
     <menu_item_category>Pizzas</menu_item_category>
     <menu_item_sizes>
@@ -42,7 +42,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="4">
+  <menu_item>
     <menu_item_name>Pizza With Broccoli</menu_item_name>
     <menu_item_category>Pizzas</menu_item_category>
     <menu_item_sizes>
@@ -56,7 +56,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="5">
+  <menu_item>
     <menu_item_name>Pizza With Grilled Chicken</menu_item_name>
     <menu_item_category>Pizzas</menu_item_category>
     <menu_item_sizes>
@@ -70,7 +70,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="6">
+  <menu_item>
     <menu_item_name>Three Aces Special Pizza</menu_item_name>
     <menu_item_category>Special Pizzas</menu_item_category>
     <menu_item_sizes>
@@ -84,9 +84,9 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="7">
+  <menu_item>
     <menu_item_name>Mediterranean Pizza</menu_item_name>
-    <menu_item_description>Sliced Tomatoes, Olives, Spinach, Fresh Garlic, Mozzarella &amp; Feta Cheese</menu_item_description>
+    <menu_item_description>w/ sliced tomatoes, olives, spinach, fresh garlic, mozzarella &amp; feta cheese</menu_item_description>
     <menu_item_category>Special Pizzas</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -99,9 +99,9 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="8">
+  <menu_item>
     <menu_item_name>Vegetarian Pizza</menu_item_name>
-    <menu_item_description>Sliced Tomatoes, Onion, Peppers, Mushrooms, Broccoli, Mozzarella</menu_item_description>
+    <menu_item_description>w/ sliced tomatoes, onion, peppers, mushrooms, broccoli &amp; mozzarella</menu_item_description>
     <menu_item_category>Special Pizzas</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -114,9 +114,9 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="9">
+  <menu_item>
     <menu_item_name>Meat Lovers Pizza</menu_item_name>
-    <menu_item_description>Pepperoni, Hamburg, Sausage &amp; Bacon</menu_item_description>
+    <menu_item_description>w/ pepperoni, Hamburg sausage &amp; bacon</menu_item_description>
     <menu_item_category>Special Pizzas</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -129,7 +129,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="10">
+  <menu_item>
     <menu_item_name>BBQ Grilled Chicken Pizza</menu_item_name>
     <menu_item_description>Choice Of Vegetables</menu_item_description>
     <menu_item_category>Special Pizzas</menu_item_category>
@@ -144,33 +144,33 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="11">
+  <menu_item>
     <menu_item_name>Chicken Wing Dinner</menu_item_name>
     <menu_item_category>Special Dinners</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
-  <menu_item id="12">
+  <menu_item>
     <menu_item_name>Gyro Plate</menu_item_name>
     <menu_item_category>Special Dinners</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
-  <menu_item id="13">
+  <menu_item>
     <menu_item_name>Chicken Finger Plate</menu_item_name>
     <menu_item_category>Special Dinners</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
-  <menu_item id="14">
-    <menu_item_name>3 Piece Chicken Dinner</menu_item_name>
+  <menu_item>
+    <menu_item_name>3-Piece Chicken Dinner</menu_item_name>
     <menu_item_category>Special Dinners</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
-  <menu_item id="15">
+  <menu_item>
     <menu_item_name>Chicken Kabob Plate</menu_item_name>
     <menu_item_description>With rice, salad &amp; pita bread</menu_item_description>
     <menu_item_category>Special Dinners</menu_item_category>
     <menu_item_price>7.85</menu_item_price>
   </menu_item>
-  <menu_item id="16">
+  <menu_item>
     <menu_item_name>Onion Rings</menu_item_name>
     <menu_item_category>Side Orders</menu_item_category>
     <menu_item_sizes>
@@ -184,7 +184,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="17">
+  <menu_item>
     <menu_item_name>French Fries</menu_item_name>
     <menu_item_category>Side Orders</menu_item_category>
     <menu_item_sizes>
@@ -198,7 +198,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="18">
+  <menu_item>
     <menu_item_name>Spicy Fries</menu_item_name>
     <menu_item_category>Side Orders</menu_item_category>
     <menu_item_sizes>
@@ -212,17 +212,17 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="19">
+  <menu_item>
     <menu_item_name>Chicken Wings</menu_item_name>
     <menu_item_category>Side Orders</menu_item_category>
     <menu_item_price>5.75</menu_item_price>
   </menu_item>
-  <menu_item id="20">
+  <menu_item>
     <menu_item_name>Buffalo Wings</menu_item_name>
     <menu_item_category>Side Orders</menu_item_category>
     <menu_item_price>5.75</menu_item_price>
   </menu_item>
-  <menu_item id="21">
+  <menu_item>
     <menu_item_name>Garden</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
@@ -236,7 +236,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="22">
+  <menu_item>
     <menu_item_name>Greek</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
@@ -250,7 +250,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="23">
+  <menu_item>
     <menu_item_name>Antipasto</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
@@ -264,7 +264,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="24">
+  <menu_item>
     <menu_item_name>Chef</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
@@ -278,7 +278,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="25">
+  <menu_item>
     <menu_item_name>Kabob Salad</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_description>With grilled Chicken &amp; feta cheese</menu_item_description>
@@ -293,87 +293,87 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="26">
-    <menu_item_name>With Sauce</menu_item_name>
+  <menu_item>
+    <menu_item_name>Pasta With Sauce</menu_item_name>
     <menu_item_category>Pasta</menu_item_category>
     <menu_item_price>5.40</menu_item_price>
   </menu_item>
-  <menu_item id="27">
-    <menu_item_name>With Sausage</menu_item_name>
+  <menu_item>
+    <menu_item_name>Pasta With Sausage</menu_item_name>
     <menu_item_category>Pasta</menu_item_category>
     <menu_item_price>6.45</menu_item_price>
   </menu_item>
-  <menu_item id="28">
-    <menu_item_name>With Meat Ball</menu_item_name>
+  <menu_item>
+    <menu_item_name>Pasta With Meat Ball</menu_item_name>
     <menu_item_category>Pasta</menu_item_category>
     <menu_item_price>6.45</menu_item_price>
   </menu_item>
-  <menu_item id="29">
-    <menu_item_name>With Veal</menu_item_name>
+  <menu_item>
+    <menu_item_name>Pasta With Veal</menu_item_name>
     <menu_item_category>Pasta</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
-  <menu_item id="30">
-    <menu_item_name>With Chicken Cutlet</menu_item_name>
+  <menu_item>
+    <menu_item_name>Pasta With Chicken Cutlet</menu_item_name>
     <menu_item_category>Pasta</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
-  <menu_item id="31">
+  <menu_item>
     <menu_item_name>Vegetarian</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
-  <menu_item id="32">
+  <menu_item>
     <menu_item_name>Sausage</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
-  <menu_item id="33">
+  <menu_item>
     <menu_item_name>Ham &amp; Cheese</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
-  <menu_item id="34">
+  <menu_item>
     <menu_item_name>Chicken Cutlet</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
-  <menu_item id="35">
+  <menu_item>
     <menu_item_name>Grecian</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_description>Fresh Tomatoes, Spinach, Feta</menu_item_description>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
-  <menu_item id="36">
+  <menu_item>
     <menu_item_name>Turkey Club Wrap</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
     <menu_item_description>Turkey, Cheese, Lettuce, Tomato, Onion, Mayo</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
-  <menu_item id="37">
+  <menu_item>
     <menu_item_name>Chicken Cobb</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
     <menu_item_description>Grilled Chicken, Bacon, Cheese, lettuce, Tomatop, Onion, Honey Mustard</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
-  <menu_item id="38">
+  <menu_item>
     <menu_item_name>Greek Supreme</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
     <menu_item_description>Feta Cheese, Black Olives, Lettuce, Tomato, Onion, Greek Dressing</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
-  <menu_item id="39">
+  <menu_item>
     <menu_item_name>Crispy Chicken</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
     <menu_item_description>Chicken Finger, Lettuce, Tomato, Onion, Honey Mustard</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
-  <menu_item id="40">
+  <menu_item>
     <menu_item_name>Steak Wrap</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
-  <menu_item id="41">
+  <menu_item>
     <menu_item_name>Meatless</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
@@ -387,7 +387,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="42">
+  <menu_item>
     <menu_item_name>Hamburger</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
@@ -401,7 +401,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="43">
+  <menu_item>
     <menu_item_name>Cheeseburger</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
@@ -415,7 +415,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="44">
+  <menu_item>
     <menu_item_name>Meatball</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
@@ -429,7 +429,7 @@
       </menu_item_size>
     </menu_item_sizes>
   </menu_item>
-  <menu_item id="45">
+  <menu_item>
     <menu_item_name>Sausage</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>

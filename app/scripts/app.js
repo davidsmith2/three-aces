@@ -3,12 +3,13 @@ define([
     'backbone',
 	'backbone.marionette',
     'regionManager',
-    'dataManager',
-    'communicator'
-], function ($, Backbone, Marionette, regionManager, dataManager, communicator) {
+    'dataManager'
+], function ($, Backbone, Marionette, regionManager, dataManager) {
     'use strict';
 
     var App = new Marionette.Application();
+
+    App.collections = {};
 
     regionManager.addRegions({
         'navRegion': '#nav',
@@ -16,23 +17,25 @@ define([
         'offscreenRegion': '#offscreen'
     });
 
-    var _menuItems;
-
     App.addInitializer(function () {
-        var self = this;
-        $.when(communicator.reqres.request('DM:getData', 'MenuItems')).done(function (menuItems) {
-            _menuItems = menuItems;
-            self.vent.trigger('DM:getData', _menuItems);
+        var menuItems = dataManager.getMenuItems(),
+            menuItemSizes = dataManager.getMenuItemSizes(),
+            self = this;
+        // https://api.jquery.com/jQuery.when/
+        $.when(menuItems, menuItemSizes).done(function (menuItems, menuItemSizes) {
+            App.collections.menuItems = menuItems[0];
+            App.collections.menuItemSizes = menuItemSizes[0];
+            self.vent.trigger('DM:getData');
         });
     });
 
-    App.vent.on('DM:getData', function (menuItems) {
+    App.vent.on('DM:getData', function () {
         require([
             'modules/nav',
             'modules/list'
         ], function (navModule, listModule) {
             navModule.start(App);
-            listModule.start(App, menuItems);
+            listModule.start(App);
         });
     });
 
@@ -40,7 +43,7 @@ define([
         require([
             'modules/form'
         ], function (formModule) {
-            formModule.start(App, _menuItems, modalId);
+            formModule.start(App, modalId);
         });
     });
 

@@ -295,27 +295,27 @@
   </menu_item>
   <menu_item>
     <menu_item_name>Pasta With Sauce</menu_item_name>
-    <menu_item_category>Pasta</menu_item_category>
+    <menu_item_category>Pastas</menu_item_category>
     <menu_item_price>5.40</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Pasta With Sausage</menu_item_name>
-    <menu_item_category>Pasta</menu_item_category>
+    <menu_item_category>Pastas</menu_item_category>
     <menu_item_price>6.45</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Pasta With Meat Ball</menu_item_name>
-    <menu_item_category>Pasta</menu_item_category>
+    <menu_item_category>Pastas</menu_item_category>
     <menu_item_price>6.45</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Pasta With Veal</menu_item_name>
-    <menu_item_category>Pasta</menu_item_category>
+    <menu_item_category>Pastas</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Pasta With Chicken Cutlet</menu_item_name>
-    <menu_item_category>Pasta</menu_item_category>
+    <menu_item_category>Pastas</menu_item_category>
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
   <menu_item>

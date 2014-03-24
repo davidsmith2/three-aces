@@ -31,8 +31,8 @@ define([
 
     App.vent.on('DM:getData', function () {
         require([
-            'modules/nav',
-            'modules/list'
+            'apps/nav/navModule',
+            'apps/list/listModule'
         ], function (navModule, listModule) {
             navModule.start(App);
             listModule.start(App);
@@ -41,7 +41,7 @@ define([
 
     App.vent.on('UI:addMenuItem', function (modalId) {
         require([
-            'modules/form'
+            'apps/form/formModule'
         ], function (formModule) {
             formModule.start(App, modalId);
         });

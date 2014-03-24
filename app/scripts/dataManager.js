@@ -2,7 +2,7 @@ define([
     'jquery',
     'backbone',
     'communicator',
-    'modules/entities'
+    'apps/entities/entitiesModule'
 ], function ($, Backbone, communicator, entities) {
     'use strict';
     var DataManager = Backbone.Marionette.Controller.extend({

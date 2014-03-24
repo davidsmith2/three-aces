@@ -3,12 +3,9 @@ define([
     'backbone',
     'communicator',
     'apps/entities/entitiesModule'
-], function ($, Backbone, communicator, entities) {
+], function ($, Backbone, communicator) {
     'use strict';
     var DataManager = Backbone.Marionette.Controller.extend({
-        initialize: function () {
-            this._callbacks = entities;
-        },
         getMenuItems: function () {
             return communicator.reqres.request('menuItems');
         },

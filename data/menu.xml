@@ -131,7 +131,7 @@
   </menu_item>
   <menu_item>
     <menu_item_name>BBQ Grilled Chicken Pizza</menu_item_name>
-    <menu_item_description>Choice Of Vegetables</menu_item_description>
+    <menu_item_description>w/ a choice of vegetables</menu_item_description>
     <menu_item_category>Special Pizzas</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -166,7 +166,7 @@
   </menu_item>
   <menu_item>
     <menu_item_name>Chicken Kabob Plate</menu_item_name>
-    <menu_item_description>With rice, salad &amp; pita bread</menu_item_description>
+    <menu_item_description>w/ rice, salad &amp; pita bread</menu_item_description>
     <menu_item_category>Special Dinners</menu_item_category>
     <menu_item_price>7.85</menu_item_price>
   </menu_item>
@@ -281,7 +281,7 @@
   <menu_item>
     <menu_item_name>Kabob Salad</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
-    <menu_item_description>With grilled Chicken &amp; feta cheese</menu_item_description>
+    <menu_item_description>w/ grilled chicken &amp; feta cheese</menu_item_description>
     <menu_item_sizes>
       <menu_item_size>
         <menu_item_size_name>Small</menu_item_size_name>
@@ -341,25 +341,25 @@
   <menu_item>
     <menu_item_name>Grecian</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
-    <menu_item_description>Fresh Tomatoes, Spinach, Feta</menu_item_description>
+    <menu_item_description>w/ fresh tomatoes, spinach &amp; feta</menu_item_description>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Turkey Club Wrap</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
-    <menu_item_description>Turkey, Cheese, Lettuce, Tomato, Onion, Mayo</menu_item_description>
+    <menu_item_description>w/ cheese, lettuce, tomato, onions &amp; mayo</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Chicken Cobb</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
-    <menu_item_description>Grilled Chicken, Bacon, Cheese, lettuce, Tomatop, Onion, Honey Mustard</menu_item_description>
+    <menu_item_description>w/ bacon, cheese, lettuce, tomato, onions &amp; honey mustard</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
   <menu_item>
     <menu_item_name>Greek Supreme</menu_item_name>
     <menu_item_category>Wraps</menu_item_category>
-    <menu_item_description>Feta Cheese, Black Olives, Lettuce, Tomato, Onion, Greek Dressing</menu_item_description>
+    <menu_item_description>w/ feta Cheese, black olives, lettuce, tomato, onions &amp; Greek dressing</menu_item_description>
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
   <menu_item>

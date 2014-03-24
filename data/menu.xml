@@ -223,7 +223,7 @@
     <menu_item_price>5.75</menu_item_price>
   </menu_item>
   <menu_item>
-    <menu_item_name>Garden</menu_item_name>
+    <menu_item_name>Garden Salad</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -237,7 +237,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Greek</menu_item_name>
+    <menu_item_name>Greek Salad</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -251,7 +251,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Antipasto</menu_item_name>
+    <menu_item_name>Antipasto Salad</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -265,7 +265,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Chef</menu_item_name>
+    <menu_item_name>Chef Salad</menu_item_name>
     <menu_item_category>Salads</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -319,22 +319,22 @@
     <menu_item_price>7.25</menu_item_price>
   </menu_item>
   <menu_item>
-    <menu_item_name>Vegetarian</menu_item_name>
+    <menu_item_name>Vegetarian Calzone</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
   <menu_item>
-    <menu_item_name>Sausage</menu_item_name>
+    <menu_item_name>Sausage Calzone</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
   <menu_item>
-    <menu_item_name>Ham &amp; Cheese</menu_item_name>
+    <menu_item_name>Ham &amp; Cheese Calzone</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>
   <menu_item>
-    <menu_item_name>Chicken Cutlet</menu_item_name>
+    <menu_item_name>Chicken Cutlet Calzone</menu_item_name>
     <menu_item_category>Calzones</menu_item_category>
     <menu_item_price>7.35</menu_item_price>
   </menu_item>

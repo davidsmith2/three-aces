@@ -1,10 +1,11 @@
 define([
 	'jquery',
+    'underscore',
     'backbone',
 	'backbone.marionette',
     'regionManager',
     'dataManager'
-], function ($, Backbone, Marionette, regionManager, dataManager) {
+], function ($, _, Backbone, Marionette, regionManager, dataManager) {
     'use strict';
 
     var App = new Marionette.Application();
@@ -31,11 +32,11 @@ define([
 
     App.vent.on('DM:getData', function () {
         require([
-            'apps/nav/navModule',
-            'apps/list/listModule'
-        ], function (navModule, listModule) {
-            navModule.start(App);
+            'apps/list/listModule',
+            'apps/category/categoryModule'
+        ], function (listModule, categoryModule) {
             listModule.start(App);
+            categoryModule.start(App);
         });
     });
 

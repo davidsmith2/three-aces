@@ -12,6 +12,7 @@ define([
                 collection: collections.menuItems
             });
             communicator.reqres.request('RM:getRegion', 'mainRegion').show(view);
+            return view;
         }
     });
     return new ListController();

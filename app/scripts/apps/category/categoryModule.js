@@ -1,6 +1,8 @@
 define([
+    'underscore',
+    'backbone',
     'apps/category/categoryController'
-], function (categoryController) {
+], function (_, Backbone, categoryController) {
     'use strict';
     var categoryModule;
     return {

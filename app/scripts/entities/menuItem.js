@@ -3,17 +3,17 @@ define([
     'entities/menuItemSize',
     'entities/menuItemSizes',
     'backbone-relational'
-], function (Backbone, MenuItemSize, MenuItemSizes) {
+], function (Backbone, MenuItemSizeModel, MenuItemSizesCollection) {
     'use strict';
-    var MenuItem = Backbone.RelationalModel.extend({
+    var MenuItemModel = Backbone.RelationalModel.extend({
         urlRoot: '/api/menu-items',
         idAttribute: '_id',
         relations: [
             {
                 type: Backbone.HasMany,
-                key: 'sizes',
-                relatedModel: MenuItemSize,
-                collectionType: MenuItemSizes,
+                key: 'menuItemSizes',
+                relatedModel: MenuItemSizeModel,
+                collectionType: MenuItemSizesCollection,
                 includeInJSON: true,
                 fetchRelated: true,
                 reverseRelation: {
@@ -23,12 +23,12 @@ define([
             }
         ],
         defaults: {
-            name: '',
-            description: '',
-            category: '',
-            price: 0,
-            sizes: []
+            menuItemName: '',
+            menuItemDescription: '',
+            menuItemCategory: '',
+            menuItemPrice: 0,
+            menuItemSizes: []
         }
     });
-    return MenuItem;
+    return MenuItemModel;
 });

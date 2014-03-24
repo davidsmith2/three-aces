@@ -18,17 +18,17 @@ db.once('open', function callback () {
 
 	/* schemas */
     var menuItemSizeSchema = new mongoose.Schema({
-        size: String,
-        price: Number,
+        menuItemSizeName: String,
+        menuItemSizePrice: Number,
         menuItem: String
     });
 
     var menuItemSchema = new mongoose.Schema({
-        name: String,
-        description: String,
-        category: String,
-        price: Number,
-        sizes: [menuItemSizeSchema]
+        menuItemName: String,
+        menuItemDescription: String,
+        menuItemCategory: String,
+        menuItemPrice: Number,
+        menuItemSizes: [menuItemSizeSchema]
     });
 
     /* models */
@@ -77,11 +77,11 @@ db.once('open', function callback () {
 
     app.post('/api/menu-items', function(req, res){
         var menuItem = new MenuItem({
-            name: req.body.name,
-            description: req.body.description,
-            category: req.body.category,
-            price: req.body.price,
-            sizes: req.body.sizes
+            menuItemName: req.body.menuItemName,
+            menuItemDescription: req.body.menuItemDescription,
+            menuItemCategory: req.body.menuItemCategory,
+            menuItemPrice: req.body.menuItemPrice,
+            menuItemSizes: req.body.menuItemSizes
         });
         menuItem.save(function(err){
             if (!err) {
@@ -95,11 +95,11 @@ db.once('open', function callback () {
 
     app.put('/api/menu-items/:id', function(req, res){
         return MenuItem.findById(req.params.id, function(err, menuItem){
-            menuItem.name = req.body.name;
-            menuItem.description = req.body.description;
-            menuItem.category = req.body.category;
-            menuItem.price = req.body.price;
-            menuItem.sizes = req.body.sizes;
+            menuItem.menuItemName = req.body.menuItemName;
+            menuItem.menuItemDescription = req.body.menuItemDescription;
+            menuItem.menuItemCategory = req.body.menuItemCategory;
+            menuItem.menuItemPrice = req.body.menuItemPrice;
+            menuItem.menuItemSizes = req.body.menuItemSizes;
             return menuItem.save(function(err){
                 if (!err) {
                     console.log('menu item updated');
@@ -136,9 +136,9 @@ db.once('open', function callback () {
 
     app.post('/api/menu-item-sizes', function(req, res){
         var menuItemSize = new MenuItemSize({
-            size: req.body.size,
-            price: req.body.price,
-            menuItem: req.body.menuItem
+            menuItem: req.body.menuItem,
+            menuItemSizeName: req.body.menuItemSizeName,
+            menuItemSizePrice: req.body.menuItemSizePrice
         });
         menuItemSize.save(function(err){
             if (!err) {
@@ -152,9 +152,9 @@ db.once('open', function callback () {
 
     app.put('/api/menu-item-sizes/:id', function(req, res){
         return MenuItemSize.findById(req.params.id, function(err, menuItemSize){
-            menuItemSize.size = req.body.size;
-            menuItemSize.price = req.body.price;
             menuItemSize.menuItem = req.body.menuItem;
+            menuItemSize.menuItemSizeName = req.body.menuItemSizeName;
+            menuItemSize.menuItemSizePrice = req.body.menuItemSizePrice;
             return menuItemSize.save(function(err){
                 if (!err) {
                     console.log('menu item size updated');
@@ -184,5 +184,3 @@ db.once('open', function callback () {
 	    console.log('Express App started!');
 	});
 });
-
-

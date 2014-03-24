@@ -11,8 +11,6 @@ define([
             var view = new MenuItems({
                 collection: collections.menuItems
             });
-            // why do i have to do this here?!
-            view.listenTo(collections.menuItemSizes, 'add', view.render);
             communicator.reqres.request('RM:getRegion', 'mainRegion').show(view);
         }
     });

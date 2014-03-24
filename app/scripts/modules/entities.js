@@ -3,12 +3,12 @@ define([
     'entities/menuItems',
     'entities/menuItemSizes',
     'communicator'
-], function ($, MenuItems, MenuItemSizes, communicator) {
+], function ($, MenuItemsCollection, MenuItemSizesCollection, communicator) {
     'use strict';
     // http://stackoverflow.com/questions/18468019/
     var API = {
         getMenuItems: function () {
-            var menuItems = new MenuItems();
+            var menuItems = new MenuItemsCollection();
             var dfd = $.Deferred();
             menuItems.fetch({
                 success: dfd.resolve
@@ -16,7 +16,7 @@ define([
             return dfd.promise();
         },
         getMenuItemSizes: function () {
-            var menuItemSizes = new MenuItemSizes();
+            var menuItemSizes = new MenuItemSizesCollection();
             var dfd = $.Deferred();
             menuItemSizes.fetch({
                 success: dfd.resolve

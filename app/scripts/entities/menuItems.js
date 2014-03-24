@@ -1,12 +1,12 @@
 define([
     'backbone',
     'entities/menuItem'
-], function (Backbone, MenuItem) {
+], function (Backbone, MenuItemModel) {
     'use strict';
-    var MenuItems = Backbone.Collection.extend({
-        model: MenuItem,
+    var MenuItemsCollection = Backbone.Collection.extend({
+        model: MenuItemModel,
         url: '/api/menu-items',
-        comparator: 'category'
+        comparator: 'menuItemCategory'
     });
-    return MenuItems;
+    return MenuItemsCollection;
 });

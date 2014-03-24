@@ -6,7 +6,7 @@ define([
     'apps/menuItems/form/views/addMenuItemSize'
 ], function (_, Marionette, $, MenuItemSize, AddMenuItemSize) {
     'use strict';
-    var AddMenuItemSizes = Marionette.CollectionView.extend({
+    var AddMenuItemSizesView = Marionette.CollectionView.extend({
         itemView: AddMenuItemSize,
         onRender: function () {
             this._buildItemView();
@@ -32,18 +32,16 @@ define([
         onDeleteSize: function (size) {
             this.collection.remove(size);
         },
-        save: function (menuItem, menuItemSizes) {
-            var tempCollection = this.collection,
-                permCollection = menuItemSizes;
-            tempCollection.each(function (model, index) {
-                if (index < (tempCollection.length - 1)) {
-                    model.set('menuItem', menuItem.get('_id'));
-                    permCollection.create(model);
-                } else {
-                    tempCollection.reset([]);
-                }
-            });
+        save: function (menuItemModel, menuItemSizesCollection) {
+            var menuItemSizes = this.collection.models.slice(0, (this.collection.length - 1)),
+                menuItemSize;
+            menuItemModel.set('menuItemSizes', menuItemSizes);
+            for (var i = 0, len = menuItemSizes.length; i < len; i++) {
+                menuItemSize = menuItemSizes[i];
+                menuItemSize.menuItem = menuItemModel.get('_id');
+                menuItemSizesCollection.create(menuItemSize);
+            }
         }
     });
-    return AddMenuItemSizes;
+    return AddMenuItemSizesView;
 });

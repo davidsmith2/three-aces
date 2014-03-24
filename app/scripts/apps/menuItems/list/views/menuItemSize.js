@@ -3,9 +3,9 @@ define([
     'hbs!tmpl/menuItemSize'
 ], function (Marionette, template) {
     'use strict';
-    var MenuItemSize = Marionette.ItemView.extend({
+    var MenuItemSizeView = Marionette.ItemView.extend({
         tagName: 'div',
         template: template
     });
-    return MenuItemSize;
+    return MenuItemSizeView;
 });

@@ -374,7 +374,7 @@
     <menu_item_price>4.95</menu_item_price>
   </menu_item>
   <menu_item>
-    <menu_item_name>Meatless</menu_item_name>
+    <menu_item_name>Meatless Grinder</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -388,7 +388,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Hamburger</menu_item_name>
+    <menu_item_name>Hamburger Grinder</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -402,7 +402,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Cheeseburger</menu_item_name>
+    <menu_item_name>Cheeseburger Grinder</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -416,7 +416,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Meatball</menu_item_name>
+    <menu_item_name>Meatball Grinder</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>
@@ -430,7 +430,7 @@
     </menu_item_sizes>
   </menu_item>
   <menu_item>
-    <menu_item_name>Sausage</menu_item_name>
+    <menu_item_name>Sausage Grinder</menu_item_name>
     <menu_item_category>Grinders</menu_item_category>
     <menu_item_sizes>
       <menu_item_size>

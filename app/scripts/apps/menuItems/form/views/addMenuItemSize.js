@@ -4,7 +4,7 @@ define([
     'hbs!tmpl/addMenuItemSize'
 ], function (Marionette, $, template) {
     'use strict';
-    var AddMenuItemSize = Marionette.ItemView.extend({
+    var AddMenuItemSizeView = Marionette.ItemView.extend({
         className: 'control-group row size',
         template: template,
         onRender: function () {
@@ -19,8 +19,8 @@ define([
             e.preventDefault();
             this.$('.addMenuItemSize').hide();
             this.$('.deleteMenuItemSize').show();
-            formData.size = this.$('input[name=sizeName]').val();
-            formData.price = this.$('input[name=sizePrice]').val();
+            formData.menuItemSizeName = this.$('input[name=menuItemSizeName]').val();
+            formData.menuItemSizePrice = this.$('input[name=menuItemSizePrice]').val();
             this.model.set(formData);
             this.trigger('addSize');
         },
@@ -30,5 +30,5 @@ define([
             this.trigger('deleteSize', this.model);
         }
     });
-    return AddMenuItemSize;
+    return AddMenuItemSizeView;
 });

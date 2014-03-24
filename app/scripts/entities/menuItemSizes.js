@@ -1,11 +1,11 @@
 define([
     'backbone',
     'entities/menuItemSize'
-], function (Backbone, MenuItemSize) {
+], function (Backbone, MenuItemSizeModel) {
     'use strict';
-    var MenuItemSizes = Backbone.Collection.extend({
-        model: MenuItemSize,
+    var MenuItemSizesCollection = Backbone.Collection.extend({
+        model: MenuItemSizeModel,
         url: '/api/menu-item-sizes'
     });
-    return MenuItemSizes;
+    return MenuItemSizesCollection;
 });

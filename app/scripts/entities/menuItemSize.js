@@ -3,14 +3,14 @@ define([
     'backbone-relational'
 ], function (Backbone) {
     'use strict';
-    var MenuItemSize = Backbone.RelationalModel.extend({
-        modelName: 'menuItemSize',
+    var MenuItemSizeModel = Backbone.RelationalModel.extend({
         urlRoot: '/api/menu-item-sizes',
         idAttribute: '_id',
         defaults: {
-            size: '',
-            price: 0
+            menuItem: '',
+            menuItemSizeName: '',
+            menuItemSizePrice: 0
         }
     });
-    return MenuItemSize;
+    return MenuItemSizeModel;
 });

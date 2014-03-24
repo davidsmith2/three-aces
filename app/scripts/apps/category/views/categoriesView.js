@@ -8,7 +8,14 @@ define([
     var CategoriesView = Marionette.CompositeView.extend({
         itemView: CategoryView,
         itemViewContainer: 'ul',
-        template: template
+        template: template,
+        events: {
+            'click .menuItemCategory': 'showMenuItemsByCategory'
+        },
+        showMenuItemsByCategory: function (e) {
+            e.preventDefault();
+            console.log($(e.target).text());
+        }
     });
     return CategoriesView;
 });

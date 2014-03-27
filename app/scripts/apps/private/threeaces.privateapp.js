@@ -3,9 +3,9 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/public/views/menuItems',
-    'apps/private/views/addMenuItem',
-    'apps/private/views/toolbar',
+    'views/menuItems',
+    'views/addMenuItem',
+    'views/toolbar',
     'entities/menuItem'
 ], function (Backbone, Marionette, $, _, MenuItemsView, AddMenuItemView, ToolbarView, MenuItemModel) {
     'use strict';

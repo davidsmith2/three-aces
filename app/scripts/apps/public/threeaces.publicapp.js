@@ -3,8 +3,8 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/public/views/menuItems',
-    'apps/public/views/categories'
+    'views/menuItems',
+    'views/categories'
 ], function (Backbone, Marionette, $, _, MenuItemsView, CategoriesView) {
     'use strict';
     var PublicApp = Backbone.Marionette.Controller.extend({

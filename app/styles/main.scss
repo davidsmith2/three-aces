@@ -1,5 +1,13 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
+header {
+    border-bottom:1px solid #ddd;
+}
+
+footer {
+    border-top:1px solid #ddd;
+}
+
 .textarea-xlarge {
     width: 270px;
 }

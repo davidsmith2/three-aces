@@ -1,6 +1,6 @@
 require([
-	'app'
-], function (App) {
+    'threeaces'
+], function (ThreeAces) {
     'use strict';
-    App.start();
+    ThreeAces.start();
 });

@@ -5,7 +5,7 @@ define([
 ], function (Marionette, $, template) {
     'use strict';
     var CategoryView = Marionette.ItemView.extend({
-        tagName: 'li',
+        tagName: 'option',
         template: template
     });
     return CategoryView;

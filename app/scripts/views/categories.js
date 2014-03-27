@@ -7,7 +7,7 @@ define([
     'use strict';
     var CategoriesView = Marionette.CompositeView.extend({
         itemView: CategoryView,
-        itemViewContainer: 'ul',
+        itemViewContainer: 'select',
         template: template,
         events: {
             'click .menuItemCategory': 'showMenuItemsByCategory'

@@ -6,10 +6,15 @@ define([
     'views/menuItems',
     'views/addMenuItem',
     'views/toolbar',
-    'entities/menuItem'
-], function (Backbone, Marionette, $, _, MenuItemsView, AddMenuItemView, ToolbarView, MenuItemModel) {
+    'entities/menuItem',
+    'apps/private/threeaces.privateapp.vent'
+], function (Backbone, Marionette, $, _, MenuItemsView, AddMenuItemView, ToolbarView, MenuItemModel, privateAppVent) {
     'use strict';
+
     var PrivateApp = Backbone.Marionette.Controller.extend({
+        initialize: function () {
+            privateAppVent.on('menuItem:add', this.showDialog, this);
+        },
         data: function (data) {
             this.menuItems = data.menuItems;
             this.menuItemSizes = data.menuItemSizes;

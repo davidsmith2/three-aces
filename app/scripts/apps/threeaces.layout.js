@@ -5,7 +5,7 @@ define([
     'underscore',
     'hbs!tmpl/layout',
     'apps/threeaces.vent'
-], function (Backbone, Marionette, $, _, template, vent) {
+], function (Backbone, Marionette, $, _, template, appVent) {
     'use strict';
     var Layout = Backbone.Marionette.Layout.extend({
         template: template,
@@ -27,9 +27,9 @@ define([
             e.preventDefault();
             var appName = $(e.target).val();
             if (appName === 'public') {
-                vent.trigger('publicApp:show', this);
+                appVent.trigger('publicApp:show', this);
             } else {
-                vent.trigger('privateApp:show', this);
+                appVent.trigger('privateApp:show', this);
             }
         },
         setSelection: function (app) {
@@ -37,10 +37,10 @@ define([
         },
         setupSelectionEvents: function () {
             var self = this;
-            vent.bind('publicapp:show', function () {
+            appVent.bind('publicapp:show', function () {
                 self.setSelection('public');
             });
-            vent.bind('privateapp:show', function () {
+            appVent.bind('privateapp:show', function () {
                 self.setSelection('private');
             });
         }

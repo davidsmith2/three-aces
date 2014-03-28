@@ -70,7 +70,6 @@ define([
             var dialogId = $(e.target).closest('.modal').attr('id');
             $('#' + dialogId).modal('hide');
             this.showSingleSize();
-            this.trigger('dismiss');
         }
     });
     return AddMenuItemView;

@@ -8,7 +8,7 @@ define([
     'apps/threeaces.datamanager',
     'apps/public/threeaces.publicapp',
     'apps/private/threeaces.privateapp'
-], function (Backbone, Marionette, $, _, vent, Layout, DataManager, publicApp, privateApp) {
+], function (Backbone, Marionette, $, _, appVent, Layout, DataManager, publicApp, privateApp) {
     'use strict';
 
     var ThreeAces = new Marionette.Application();
@@ -17,32 +17,19 @@ define([
         content: '#content'
     });
 
-    vent.on('layout:rendered', function () {
+    appVent.on('layout:rendered', function () {
         console.log('layout:rendered');
         Backbone.history.start();
     });
 
-    vent.on('publicApp:show', function (layout) {
+    appVent.on('publicApp:show', function (layout) {
         console.log('publicApp:show');
         publicApp.layout(layout);
     });
 
-    vent.on('privateApp:show', function (layout) {
+    appVent.on('privateApp:show', function (layout) {
         console.log('privateApp:show');
         privateApp.layout(layout);
-    });
-
-    vent.on('menuItem:add', function (dialogId) {
-        console.log('menuItem:add');
-        privateApp.showDialog(dialogId);
-    });
-
-    vent.on('menu:category:show', function (category) {
-        console.log('menu:category:show');
-    });
-
-    vent.on('menu:show', function () {
-        console.log('menu:show');
     });
 
     // data initializer
@@ -61,7 +48,7 @@ define([
     ThreeAces.addInitializer(function () {
         ThreeAces.layout = new Layout();
         ThreeAces.layout.on('show', function () {
-            vent.trigger('layout:rendered');
+            appVent.trigger('layout:rendered');
         });
         ThreeAces.content.show(ThreeAces.layout);
     });

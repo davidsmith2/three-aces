@@ -4,9 +4,10 @@ define([
     'jquery',
     'underscore',
     'views/menuItems',
-    'views/categories'
-], function (Backbone, Marionette, $, _, MenuItemsView, CategoriesView) {
+    'views/menuItemCategories'
+], function (Backbone, Marionette, $, _, MenuItemsView, MenuItemCategoriesView) {
     'use strict';
+
     var PublicApp = Backbone.Marionette.Controller.extend({
         data: function (data) {
             this.menuItems = data.menuItems;
@@ -16,11 +17,12 @@ define([
             var menuItemsView = new MenuItemsView({
                 collection: this.menuItems
             });
-            var categoriesView = new CategoriesView({
+            var menuItemCategoriesView = new MenuItemCategoriesView({
                 collection: this.getCategories(this.menuItems)
             });
             layout.main.show(menuItemsView);
-            layout.navigation.show(categoriesView);
+            layout.navigation.show(menuItemCategoriesView);
+            this.listenTo(menuItemCategoriesView, 'menu:category:show', this.showMenuByCategory);
         },
         getCategories: function (menuItems) {
             var all = _.uniq(menuItems.pluck('menuItemCategory')),
@@ -45,13 +47,10 @@ define([
 */
         },
         showMenuByCategory: function () {
-            console.log('showMenuByCategory')
+            console.log('menu:category:show');
         },
         showMenuItem: function (id) {
-            console.log('showMenuItem')
-        },
-        showCategories: function () {
-            console.log('showCategories')
+            console.log('menuItem:show');
         }
     });
     return new PublicApp();

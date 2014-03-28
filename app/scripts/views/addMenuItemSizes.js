@@ -22,8 +22,8 @@ define([
         buildItemView: function (item, ItemViewType, itemViewOptions) {
             var options = _.extend({model: item}, itemViewOptions);
             var view = new ItemViewType(options);
-            this.listenTo(view, 'addSize', this.onAddSize);
-            this.listenTo(view, 'deleteSize', this.onDeleteSize);
+            this.listenTo(view, 'menuItemSize:add', this.onAddSize);
+            this.listenTo(view, 'menuItemSize:delete', this.onDeleteSize);
             return view;
         },
         onAddSize: function () {

@@ -4,8 +4,8 @@ define([
     'jquery',
     'underscore',
     'hbs!tmpl/toolbar',
-    'apps/threeaces.vent'
-], function (Backbone, Marionette, $, _, template, vent) {
+    'apps/private/threeaces.privateapp.vent'
+], function (Backbone, Marionette, $, _, template, privateAppVent) {
     'use strict';
     var ToolbarView = Marionette.ItemView.extend({
         template: template,
@@ -15,7 +15,7 @@ define([
         addMenuItem: function (e) {
             var modalId = $(e.target).attr('href');
             e.preventDefault();
-            vent.trigger('menuItem:add', modalId);
+            privateAppVent.trigger('menuItem:add', modalId);
         }
     });
     return ToolbarView;

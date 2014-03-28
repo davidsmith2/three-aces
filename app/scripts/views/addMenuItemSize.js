@@ -1,8 +1,9 @@
 define([
     'backbone.marionette',
     'jquery',
-    'hbs!tmpl/addMenuItemSize'
-], function (Marionette, $, template) {
+    'hbs!tmpl/addMenuItemSize',
+    'apps/private/threeaces.privateapp.vent'
+], function (Marionette, $, template, privateAppVent) {
     'use strict';
     var AddMenuItemSizeView = Marionette.ItemView.extend({
         className: 'control-group row size',
@@ -22,12 +23,12 @@ define([
             formData.menuItemSizeName = this.$('input[name=menuItemSizeName]').val();
             formData.menuItemSizePrice = this.$('input[name=menuItemSizePrice]').val();
             this.model.set(formData);
-            this.trigger('addSize');
+            this.trigger('menuItemSize:add', this.model);
         },
         delete: function (e) {
             e.preventDefault();
             this.remove();
-            this.trigger('deleteSize', this.model);
+            this.trigger('menuItemSize:delete', this.model);
         }
     });
     return AddMenuItemSizeView;

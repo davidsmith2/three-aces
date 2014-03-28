@@ -1,22 +1,22 @@
 define([
     'backbone.marionette',
     'jquery',
-    'views/category',
+    'views/menuItemCategory',
     'hbs!tmpl/menuItemCategories'
-], function (Marionette, $, CategoryView, template) {
+], function (Marionette, $, MenuItemCategoryView, template) {
     'use strict';
-    var CategoriesView = Marionette.CompositeView.extend({
-        itemView: CategoryView,
+    var MenuItemCategoriesView = Marionette.CompositeView.extend({
+        itemView: MenuItemCategoryView,
         itemViewContainer: 'select',
         template: template,
         events: {
-            'click .menuItemCategory': 'showMenuItemsByCategory'
+            'change': 'showMenuItemsByCategory'
         },
         showMenuItemsByCategory: function (e) {
             var category = $(e.target).text();
             e.preventDefault();
-            this.trigger('menuItems:category:show', category);
+            this.trigger('menu:category:show', category);
         }
     });
-    return CategoriesView;
+    return MenuItemCategoriesView;
 });

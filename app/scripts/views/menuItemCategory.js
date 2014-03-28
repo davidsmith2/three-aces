@@ -4,9 +4,9 @@ define([
     'hbs!tmpl/menuItemCategory'
 ], function (Marionette, $, template) {
     'use strict';
-    var CategoryView = Marionette.ItemView.extend({
+    var MenuItemCategoryView = Marionette.ItemView.extend({
         tagName: 'option',
         template: template
     });
-    return CategoryView;
+    return MenuItemCategoryView;
 });

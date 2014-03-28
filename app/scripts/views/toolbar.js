@@ -10,7 +10,7 @@ define([
     var ToolbarView = Marionette.ItemView.extend({
         template: template,
         events: {
-            'click .btn': 'addMenuItem'
+            'click .btn-primary': 'addMenuItem'
         },
         addMenuItem: function (e) {
             var modalId = $(e.target).attr('href');

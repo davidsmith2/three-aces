@@ -3,12 +3,12 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'views/menuItems',
+    'views/menuItemsPrivate',
     'views/addMenuItem',
     'views/toolbar',
     'entities/menuItem',
     'apps/private/threeaces.privateapp.vent'
-], function (Backbone, Marionette, $, _, MenuItemsView, AddMenuItemView, ToolbarView, MenuItemModel, privateAppVent) {
+], function (Backbone, Marionette, $, _, MenuItemsPrivateView, AddMenuItemView, ToolbarView, MenuItemModel, privateAppVent) {
     'use strict';
 
     var PrivateApp = Backbone.Marionette.Controller.extend({
@@ -21,11 +21,11 @@ define([
         },
         layout: function (layout) {
             this._layout = layout;
-            var menuItemsView = new MenuItemsView({
+            var menuItemsPrivateView = new MenuItemsPrivateView({
                 collection: this.menuItems
             });
             var toolbarView = new ToolbarView();
-            layout.main.show(menuItemsView);
+            layout.main.show(menuItemsPrivateView);
             layout.navigation.show(toolbarView);
         },
         showDialog: function (dialogId) {

@@ -44,6 +44,9 @@ define([
             e.preventDefault();
             this.options.collections.menuItems.create(this.parseForm(e.target), {
                 success: function (menuItem) {
+                    menuItem.save({
+                        itemUid: menuItem.id
+                    });
                     if (self.sizes.length > 1) {
                         self.sizesView.save(menuItem, self.options.collections.menuItemSizes);
                     } else {

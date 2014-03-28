@@ -28,7 +28,8 @@ db.once('open', function callback () {
         menuItemDescription: String,
         menuItemCategory: String,
         menuItemPrice: Number,
-        menuItemSizes: [menuItemSizeSchema]
+        menuItemSizes: [menuItemSizeSchema],
+        itemUid: ''
     });
 
     /* models */
@@ -81,7 +82,8 @@ db.once('open', function callback () {
             menuItemDescription: req.body.menuItemDescription,
             menuItemCategory: req.body.menuItemCategory,
             menuItemPrice: req.body.menuItemPrice,
-            menuItemSizes: req.body.menuItemSizes
+            menuItemSizes: req.body.menuItemSizes,
+            itemUid: req.body.itemUid
         });
         menuItem.save(function(err){
             if (!err) {
@@ -100,6 +102,7 @@ db.once('open', function callback () {
             menuItem.menuItemCategory = req.body.menuItemCategory;
             menuItem.menuItemPrice = req.body.menuItemPrice;
             menuItem.menuItemSizes = req.body.menuItemSizes;
+            menuItem.itemUid = req.body.itemUid;
             return menuItem.save(function(err){
                 if (!err) {
                     console.log('menu item updated');

@@ -27,7 +27,8 @@ define([
             menuItemDescription: '',
             menuItemCategory: '',
             menuItemPrice: 0,
-            menuItemSizes: []
+            menuItemSizes: [],
+            itemUid: ''
         }
     });
     return MenuItemModel;

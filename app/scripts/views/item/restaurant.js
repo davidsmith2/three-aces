@@ -15,6 +15,9 @@ define([
             'click .edit': 'editRestaurant',
             'click .delete': 'deleteRestaurant'
         },
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+        },
         onRender: function() {},
         editRestaurant: function (e) {
             e.preventDefault();

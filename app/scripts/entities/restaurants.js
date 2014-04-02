@@ -5,7 +5,8 @@ define([
     'use strict';
     var RestaurantsCollection = Backbone.Collection.extend({
         model: RestaurantModel,
-        url: '/api/restaurants'
+        url: '/api/restaurants',
+        comparator: 'restaurantName'
     });
     return RestaurantsCollection;
 });

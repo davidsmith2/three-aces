@@ -18,19 +18,22 @@ define([
             this.restaurants = restaurants;
         },
         init: function (layout) {
-            var restaurantsView = new RestaurantsView({
+            this._layout = layout;
+            this.showRestaurants();
+        },
+        showRestaurants: function () {
+            this.restaurantsView = new RestaurantsView({
                 collection: this.restaurants
             });
-            this._layout = layout;
-            this._layout.main.show(restaurantsView);
+            this._layout.main.show(this.restaurantsView);
         },
         addRestaurant: function (options) {
-            var addRestaurantView = new AddRestaurantView({
+            this.addRestaurantView = new AddRestaurantView({
                 collection: this.restaurants,
                 model: options.model,
                 dialogId: options.dialogId
             });
-            this._layout.dialog.show(addRestaurantView);
+            this._layout.dialog.show(this.addRestaurantView);
         },
         editRestaurant: function (options) {
             this.addRestaurant(options);

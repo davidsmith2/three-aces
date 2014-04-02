@@ -6,9 +6,8 @@ define([
     'apps/threeaces.vent',
     'apps/threeaces.layout',
     'apps/threeaces.datamanager',
-    'apps/public/threeaces.publicapp',
     'apps/private/threeaces.privateapp'
-], function (Backbone, Marionette, $, _, appVent, Layout, DataManager, publicApp, privateApp) {
+], function (Backbone, Marionette, $, _, appVent, Layout, DataManager, privateApp) {
     'use strict';
 
     var ThreeAces = new Marionette.Application();
@@ -24,7 +23,7 @@ define([
 
     appVent.on('publicApp:show', function (layout) {
         console.log('publicApp:show');
-        publicApp.layout(layout);
+        //publicApp.layout(layout);
     });
 
     appVent.on('privateApp:show', function (layout) {
@@ -34,12 +33,13 @@ define([
 
     // data initializer
     ThreeAces.addInitializer(function () {
-        $.when(DataManager.getMenuItems(), DataManager.getMenuItemSizes()).done(function (menuItems, menuItemSizes) {
+        $.when(DataManager.getRestaurants(), DataManager.getMenuItems(), DataManager.getMenuItemSizes()).done(function (restaurants, menuItems, menuItemSizes) {
             var data = {
+                restaurants: restaurants[0],
                 menuItems: menuItems[0],
                 menuItemSizes: menuItemSizes[0]
             };
-            publicApp.data(data);
+            //publicApp.data(data);
             privateApp.data(data);
         });
     });

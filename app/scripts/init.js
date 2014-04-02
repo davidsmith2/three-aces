@@ -30,6 +30,10 @@ require.config({
         'backbone.wreqr': '../bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
         'backbone.babysitter': '../bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
 
+        /* additional backbone libs */
+        'backbone-relational': '../bower_components/backbone-relational/backbone-relational',
+        'backbone-forms': '../bower_components/backbone-forms/distribution/backbone-forms',
+
         /* alias the bootstrap js lib */
         bootstrap: 'vendor/bootstrap',
 
@@ -43,9 +47,8 @@ require.config({
         /* require handlebars plugin - Alex Sexton */
         i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
-        hbs: '../bower_components/require-handlebars-plugin/hbs',
+        hbs: '../bower_components/require-handlebars-plugin/hbs'
 
-        'backbone-relational': '../bower_components/backbone-relational/backbone-relational'
     },
 
     hbs: {

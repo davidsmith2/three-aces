@@ -1,10 +1,10 @@
 <label class="span2 input-prepend">
     <span class="add-on">Size</span>
-    <input class="input-small" name="menuItemSizeName" type="text" />
+    <input class="input-small" name="menuItemSizeName" type="text" {{#if menuItemSizeName}}value="{{menuItemSizeName}}"{{/if}}/>
 </label>
 <label class="span2 input-prepend">
     <span class="add-on">$</span>
-    <input class="input-small" name="menuItemSizePrice" type="text" />
+    <input class="input-small" name="menuItemSizePrice" type="text" {{#if menuItemSizePrice}}value="{{menuItemSizePrice}}"{{/if}}/>
 </label>
 <div class="span1">
     <button class="btn addMenuItemSize">+</button>

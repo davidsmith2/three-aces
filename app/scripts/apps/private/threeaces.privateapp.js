@@ -3,77 +3,40 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'views/composite/restaurants',
-    'views/item/addRestaurant',
-    'views/composite/menuItemsPrivate',
-    'views/item/addMenuItem',
-    'views/item/toolbar',
-    'entities/menuItem',
     'apps/private/threeaces.privateapp.vent',
-    'entities/restaurant'
-], function (Backbone, Marionette, $, _, RestaurantsView, AddRestaurantView, MenuItemsPrivateView, AddMenuItemView, ToolbarView, MenuItemModel, privateAppVent, RestaurantModel) {
+    'views/composite/restaurants',
+    'views/item/addRestaurant'
+], function (Backbone, Marionette, $, _, privateAppVent, RestaurantsView, AddRestaurantView) {
     'use strict';
-
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
-            privateAppVent.on('restaurant:add', this.showAddRestaurantDialog, this);
-            privateAppVent.on('menuItem:add', this.showAddMenuItemDialog, this);
-            privateAppVent.on('menuItem:edit', this.showEditMenuItemDialog, this);
-            privateAppVent.on('menuItem:delete', this.deleteMenuItem, this);
+            privateAppVent.on('restaurant:add', this.addRestaurant, this);
+            privateAppVent.on('restaurant:edit', this.editRestaurant, this);
+            privateAppVent.on('restaurant:delete', this.deleteRestaurant, this);
         },
-        data: function (data) {
-            this.restaurants = data.restaurants;
-            this.menuItems = data.menuItems;
-            this.menuItemSizes = data.menuItemSizes;
+        setData: function (restaurants) {
+            this.restaurants = restaurants;
         },
-        layout: function (layout) {
-            this._layout = layout;
-
+        init: function (layout) {
             var restaurantsView = new RestaurantsView({
                 collection: this.restaurants
             });
-            layout.main.show(restaurantsView);
-/*
-            var menuItemsPrivateView = new MenuItemsPrivateView({
-                collection: this.menuItems
-            });
-            var toolbarView = new ToolbarView();
-            layout.main.show(menuItemsPrivateView);
-            layout.navigation.show(toolbarView);
-*/
+            this._layout = layout;
+            this._layout.main.show(restaurantsView);
         },
-        showAddRestaurantDialog: function (dialogId) {
+        addRestaurant: function (options) {
             var addRestaurantView = new AddRestaurantView({
                 collection: this.restaurants,
-                model: new RestaurantModel(),
-                dialogId: dialogId
+                model: options.model,
+                dialogId: options.dialogId
             });
             this._layout.dialog.show(addRestaurantView);
         },
-        showAddMenuItemDialog: function (dialogId) {
-            var addMenuItemView = new AddMenuItemView({
-                model: new MenuItemModel(),
-                collections: {
-                    menuItems: this.menuItems,
-                    menuItemSizes: this.menuItemSizes
-                },
-                dialogId: dialogId
-            });
-            this._layout.dialog.show(addMenuItemView);
+        editRestaurant: function (options) {
+            this.addRestaurant(options);
         },
-        showEditMenuItemDialog: function (menuItem) {
-            var editMenuItemView = new AddMenuItemView({
-                model: menuItem,
-                collections: {
-                    menuItems: this.menuItems,
-                    menuItemSizes: this.menuItemSizes
-                },
-                dialogId: '#addMenuItem'
-            });
-            this._layout.dialog.show(editMenuItemView);
-        },
-        deleteMenuItem: function (menuItem) {
-            menuItem.destroy();
+        deleteRestaurant: function (options) {
+            options.model.destroy();
         }
     });
     return new PrivateApp();

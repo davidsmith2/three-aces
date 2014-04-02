@@ -1,52 +1,48 @@
 define([
-	'backbone',
+    'backbone',
+    'backbone.marionette',
     'jquery',
-    'hbs!tmpl/addRestaurant',
+    'underscore',
+    'hbs!tmpl/item/addRestaurant',
     'backbone-forms',
     'bootstrap'
-],
-function( Backbone, $, template ) {
+], function (Backbone, Marionette, $, _, AddRestaurantTmpl) {
     'use strict';
-
-	/* Return a ItemView class definition */
 	return Backbone.Marionette.ItemView.extend({
-
 		initialize: function() {
             this.form = new Backbone.Form({
                 model: this.model
-            }).render();
+            }).render().el;
 		},
-		
-    	template: template,
-
-    	/* ui selector cache */
-    	ui: {},
-
-		/* Ui events hash */
+		template: AddRestaurantTmpl,
+        ui: {},
 		events: {
-            'click .close': 'dismissDialog',
-            'blur input[type=text]': 'saveInputTypeText'
+            'click .close': 'closeDialog',
+            'blur input[type=text]': 'saveTextInput',
+            'change select': 'saveSelect'
         },
-
-		/* on render callback */
 		onRender: function() {
-            this.$el.find('.modal-body').append(this.form.el);
+            this.$el.find('.modal-body').append(this.form);
             this.$(this.options.dialogId).modal('show');
         },
-        dismissDialog: function (e) {
+        closeDialog: function (e) {
             var dialogId = $(e.target).closest('.modal').attr('id');
             $('#' + dialogId).modal('hide');
         },
-        saveInputTypeText: function (e) {
+        saveTextInput: function (e) {
             var $target = $(e.target),
                 fieldData = {};
-
             fieldData[$target.attr('name')] = $target.val();
-
+            this.saveModel(fieldData);
+        },
+        saveSelect: function (e) {
+            var $target = $(e.target),
+                fieldData = {};
+            fieldData[$target.attr('name')] = $target.find(':selected').text();
+            this.saveModel(fieldData);
+        },
+        saveModel: function (fieldData) {
             this.model.save(fieldData, {patch: true});
-
-
         }
 	});
-
 });

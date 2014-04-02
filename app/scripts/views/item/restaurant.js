@@ -1,36 +1,33 @@
 define([
-	'backbone',
-	'hbs!tmpl/item/restaurantView_tmpl'
-],
-function( Backbone, RestaurantViewTmpl  ) {
+    'backbone',
+    'backbone.marionette',
+    'jquery',
+    'underscore',
+    'apps/private/threeaces.privateapp.vent',
+	'hbs!tmpl/item/restaurant'
+], function (Backbone, Marionette, $, _, privateAppVent, RestaurantTmpl) {
     'use strict';
-
-	/* Return a ItemView class definition */
 	return Backbone.Marionette.ItemView.extend({
-
-		initialize: function() {
-			console.log(this.model);
-		},
-		
-    	template: RestaurantViewTmpl,
-
+        template: RestaurantTmpl,
         tagName: 'tr',
-        
-
-    	/* ui selector cache */
-    	ui: {},
-
-		/* Ui events hash */
-		events: {
-            'click .delete-restaurant': 'deleteRestaurant'
+        ui: {},
+        events: {
+            'click .edit': 'editRestaurant',
+            'click .delete': 'deleteRestaurant'
         },
-
-		/* on render callback */
-		onRender: function() {},
+        onRender: function() {},
+        editRestaurant: function (e) {
+            e.preventDefault();
+            privateAppVent.trigger('restaurant:edit', {
+                model: this.model,
+                dialogId: $(e.target).attr('href')
+            });
+        },
         deleteRestaurant: function (e) {
             e.preventDefault();
-            this.model.destroy();
+            privateAppVent.trigger('restaurant:delete', {
+                model: this.model
+            });
         }
-	});
-
+    });
 });

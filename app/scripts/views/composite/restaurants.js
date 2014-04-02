@@ -1,43 +1,29 @@
 define([
-	'backbone',
-	'views/item/restaurant',
-	'hbs!tmpl/composite/restaurantsView_tmpl',
-    'apps/private/threeaces.privateapp.vent'
-],
-function( Backbone, RestaurantView, RestaurantsViewTmpl, privateAppVent ) {
+    'backbone',
+    'backbone.marionette',
+    'jquery',
+    'underscore',
+    'apps/private/threeaces.privateapp.vent',
+    'entities/restaurant',
+    'hbs!tmpl/composite/restaurants',
+    'views/item/restaurant'
+], function (Backbone, Marionette, $, _, privateAppVent, RestaurantModel, RestaurantsTmpl, RestaurantView) {
     'use strict';
-
-	/* Return a CompositeView class definition */
-	return Backbone.Marionette.CompositeView.extend({
-
-		initialize: function() {
-			console.log("initialize a restaurantView CompositeView");
-		},
-		
-    	itemView: RestaurantView,
-    	
-    	template: RestaurantsViewTmpl,
-    	
-
-    	/* ui selector cache */
-    	ui: {},
-
-    	/* where are we appending the items views */
-    	itemViewContainer: "tbody",
-
-		/* Ui events hash */
-		events: {
+    return Backbone.Marionette.CompositeView.extend({
+        itemView: RestaurantView,
+        template: RestaurantsTmpl,
+        ui: {},
+        itemViewContainer: "tbody",
+        events: {
             'click .btn': 'addRestaurant'
         },
-
-		/* on render callback */
-		onRender: function() {},
-
+        onRender: function () {},
         addRestaurant: function (e) {
-            var modalId = $(e.target).attr('href');
             e.preventDefault();
-            privateAppVent.trigger('restaurant:add', modalId);
+            privateAppVent.trigger('restaurant:add', {
+                model: new RestaurantModel(),
+                dialogId: $(e.target).attr('href')
+            });
         }
-	});
-
+    });
 });

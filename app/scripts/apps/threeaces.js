@@ -28,19 +28,14 @@ define([
 
     appVent.on('privateApp:show', function (layout) {
         console.log('privateApp:show');
-        privateApp.layout(layout);
+        privateApp.init(layout);
     });
 
     // data initializer
     ThreeAces.addInitializer(function () {
-        $.when(DataManager.getRestaurants(), DataManager.getMenuItems(), DataManager.getMenuItemSizes()).done(function (restaurants, menuItems, menuItemSizes) {
-            var data = {
-                restaurants: restaurants[0],
-                menuItems: menuItems[0],
-                menuItemSizes: menuItemSizes[0]
-            };
+        $.when(DataManager.getRestaurants()).done(function (restaurants) {
+            privateApp.setData(restaurants);
             //publicApp.data(data);
-            privateApp.data(data);
         });
     });
 

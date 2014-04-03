@@ -15,8 +15,7 @@ define([
         },
         initialize: function () {
             privateAppVent.on('restaurantInfo:edit', this.onRestaurantInfoEdit, this);
-        },
-        onRender: function () {
+            this.listenTo(this.model.get('restaurantInfo'), 'change', this.render);
         },
         editRestaurantInfo: function (e) {
             e.preventDefault();

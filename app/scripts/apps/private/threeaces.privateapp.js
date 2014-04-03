@@ -10,9 +10,9 @@ define([
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
-            privateAppVent.on('restaurant:add', this.addRestaurant, this);
-            privateAppVent.on('restaurant:edit', this.editRestaurant, this);
-            privateAppVent.on('restaurant:delete', this.deleteRestaurant, this);
+            privateAppVent.on('restaurant:add', this.onAddRestaurant, this);
+            privateAppVent.on('restaurant:edit', this.onEditRestaurant, this);
+            privateAppVent.on('restaurant:delete', this.onDeleteRestaurant, this);
         },
         setData: function (restaurants) {
             this.restaurants = restaurants;
@@ -27,18 +27,21 @@ define([
             });
             this._layout.main.show(this.restaurantsView);
         },
-        addRestaurant: function (options) {
+        onAddRestaurant: function (options) {
             this.addRestaurantView = new AddRestaurantView({
                 collection: this.restaurants,
                 model: options.model,
                 dialogId: options.dialogId
             });
             this._layout.dialog.show(this.addRestaurantView);
+
+            this.listenTo(this.restaurants, 'add', this.restaurantsView.render);
+
         },
-        editRestaurant: function (options) {
-            this.addRestaurant(options);
+        onEditRestaurant: function (options) {
+            this.onAddRestaurant(options);
         },
-        deleteRestaurant: function (options) {
+        onDeleteRestaurant: function (options) {
             options.model.destroy();
         }
     });

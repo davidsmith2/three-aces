@@ -17,10 +17,6 @@ define([
         events: {
             'click .btn': 'addRestaurant'
         },
-        initialize: function () {
-            this.collection.on('add', this.render, this);
-        },
-        onRender: function () {},
         addRestaurant: function (e) {
             e.preventDefault();
             privateAppVent.trigger('restaurant:add', {

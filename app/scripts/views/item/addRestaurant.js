@@ -28,6 +28,7 @@ define([
         closeDialog: function (e) {
             var dialogId = $(e.target).closest('.modal').attr('id');
             $('#' + dialogId).modal('hide');
+            this.collection.create(this.model);
         },
         saveTextInput: function (e) {
             var $target = $(e.target),

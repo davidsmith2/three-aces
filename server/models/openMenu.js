@@ -3,11 +3,12 @@ var mongoose = require('mongoose'),
     environmentInfoSchema = require('./environmentInfo').schema,
     menuSchema = require('./menu').schema;
 
-var omfSchema = new mongoose.Schema({
+var openMenuSchema = new mongoose.Schema({
     omfUuid: String,
+    omfUpdatedTimestamp: String,
     restaurantInfo: [restaurantSchema],
     environmentInfo: [environmentInfoSchema],
     menus: [menuSchema]
 });
 
-module.exports = mongoose.model('omf', omfSchema);
+module.exports = mongoose.model('openMenu', openMenuSchema);

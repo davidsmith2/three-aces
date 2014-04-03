@@ -4,43 +4,40 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'views/composite/restaurants',
-    'views/item/addRestaurant'
-], function (Backbone, Marionette, $, _, privateAppVent, RestaurantsView, AddRestaurantView) {
+    'views/composite/openMenus',
+    'views/item/openMenuDetail'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusView, OpenMenuDetailView) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
+            privateAppVent.on('openMenu:showDetail', this.onOpenMenuShowDetail, this);
+/*
             privateAppVent.on('restaurant:add', this.onAddRestaurant, this);
             privateAppVent.on('restaurant:edit', this.onEditRestaurant, this);
             privateAppVent.on('restaurant:delete', this.onDeleteRestaurant, this);
+            privateAppVent.on('restaurant:showDetail', this.onShowRestaurantDetail, this);
+            privateAppVent.on('environment:edit', this.onEditEnvironment, this);
+*/
         },
-        setData: function (restaurants) {
-            this.restaurants = restaurants;
+        setData: function (data) {
+            this.openMenus = data.openMenus;
+            this.restaurants = data.restaurants;
         },
         init: function (layout) {
             this._layout = layout;
-            this.showRestaurants();
+            this.showOpenMenus();
         },
-        showRestaurants: function () {
-            this.restaurantsView = new RestaurantsView({
-                collection: this.restaurants
+        showOpenMenus: function () {
+            this.openMenusView = new OpenMenusView({
+                collection: this.openMenus
             });
-            this._layout.main.show(this.restaurantsView);
+            this._layout.main.show(this.openMenusView);
         },
-        onAddRestaurant: function (options) {
-            this.addRestaurantView = new AddRestaurantView({
-                collection: this.restaurants,
-                model: options.model,
-                dialogId: options.dialogId
+        onOpenMenuShowDetail: function (openMenu) {
+            this.openMenuDetailView = new OpenMenuDetailView({
+                model: openMenu
             });
-            this._layout.dialog.show(this.addRestaurantView);
-            this.listenTo(this.restaurants, 'add', this.restaurantsView.render);
-        },
-        onEditRestaurant: function (options) {
-            this.onAddRestaurant(options);
-        },
-        onDeleteRestaurant: function (options) {
-            options.model.destroy();
+            this._layout.main.show(this.openMenuDetailView);
         }
     });
     return new PrivateApp();

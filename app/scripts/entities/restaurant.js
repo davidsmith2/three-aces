@@ -8,7 +8,6 @@ define([
         urlRoot: '/api/restaurants',
         idAttribute: '_id',
         defaults: {
-            omfUuid: '',
             restaurantName: '',
             address1: '',
             cityTown: '',
@@ -16,7 +15,8 @@ define([
             postalCode: '',
             country: '',
             phone: '',
-            fax: ''
+            fax: '',
+            openMenu: ''
         },
         schema: {
             restaurantName: {type: 'Text', title: 'Name'},

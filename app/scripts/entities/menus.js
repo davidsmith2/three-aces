@@ -5,7 +5,7 @@ define([
     'use strict';
     var MenusCollection = Backbone.Collection.extend({
         model: MenuModel,
-        url: '/api/omfs/:id/menus'
+        url: '/api/open-menus/:id/menus'
     });
     return MenusCollection;
 });

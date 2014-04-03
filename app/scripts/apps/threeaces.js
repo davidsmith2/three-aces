@@ -28,8 +28,11 @@ define([
         privateApp.init(layout);
     });
     ThreeAces.addInitializer(function () {
-        $.when(DataManager.getRestaurants()).done(function (restaurants) {
-            privateApp.setData(restaurants);
+        $.when(DataManager.getOpenMenus(), DataManager.getRestaurants()).done(function (openMenus, restaurants) {
+            privateApp.setData({
+                openMenus: openMenus[0],
+                restaurants: restaurants[0]
+            });
             //publicApp.data(data);
         });
     });

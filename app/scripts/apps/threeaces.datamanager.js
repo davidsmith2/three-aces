@@ -1,18 +1,18 @@
 define([
     'jquery',
-    'entities/omfs',
+    'entities/openMenus',
     'entities/restaurants',
     'entities/menuItems',
     'entities/menuItemSizes',
     'apps/threeaces.communicator'
-], function ($, OmfsCollection, RestaurantsCollection, MenuItemsCollection, MenuItemSizesCollection, communicator) {
+], function ($, OpenMenusCollection, RestaurantsCollection, MenuItemsCollection, MenuItemSizesCollection, communicator) {
     'use strict';
     // http://stackoverflow.com/questions/18468019/
     var _API = {
-        getOmfs: function () {
-            var omfs = new OmfsCollection();
+        getOpenMenus: function () {
+            var openMenus = new OpenMenusCollection();
             var dfd = $.Deferred();
-            omfs.fetch({
+            openMenus.fetch({
                 success: dfd.resolve
             });
             return dfd.promise();
@@ -43,8 +43,8 @@ define([
         }
     };
 
-    communicator.reqres.setHandler('omfs', function () {
-        return _API.getOmfs();
+    communicator.reqres.setHandler('openMenus', function () {
+        return _API.getOpenMenus();
     });
 
     communicator.reqres.setHandler('menuItems', function () {
@@ -60,8 +60,8 @@ define([
     });
 
     return {
-        getOmfs: function () {
-            return communicator.reqres.request('omfs');
+        getOpenMenus: function () {
+            return communicator.reqres.request('openMenus');
         },
         getRestaurants: function () {
             return communicator.reqres.request('restaurants');

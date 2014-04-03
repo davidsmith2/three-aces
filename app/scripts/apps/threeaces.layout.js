@@ -7,7 +7,7 @@ define([
     'apps/threeaces.vent'
 ], function (Backbone, Marionette, $, _, template, appVent) {
     'use strict';
-    var Layout = Backbone.Marionette.Layout.extend({
+    return Backbone.Marionette.Layout.extend({
         template: template,
         regions: {
             header: '#header',
@@ -45,5 +45,4 @@ define([
             });
         }
     });
-    return Layout;
 });

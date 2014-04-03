@@ -25,7 +25,6 @@ module.exports = function (app) {
 
     app.post('/api/restaurants', function(req, res){
         var restaurant = new Restaurant({
-            omfUuid: req.body.omfUuid,
             restaurantName: req.body.restaurantName,
             address1: req.body.address1,
             cityTown: req.body.cityTown,
@@ -33,7 +32,8 @@ module.exports = function (app) {
             postalCode: req.body.postalCode,
             country: req.body.country,
             phone: req.body.phone,
-            fax: req.body.fax
+            fax: req.body.fax,
+            openMenu: req.body.openMenu
         });
         restaurant.save(function(err){
             if (!err) {
@@ -47,7 +47,6 @@ module.exports = function (app) {
 
     app.put('/api/restaurants/:id', function(req, res){
         return Restaurant.findById(req.params.id, function(err, restaurant){
-            restaurant.omfUuid = req.body.omfUuid;
             restaurant.restaurantName = req.body.restaurantName;
             restaurant.address1 = req.body.address1;
             restaurant.cityTown = req.body.cityTown;
@@ -56,6 +55,7 @@ module.exports = function (app) {
             restaurant.country = req.body.country;
             restaurant.phone = req.body.phone;
             restaurant.fax = req.body.fax;
+            restaurant.openMenu = req.body.openMenu;
             return restaurant.save(function(err){
                 if (!err) {
                     console.log('restaurant updated');

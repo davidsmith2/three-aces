@@ -1,6 +1,6 @@
 module.exports = function (app) {
     'use strict';
-    require('./omfs')(app);
+    require('./openMenus')(app);
     require('./restaurants')(app);
     require('./menuGroups')(app);
     require('./menuItems')(app);

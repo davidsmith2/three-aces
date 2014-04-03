@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var restaurantSchema = new mongoose.Schema({
-    omfUuid: String,
     restaurantName: String,
     address1: String,
     cityTown: String,
@@ -9,7 +8,8 @@ var restaurantSchema = new mongoose.Schema({
     postalCode: String,
     country: String,
     phone: String,
-    fax: String
+    fax: String,
+    openMenu: String
 });
 
 module.exports = mongoose.model('restaurant', restaurantSchema);

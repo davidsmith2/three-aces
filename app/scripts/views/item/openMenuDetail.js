@@ -4,8 +4,9 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'hbs!tmpl/item/openMenuDetail'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl) {
+    'hbs!tmpl/item/openMenuDetail2',
+    'views/item/addRestaurant'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl, AddRestaurantView) {
     'use strict';
 	return Backbone.Marionette.ItemView.extend({
         template: OpenMenuDetailTmpl,
@@ -14,8 +15,14 @@ define([
             'click a[href=#addRestaurant]': 'editRestaurantInfo'
         },
         initialize: function () {
-            privateAppVent.on('restaurantInfo:edit', this.onRestaurantInfoEdit, this);
-            this.listenTo(this.model.get('restaurantInfo'), 'change', this.render);
+            this.addRestaurantView = new AddRestaurantView({
+                model: this.model.get('restaurantInfo')
+            }).render();
+            //privateAppVent.on('restaurantInfo:edit', this.onRestaurantInfoEdit, this);
+            //this.listenTo(this.model.get('restaurantInfo'), 'change', this.render);
+        },
+        onRender: function () {
+            this.$('#restaurantInfo').append(this.addRestaurantView.el);
         },
         editRestaurantInfo: function (e) {
             e.preventDefault();

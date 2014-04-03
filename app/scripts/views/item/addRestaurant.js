@@ -2,28 +2,25 @@ define([
     'backbone',
     'backbone.marionette',
     'jquery',
-    'underscore',
-    'hbs!tmpl/item/addRestaurant',
     'backbone-forms',
     'bootstrap'
-], function (Backbone, Marionette, $, _, AddRestaurantTmpl) {
+], function (Backbone, Marionette, $) {
     'use strict';
-	return Backbone.Marionette.ItemView.extend({
+	return Backbone.View.extend({
 		initialize: function() {
             this.form = new Backbone.Form({
                 model: this.model
-            }).render().el;
+            }).render();
 		},
-		template: AddRestaurantTmpl,
         ui: {},
 		events: {
             'click .close': 'closeDialog',
             'blur input[type=text]': 'saveTextInput',
             'change select': 'saveSelect'
         },
-		onRender: function() {
-            this.$el.find('.modal-body').append(this.form);
-            this.$(this.options.dialogId).modal('show');
+        render: function () {
+            this.$el.append(this.form.el);
+            return this;
         },
         closeDialog: function (e) {
             var dialogId = $(e.target).closest('.modal').attr('id');

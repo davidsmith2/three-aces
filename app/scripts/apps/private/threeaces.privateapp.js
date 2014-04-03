@@ -34,9 +34,7 @@ define([
                 dialogId: options.dialogId
             });
             this._layout.dialog.show(this.addRestaurantView);
-
             this.listenTo(this.restaurants, 'add', this.restaurantsView.render);
-
         },
         onEditRestaurant: function (options) {
             this.onAddRestaurant(options);

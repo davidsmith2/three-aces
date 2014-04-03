@@ -4,28 +4,26 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'hbs!tmpl/item/openMenuDetail',
-    'views/item/addRestaurant'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl, AddRestaurantView) {
+    'hbs!tmpl/item/openMenuDetail'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl) {
     'use strict';
 	return Backbone.Marionette.ItemView.extend({
         template: OpenMenuDetailTmpl,
         ui: {},
         events: {
+            'click a[href=#addRestaurant]': 'editRestaurantInfo'
         },
         initialize: function () {
             privateAppVent.on('restaurantInfo:edit', this.onRestaurantInfoEdit, this);
         },
         onRender: function () {
         },
-        onRestaurantInfoEdit: function (options) {
-            this.addRestaurantView = new AddRestaurantView({
-                collection: this.restaurants,
-                model: options.model,
-                dialogId: options.dialogId
+        editRestaurantInfo: function (e) {
+            e.preventDefault();
+            privateAppVent.trigger('restaurantInfo:edit', {
+                model: this.model.get('restaurantInfo'),
+                dialogId: $(e.target).attr('href')
             });
-            this._layout.dialog.show(this.addRestaurantView);
-            this.listenTo(this.restaurants, 'add', this.restaurantsView.render);
         }
     });
 });

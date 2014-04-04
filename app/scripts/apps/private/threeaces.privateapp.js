@@ -5,14 +5,14 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'views/composite/openMenus',
-    'views/item/openMenuDetail',
-    'views/item/addRestaurant'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusView, OpenMenuDetailView, AddRestaurantView) {
+    'views/item/openMenuDetail'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusView, OpenMenuDetailView) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
-            privateAppVent.on('openMenu:showDetail', this.onOpenMenuShowDetail, this);
-            privateAppVent.on('restaurantInfo:edit', this.onRestaurantInfoEdit, this);
+            privateAppVent.on('openMenu:showDetail', this.onShowOpenMenuDetail, this);
+            privateAppVent.on('openMenu:add', this.onAddOpenMenu, this);
+            privateAppVent.on('restaurantInfo:edit', this.onEditRestaurantInfo, this);
 /*
             privateAppVent.on('restaurant:add', this.onAddRestaurant, this);
             privateAppVent.on('restaurant:edit', this.onEditRestaurant, this);
@@ -35,20 +35,21 @@ define([
             });
             this._layout.main.show(this.openMenusView);
         },
-        onOpenMenuShowDetail: function (openMenu) {
+        onShowOpenMenuDetail: function (openMenu) {
             this.openMenuDetailView = new OpenMenuDetailView({
                 model: openMenu
             });
             this._layout.main.show(this.openMenuDetailView);
         },
-        onRestaurantInfoEdit: function (options) {
-            this.addRestaurantView = new AddRestaurantView({
-                collection: this.restaurants,
-                model: options.model,
-                dialogId: options.dialogId
+        onAddOpenMenu: function (openMenu) {
+            var self = this;
+            this.openMenus.create(openMenu, {
+                wait: true,
+                success: function (model) {
+                    model.get('restaurantInfo').set('openMenu', model.get('_id'));
+                    self.onShowOpenMenuDetail(model);
+                }
             });
-            this._layout.dialog.show(this.addRestaurantView);
-            // this.listenTo(this.restaurants, 'add', this.restaurantsView.render);
         }
     });
     return new PrivateApp();

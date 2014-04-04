@@ -15,14 +15,11 @@ define([
         ui: {},
         itemViewContainer: "tbody",
         events: {
-            'click .btn': 'addOpenMenu'
+            'click a[href=#addOpenMenu]': 'addOpenMenu'
         },
         addOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:add', {
-                model: new OpenMenuModel(),
-                dialogId: $(e.target).attr('href')
-            });
+            privateAppVent.trigger('openMenu:add', new OpenMenuModel());
         }
     });
 });

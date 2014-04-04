@@ -12,6 +12,7 @@ define([
         initialize: function () {
             privateAppVent.on('openMenu:show', this.onOpenMenuShow, this);
             privateAppVent.on('openMenu:add', this.onOpenMenuAdd, this);
+            privateAppVent.on('openMenu:delete', this.onOpenMenuDelete, this);
 /*
             privateAppVent.on('restaurantInfo:edit', this.onEditRestaurantInfo, this);
             privateAppVent.on('restaurant:add', this.onAddRestaurant, this);
@@ -50,6 +51,9 @@ define([
                     self.onOpenMenuShow(model);
                 }
             });
+        },
+        onOpenMenuDelete: function (openMenu) {
+            openMenu.destroy();
         }
     });
     return new PrivateApp();

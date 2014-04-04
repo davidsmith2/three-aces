@@ -27,12 +27,6 @@ define([
                 ThreeAces.layout.on('show', function () {
                     appVent.trigger('layout:rendered');
                 });
-                /*
-                appVent.on('publicApp:show', function (layout) {
-                    console.log('publicApp:show');
-                    publicApp.layout(layout);
-                });
-                */
             });
         });
     });
@@ -42,5 +36,11 @@ define([
     appVent.on('privateApp:show', function (layout) {
         privateApp.init(layout);
     });
+    /*
+    appVent.on('publicApp:show', function (layout) {
+        console.log('publicApp:show');
+        publicApp.layout(layout);
+    });
+    */
     return ThreeAces;
 });

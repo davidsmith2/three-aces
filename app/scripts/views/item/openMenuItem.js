@@ -12,16 +12,20 @@ define([
         tagName: 'tr',
         ui: {},
         events: {
-            'click a[href=#show]': 'showOpenMenu',
+            'click a[href=#edit]': 'editOpenMenu',
             'click a[href=#delete]': 'deleteOpenMenu'
         },
-        showOpenMenu: function (e) {
+        editOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:show', this.model);
+            privateAppVent.trigger('openMenu:edit', {
+                model: this.model
+            });
         },
         deleteOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:delete', this.model);
+            privateAppVent.trigger('openMenu:delete', {
+                model: this.model
+            });
         }
     });
     return OpenMenuItemView;

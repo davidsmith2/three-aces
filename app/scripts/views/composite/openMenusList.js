@@ -13,13 +13,15 @@ define([
         itemView: OpenMenuItemView,
         template: OpenMenuListTmpl,
         ui: {},
-        itemViewContainer: "tbody",
+        itemViewContainer: 'tbody',
         events: {
-            'click a[href=#addOpenMenu]': 'addOpenMenu'
+            'click a[href=#add]': 'addOpenMenu'
         },
         addOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:add', new OpenMenuModel());
+            privateAppVent.trigger('openMenu:add', {
+                model: new OpenMenuModel()
+            });
         }
     });
     return OpenMenusListView;

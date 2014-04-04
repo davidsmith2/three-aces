@@ -23,6 +23,9 @@ define([
             _.bindAll(this, 'setSelection');
             this.setupSelectionEvents();
         },
+        onRender: function () {
+            this.$('#appSelector').trigger('change');
+        },
         appChanged: function (e) {
             e.preventDefault();
             var appName = $(e.target).val();

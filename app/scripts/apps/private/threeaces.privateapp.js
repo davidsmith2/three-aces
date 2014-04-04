@@ -4,16 +4,16 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'views/composite/openMenus',
+    'views/composite/openMenusList',
     'views/item/openMenuDetail'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusView, OpenMenuDetailView) {
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, OpenMenuDetailView) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
-            privateAppVent.on('openMenu:showDetail', this.onShowOpenMenuDetail, this);
-            privateAppVent.on('openMenu:add', this.onAddOpenMenu, this);
-            privateAppVent.on('restaurantInfo:edit', this.onEditRestaurantInfo, this);
+            privateAppVent.on('openMenu:show', this.onOpenMenuShow, this);
+            privateAppVent.on('openMenu:add', this.onOpenMenuAdd, this);
 /*
+            privateAppVent.on('restaurantInfo:edit', this.onEditRestaurantInfo, this);
             privateAppVent.on('restaurant:add', this.onAddRestaurant, this);
             privateAppVent.on('restaurant:edit', this.onEditRestaurant, this);
             privateAppVent.on('restaurant:delete', this.onDeleteRestaurant, this);
@@ -30,24 +30,24 @@ define([
             this.showOpenMenus();
         },
         showOpenMenus: function () {
-            this.openMenusView = new OpenMenusView({
+            this.openMenusListView = new OpenMenusListView({
                 collection: this.openMenus
             });
-            this._layout.main.show(this.openMenusView);
+            this._layout.main.show(this.openMenusListView);
         },
-        onShowOpenMenuDetail: function (openMenu) {
+        onOpenMenuShow: function (openMenu) {
             this.openMenuDetailView = new OpenMenuDetailView({
                 model: openMenu
             });
             this._layout.main.show(this.openMenuDetailView);
         },
-        onAddOpenMenu: function (openMenu) {
+        onOpenMenuAdd: function (openMenu) {
             var self = this;
             this.openMenus.create(openMenu, {
                 wait: true,
                 success: function (model) {
                     model.get('restaurantInfo').set('openMenu', model.get('_id'));
-                    self.onShowOpenMenuDetail(model);
+                    self.onOpenMenuShow(model);
                 }
             });
         }

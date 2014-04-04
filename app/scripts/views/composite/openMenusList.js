@@ -5,13 +5,13 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'entities/openMenu',
-    'hbs!tmpl/composite/openMenus',
-    'views/item/openMenu'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuModel, OpenMenuTmpl, OpenMenuView) {
+    'hbs!tmpl/composite/openMenusList',
+    'views/item/openMenuItem'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuModel, OpenMenuListTmpl, OpenMenuItemView) {
     'use strict';
-    return Backbone.Marionette.CompositeView.extend({
-        itemView: OpenMenuView,
-        template: OpenMenuTmpl,
+    var OpenMenusListView = Backbone.Marionette.CompositeView.extend({
+        itemView: OpenMenuItemView,
+        template: OpenMenuListTmpl,
         ui: {},
         itemViewContainer: "tbody",
         events: {
@@ -22,4 +22,5 @@ define([
             privateAppVent.trigger('openMenu:add', new OpenMenuModel());
         }
     });
+    return OpenMenusListView;
 });

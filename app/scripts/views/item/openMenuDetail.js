@@ -5,20 +5,24 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'hbs!tmpl/item/openMenuDetail',
-    'views/item/addRestaurant'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl, AddRestaurantView) {
+    'views/item/addRestaurant',
+    'views/item/addEnvironment'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl, AddRestaurantView, AddEnvironmentView) {
     'use strict';
 	var OpenMenuDetailView = Backbone.Marionette.ItemView.extend({
         template: OpenMenuDetailTmpl,
         ui: {},
         initialize: function () {
-            var restaurantInfoModel = this.model.get('restaurantInfo');
             this.addRestaurantView = new AddRestaurantView({
-                model: restaurantInfoModel
+                model: this.model.get('restaurantInfo')
+            }).render();
+            this.addEnvironmentView = new AddEnvironmentView({
+                model: this.model.get('environment')
             }).render();
         },
         onRender: function () {
             this.$('#restaurantInfo').append(this.addRestaurantView.el);
+            this.$('#environment').append(this.addEnvironmentView.el);
         }
     });
     return OpenMenuDetailView;

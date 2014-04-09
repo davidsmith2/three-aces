@@ -3,12 +3,15 @@ define([
     'backbone-relational'
 ], function (Backbone) {
     'use strict';
-    var EnvironmentInfoModel = Backbone.RelationalModel.extend({
-        urlRoot: '/api/omfs/:id/environment-info',
+    var EnvironmentModel = Backbone.RelationalModel.extend({
         idAttribute: '_id',
         defaults: {
-            takeoutAvailable: false
+            takeoutAvailable: false,
+            openMenu: ''
+        },
+        schema: {
+            takeoutAvailable: {type: 'Checkbox', title: 'Takeout available?'}
         }
     });
-    return EnvironmentInfoModel;
+    return EnvironmentModel;
 });

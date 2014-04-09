@@ -10,6 +10,9 @@
     <phone>617-491-2884</phone>
     <fax>617-491-2889</fax>
   </restaurant_info>
+  <environment_info>
+    <takeout_available>Three Aces</takeout_available>
+  </environment_info>
   <menus>
     <menu name="Main Menu" uid="" currency_symbol="USD" language="en">
       <menu_groups>

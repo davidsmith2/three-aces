@@ -14,9 +14,8 @@ define([
             privateAppVent.on('openMenu:edit', this.onOpenMenuEdit, this);
             privateAppVent.on('openMenu:delete', this.onOpenMenuDelete, this);
         },
-        setData: function (data) {
-            this.openMenus = data.openMenus;
-            this.restaurants = data.restaurants;
+        setData: function (openMenus) {
+            this.openMenus = openMenus;
         },
         init: function (layout) {
             this._layout = layout;
@@ -31,11 +30,9 @@ define([
         onOpenMenuAdd: function (options) {
             var self = this;
             this.openMenus.create(options.model, {
-                wait: true,
-                success: function (model) {
-                    model.get('restaurantInfo').set('openMenu', model.get('_id'));
+                success: function (openMenu) {
                     self.onOpenMenuEdit({
-                        model: model
+                        model: openMenu
                     });
                 }
             });

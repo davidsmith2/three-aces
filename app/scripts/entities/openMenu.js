@@ -1,32 +1,34 @@
 define([
     'backbone',
-    'entities/restaurant',
+    'entities/restaurantInfo',
     'entities/environment',
     'entities/menu',
     'entities/menus',
     'backbone-relational'
-], function (Backbone, RestaurantModel, EnvironmentModel, MenuModel, MenusCollection) {
+], function (Backbone, RestaurantInfoModel, EnvironmentModel, MenuModel, MenusCollection) {
     'use strict';
-    return Backbone.RelationalModel.extend({
+    var OpenMenuModel = Backbone.RelationalModel.extend({
         urlRoot: '/api/open-menus',
         idAttribute: '_id',
         relations: [
             {
                 type: Backbone.HasOne,
                 key: 'restaurantInfo',
-                relatedModel: RestaurantModel,
+                relatedModel: RestaurantInfoModel,
                 reverseRelation: {
                     key: 'openMenu',
-                    includeInJSON: '_id'
+                    includeInJSON: '_id',
+                    type: Backbone.HasOne
                 }
             },
             {
                 type: Backbone.HasOne,
-                key: 'environmentInfo',
+                key: 'environment',
                 relatedModel: EnvironmentModel,
                 reverseRelation: {
                     key: 'openMenu',
-                    includeInJSON: '_id'
+                    includeInJSON: '_id',
+                    type: Backbone.HasOne
                 }
             },
             {
@@ -43,9 +45,15 @@ define([
         defaults: {
             omfUuid: '',
             omfUpdatedTimestamp: '',
-            restaurantInfo: [],
-            environmentInfo: [],
+            restaurantInfo: {},
+            environment: {},
             menus: []
+        },
+        initialize: function () {
+            this.fetchRelated('restaurantInfo');
+            this.fetchRelated('environment');
+            this.fetchRelated('menus');
         }
     });
+    return OpenMenuModel;
 });

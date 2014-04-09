@@ -1,11 +1,10 @@
 define([
     'jquery',
     'entities/openMenus',
-    'entities/restaurants',
     'entities/menuItems',
     'entities/menuItemSizes',
     'apps/threeaces.communicator'
-], function ($, OpenMenusCollection, RestaurantsCollection, MenuItemsCollection, MenuItemSizesCollection, communicator) {
+], function ($, OpenMenusCollection, MenuItemsCollection, MenuItemSizesCollection, communicator) {
     'use strict';
     // http://stackoverflow.com/questions/18468019/
     var _API = {
@@ -13,14 +12,6 @@ define([
             var openMenus = new OpenMenusCollection();
             var dfd = $.Deferred();
             openMenus.fetch({
-                success: dfd.resolve
-            });
-            return dfd.promise();
-        },
-        getRestaurants: function () {
-            var restaurants = new RestaurantsCollection();
-            var dfd = $.Deferred();
-            restaurants.fetch({
                 success: dfd.resolve
             });
             return dfd.promise();
@@ -55,16 +46,9 @@ define([
         return _API.getMenuItemSizes();
     });
 
-    communicator.reqres.setHandler('restaurants', function () {
-        return _API.getRestaurants();
-    });
-
     return {
         getOpenMenus: function () {
             return communicator.reqres.request('openMenus');
-        },
-        getRestaurants: function () {
-            return communicator.reqres.request('restaurants');
         },
         getMenuItems: function () {
             return communicator.reqres.request('menuItems');

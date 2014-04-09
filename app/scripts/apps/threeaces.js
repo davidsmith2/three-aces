@@ -13,11 +13,8 @@ define([
         content: '#content'
     });
     ThreeAces.addInitializer(function () {
-        $.when(DataManager.getOpenMenus(), DataManager.getRestaurants()).done(function (openMenus, restaurants) {
-            privateApp.setData({
-                openMenus: openMenus[0],
-                restaurants: restaurants[0]
-            });
+        $.when(DataManager.getOpenMenus()).done(function (openMenus) {
+            privateApp.setData(openMenus);
             //publicApp.data(data);
             require([
                 'apps/threeaces.layout'

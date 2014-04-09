@@ -3,6 +3,20 @@ module.exports = function (app) {
 
     var OpenMenu = require('../../models/openMenu');
 
+    var getItem = function (req, res, key) {
+        return OpenMenu.findById(req.params.id, function (err, openMenu) {
+            if (!err) {
+                if (key) {
+                    return res.send(openMenu[key]);
+                } else {
+                    return res.send(openMenu);
+                }
+            } else {
+                return console.log(err);
+            }
+        });
+    };
+
     var getOpenMenus = function (req, res) {
         return OpenMenu.find(function (err, openMenus) {
             if (!err) {
@@ -14,14 +28,7 @@ module.exports = function (app) {
     };
 
     var getOpenMenu = function (req, res) {
-        return OpenMenu.findById(req.params.id, function (err, openMenu) {
-            if (!err) {
-                return res.send(openMenu);
-            } else {
-                return console.log(err);
-            }
-        });
-
+        return getItem(req, res);
     };
 
     var createOpenMenu = function (req, res) {
@@ -69,13 +76,7 @@ module.exports = function (app) {
     };
 
     var getRestaurantInfo = function (req, res) {
-        return OpenMenu.findById(req.params.id, function (err, openMenu) {
-            if (!err) {
-                return res.send(openMenu.restaurantInfo);
-            } else {
-                return console.log(err);
-            }
-        });
+        return getItem(req, res, 'restaurantInfo');
     };
 
     var createRestaurantInfo = function (req, res) {
@@ -85,7 +86,7 @@ module.exports = function (app) {
             }
             return openMenu.save(function (err) {
                 if (!err) {
-                    console.log('open menu updated');
+                    console.log('restaurant info created/updated');
                 } else {
                     console.log(err);
                 }

@@ -40,7 +40,6 @@ define([
         saveField: function (fieldName, fieldValue) {
             var fieldData = {};
             fieldData[fieldName] = fieldValue;
-            fieldData.urlRoot = this.model.urlRoot;
             this.model.save(fieldData, {patch: true});
         },
         getFieldName: function ($field) {

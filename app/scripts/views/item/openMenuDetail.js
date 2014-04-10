@@ -5,9 +5,10 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'hbs!tmpl/item/openMenuDetail',
-    'views/item/addRestaurant',
-    'views/item/addEnvironment'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl, AddRestaurantView, AddEnvironmentView) {
+    'views/composite/menusList',
+    'views/item/addEnvironment',
+    'views/item/addRestaurant'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuDetailTmpl, MenusListView, AddEnvironmentView, AddRestaurantView) {
     'use strict';
 	var OpenMenuDetailView = Backbone.Marionette.ItemView.extend({
         template: OpenMenuDetailTmpl,
@@ -19,10 +20,17 @@ define([
             this.addEnvironmentView = new AddEnvironmentView({
                 model: this.model.get('environment')
             }).render();
+            this.menusListView = new MenusListView({
+                collection: new Backbone.Collection([{
+                    menuName: 'test',
+                    currencySymbol: '$'
+                }])
+            }).render();
         },
         onRender: function () {
             this.$('#restaurantInfo').append(this.addRestaurantView.el);
             this.$('#environment').append(this.addEnvironmentView.el);
+            this.$('#menus').append(this.menusListView.el);
         }
     });
     return OpenMenuDetailView;

@@ -6,7 +6,7 @@ define([
 ], function (Backbone, MenuGroupModel, MenuGroupsCollection) {
     'use strict';
     var MenuModel = Backbone.RelationalModel.extend({
-        urlRoot: '/api/omfs/:id/menus/:id',
+        urlRoot: '/api/open-menus/:id/menus',
         idAttribute: '_id',
         relations: [
             {
@@ -23,9 +23,8 @@ define([
             }
         ],
         defaults: {
-            menuName: '',
             currencySymbol: '',
-            menuUid: '',
+            menuName: '',
             menuGroups: []
         }
     });

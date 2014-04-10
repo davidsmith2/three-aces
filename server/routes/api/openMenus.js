@@ -2,6 +2,7 @@ module.exports = function (app) {
     'use strict';
 
     var OpenMenu = require('../../models/openMenu');
+    var Menu = require('../../models/menu');
 
     var getItem = function (req, res, key) {
         return OpenMenu.findById(req.params.id, function (err, openMenu) {
@@ -123,6 +124,31 @@ module.exports = function (app) {
         return createEnvironment(req, res);
     };
 
+    var getMenus = function (req, res) {
+        return Menu.find(function (err, menu) {
+            if (!err) {
+                return res.send(menu);
+            } else {
+                return console.log(err);
+            }
+        });
+    };
+
+    var createMenu = function (req, res) {
+        var menu = new Menu({
+            menuName: req.body.menuName,
+            currencySymbol: req.body.currencySymbol
+        });
+        menu.save(function (err) {
+            if (!err) {
+                return console.log('menu created');
+            } else {
+                return console.log(err);
+            }
+        });
+        return res.send(menu);
+    };
+
     // open menus
     app.get('/api/open-menus', getOpenMenus);
     app.get('/api/open-menus/:id', getOpenMenu);
@@ -139,5 +165,9 @@ module.exports = function (app) {
     app.get('/api/open-menus/:id/environment', getEnvironment);
     app.post('/api/open-menus/:id/environment', createEnvironment);
     app.patch('/api/open-menus/:id/environment', updateEnvironment);
+
+    // open menus > environment
+    app.get('/api/open-menus/:id/menus', getMenus);
+    app.post('/api/open-menus/:id/menus', createMenu);
 
 };

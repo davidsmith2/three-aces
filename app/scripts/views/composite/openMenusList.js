@@ -11,9 +11,9 @@ define([
     'use strict';
     var OpenMenusListView = Backbone.Marionette.CompositeView.extend({
         itemView: OpenMenuItemView,
+        itemViewContainer: 'tbody',
         template: OpenMenuListTmpl,
         ui: {},
-        itemViewContainer: 'tbody',
         events: {
             'click a[href=#add]': 'addOpenMenu'
         },

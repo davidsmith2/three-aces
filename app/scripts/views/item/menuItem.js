@@ -1,22 +1,34 @@
 define([
+    'backbone',
     'backbone.marionette',
     'jquery',
-    'hbs!tmpl/menuItem',
-    'views/menuItemSizes'
-], function (Marionette, $, template, MenuItemSizes) {
+    'underscore',
+    'apps/private/threeaces.privateapp.vent',
+	'hbs!tmpl/item/menuItem'
+], function (Backbone, Marionette, $, _, privateAppVent, MenuItemTmpl) {
     'use strict';
-    var MenuItemView = Marionette.ItemView.extend({
+	var MenuItemView = Backbone.Marionette.ItemView.extend({
+        template: MenuItemTmpl,
         tagName: 'tr',
-        template: template,
-        onRender: function () {
-            var sizes = this.model.get('menuItemSizes');
-            var sizesView = new MenuItemSizes({
-                collection: sizes
+        ui: {},
+        initialize: function () {
+            console.log(this.model)
+        },
+        events: {
+            'click a[href=#edit]': 'editMenu',
+            'click a[href=#delete]': 'deleteMenu'
+        },
+        editMenu: function (e) {
+            e.preventDefault();
+            privateAppVent.trigger('menu:edit', {
+                model: this.model
             });
-            if (sizes.length) {
-                this.$('.menuItemSizesContainer').replaceWith(sizesView.render().el);
-            }
-            this.listenTo(this.model, 'change:menuItemSizes', this.render);
+        },
+        deleteMenu: function (e) {
+            e.preventDefault();
+            privateAppVent.trigger('menu:delete', {
+                model: this.model
+            });
         }
     });
     return MenuItemView;

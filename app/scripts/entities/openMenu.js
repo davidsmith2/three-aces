@@ -43,16 +43,16 @@ define([
             }
         ],
         defaults: {
-            omfUuid: '',
-            omfUpdatedTimestamp: '',
             restaurantInfo: {},
             environment: {},
             menus: []
         },
         initialize: function () {
+/*
             this.fetchRelated('restaurantInfo');
             this.fetchRelated('environment');
             this.fetchRelated('menus');
+*/
         }
     });
     return OpenMenuModel;

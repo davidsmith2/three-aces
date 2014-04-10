@@ -99,13 +99,45 @@ module.exports = function (app) {
         return createRestaurantInfo(req, res);
     };
 
+    var getEnvironment = function (req, res) {
+        return getItem(req, res, 'environment');
+    };
+
+    var createEnvironment = function (req, res) {
+        return OpenMenu.findById(req.params.id, function (err, openMenu) {
+            for (var key in req.body) {
+                openMenu.environment[key] = req.body[key];
+            }
+            return openMenu.save(function (err) {
+                if (!err) {
+                    console.log('environment created/updated');
+                } else {
+                    console.log(err);
+                }
+                return res.send(openMenu);
+            });
+        });
+    };
+
+    var updateEnvironment = function (req, res) {
+        return createEnvironment(req, res);
+    };
+
+    // open menus
     app.get('/api/open-menus', getOpenMenus);
     app.get('/api/open-menus/:id', getOpenMenu);
     app.post('/api/open-menus', createOpenMenu);
     app.put('/api/open-menus/:id', updateOpenMenu);
     app['delete']('/api/open-menus/:id', deleteOpenMenu);
+
+    // open menus > restaurant-info
     app.get('/api/open-menus/:id/restaurant-info', getRestaurantInfo);
     app.post('/api/open-menus/:id/restaurant-info', createRestaurantInfo);
     app.patch('/api/open-menus/:id/restaurant-info', updateRestaurantInfo);
+
+    // open menus > environment
+    app.get('/api/open-menus/:id/environment', getEnvironment);
+    app.post('/api/open-menus/:id/environment', createEnvironment);
+    app.patch('/api/open-menus/:id/environment', updateEnvironment);
 
 };

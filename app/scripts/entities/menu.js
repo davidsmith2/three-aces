@@ -6,7 +6,9 @@ define([
 ], function (Backbone, MenuGroupModel, MenuGroupsCollection) {
     'use strict';
     var MenuModel = Backbone.RelationalModel.extend({
-        urlRoot: '/api/open-menus/:id/menus',
+        url: function () {
+            return '/api/open-menus/' + this.get('openMenu').get('_id') + '/menus';
+        },
         idAttribute: '_id',
         relations: [
             {
@@ -26,6 +28,10 @@ define([
             currencySymbol: '',
             menuName: '',
             menuGroups: []
+        },
+        schema: {
+            menuName: {type: 'Text', title: 'Name'},
+            currencySymbol: {type: 'Text', title: 'Currency Symbol'}
         }
     });
     return MenuModel;

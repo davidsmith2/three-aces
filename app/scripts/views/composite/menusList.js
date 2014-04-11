@@ -19,11 +19,9 @@ define([
         },
         addMenu: function (e) {
             e.preventDefault();
-/*
             privateAppVent.trigger('menu:add', {
                 model: new MenuModel()
             });
-*/
         }
     });
     return MenusListView;

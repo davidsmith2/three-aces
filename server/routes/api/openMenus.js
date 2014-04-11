@@ -33,10 +33,7 @@ module.exports = function (app) {
     };
 
     var createOpenMenu = function (req, res) {
-        var openMenu = new OpenMenu({
-            omfUuid: req.body.omfUuid,
-            omfUpdatedTimestamp: req.body.omfUpdatedTimestamp
-        });
+        var openMenu = new OpenMenu(req.body);
         openMenu.save(function (err) {
             if (!err) {
                 return console.log('open menu created');
@@ -135,10 +132,7 @@ module.exports = function (app) {
     };
 
     var createMenu = function (req, res) {
-        var menu = new Menu({
-            menuName: req.body.menuName,
-            currencySymbol: req.body.currencySymbol
-        });
+        var menu = new Menu(req.body);
         menu.save(function (err) {
             if (!err) {
                 return console.log('menu created');
@@ -166,7 +160,7 @@ module.exports = function (app) {
     app.post('/api/open-menus/:id/environment', createEnvironment);
     app.patch('/api/open-menus/:id/environment', updateEnvironment);
 
-    // open menus > environment
+    // open menus > menus
     app.get('/api/open-menus/:id/menus', getMenus);
     app.post('/api/open-menus/:id/menus', createMenu);
 

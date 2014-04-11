@@ -17,8 +17,7 @@ define([
             postalCode: '',
             country: '',
             phone: '',
-            fax: '',
-            openMenu: ''
+            fax: ''
         },
         schema: {
             restaurantName: {type: 'Text', title: 'Name'},

@@ -10,7 +10,7 @@ define([
 		initialize: function () {
             this.form = new Backbone.Form({
                 model: this.model
-            }).render();
+            });
 		},
         ui: {},
 		events: {
@@ -19,7 +19,7 @@ define([
             'change select': 'saveSelectField'
         },
         render: function () {
-            this.$el.append(this.form.el);
+            this.$el.append(this.form.render().el);
             return this;
         },
         saveTextField: function (e) {

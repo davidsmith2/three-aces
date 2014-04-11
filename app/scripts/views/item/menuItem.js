@@ -11,9 +11,6 @@ define([
         template: MenuItemTmpl,
         tagName: 'tr',
         ui: {},
-        initialize: function () {
-            console.log(this.model)
-        },
         events: {
             'click a[href=#edit]': 'editMenu',
             'click a[href=#delete]': 'deleteMenu'

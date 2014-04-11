@@ -3,16 +3,19 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
+    'apps/dialogLayout',
     'apps/private/threeaces.privateapp.vent',
     'views/composite/openMenusList',
-    'views/item/openMenuDetail'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, OpenMenuDetailView) {
+    'views/item/openMenuDetail',
+    'views/item/dialogTitle'
+], function (Backbone, Marionette, $, _, DialogLayout, privateAppVent, OpenMenusListView, OpenMenuDetailView, DialogTitleView) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
             privateAppVent.on('openMenu:add', this.onOpenMenuAdd, this);
             privateAppVent.on('openMenu:edit', this.onOpenMenuEdit, this);
             privateAppVent.on('openMenu:delete', this.onOpenMenuDelete, this);
+            privateAppVent.on('ui:menu:edit', this.onMenuEdit, this);
         },
         setData: function (openMenus) {
             this.openMenus = openMenus;
@@ -45,6 +48,21 @@ define([
         },
         onOpenMenuDelete: function (options) {
             options.model.destroy();
+        },
+        onMenuEdit: function (dialogBody) {
+            var dialogTitle = new DialogTitleView({
+                tagName: 'h2',
+                model: new Backbone.Model({
+                    title: 'Add a menu'
+                })
+            });
+            var dialogLayout = new DialogLayout({
+                views: {
+                    title: dialogTitle,
+                    body: dialogBody
+                }
+            });
+            this._layout.dialog.show(dialogLayout);
         }
     });
     return new PrivateApp();

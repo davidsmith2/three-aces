@@ -16,9 +16,9 @@ define([
                 key: 'restaurantInfo',
                 relatedModel: RestaurantInfoModel,
                 reverseRelation: {
+                    type: Backbone.HasOne,
                     key: 'openMenu',
-                    includeInJSON: '_id',
-                    type: Backbone.HasOne
+                    includeInJSON: '_id'
                 }
             },
             {
@@ -26,9 +26,9 @@ define([
                 key: 'environment',
                 relatedModel: EnvironmentModel,
                 reverseRelation: {
+                    type: Backbone.HasOne,
                     key: 'openMenu',
-                    includeInJSON: '_id',
-                    type: Backbone.HasOne
+                    includeInJSON: '_id'
                 }
             },
             {
@@ -36,7 +36,9 @@ define([
                 key: 'menus',
                 relatedModel: MenuModel,
                 collectionType: MenusCollection,
+                createModels: false,
                 reverseRelation: {
+                    type: Backbone.HasOne,
                     key: 'openMenu',
                     includeInJSON: '_id'
                 }
@@ -46,13 +48,6 @@ define([
             restaurantInfo: {},
             environment: {},
             menus: []
-        },
-        initialize: function () {
-/*
-            this.fetchRelated('restaurantInfo');
-            this.fetchRelated('environment');
-            this.fetchRelated('menus');
-*/
         }
     });
     return OpenMenuModel;

@@ -36,9 +36,12 @@ define([
                 key: 'menus',
                 relatedModel: MenuModel,
                 collectionType: MenusCollection,
-                createModels: false,
+                collectionOptions: function (openMenu) {
+                    return {
+                        url: '/openmenus/' + openMenu.get('_id') + '/menus'
+                    };
+                },
                 reverseRelation: {
-                    type: Backbone.HasOne,
                     key: 'openMenu',
                     includeInJSON: '_id'
                 }

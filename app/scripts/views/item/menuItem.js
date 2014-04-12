@@ -15,6 +15,9 @@ define([
             'click a[href=#edit]': 'editMenu',
             'click a[href=#delete]': 'deleteMenu'
         },
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+        },
         editMenu: function (e) {
             e.preventDefault();
             privateAppVent.trigger('menu:edit', {

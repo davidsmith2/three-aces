@@ -6,6 +6,7 @@ var path = require('path');
 var async = require('async');
 var hbs = require('express-hbs');
 var mongoose = require('mongoose');
+require('express-resource-new');
 
 // start mongoose
 mongoose.connect('mongodb://localhost/three-aces');
@@ -20,6 +21,7 @@ db.once('open', function callback () {
 	    app.set('port', 9000);
 	    app.set('view engine', 'handlebars');
 	    app.set('views', __dirname + '../app/scripts/views');
+        app.set('controllers', __dirname + '/controllers');
         app.use(express.bodyParser());
 	});
 
@@ -39,12 +41,12 @@ db.once('open', function callback () {
         res.sendfile( path.join( __dirname, '../app/index.html' ) );
 	});
 
-    // api
-    app.get('/api', function(req, res){
-        res.send( 'api is running' );
-    });
+    //require('./routes')(app);
 
-    require('./routes')(app);
+    app.resource('openmenus', function () {
+        this.resource('restaurants');
+        this.resource('environments');
+    });
 
 	// start server
 	http.createServer(app).listen(app.get('port'), function(){

@@ -7,7 +7,7 @@ define([
     var RestaurantInfoModel = Backbone.RelationalModel.extend({
         idAttribute: '_id',
         url: function () {
-            return '/api/open-menus/' + this.get('openMenu').get('_id') + '/restaurant-info';
+            return '/openmenus/' + this.get('openMenu').get('_id') + '/restaurant';
         },
         defaults: {
             restaurantName: '',

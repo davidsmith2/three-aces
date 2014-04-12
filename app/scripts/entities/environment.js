@@ -7,7 +7,7 @@ define([
     var EnvironmentModel = Backbone.RelationalModel.extend({
         idAttribute: '_id',
         url: function () {
-            return '/api/open-menus/' + this.get('openMenu').get('_id') + '/environment';
+            return '/openmenus/' + this.get('openMenu').get('_id') + '/environment';
         },
         defaults: {
             takeoutAvailable: false

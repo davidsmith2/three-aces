@@ -8,7 +8,7 @@ define([
 ], function (Backbone, RestaurantInfoModel, EnvironmentModel, MenuModel, MenusCollection) {
     'use strict';
     var OpenMenuModel = Backbone.RelationalModel.extend({
-        urlRoot: '/api/open-menus',
+        urlRoot: '/openmenus',
         idAttribute: '_id',
         relations: [
             {

@@ -7,33 +7,37 @@ define([
     'apps/private/threeaces.privateapp.vent',
     'hbs!tmpl/item/openMenuDetail',
     'views/composite/menusList',
-    'views/item/addEnvironment',
-    'views/item/addRestaurant',
-    'views/item/addMenu'
-], function (Backbone, Marionette, $, _, DataManager, privateAppVent, OpenMenuDetailTmpl, MenusListView, AddEnvironmentView, AddRestaurantView, AddMenuView) {
+    'views/forms/environment',
+    'views/forms/menu',
+    'views/forms/restaurant'
+], function (Backbone, Marionette, $, _, DataManager, privateAppVent, OpenMenuDetailTmpl, MenusListView, EnvironmentForm, MenuForm, RestaurantForm) {
     'use strict';
 	var OpenMenuDetailView = Backbone.Marionette.ItemView.extend({
         template: OpenMenuDetailTmpl,
         ui: {},
         initialize: function () {
-            var menus = this.model.get('menus');
-            menus.fetch();
-            menus.once('sync', this.showMenus, this);
-
-            this.addRestaurantView = new AddRestaurantView({
-                model: this.model.get('restaurantInfo')
-            });
-            this.addEnvironmentView = new AddEnvironmentView({
-                model: this.model.get('environment')
-            });
-
+            this.getMenus();
             privateAppVent.on('menu:add', this.onMenuAdd, this);
             privateAppVent.on('menu:edit', this.onMenuEdit, this);
             privateAppVent.on('menu:delete', this.onMenuDelete, this);
         },
         onRender: function () {
-            this.$('#restaurantInfo').append(this.addRestaurantView.render().el);
-            this.$('#environment').append(this.addEnvironmentView.render().el);
+            this.$('#restaurant').append(new RestaurantForm({
+                model: this.model.get('restaurantInfo')
+            }).render().el);
+            this.$('#environment').append(new EnvironmentForm({
+                model: this.model.get('environment')
+            }).render().el);
+        },
+        getMenus: function () {
+            var menus = this.model.get('menus');
+            menus.fetch();
+            menus.once('sync', this.onMenusSync, this);
+        },
+        onMenusSync: function (menus) {
+            this.$('#menus').append(new MenusListView({
+                collection: menus
+            }).render().el);
         },
         onMenuAdd: function (options) {
             var self = this;
@@ -46,19 +50,13 @@ define([
             });
         },
         onMenuEdit: function (options) {
-            this.addMenuView = new AddMenuView({
+            this.menuForm = new MenuForm({
                 model: options.model
             });
-            privateAppVent.trigger('ui:menu:edit', this.addMenuView);
+            privateAppVent.trigger('ui:menu:edit', this.menuForm);
         },
         onMenuDelete: function (options) {
             options.model.destroy();
-        },
-        showMenus: function (menus) {
-            this.menusListView = new MenusListView({
-                collection: menus
-            });
-            this.$('#menus').append(this.menusListView.render().el);
         }
     });
     return OpenMenuDetailView;

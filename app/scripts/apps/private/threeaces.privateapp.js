@@ -3,12 +3,12 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/dialogLayout',
     'apps/private/threeaces.privateapp.vent',
     'views/composite/openMenusList',
     'views/item/openMenuDetail',
-    'views/item/dialogTitle'
-], function (Backbone, Marionette, $, _, DialogLayout, privateAppVent, OpenMenusListView, OpenMenuDetailView, DialogTitleView) {
+    'views/item/dialogTitle',
+    'views/layout/dialog'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, OpenMenuDetailView, DialogTitleView, DialogLayout) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
@@ -56,13 +56,13 @@ define([
                     title: 'Add a menu'
                 })
             });
-            var dialogLayout = new DialogLayout({
+            var dialog = new DialogLayout({
                 views: {
                     title: dialogTitle,
                     body: dialogBody
                 }
             });
-            this._layout.dialog.show(dialogLayout);
+            this._layout.dialog.show(dialog);
         }
     });
     return new PrivateApp();

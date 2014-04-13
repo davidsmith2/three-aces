@@ -1,16 +1,16 @@
 define([
     'jquery',
-    'entities/openMenus',
-    'entities/menus',
-    'entities/menuItems',
-    'entities/menuItemSizes',
+    'entities/collections/openMenus',
+    'entities/collections/menus',
+    'entities/collections/menuItems',
+    'entities/collections/menuItemSizes',
     'apps/threeaces.communicator'
-], function ($, OpenMenusCollection, MenusCollection, MenuItemsCollection, MenuItemSizesCollection, communicator) {
+], function ($, OpenMenuCollection, MenuCollection, MenuItemCollection, MenuItemSizeCollection, communicator) {
     'use strict';
     // http://stackoverflow.com/questions/18468019/
     var _API = {
         getOpenMenus: function () {
-            var openMenus = new OpenMenusCollection();
+            var openMenus = new OpenMenuCollection();
             var dfd = $.Deferred();
             openMenus.fetch({
                 success: dfd.resolve
@@ -18,7 +18,7 @@ define([
             return dfd.promise();
         },
         getMenus: function (collection) {
-            var menus = collection || new MenusCollection();
+            var menus = collection || new MenuCollection();
             var dfd = $.Deferred();
             menus.fetch({
                 success: dfd.resolve
@@ -26,7 +26,7 @@ define([
             return dfd.promise();
         },
         getMenuItems: function () {
-            var menuItems = new MenuItemsCollection();
+            var menuItems = new MenuItemCollection();
             var dfd = $.Deferred();
             menuItems.fetch({
                 success: dfd.resolve
@@ -34,7 +34,7 @@ define([
             return dfd.promise();
         },
         getMenuItemSizes: function () {
-            var menuItemSizes = new MenuItemSizesCollection();
+            var menuItemSizes = new MenuItemSizeCollection();
             var dfd = $.Deferred();
             menuItemSizes.fetch({
                 success: dfd.resolve

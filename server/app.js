@@ -41,8 +41,6 @@ db.once('open', function callback () {
         res.sendfile( path.join( __dirname, '../app/index.html' ) );
 	});
 
-    //require('./routes')(app);
-
     app.resource('openmenus', function () {
         this.resource('restaurants');
         this.resource('environments');

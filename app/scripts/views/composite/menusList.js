@@ -4,10 +4,10 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'entities/menu',
+    'entities/models/menu',
     'hbs!tmpl/composite/menusList',
     'views/item/menuItem'
-], function (Backbone, Marionette, $, _, privateAppVent, MenuModel, MenusListTmpl, MenuItemView) {
+], function (Backbone, Marionette, $, _, privateAppVent, Menu, MenusListTmpl, MenuItemView) {
     'use strict';
     var MenusListView = Marionette.CompositeView.extend({
         itemView: MenuItemView,
@@ -20,7 +20,7 @@ define([
         addMenu: function (e) {
             e.preventDefault();
             privateAppVent.trigger('menu:add', {
-                model: new MenuModel()
+                model: new Menu()
             });
         }
     });

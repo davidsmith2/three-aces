@@ -5,10 +5,10 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'views/composite/openMenusList',
+    'views/generic/dialogTitle',
     'views/item/openMenuDetail',
-    'views/item/dialogTitle',
     'views/layout/dialog'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, OpenMenuDetailView, DialogTitleView, DialogLayout) {
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, DialogTitleView, OpenMenuDetailView, DialogLayout) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {

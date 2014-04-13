@@ -1,5 +1,5 @@
 define([
-    'views/item/form'
+    'views/generic/form'
 ], function (FormView) {
     'use strict';
 	var AddRestaurantView = FormView.extend();

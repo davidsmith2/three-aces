@@ -15,6 +15,7 @@ module.exports = {
     },
     create: function (req, res) {
         return Model.findById(req.params.openmenu, function (err, model) {
+            console.log(req.body)
             for (var key in req.body) {
                 model.environment[key] = req.body[key];
             }

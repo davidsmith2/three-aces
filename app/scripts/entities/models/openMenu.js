@@ -7,7 +7,7 @@ define([
     'backbone-relational'
 ], function (Backbone, Environment, Menu, MenuCollection, Restaurant) {
     'use strict';
-    var OpenMenuModel = Backbone.RelationalModel.extend({
+    var OpenMenu = Backbone.RelationalModel.extend({
         urlRoot: '/openmenus',
         idAttribute: '_id',
         relations: [
@@ -36,11 +36,6 @@ define([
                 key: 'menus',
                 relatedModel: Menu,
                 collectionType: MenuCollection,
-                collectionOptions: function (openMenu) {
-                    return {
-                        url: '/openmenus/' + openMenu.get('_id') + '/menus'
-                    };
-                },
                 reverseRelation: {
                     key: 'openMenu',
                     includeInJSON: '_id'
@@ -48,12 +43,12 @@ define([
             }
         ],
         defaults: {
-            environment: {},
-            menus: [],
             omfUuid: '',
             omfUpdatedTimestamp: '',
-            restaurantInfo: {}
+            restaurantInfo: {},
+            environment: {},
+            menus: []
         }
     });
-    return OpenMenuModel;
+    return OpenMenu;
 });

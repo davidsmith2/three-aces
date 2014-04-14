@@ -5,17 +5,15 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'views/composite/openMenusList',
-    'views/generic/dialogTitle',
-    'views/item/openMenuDetail',
-    'views/layout/dialog'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, DialogTitleView, OpenMenuDetailView, DialogLayout) {
+    'apps/private/threeaces.privateapp2',
+    'apps/threeaces.layout2'
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, privateApp2, Layout2) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
-            privateAppVent.on('openMenu:add', this.onOpenMenuAdd, this);
-            privateAppVent.on('openMenu:edit', this.onOpenMenuEdit, this);
-            privateAppVent.on('openMenu:delete', this.onOpenMenuDelete, this);
-            privateAppVent.on('ui:menu:edit', this.onMenuEdit, this);
+            privateAppVent.on('openMenu:add', this.onAddOpenMenu, this);
+            privateAppVent.on('openMenu:edit', this.onEditOpenMenu, this);
+            privateAppVent.on('openMenu:delete', this.onDeleteOpenMenu, this);
         },
         setData: function (openMenus) {
             this.openMenus = openMenus;
@@ -25,44 +23,34 @@ define([
             this.showOpenMenus();
         },
         showOpenMenus: function () {
-            this.openMenusListView = new OpenMenusListView({
+            this._layout.main.show(new OpenMenusListView({
                 collection: this.openMenus
-            });
-            this._layout.main.show(this.openMenusListView);
+            }));
         },
-        onOpenMenuAdd: function (options) {
+        onAddOpenMenu: function (openMenu) {
             var self = this;
-            this.openMenus.create(options.model, {
-                success: function (openMenu) {
-                    self.onOpenMenuEdit({
-                        model: openMenu
+            this.openMenus.create(openMenu, {
+                success: function (model) {
+                    self.onEditOpenMenu(model);
+                }
+            });
+        },
+        onEditOpenMenu: function (openMenu) {
+            var self = this;
+            openMenu.get('menus').fetch({
+                success: function (menus) {
+                    var layout2 = new Layout2();
+                    privateApp2.setData({
+                        openMenu: openMenu,
+                        menus: menus
                     });
+                    self._layout.main.show(layout2);
+                    privateApp2.init(layout2);
                 }
             });
         },
-        onOpenMenuEdit: function (options) {
-            this.openMenuDetailView = new OpenMenuDetailView({
-                model: options.model
-            });
-            this._layout.main.show(this.openMenuDetailView);
-        },
-        onOpenMenuDelete: function (options) {
-            options.model.destroy();
-        },
-        onMenuEdit: function (dialogBody) {
-            var dialogTitle = new DialogTitleView({
-                tagName: 'h2',
-                model: new Backbone.Model({
-                    title: 'Add a menu'
-                })
-            });
-            var dialog = new DialogLayout({
-                views: {
-                    title: dialogTitle,
-                    body: dialogBody
-                }
-            });
-            this._layout.dialog.show(dialog);
+        onDeleteOpenMenu: function (openMenu) {
+            openMenu.destroy();
         }
     });
     return new PrivateApp();

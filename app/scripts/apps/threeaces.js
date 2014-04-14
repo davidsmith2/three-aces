@@ -8,22 +8,22 @@ define([
     'apps/threeaces.vent'
 ], function (Backbone, Marionette, $, _, privateApp, DataManager, appVent) {
     'use strict';
-    var ThreeAces = new Marionette.Application();
-    ThreeAces.addRegions({
+    var App = new Marionette.Application();
+    App.addRegions({
         content: '#content'
     });
-    ThreeAces.addInitializer(function () {
-        $.when(DataManager.getOpenMenus()).done(function (openMenus) {
+    App.addInitializer(function () {
+        $.when(DataManager.getCollection('openMenus')).done(function (openMenus) {
             privateApp.setData(openMenus);
             //publicApp.data(data);
             require([
                 'apps/threeaces.layout'
             ], function (Layout) {
-                ThreeAces.layout = new Layout();
-                ThreeAces.content.show(ThreeAces.layout);
-                ThreeAces.layout.on('show', function () {
+                App.layout = new Layout();
+                App.layout.on('show', function () {
                     appVent.trigger('layout:rendered');
                 });
+                App.content.show(App.layout);
             });
         });
     });
@@ -39,5 +39,5 @@ define([
         publicApp.layout(layout);
     });
     */
-    return ThreeAces;
+    return App;
 });

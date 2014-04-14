@@ -19,9 +19,7 @@ define([
         },
         addOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:add', {
-                model: new OpenMenu()
-            });
+            privateAppVent.trigger('openMenu:add', new OpenMenu());
         }
     });
     return OpenMenusListView;

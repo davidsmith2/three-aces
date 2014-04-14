@@ -1,77 +1,53 @@
 define([
+    'backbone',
+    'backbone.marionette',
     'jquery',
+    'underscore',
     'entities/collections/openMenus',
     'entities/collections/menus',
+    'entities/collections/menuGroups',
     'entities/collections/menuItems',
     'entities/collections/menuItemSizes',
     'apps/threeaces.communicator'
-], function ($, OpenMenuCollection, MenuCollection, MenuItemCollection, MenuItemSizeCollection, communicator) {
+], function (Backbone, Marionette, $, _, OpenMenuCollection, MenuCollection, MenuGroupCollection, MenuItemCollection, MenuItemSizeCollection, communicator) {
     'use strict';
-    // http://stackoverflow.com/questions/18468019/
+
     var _API = {
-        getOpenMenus: function () {
-            var openMenus = new OpenMenuCollection();
-            var dfd = $.Deferred();
-            openMenus.fetch({
-                success: dfd.resolve
-            });
-            return dfd.promise();
+        collections: {
+            openMenus: OpenMenuCollection,
+            menus: MenuCollection,
+            menuGroups: MenuGroupCollection,
+            menuItems: MenuItemCollection,
+            menuItemSizes: MenuItemSizeCollection
         },
-        getMenus: function (collection) {
-            var menus = collection || new MenuCollection();
-            var dfd = $.Deferred();
-            menus.fetch({
-                success: dfd.resolve
-            });
-            return dfd.promise();
+        setHandlers: function () {
+            for (var name in this.collections) {
+                this.setHandler(name);
+            }
         },
-        getMenuItems: function () {
-            var menuItems = new MenuItemCollection();
-            var dfd = $.Deferred();
-            menuItems.fetch({
-                success: dfd.resolve
+        setHandler: function (name) {
+            var self = this;
+            communicator.reqres.setHandler(name, function () {
+                return self.getCollection(name);
             });
-            return dfd.promise();
         },
-        getMenuItemSizes: function () {
-            var menuItemSizes = new MenuItemSizeCollection();
+        getCollection: function (name) {
+            var collection = new this.collections[name]();
             var dfd = $.Deferred();
-            menuItemSizes.fetch({
+            collection.fetch({
                 success: dfd.resolve
             });
             return dfd.promise();
         }
     };
 
-    communicator.reqres.setHandler('openMenus', function () {
-        return _API.getOpenMenus();
-    });
-
-    communicator.reqres.setHandler('menus', function () {
-        return _API.getMenus();
-    });
-
-    communicator.reqres.setHandler('menuItems', function () {
-        return _API.getMenuItems();
-    });
-
-    communicator.reqres.setHandler('menuItemSizes', function () {
-        return _API.getMenuItemSizes();
-    });
-
-    return {
-        getOpenMenus: function () {
-            return communicator.reqres.request('openMenus');
-        },
-        getMenus: function () {
-            return communicator.reqres.request('menus');
-        },
-        getMenuItems: function () {
-            return communicator.reqres.request('menuItems');
-        },
-        getMenuItemSizes: function () {
-            return communicator.reqres.request('menuItemSizes');
+    var API = {
+        getCollection: function (name) {
+            return communicator.reqres.request(name);
         }
     };
+
+    _API.setHandlers();
+    return API;
 
 });

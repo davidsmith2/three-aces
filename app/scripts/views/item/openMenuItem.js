@@ -17,15 +17,11 @@ define([
         },
         editOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:edit', {
-                model: this.model
-            });
+            privateAppVent.trigger('openMenu:edit', this.model);
         },
         deleteOpenMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('openMenu:delete', {
-                model: this.model
-            });
+            privateAppVent.trigger('openMenu:delete', this.model);
         }
     });
     return OpenMenuItemView;

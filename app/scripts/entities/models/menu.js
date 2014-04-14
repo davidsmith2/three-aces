@@ -1,26 +1,11 @@
 define([
     'backbone',
-    'entities/models/menuGroup',
-    'entities/collections/menuGroups',
-    'backbone-relational'
-], function (Backbone, MenuGroup, MenuGroupCollection) {
+    'backbone-relational',
+    'backbone-forms'
+], function (Backbone) {
     'use strict';
     var Menu = Backbone.RelationalModel.extend({
         idAttribute: '_id',
-        relations: [
-            {
-                type: Backbone.HasMany,
-                key: 'menuGroups',
-                relatedModel: MenuGroup,
-                collectionType: MenuGroupCollection,
-                includeInJSON: true,
-                fetchRelated: true,
-                reverseRelation: {
-                    key: 'menu',
-                    includeInJSON: '_id'
-                }
-            }
-        ],
         defaults: {
             currencySymbol: '',
             menuName: '',

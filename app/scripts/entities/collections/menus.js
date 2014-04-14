@@ -4,7 +4,10 @@ define([
 ], function (Backbone, MenuModel) {
     'use strict';
     var MenuCollection = Backbone.Collection.extend({
-        model: MenuModel
+        model: MenuModel,
+        url: function () {
+            return '/openmenus/' + this.openMenu.get('_id') + '/menus';
+        }
     });
     return MenuCollection;
 });

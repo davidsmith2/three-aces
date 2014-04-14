@@ -13,7 +13,10 @@ define([
             takeoutAvailable: false
         },
         schema: {
-            takeoutAvailable: {type: 'Checkbox', title: 'Takeout available?'}
+            takeoutAvailable: {
+                type: 'Checkbox',
+                title: 'Takeout available?'
+            }
         }
     });
     return Environment;

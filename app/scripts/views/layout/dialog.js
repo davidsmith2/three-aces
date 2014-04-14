@@ -10,6 +10,7 @@ define([
         className: 'modal hide',
         template: DialogTmpl,
         regions: {
+            header: '.modal-header',
             title: '.modal-header-title',
             body: '.modal-body',
             footer: '.modal-footer'
@@ -17,12 +18,9 @@ define([
         events: {
             'click .close': 'hide'
         },
-        initialize: function (options) {
-            this.views = options.views;
-        },
         onRender: function () {
-            this.title.show(this.views.title);
-            this.body.show(this.views.body);
+            this.$(this.title.el).html(this.options.title);
+            this.body.show(this.options.body);
             this.show();
         },
         show: function () {

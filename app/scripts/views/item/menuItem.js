@@ -20,15 +20,11 @@ define([
         },
         editMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('menu:edit', {
-                model: this.model
-            });
+            privateAppVent.trigger('menu:edit', this.model);
         },
         deleteMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('menu:delete', {
-                model: this.model
-            });
+            privateAppVent.trigger('menu:delete', this.model);
         }
     });
     return MenuItemView;

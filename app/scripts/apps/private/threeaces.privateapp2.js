@@ -4,10 +4,10 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'screens/restaurant/views/form',
-    'screens/environment/views/form',
-    'screens/menus/views/composite',
-    'screens/menu/views/form',
+    'apps/private/screens/restaurant/views/form',
+    'apps/private/screens/environment/views/form',
+    'apps/private/screens/menus/views/composite',
+    'apps/private/screens/menu/views/form',
     'layouts/dialog'
 ], function (Backbone, Marionette, $, _, privateAppVent, RestaurantView, EnvironmentView, MenusView, MenuView, DialogLayout) {
     'use strict';

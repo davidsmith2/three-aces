@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'screens/openMenus/views/composite',
+    'apps/private/screens/openMenus/views/composite',
     'apps/private/threeaces.privateapp2',
     'apps/threeaces.layout2'
 ], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusView, privateApp2, Layout2) {

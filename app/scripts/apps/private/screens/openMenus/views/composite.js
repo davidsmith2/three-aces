@@ -5,7 +5,7 @@ define([
     'underscore',
     'apps/private/threeaces.privateapp.vent',
     'entities/models/openMenu',
-    'hbs!tmpl/screens/openMenus/composite',
+    'hbs!tmpl/private/screens/openMenus/composite',
     'apps/private/screens/openMenus/views/item'
 ], function (Backbone, Marionette, $, _, privateAppVent, OpenMenu, OpenMenusTmpl, OpenMenuView) {
     'use strict';

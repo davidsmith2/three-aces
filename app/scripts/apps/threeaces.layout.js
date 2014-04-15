@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/layout/layout-1',
+    'hbs!tmpl/layouts/layout-1',
     'apps/threeaces.vent'
 ], function (Backbone, Marionette, $, _, template, appVent) {
     'use strict';

@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/layout/layout-2'
+    'hbs!tmpl/layouts/layout-2'
 ], function (Backbone, Marionette, $, _, template) {
     'use strict';
     var Layout2 = Backbone.Marionette.Layout.extend({

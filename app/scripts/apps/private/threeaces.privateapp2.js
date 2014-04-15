@@ -4,13 +4,12 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'views/forms/restaurant',
-    'views/forms/environment',
-    'views/composite/menusList',
-    'views/layout/dialog',
-    'views/generic/dialogTitle',
-    'views/forms/menu'
-], function (Backbone, Marionette, $, _, privateAppVent, RestaurantForm, EnvironmentForm, MenusListView, DialogLayout, DialogTitleView, MenuForm) {
+    'screens/restaurant/views/form',
+    'screens/environment/views/form',
+    'screens/menus/views/composite',
+    'screens/menu/views/form',
+    'layouts/dialog'
+], function (Backbone, Marionette, $, _, privateAppVent, RestaurantView, EnvironmentView, MenusView, MenuView, DialogLayout) {
     'use strict';
     var PrivateApp2 = Backbone.Marionette.Controller.extend({
         initialize: function () {
@@ -29,17 +28,17 @@ define([
             this.showMenus(layout.bottom);
         },
         showRestaurant: function (region) {
-            region.show(new RestaurantForm({
+            region.show(new RestaurantView({
                 model: this.openMenu.get('restaurantInfo')
             }));
         },
         showEnvironment: function (region) {
-            region.show(new EnvironmentForm({
+            region.show(new EnvironmentView({
                 model: this.openMenu.get('environment')
             }));
         },
         showMenus: function (region) {
-            region.show(new MenusListView({
+            region.show(new MenusView({
                 collection: this.menus
             }));
         },
@@ -54,7 +53,7 @@ define([
         onEditMenu: function (menu) {
             this._layout.dialog.show(new DialogLayout({
                 title: '<h2>Menu</h2>',
-                body: new MenuForm({
+                body: new MenuView({
                     model: menu
                 })
             }));

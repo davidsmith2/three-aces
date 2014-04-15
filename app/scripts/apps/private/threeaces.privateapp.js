@@ -4,10 +4,10 @@ define([
     'jquery',
     'underscore',
     'apps/private/threeaces.privateapp.vent',
-    'views/composite/openMenusList',
+    'screens/openMenus/views/composite',
     'apps/private/threeaces.privateapp2',
     'apps/threeaces.layout2'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusListView, privateApp2, Layout2) {
+], function (Backbone, Marionette, $, _, privateAppVent, OpenMenusView, privateApp2, Layout2) {
     'use strict';
     var PrivateApp = Backbone.Marionette.Controller.extend({
         initialize: function () {
@@ -23,7 +23,7 @@ define([
             this.showOpenMenus();
         },
         showOpenMenus: function () {
-            this._layout.main.show(new OpenMenusListView({
+            this._layout.main.show(new OpenMenusView({
                 collection: this.openMenus
             }));
         },

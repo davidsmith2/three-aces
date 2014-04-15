@@ -3,11 +3,11 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/threeaces.privateapp.vent',
+    'apps/private/vent',
 	'hbs!tmpl/private/screens/openMenus/item'
 ], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuTmpl) {
     'use strict';
-	var OpenMenuItemView = Backbone.Marionette.ItemView.extend({
+	var OpenMenuView = Backbone.Marionette.ItemView.extend({
         template: OpenMenuTmpl,
         tagName: 'tr',
         ui: {},
@@ -24,5 +24,5 @@ define([
             privateAppVent.trigger('openMenu:delete', this.model);
         }
     });
-    return OpenMenuItemView;
+    return OpenMenuView;
 });

@@ -1,9 +1,13 @@
 define([
     'backbone',
+    'underscore',
     'backbone-relational',
     'backbone-forms'
-], function (Backbone) {
+], function (Backbone, _) {
     'use strict';
+
+    var SubmitButtonTmpl = _.template('<input class="btn btn-primary" type="submit" value="Done" />');
+
     var Restaurant = Backbone.RelationalModel.extend({
         idAttribute: '_id',
         url: function () {
@@ -46,7 +50,10 @@ define([
                 options: ['', 'United States']
             },
             phone: 'Text',
-            fax: 'Text'
+            fax: 'Text',
+            submitButton: {
+                template: SubmitButtonTmpl
+            }
         }
     });
     return Restaurant;

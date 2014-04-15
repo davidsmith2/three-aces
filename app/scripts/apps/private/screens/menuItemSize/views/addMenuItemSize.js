@@ -2,7 +2,7 @@ define([
     'backbone.marionette',
     'jquery',
     'hbs!tmpl/views/addMenuItemSize',
-    'apps/private/threeaces.privateapp.vent'
+    'apps/private/vent'
 ], function (Marionette, $, template, privateAppVent) {
     'use strict';
     var AddMenuItemSizeView = Marionette.ItemView.extend({

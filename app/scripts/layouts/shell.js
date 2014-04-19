@@ -22,6 +22,7 @@ define([
         initialize: function () {
             _.bindAll(this, 'setSelection');
             this.setupSelectionEvents();
+
         },
         onRender: function () {
             this.$('#appSelector').trigger('change');
@@ -30,9 +31,9 @@ define([
             e.preventDefault();
             var appName = $(e.target).val();
             if (appName !== 'private') {
-                vent.trigger('publicApp:show');
+                vent.trigger('publicApp:show', this.main);
             } else {
-                vent.trigger('privateApp:show');
+                vent.trigger('privateApp:show', this.main);
             }
         },
         setSelection: function (app) {

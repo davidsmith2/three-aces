@@ -37,7 +37,7 @@ define([
             var menus = model.get('menus');
             menus.fetch({
                 success: function (collection) {
-                    vent.trigger('module:4:init', {
+                    vent.trigger('module4:start', {
                         collection: collection,
                         route: '!/openmenus/' + model.get('_id') + '/menus'
                     });
@@ -45,7 +45,7 @@ define([
             });
         },
         onPrevious: function (model) {
-            vent.trigger('module:2:init', {
+            vent.trigger('module2:start', {
                 model: model,
                 route: '!/openmenus/' + model.get('_id') + '/edit/restaurant'
             });

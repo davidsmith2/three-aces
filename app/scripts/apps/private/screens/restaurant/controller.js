@@ -34,7 +34,7 @@ define([
             });
         },
         onNext: function (model) {
-            vent.trigger('module:3:init', {
+            vent.trigger('module3:start', {
                 model: model,
                 route: '!/openmenus/' + model.get('_id') + '/edit/environment'
             });

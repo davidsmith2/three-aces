@@ -45,7 +45,7 @@ define([
             this.view.body.render();
         },
         onNext: function (model) {
-            vent.trigger('module:2:init', {
+            vent.trigger('module2:start', {
                 model: model,
                 route: '!/openmenus/' + model.get('_id') + '/edit/restaurant'
             });

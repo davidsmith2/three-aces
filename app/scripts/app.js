@@ -6,8 +6,12 @@ define([
     'helpers/dataManager',
     'helpers/vent',
     'layouts/screen',
-    'layouts/shell'
-], function (Backbone, Marionette, $, _, dataManager, vent, screenLayout, shellLayout) {
+    'layouts/shell',
+    'apps/private/screens/openMenus/module',
+    'apps/private/screens/restaurant/module',
+    'apps/private/screens/environment/module',
+    'apps/private/screens/menus/module'
+], function (Backbone, Marionette, $, _, dataManager, vent, screenLayout, shellLayout, module1, module2, module3, module4) {
     'use strict';
 
     var app = new Marionette.Application();
@@ -17,63 +21,30 @@ define([
     });
 
     app.addInitializer(function () {
+        module1.wake();
+        module2.wake();
+        module3.wake();
+        module4.wake();
+    });
+
+    app.addInitializer(function () {
         app.content.show(shellLayout);
         vent.trigger('data:get');
     });
 
-    vent.on('privateApp:show', function () {
+    vent.on('privateApp:show', function (shellRegion) {
         console.log('privateApp:show');
-        shellLayout.main.show(screenLayout);
+        shellRegion.show(screenLayout);
     });
 
     vent.on('data:get', function () {
         console.log('data:get');
         $.when(dataManager.getCollection('openMenus')).done(function (openMenus) {
             Backbone.history.start();
-            vent.trigger('module:1:init', {
+            vent.trigger('module1:start', {
                 collection: openMenus,
                 route: '!/openmenus'
             });
-        });
-    });
-
-    vent.on('module:1:init', function (options) {
-        console.log('module:1:init');
-        require([
-            'apps/private/screens/openMenus/router'
-        ], function (router) {
-            router.controller.collection = options.collection;
-            router.navigate(options.route, {trigger: true});
-        });
-    });
-
-    vent.on('module:2:init', function (options) {
-        console.log('module:2:init');
-        require([
-            'apps/private/screens/restaurant/router'
-        ], function (router) {
-            router.controller.model = options.model;
-            router.navigate(options.route, {trigger: true});
-        });
-    });
-
-    vent.on('module:3:init', function (options) {
-        console.log('module:3:init');
-        require([
-            'apps/private/screens/environment/router'
-        ], function (router) {
-            router.controller.model = options.model;
-            router.navigate(options.route, {trigger: true});
-        });
-    });
-
-    vent.on('module:4:init', function (options) {
-        console.log('module:4:init');
-        require([
-            'apps/private/screens/menus/router'
-        ], function (router) {
-            router.controller.collection = options.entity;
-            router.navigate(options.route, {trigger: true});
         });
     });
 

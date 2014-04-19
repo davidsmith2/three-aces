@@ -7,9 +7,11 @@ define([
     'use strict';
     var Controller = Backbone.Marionette.Controller.extend({
         defaultRoute: function (path) {
-            window.location.pathname = '#!/';
+            window.location.pathname = '!/';
         },
-
+        test: function () {
+            
+        }
     });
     return new Controller();
 });

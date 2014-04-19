@@ -1,10 +1,9 @@
 require([
     'jquery',
     'app'
-], function ($, App) {
+], function ($, app) {
     'use strict';
-    $.ajaxSetup({ cache: false });
     $(function () {
-        App.start();
+        app.start();
     });
 });

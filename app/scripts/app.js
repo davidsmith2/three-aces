@@ -3,24 +3,22 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/screens/openMenus/router',
-    'apps/private/screens/restaurant/router',
     'helpers/dataManager',
     'helpers/vent',
     'layouts/screen',
     'layouts/shell',
     'views/generic/buttons'
-], function (Backbone, Marionette, $, _, router1, router2, dataManager, vent, screenLayout, shellLayout, ButtonsView) {
+], function (Backbone, Marionette, $, _, dataManager, vent, screenLayout, shellLayout, ButtonsView) {
     'use strict';
 
-    var App = new Marionette.Application();
+    var app = new Marionette.Application();
 
-    App.addRegions({
+    app.addRegions({
         content: '#content'
     });
 
-    App.addInitializer(function () {
-        App.content.show(shellLayout);
+    app.addInitializer(function () {
+        app.content.show(shellLayout);
         vent.trigger('data:get');
     });
 
@@ -32,7 +30,6 @@ define([
     vent.on('data:get', function () {
         console.log('data:get');
         $.when(dataManager.getCollection('openMenus')).done(function (openMenus) {
-            Backbone.history.start();
             vent.trigger('data:got', {
                 collection: openMenus
             });
@@ -41,8 +38,13 @@ define([
 
     vent.on('data:got', function (options) {
         console.log('data:got');
-        router1.controller.collection = options.collection;
-        router1.navigate('!/openmenus', {trigger: true});
+        Backbone.history.start();
+        require([
+            'apps/private/screens/openMenus/router'
+        ], function (router) {
+            router.controller.collection = options.collection;
+            router.navigate('!/openmenus', {trigger: true});
+        });
     });
 
     vent.on('openMenus:show', function (options) {
@@ -51,8 +53,12 @@ define([
     });
 
     vent.on('openMenu:edit', function (options) {
-        router2.controller.model = options.model;
-        router2.navigate('!/openmenus/' + options.model.get('_id') + '/edit/restaurant', {trigger: true});
+        require([
+            'apps/private/screens/restaurant/router'
+        ], function (router) {
+            router.controller.model = options.model;
+            router.navigate('!/openmenus/' + options.model.get('_id') + '/edit/restaurant', {trigger: true});
+        });
     });
 
     vent.on('restaurant:show', function (options) {
@@ -68,6 +74,6 @@ define([
     });
 */
 
-    return App;
+    return app;
 
 });

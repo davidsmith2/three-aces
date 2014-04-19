@@ -17,9 +17,6 @@ define([
             vent.on('ui:openMenu:delete', this.onDelete, this);
         },
         show: function () {
-
-            console.log(this.collection)
-
             this.view = new OpenMenusView({
                 collection: this.collection
             });

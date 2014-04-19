@@ -4,8 +4,9 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/screens/environment/views/form'
-], function (Backbone, Marionette, $, _, vent, EnvironmentView) {
+    'apps/private/screens/environment/views/form',
+    'views/generic/buttons'
+], function (Backbone, Marionette, $, _, vent, EnvironmentView, ButtonsView) {
     'use strict';
     var EnvironmentController = Backbone.Marionette.Controller.extend({
         model: {},
@@ -16,13 +17,20 @@ define([
         },
         show: function () {
             this.view.body = this.getViewBody();
+            this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
-                body: this.view.body
+                body: this.view.body,
+                footer: this.view.footer
             });
         },
         getViewBody: function () {
             return new EnvironmentView({
                 model: this.model.get('environment')
+            });
+        },
+        getViewFooter: function () {
+            return new ButtonsView({
+                model: this.model
             });
         },
         onNext: function (model) {

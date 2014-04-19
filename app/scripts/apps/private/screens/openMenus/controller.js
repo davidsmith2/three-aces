@@ -28,24 +28,27 @@ define([
             });
         },
         onAdd: function () {
+            var self = this;
             this.collection.create(new OpenMenu(), {
                 success: function (model) {
-                    vent.trigger('module:2:init', {
-                        model: model
-                    });
+                    self.onNext(model);
                 }
             });
         },
         onEdit: function (id) {
             var model = this.collection.get(id);
-            vent.trigger('module:2:init', {
-                model: model
-            });
+            this.onNext(model);
         },
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
             this.view.body.render();
+        },
+        onNext: function (model) {
+            vent.trigger('module:2:init', {
+                model: model,
+                route: '!/openmenus/' + model.get('_id') + '/edit/restaurant'
+            });
         }
     });
     return new OpenMenusController();

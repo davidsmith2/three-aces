@@ -30,14 +30,17 @@ define([
             menus.fetch({
                 success: function (collection) {
                     vent.trigger('module:4:init', {
-                        route: '!/openmenus/' + model.get('_id') + '/menus',
-                        entity: collection
+                        collection: collection,
+                        route: '!/openmenus/' + model.get('_id') + '/menus'
                     });
                 }
             });
         },
         onPrevious: function (model) {
-            console.log(model)
+            vent.trigger('module:2:init', {
+                model: model,
+                route: '!/openmenus/' + model.get('_id') + '/edit/restaurant'
+            });
         }
     });
     return new EnvironmentController();

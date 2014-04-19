@@ -31,7 +31,8 @@ define([
         $.when(dataManager.getCollection('openMenus')).done(function (openMenus) {
             Backbone.history.start();
             vent.trigger('module:1:init', {
-                collection: openMenus
+                collection: openMenus,
+                route: '!/openmenus'
             });
         });
     });
@@ -42,7 +43,7 @@ define([
             'apps/private/screens/openMenus/router'
         ], function (router) {
             router.controller.collection = options.collection;
-            router.navigate('!/openmenus', {trigger: true});
+            router.navigate(options.route, {trigger: true});
         });
     });
 
@@ -52,7 +53,7 @@ define([
             'apps/private/screens/restaurant/router'
         ], function (router) {
             router.controller.model = options.model;
-            router.navigate('!/openmenus/' + options.model.get('_id') + '/edit/restaurant', {trigger: true});
+            router.navigate(options.route, {trigger: true});
         });
     });
 
@@ -62,7 +63,7 @@ define([
             'apps/private/screens/environment/router'
         ], function (router) {
             router.controller.model = options.model;
-            router.navigate('!/openmenus/' + options.model.get('_id') + '/edit/environment', {trigger: true});
+            router.navigate(options.route, {trigger: true});
         });
     });
 

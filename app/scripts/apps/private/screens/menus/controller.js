@@ -14,6 +14,8 @@ define([
             vent.on('menu:add', this.onAdd, this);
             vent.on('menu:edit', this.onEdit, this);
             vent.on('menu:delete', this.onDelete, this);
+            //this.listenTo(vent, 'next:module', this.onNext);
+            //this.listenTo(vent, 'previous:module', this.onPrevious);
         },
         show: function () {
             this.view.body = this.getViewBody();
@@ -39,6 +41,14 @@ define([
         },
         onDelete: function (menu) {
             menu.destroy();
+        },
+        onPrevious: function (model) {
+/*
+            vent.trigger('module:3:init', {
+                model: model,
+                route: '!/openmenus/' + model.get('_id') + '/edit/environment'
+            });
+*/
         }
     });
     return new MenusController();

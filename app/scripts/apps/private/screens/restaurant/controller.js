@@ -35,11 +35,15 @@ define([
         },
         onNext: function (model) {
             vent.trigger('module:3:init', {
-                model: model
+                model: model,
+                route: '!/openmenus/' + model.get('_id') + '/edit/environment'
             });
         },
         onPrevious: function (model) {
-            console.log(model)
+            vent.trigger('module:1:init', {
+                collection: model.collection,
+                route: '!/openmenus'
+            });
         }
     });
     return new RestaurantController();

@@ -24,7 +24,9 @@ define([
     vent.on('privateApp:show', function (shellRegion) {
         console.log('privateApp:show');
         shellRegion.show(screenLayout);
-        privateApp.wake();
+        privateApp.wake({
+            modules: ['openMenus', 'restaurant', 'environment', 'menus']
+        });
     });
 
 /*

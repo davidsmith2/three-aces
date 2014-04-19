@@ -30,7 +30,7 @@ define([
         onAdd: function () {
             this.collection.create(new OpenMenu(), {
                 success: function (model) {
-                    vent.trigger('openMenu:edit', {
+                    vent.trigger('module:2:init', {
                         model: model
                     });
                 }
@@ -38,7 +38,7 @@ define([
         },
         onEdit: function (id) {
             var model = this.collection.get(id);
-            vent.trigger('openMenu:edit', {
+            vent.trigger('module:2:init', {
                 model: model
             });
         },

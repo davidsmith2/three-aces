@@ -8,18 +8,19 @@ define([
 ], function (Backbone, Marionette, $, _, vent, EnvironmentView) {
     'use strict';
     var EnvironmentController = Backbone.Marionette.Controller.extend({
-        init: function (openMenu) {
-            var view;
-            this.openMenu = openMenu;
-            this.environment = this.openMenu.get('environment');
-            view = new EnvironmentView({
-                model: this.environment
+        model: {},
+        view: {},
+        initialize: function () {},
+        show: function () {
+            this.view.body = this.getViewBody();
+            vent.trigger('screen:show', {
+                body: this.view.body
             });
-            this.listenTo(view, 'environment:submit', this.onSubmit);
-            return view;
         },
-        onSubmit: function () {
-            vent.trigger('nextScreen', this.openMenu);
+        getViewBody: function () {
+            return new EnvironmentView({
+                model: this.model.get('environment')
+            });
         }
     });
     return new EnvironmentController();

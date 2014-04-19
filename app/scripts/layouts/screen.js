@@ -15,10 +15,11 @@ define([
             footer: '.screen-footer'
         },
         initialize: function () {
-            this.listenTo(vent, 'screen:show', this.showRegions);
+            this.listenTo(vent, 'screen:show', this.showViews);
         },
-        showRegions: function (regions) {
+        showViews: function (regions) {
             for (var region in regions) {
+                this[region].reset();
                 this[region].show(regions[region]);
             }
         }

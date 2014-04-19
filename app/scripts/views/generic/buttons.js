@@ -4,8 +4,8 @@ define([
     'jquery',
     'underscore',
     'hbs!tmpl/layouts/buttons',
-    'bootstrap'
-], function (Backbone, Marionette, $, _, ButtonsTmpl) {
+    'helpers/vent'
+], function (Backbone, Marionette, $, _, ButtonsTmpl, vent) {
     'use strict';
 	var ButtonsView = Backbone.Marionette.ItemView.extend({
         template: ButtonsTmpl,
@@ -16,11 +16,11 @@ define([
         },
         next: function (e) {
             e.preventDefault();
-            console.log('next')
+            vent.trigger('next:module', this.model);
         },
         previous: function (e) {
             e.preventDefault();
-            console.log('previous')
+            vent.trigger('previous:module', this.model);
         }
 	});
     return ButtonsView;

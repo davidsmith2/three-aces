@@ -1,13 +1,9 @@
 define([
     'backbone',
-    'underscore',
     'backbone-relational',
     'backbone-forms'
-], function (Backbone, _) {
+], function (Backbone) {
     'use strict';
-
-    var SubmitButtonTmpl = _.template('<input class="btn btn-primary" type="submit" value="Done" />');
-
     var Menu = Backbone.RelationalModel.extend({
         idAttribute: '_id',
         defaults: {
@@ -23,9 +19,6 @@ define([
             currencySymbol: {
                 type: 'Text',
                 title: 'Currency Symbol'
-            },
-            submitButton: {
-                template: SubmitButtonTmpl
             }
         }
     });

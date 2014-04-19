@@ -3,7 +3,7 @@ define([
     'jquery',
     'hbs!tmpl/views/menuItemsPrivate',
     'views/menuItemPrivate',
-    'apps/private/vent'
+    'helpers/vent'
 ], function (Marionette, $, template, MenuItemPrivateView, privateAppVent) {
     'use strict';
     var MenuItemsPrivateView = Marionette.CompositeView.extend({

@@ -3,25 +3,27 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
+    'helpers/vent',
 	'hbs!tmpl/private/screens/openMenus/item'
-], function (Backbone, Marionette, $, _, privateAppVent, OpenMenuTmpl) {
+], function (Backbone, Marionette, $, _, vent, OpenMenuTmpl) {
     'use strict';
 	var OpenMenuView = Backbone.Marionette.ItemView.extend({
         template: OpenMenuTmpl,
         tagName: 'tr',
         ui: {},
         events: {
-            'click a[href=#edit]': 'editOpenMenu',
-            'click a[href=#delete]': 'deleteOpenMenu'
+            'click [href=#edit]': 'edit',
+            'click [href=#delete]': 'delete'
         },
-        editOpenMenu: function (e) {
+        edit: function (e) {
+            console.log('ui:openMenu:edit')
             e.preventDefault();
-            privateAppVent.trigger('openMenu:edit', this.model);
+            vent.trigger('ui:openMenu:edit', this.model.get('_id'));
         },
-        deleteOpenMenu: function (e) {
+        delete: function (e) {
+            console.log('ui:openMenu:delete')
             e.preventDefault();
-            privateAppVent.trigger('openMenu:delete', this.model);
+            vent.trigger('ui:openMenu:delete', this.model.get('_id'));
         }
     });
     return OpenMenuView;

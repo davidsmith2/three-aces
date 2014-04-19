@@ -7,7 +7,6 @@ define([
     'views/menuItemCategories'
 ], function (Backbone, Marionette, $, _, MenuItemsView, MenuItemCategoriesView) {
     'use strict';
-
     var PublicApp = Backbone.Marionette.Controller.extend({
         data: function (data) {
             this.menuItems = data.menuItems;

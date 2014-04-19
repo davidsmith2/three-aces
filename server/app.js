@@ -41,6 +41,10 @@ db.once('open', function callback () {
         res.sendfile( path.join( __dirname, '../app/index.html' ) );
 	});
 
+    app.get('/api', function(req, res){
+        res.send('API is running');
+    });
+
     app.resource('openmenus', function () {
         this.resource('restaurants');
         this.resource('environments');

@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
+    'helpers/vent',
     'apps/private/screens/menu/views/form'
 ], function (Backbone, Marionette, $, _, vent, MenuView) {
     'use strict';
@@ -18,7 +18,7 @@ define([
             return view;
         },
         onSubmit: function () {
-            //vent.trigger('nextPage', this.menu);
+            //vent.trigger('nextScreen', this.menu);
         }
     });
     return new MenuController();

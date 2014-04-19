@@ -3,23 +3,25 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
+    'helpers/vent',
     'apps/private/screens/restaurant/views/form'
 ], function (Backbone, Marionette, $, _, vent, RestaurantView) {
     'use strict';
     var RestaurantController = Backbone.Marionette.Controller.extend({
-        init: function (openMenu) {
-            var view;
-            this.openMenu = openMenu;
-            this.restaurantInfo = this.openMenu.get('restaurantInfo');
-            view = new RestaurantView({
-                model: this.restaurantInfo
+        model: {},
+        view: {},
+        initialize: function () {},
+        show: function () {
+            this.view = new RestaurantView({
+                model: this.model.get('restaurantInfo')
             });
-            this.listenTo(view, 'restaurant:submit', this.onSubmit);
-            return view;
+            vent.trigger('restaurant:show', {
+                model: this.model,
+                view: this.view
+            });
         },
-        onSubmit: function () {
-            vent.trigger('nextPage', this.openMenu);
+        onSave: function () {
+            vent.trigger('restaurant:submit', this.model);
         }
     });
     return new RestaurantController();

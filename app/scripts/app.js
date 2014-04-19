@@ -3,41 +3,71 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/dataManager',
-    'apps/vent',
-    'apps/private/app'
-], function (Backbone, Marionette, $, _, DataManager, vent, privateAppController) {
+    'apps/private/screens/openMenus/router',
+    'apps/private/screens/restaurant/router',
+    'helpers/dataManager',
+    'helpers/vent',
+    'layouts/screen',
+    'layouts/shell',
+    'views/generic/buttons'
+], function (Backbone, Marionette, $, _, router1, router2, dataManager, vent, screenLayout, shellLayout, ButtonsView) {
     'use strict';
+
     var App = new Marionette.Application();
+
     App.addRegions({
         content: '#content'
     });
+
     App.addInitializer(function () {
-        $.when(DataManager.getCollection('openMenus')).done(function (openMenus) {
-            privateAppController.setData(openMenus);
-            //publicApp.data(data);
-            require([
-                'apps/layout'
-            ], function (Layout) {
-                App.layout = new Layout();
-                App.layout.on('show', function () {
-                    vent.trigger('layout:rendered');
-                });
-                App.content.show(App.layout);
+        App.content.show(shellLayout);
+        vent.trigger('data:get');
+    });
+
+    vent.on('privateApp:show', function () {
+        console.log('privateApp:show');
+        shellLayout.main.show(screenLayout);
+    });
+
+    vent.on('data:get', function () {
+        console.log('data:get');
+        $.when(dataManager.getCollection('openMenus')).done(function (openMenus) {
+            Backbone.history.start();
+            vent.trigger('data:got', {
+                collection: openMenus
             });
         });
     });
-    vent.on('layout:rendered', function () {
-        Backbone.history.start();
+
+    vent.on('data:got', function (options) {
+        console.log('data:got');
+        router1.controller.collection = options.collection;
+        router1.navigate('!/openmenus', {trigger: true});
     });
-    vent.on('privateApp:show', function (layout) {
-        privateAppController.init(layout.main);
+
+    vent.on('openMenus:show', function (options) {
+        console.log('openMenus:show');
+        screenLayout.body.show(options.view);
     });
-    /*
-    appVent.on('publicApp:show', function (layout) {
+
+    vent.on('openMenu:edit', function (options) {
+        router2.controller.model = options.model;
+        router2.navigate('!/openmenus/' + options.model.get('_id') + '/edit/restaurant', {trigger: true});
+    });
+
+    vent.on('restaurant:show', function (options) {
+        screenLayout.body.show(options.view);
+        screenLayout.footer.show(new ButtonsView({
+            model: options.model
+        }));
+    });
+
+/*
+    vent.on('publicApp:show', function () {
         console.log('publicApp:show');
-        publicApp.layout(layout);
     });
-    */
+*/
+
     return App;
+
 });

@@ -4,10 +4,9 @@ define([
     'jquery',
     'underscore',
     'apps/private/screens/openMenus/views/item',
-    'apps/private/vent',
-    'entities/models/openMenu',
+    'helpers/vent',
     'hbs!tmpl/private/screens/openMenus/composite'
-], function (Backbone, Marionette, $, _, OpenMenuView, vent, OpenMenu, OpenMenusTmpl) {
+], function (Backbone, Marionette, $, _, OpenMenuView, vent, OpenMenusTmpl) {
     'use strict';
     var OpenMenusView = Backbone.Marionette.CompositeView.extend({
         itemView: OpenMenuView,
@@ -15,11 +14,12 @@ define([
         template: OpenMenusTmpl,
         ui: {},
         events: {
-            'click a[href=#add]': 'addOpenMenu'
+            'click [href=#add]': 'add'
         },
-        addOpenMenu: function (e) {
+        add: function (e) {
+            console.log('ui:openMenu:add')
             e.preventDefault();
-            vent.trigger('openMenu:add', new OpenMenu());
+            vent.trigger('ui:openMenu:add');
         }
     });
     return OpenMenusView;

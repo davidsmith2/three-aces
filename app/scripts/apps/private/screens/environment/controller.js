@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
+    'helpers/vent',
     'apps/private/screens/environment/views/form'
 ], function (Backbone, Marionette, $, _, vent, EnvironmentView) {
     'use strict';
@@ -19,7 +19,7 @@ define([
             return view;
         },
         onSubmit: function () {
-            vent.trigger('nextPage', this.openMenu);
+            vent.trigger('nextScreen', this.openMenu);
         }
     });
     return new EnvironmentController();

@@ -3,33 +3,49 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
-    'apps/private/screens/openMenus/views/composite'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView) {
+    'helpers/vent',
+    'apps/private/screens/openMenus/views/composite',
+    'entities/models/openMenu'
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, OpenMenu) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
-        init: function (openMenus) {
-            this.openMenus = openMenus;
-            vent.on('openMenu:add', this.onAdd, this);
-            vent.on('openMenu:edit', this.onEdit, this);
-            vent.on('openMenu:delete', this.onDelete, this);
-            return new OpenMenusView({
-                collection: this.openMenus
+        collection: {},
+        view: {},
+        initialize: function () {
+            vent.on('ui:openMenu:add', this.onAdd, this);
+            vent.on('ui:openMenu:edit', this.onEdit, this);
+            vent.on('ui:openMenu:delete', this.onDelete, this);
+        },
+        show: function () {
+
+            console.log(this.collection)
+
+            this.view = new OpenMenusView({
+                collection: this.collection
+            });
+            vent.trigger('openMenus:show', {
+                view: this.view
             });
         },
-        onAdd: function (openMenu) {
-            var self = this;
-            this.openMenus.create(openMenu, {
+        onAdd: function () {
+            this.collection.create(new OpenMenu(), {
                 success: function (model) {
-                    self.onEdit(model);
+                    vent.trigger('openMenu:edit', {
+                        model: model
+                    });
                 }
             });
         },
-        onEdit: function (openMenu) {
-            vent.trigger('nextPage', openMenu);
+        onEdit: function (id) {
+            var model = this.collection.get(id);
+            vent.trigger('openMenu:edit', {
+                model: model
+            });
         },
-        onDelete: function (openMenu) {
-            openMenu.destroy();
+        onDelete: function (id) {
+            var model = this.collection.get(id);
+            model.destroy();
+            this.view.render();
         }
     });
     return new OpenMenusController();

@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
+    'helpers/vent',
     'apps/private/screens/menus/views/composite'
 ], function (Backbone, Marionette, $, _, vent, MenusView) {
     'use strict';
@@ -34,7 +34,7 @@ define([
             });
         },
         onEdit: function (menu) {
-            vent.trigger('nextPage', menu);
+            vent.trigger('nextScreen', menu);
         },
         onDelete: function (menu) {
             menu.destroy();

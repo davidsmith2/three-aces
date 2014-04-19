@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/vent',
+    'helpers/vent',
 	'hbs!tmpl/private/screens/menus/item'
 ], function (Backbone, Marionette, $, _, privateAppVent, MenuTmpl) {
     'use strict';

@@ -6,9 +6,8 @@ define([
     'helpers/dataManager',
     'helpers/vent',
     'layouts/screen',
-    'layouts/shell',
-    'views/generic/buttons'
-], function (Backbone, Marionette, $, _, dataManager, vent, screenLayout, shellLayout, ButtonsView) {
+    'layouts/shell'
+], function (Backbone, Marionette, $, _, dataManager, vent, screenLayout, shellLayout) {
     'use strict';
 
     var app = new Marionette.Application();
@@ -47,11 +46,6 @@ define([
         });
     });
 
-    vent.on('openMenus:show', function (options) {
-        console.log('openMenus:show');
-        screenLayout.body.show(options.view);
-    });
-
     vent.on('openMenu:edit', function (options) {
         require([
             'apps/private/screens/restaurant/router'
@@ -59,13 +53,6 @@ define([
             router.controller.model = options.model;
             router.navigate('!/openmenus/' + options.model.get('_id') + '/edit/restaurant', {trigger: true});
         });
-    });
-
-    vent.on('restaurant:show', function (options) {
-        screenLayout.body.show(options.view);
-        screenLayout.footer.show(new ButtonsView({
-            model: options.model
-        }));
     });
 
 /*

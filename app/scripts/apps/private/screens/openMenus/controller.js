@@ -17,11 +17,14 @@ define([
             vent.on('ui:openMenu:delete', this.onDelete, this);
         },
         show: function () {
-            this.view = new OpenMenusView({
-                collection: this.collection
+            this.view.body = this.getViewBody();
+            vent.trigger('screen:show', {
+                body: this.view.body
             });
-            vent.trigger('openMenus:show', {
-                view: this.view
+        },
+        getViewBody: function () {
+            return new OpenMenusView({
+                collection: this.collection
             });
         },
         onAdd: function () {
@@ -42,7 +45,7 @@ define([
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
-            this.view.render();
+            this.view.body.render();
         }
     });
     return new OpenMenusController();

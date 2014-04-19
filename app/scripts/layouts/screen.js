@@ -3,8 +3,9 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/layouts/screen'
-], function (Backbone, Marionette, $, _, ScreenTmpl) {
+    'hbs!tmpl/layouts/screen',
+    'helpers/vent'
+], function (Backbone, Marionette, $, _, ScreenTmpl, vent) {
     'use strict';
     var Screen = Backbone.Marionette.Layout.extend({
         template: ScreenTmpl,
@@ -13,12 +14,13 @@ define([
             body: '.screen-body',
             footer: '.screen-footer'
         },
-        events: {
-            'click a[href=#complete]': 'onComplete'
+        initialize: function () {
+            this.listenTo(vent, 'screen:show', this.showRegions);
         },
-        onComplete: function (e) {
-            e.preventDefault();
-            this.trigger('screen:complete');
+        showRegions: function (regions) {
+            for (var region in regions) {
+                this[region].show(regions[region]);
+            }
         }
     });
     return new Screen();

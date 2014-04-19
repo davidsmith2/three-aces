@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/screens/environment/controller'
+    'apps/private/modules/environment/controller'
 ], function (Backbone, Marionette, $, _, controller) {
     'use strict';
     var EnvironmentRouter = Backbone.Marionette.AppRouter.extend({

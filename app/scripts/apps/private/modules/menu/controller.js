@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/screens/menu/views/form'
+    'apps/private/modules/menu/views/form'
 ], function (Backbone, Marionette, $, _, vent, MenuView) {
     'use strict';
     var MenuController = Backbone.Marionette.Controller.extend({

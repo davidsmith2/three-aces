@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/screens/menus/controller'
+    'apps/private/modules/menus/controller'
 ], function (Backbone, Marionette, $, _, controller) {
     'use strict';
     var MenusRouter = Backbone.Marionette.AppRouter.extend({

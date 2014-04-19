@@ -6,7 +6,7 @@ define([
         vent.on('module3:start', function (options) {
             console.log('module3:start');
             require([
-                'apps/private/screens/environment/router',
+                'apps/private/modules/environment/router',
             ], function (router) {
                 router.controller.model = options.model;
                 router.navigate(options.route, {trigger: true});

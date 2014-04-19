@@ -6,7 +6,7 @@ define([
     'helpers/vent',
     'entities/models/menu',
     'hbs!tmpl/private/screens/menus/composite',
-    'apps/private/screens/menus/views/item'
+    'apps/private/modules/menus/views/item'
 ], function (Backbone, Marionette, $, _, privateAppVent, Menu, MenusTmpl, MenuView) {
     'use strict';
     var MenusView = Marionette.CompositeView.extend({

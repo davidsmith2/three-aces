@@ -3,10 +3,10 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/screens/openMenus/module',
-    'apps/private/screens/restaurant/module',
-    'apps/private/screens/environment/module',
-    'apps/private/screens/menus/module',
+    'apps/private/modules/openMenus/module',
+    'apps/private/modules/restaurant/module',
+    'apps/private/modules/environment/module',
+    'apps/private/modules/menus/module',
     'helpers/dataManager',
     'helpers/vent'
 ], function (Backbone, Marionette, $, _, module1, module2, module3, module4, dataManager, vent) {

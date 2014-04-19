@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/screens/menus/views/composite'
+    'apps/private/modules/menus/views/composite'
 ], function (Backbone, Marionette, $, _, vent, MenusView) {
     'use strict';
     var MenusController = Backbone.Marionette.Controller.extend({

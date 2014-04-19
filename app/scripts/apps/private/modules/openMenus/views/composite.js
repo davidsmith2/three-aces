@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/screens/openMenus/views/item',
+    'apps/private/modules/openMenus/views/item',
     'helpers/vent',
     'hbs!tmpl/private/screens/openMenus/composite'
 ], function (Backbone, Marionette, $, _, OpenMenuView, vent, OpenMenusTmpl) {

@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/screens/environment/views/form',
+    'apps/private/modules/environment/views/form',
     'views/generic/buttons'
 ], function (Backbone, Marionette, $, _, vent, EnvironmentView, ButtonsView) {
     'use strict';

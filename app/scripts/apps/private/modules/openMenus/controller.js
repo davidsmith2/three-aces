@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/screens/openMenus/views/composite',
+    'apps/private/modules/openMenus/views/composite',
     'entities/models/openMenu'
 ], function (Backbone, Marionette, $, _, vent, OpenMenusView, OpenMenu) {
     'use strict';

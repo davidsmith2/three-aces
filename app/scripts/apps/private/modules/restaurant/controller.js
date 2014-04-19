@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/screens/restaurant/views/form',
+    'apps/private/modules/restaurant/views/form',
     'views/generic/buttons'
 ], function (Backbone, Marionette, $, _, vent, RestaurantView, ButtonsView) {
     'use strict';

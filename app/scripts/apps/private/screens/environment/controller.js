@@ -10,7 +10,10 @@ define([
     var EnvironmentController = Backbone.Marionette.Controller.extend({
         model: {},
         view: {},
-        initialize: function () {},
+        initialize: function () {
+            this.listenTo(vent, 'next:module', this.onNext);
+            this.listenTo(vent, 'previous:module', this.onPrevious);
+        },
         show: function () {
             this.view.body = this.getViewBody();
             vent.trigger('screen:show', {
@@ -21,6 +24,20 @@ define([
             return new EnvironmentView({
                 model: this.model.get('environment')
             });
+        },
+        onNext: function (model) {
+            var menus = model.get('menus');
+            menus.fetch({
+                success: function (collection) {
+                    vent.trigger('module:4:init', {
+                        route: '!/openmenus/' + model.get('_id') + '/menus',
+                        entity: collection
+                    });
+                }
+            });
+        },
+        onPrevious: function (model) {
+            console.log(model)
         }
     });
     return new EnvironmentController();

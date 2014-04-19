@@ -66,6 +66,16 @@ define([
         });
     });
 
+    vent.on('module:4:init', function (options) {
+        console.log('module:4:init');
+        require([
+            'apps/private/screens/menus/router'
+        ], function (router) {
+            router.controller.collection = options.entity;
+            router.navigate(options.route, {trigger: true});
+        });
+    });
+
 /*
     vent.on('publicApp:show', function () {
         console.log('publicApp:show');

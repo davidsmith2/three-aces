@@ -3,28 +3,14 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/modules/openMenus/module',
-    'apps/private/modules/restaurant/module',
-    'apps/private/modules/environment/module',
-    'apps/private/modules/menus/module',
+    'apps/private/modules/manager',
     'helpers/dataManager',
     'helpers/vent'
-], function (Backbone, Marionette, $, _, module1, module2, module3, module4, dataManager, vent) {
+], function (Backbone, Marionette, $, _, moduleManager, dataManager, vent) {
     var PrivateApp = Backbone.Marionette.Controller.extend({
-        modules: {
-            openMenus: module1,
-            restaurant: module2,
-            environment: module3,
-            menus: module4
-        },
-        wake: function (options) {
-            this.wakeModules(options.modules);
+        wake: function () {
             this.listenTo(vent, 'data:get', this.start);
-        },
-        wakeModules: function (modules) {
-            for (var i = 0, len = modules.length; i < len; i++) {
-                this.modules[modules[i]].wake();
-            }
+            this.wakeModules(['openMenus', 'restaurant', 'environment', 'menus']);
         },
         start: function () {
             console.log('data:get');
@@ -35,6 +21,9 @@ define([
                     route: '!/openmenus'
                 });
             });
+        },
+        wakeModules: function (modules) {
+            moduleManager.wake(modules);
         }
     });
     return new PrivateApp();

@@ -28,10 +28,10 @@ define([
             }
         ],
         initialize: function () {
-            this.each(this.modules, this.loadModule);
+            _.each(this.modules, this.loadModule);
         },
         wake: function () {
-            this.each(this.modules, this.wakeModule);
+            _.each(this.modules, this.wakeModule);
         },
         loadModule: function (curModule) {
             require([
@@ -42,11 +42,6 @@ define([
         },
         wakeModule: function (curModule) {
             curModule["export"].wake();
-        },
-        each: function (arr, func) {
-            for (var i = 0, len = arr.length; i < len; i++) {
-                func(arr[i]);
-            }
         }
     });
     return new ModuleManager();

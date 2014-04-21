@@ -10,7 +10,7 @@ define([
     var PrivateApp = Backbone.Marionette.Controller.extend({
         wake: function () {
             this.listenTo(vent, 'data:get', this.start);
-            this.wakeModules(['openMenus', 'restaurant', 'environment', 'menus']);
+            moduleManager.wake();
         },
         start: function () {
             console.log('data:get');
@@ -21,9 +21,6 @@ define([
                     route: '!/openmenus'
                 });
             });
-        },
-        wakeModules: function (modules) {
-            moduleManager.wake(modules);
         }
     });
     return new PrivateApp();

@@ -6,7 +6,7 @@ define([
     'helpers/vent',
     'hbs!tmpl/private/screens/menus/composite',
     'apps/private/modules/menus/views/item'
-], function (Backbone, Marionette, $, _, privateAppVent, MenusTmpl, MenuView) {
+], function (Backbone, Marionette, $, _, vent, MenusTmpl, MenuView) {
     'use strict';
     var MenusView = Marionette.CompositeView.extend({
         itemView: MenuView,
@@ -14,11 +14,12 @@ define([
         template: MenusTmpl,
         ui: {},
         events: {
-            'click a[href=#add]': 'addMenu'
+            'click a[href=#add]': 'add'
         },
-        addMenu: function (e) {
+        add: function (e) {
+            console.log('ui:menu:add')
             e.preventDefault();
-            privateAppVent.trigger('menu:add');
+            vent.trigger('ui:menu:add');
         }
     });
     return MenusView;

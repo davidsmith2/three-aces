@@ -3,28 +3,31 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
+    'helpers/vent',
 	'hbs!tmpl/private/screens/menus/item'
-], function (Backbone, Marionette, $, _, MenuTmpl) {
+], function (Backbone, Marionette, $, _, vent, MenuTmpl) {
     'use strict';
-	var MenuItemView = Backbone.Marionette.ItemView.extend({
+	var MenuView = Backbone.Marionette.ItemView.extend({
         template: MenuTmpl,
         tagName: 'tr',
         ui: {},
         events: {
-            'click a[href=#edit]': 'editMenu',
-            'click a[href=#delete]': 'deleteMenu'
+            'click a[href=#edit]': 'edit',
+            'click a[href=#delete]': 'delete'
         },
         initialize: function () {
             this.listenTo(this.model, 'change', this.render);
         },
-        editMenu: function (e) {
+        edit: function (e) {
+            console.log('ui:menu:edit')
             e.preventDefault();
-            this.trigger('menu:edit', this.model.get('_id'));
+            vent.trigger('ui:menu:edit', this.model.get('_id'));
         },
-        deleteMenu: function (e) {
+        delete: function (e) {
+            console.log('ui:menu:delete')
             e.preventDefault();
-            this.trigger('menu:delete', this.model.get('_id'));
+            vent.trigger('ui:menu:delete', this.model.get('_id'));
         }
     });
-    return MenuItemView;
+    return MenuView;
 });

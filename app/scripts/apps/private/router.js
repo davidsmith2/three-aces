@@ -10,7 +10,9 @@ define([
             '!/openmenus': 'show',
             '!/openmenus/:id/restaurant': 'show',
             '!/openmenus/:id/environment': 'show',
-            '!/openmenus/:id/menus': 'show'
+            '!/openmenus/:id/menus': 'show',
+            '!/openmenus/:openMenuId/menus/:menuId': 'show'
+
         }
     });
     return AppRouter;

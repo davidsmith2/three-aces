@@ -25,6 +25,15 @@ define([
                     entity: options.collection,
                     route: '!/openmenus/' + options.model.get('_id') + '/menus'
                 };
+            },
+            menu: function (options) {
+
+                console.log( '!/openmenus/' + options.model.get('openMenu').get('_id') + '/menus/' + options.model.get('_id') )
+
+                return {
+                    entity: options.model,
+                    route: '!/openmenus/' + options.model.get('openMenu').get('_id') + '/menus/' + options.model.get('_id')
+                };
             }
         },
         route: function (name, options) {

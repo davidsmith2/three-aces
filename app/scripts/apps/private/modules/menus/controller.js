@@ -16,9 +16,9 @@ define([
         collection: {},
         view: {},
         initialize: function () {
-            vent.on('menu:add', this.onAdd, this);
-            vent.on('menu:edit', this.onEdit, this);
-            vent.on('menu:delete', this.onDelete, this);
+            vent.on('ui:menu:add', this.onAdd, this);
+            vent.on('ui:menu:edit', this.onEdit, this);
+            vent.on('ui:menu:delete', this.onDelete, this);
         },
         show: function () {
             this.view.header = this.getViewHeader();
@@ -41,12 +41,7 @@ define([
             });
         },
         getViewFooter: function () {
-            var view = new ButtonsView({
-                model: this.collection.openMenu
-            });
-            this.listenTo(view, 'next', this.onNext);
-            this.listenTo(view, 'previous', this.onPrevious);
-            return view;
+            return new Backbone.View();
         },
         onAdd: function () {
             var self = this;
@@ -67,9 +62,6 @@ define([
         },
         onNext: function (model) {
             vent.trigger('module:next', routes.route('menu', {model: model}));
-        },
-        onPrevious: function (model) {
-            vent.trigger('module:previous', routes.route('environment', {model: model}));
         }
     });
     return new MenusController();

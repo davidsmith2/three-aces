@@ -6,18 +6,29 @@ define([
     'helpers/vent',
     'apps/private/modules/restaurant/views/form',
     'apps/private/routes',
-    'views/generic/buttons'
-], function (Backbone, Marionette, $, _, vent, RestaurantView, routes, ButtonsView) {
+    'views/generic/buttons',
+    'views/generic/screenHeader'
+], function (Backbone, Marionette, $, _, vent, RestaurantView, routes, ButtonsView, ScreenHeaderView) {
     'use strict';
     var RestaurantController = Backbone.Marionette.Controller.extend({
         model: {},
         view: {},
         show: function () {
+            this.view.header = this.getViewHeader();
             this.view.body = this.getViewBody();
             this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
+                header: this.view.header,
                 body: this.view.body,
                 footer: this.view.footer
+            });
+        },
+        getViewHeader: function () {
+            return new ScreenHeaderView({
+                model: new Backbone.Model({
+                    title: 'Add restaurant info',
+                    description: 'This page allows you to add some information about your restaurant.'
+                })
             });
         },
         getViewBody: function () {

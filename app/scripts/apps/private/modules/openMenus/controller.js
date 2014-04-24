@@ -6,8 +6,9 @@ define([
     'helpers/vent',
     'apps/private/modules/openMenus/views/composite',
     'apps/private/routes',
-    'entities/models/openMenu'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView, routes, OpenMenu) {
+    'entities/models/openMenu',
+    'views/generic/screenHeader'
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, routes, OpenMenu, ScreenHeaderView) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -18,11 +19,21 @@ define([
             vent.on('ui:openMenu:delete', this.onDelete, this);
         },
         show: function () {
+            this.view.header = this.getViewHeader();
             this.view.body = this.getViewBody();
             this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
+                header: this.view.header,
                 body: this.view.body,
                 footer: this.view.footer
+            });
+        },
+        getViewHeader: function () {
+            return new ScreenHeaderView({
+                model: new Backbone.Model({
+                    title: 'Open Menus',
+                    description: 'This page allows you to add new open menus and see the open menus you\'ve already added.'
+                })
             });
         },
         getViewBody: function () {

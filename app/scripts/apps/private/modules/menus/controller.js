@@ -7,8 +7,9 @@ define([
     'apps/private/modules/menus/views/composite',
     'apps/private/routes',
     'entities/models/menu',
-    'views/generic/buttons'
-], function (Backbone, Marionette, $, _, vent, MenusView, routes, Menu, ButtonsView) {
+    'views/generic/buttons',
+    'views/generic/screenHeader'
+], function (Backbone, Marionette, $, _, vent, MenusView, routes, Menu, ButtonsView, ScreenHeaderView) {
     'use strict';
     var MenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -19,11 +20,21 @@ define([
             vent.on('menu:delete', this.onDelete, this);
         },
         show: function () {
+            this.view.header = this.getViewHeader();
             this.view.body = this.getViewBody();
             this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
+                header: this.view.header,
                 body: this.view.body,
                 footer: this.view.footer
+            });
+        },
+        getViewHeader: function () {
+            return new ScreenHeaderView({
+                model: new Backbone.Model({
+                    title: 'Menus',
+                    description: 'This page allows you to add new menus and see the menus you\'ve already added.'
+                })
             });
         },
         getViewBody: function () {

@@ -4,23 +4,26 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/modules/menus/views/composite'
-], function (Backbone, Marionette, $, _, vent, MenusView) {
+    'apps/private/modules/menus/views/composite',
+    'apps/private/routes',
+    'entities/models/menu',
+    'views/generic/buttons'
+], function (Backbone, Marionette, $, _, vent, MenusView, routes, Menu, ButtonsView) {
     'use strict';
     var MenusController = Backbone.Marionette.Controller.extend({
         collection: {},
         view: {},
-        init: function () {
+        initialize: function () {
             vent.on('menu:add', this.onAdd, this);
             vent.on('menu:edit', this.onEdit, this);
             vent.on('menu:delete', this.onDelete, this);
-            //this.listenTo(vent, 'next:module', this.onNext);
-            //this.listenTo(vent, 'previous:module', this.onPrevious);
         },
         show: function () {
             this.view.body = this.getViewBody();
+            this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
-                body: this.view.body
+                body: this.view.body,
+                footer: this.view.footer
             });
         },
         getViewBody: function () {
@@ -28,27 +31,36 @@ define([
                 collection: this.collection
             });
         },
-        onAdd: function (menu) {
+        getViewFooter: function () {
+            var view = new ButtonsView({
+                model: this.collection.openMenu
+            });
+            this.listenTo(view, 'next', this.onNext);
+            this.listenTo(view, 'previous', this.onPrevious);
+            return view;
+        },
+        onAdd: function () {
             var self = this;
-            this.collection.create(menu, {
+            this.collection.create(new Menu(), {
                 success: function (model) {
-                    self.onEdit(model);
+                    self.onNext(model);
                 }
             });
         },
-        onEdit: function (menu) {
-            vent.trigger('nextScreen', menu);
+        onEdit: function (id) {
+            var model = this.collection.get(id);
+            this.onNext(model);
         },
-        onDelete: function (menu) {
-            menu.destroy();
+        onDelete: function (id) {
+            var model = this.collection.get(id);
+            model.destroy();
+            this.view.body.render();
+        },
+        onNext: function (model) {
+            vent.trigger('module:next', routes.route('menu', {model: model}));
         },
         onPrevious: function (model) {
-/*
-            vent.trigger('module3:start', {
-                model: model,
-                route: '!/openmenus/' + model.get('_id') + '/edit/environment'
-            });
-*/
+            vent.trigger('module:previous', routes.route('environment', {model: model}));
         }
     });
     return new MenusController();

@@ -4,22 +4,18 @@ define([
     'jquery',
     'underscore',
     'apps/private/modules/manager',
+    'apps/private/routes',
     'helpers/dataManager',
     'helpers/vent'
-], function (Backbone, Marionette, $, _, moduleManager, dataManager, vent) {
+], function (Backbone, Marionette, $, _, moduleManager, routes, dataManager, vent) {
     var PrivateApp = Backbone.Marionette.Controller.extend({
         wake: function () {
             this.listenTo(vent, 'data:get', this.start);
-            moduleManager.wake();
         },
         start: function () {
-            console.log('data:get');
-            $.when(dataManager.getCollection('openMenus')).done(function (openMenus) {
+            $.when(dataManager.getCollection('openMenus')).done(function (collection) {
                 Backbone.history.start();
-                vent.trigger('module1:start', {
-                    collection: openMenus,
-                    route: '!/openmenus'
-                });
+                vent.trigger('module:first', routes.route('openMenus', {collection: collection}));
             });
         }
     });

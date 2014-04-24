@@ -19,7 +19,6 @@ define([
         },
         showViews: function (regions) {
             for (var region in regions) {
-                this[region].reset();
                 this[region].show(regions[region]);
             }
         }

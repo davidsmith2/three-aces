@@ -5,16 +5,13 @@ define([
     'underscore',
     'helpers/vent',
     'apps/private/modules/restaurant/views/form',
+    'apps/private/routes',
     'views/generic/buttons'
-], function (Backbone, Marionette, $, _, vent, RestaurantView, ButtonsView) {
+], function (Backbone, Marionette, $, _, vent, RestaurantView, routes, ButtonsView) {
     'use strict';
     var RestaurantController = Backbone.Marionette.Controller.extend({
         model: {},
         view: {},
-        initialize: function () {
-            this.listenTo(vent, 'next:module', this.onNext);
-            this.listenTo(vent, 'previous:module', this.onPrevious);
-        },
         show: function () {
             this.view.body = this.getViewBody();
             this.view.footer = this.getViewFooter();
@@ -29,21 +26,18 @@ define([
             });
         },
         getViewFooter: function () {
-            return new ButtonsView({
+            var view = new ButtonsView({
                 model: this.model
             });
+            this.listenTo(view, 'next', this.onNext);
+            this.listenTo(view, 'previous', this.onPrevious);
+            return view;
         },
         onNext: function (model) {
-            vent.trigger('module3:start', {
-                model: model,
-                route: '!/openmenus/' + model.get('_id') + '/edit/environment'
-            });
+            vent.trigger('module:next', routes.route('environment', {model: model}));
         },
         onPrevious: function (model) {
-            vent.trigger('module:1:init', {
-                collection: model.collection,
-                route: '!/openmenus'
-            });
+            vent.trigger('module:previous', routes.route('openMenus', {collection: model.collection}));
         }
     });
     return new RestaurantController();

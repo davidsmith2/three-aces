@@ -5,8 +5,9 @@ define([
     'underscore',
     'helpers/vent',
     'apps/private/modules/openMenus/views/composite',
+    'apps/private/routes',
     'entities/models/openMenu'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView, OpenMenu) {
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, routes, OpenMenu) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -18,14 +19,19 @@ define([
         },
         show: function () {
             this.view.body = this.getViewBody();
+            this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
-                body: this.view.body
+                body: this.view.body,
+                footer: this.view.footer
             });
         },
         getViewBody: function () {
             return new OpenMenusView({
                 collection: this.collection
             });
+        },
+        getViewFooter: function () {
+            return new Backbone.View();
         },
         onAdd: function () {
             var self = this;
@@ -45,10 +51,7 @@ define([
             this.view.body.render();
         },
         onNext: function (model) {
-            vent.trigger('module2:start', {
-                model: model,
-                route: '!/openmenus/' + model.get('_id') + '/edit/restaurant'
-            });
+            vent.trigger('module:next', routes.route('restaurant', {model: model}));
         }
     });
     return new OpenMenusController();

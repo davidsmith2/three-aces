@@ -22,7 +22,6 @@ define([
     });
 
     vent.on('privateApp:show', function (shellRegion) {
-        console.log('privateApp:show');
         shellRegion.show(screenLayout);
         privateApp.wake();
     });

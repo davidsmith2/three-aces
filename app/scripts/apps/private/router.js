@@ -2,15 +2,16 @@ define([
     'backbone',
     'backbone.marionette',
     'jquery',
-    'underscore',
-    'apps/private/controller'
-], function (Backbone, Marionette, $, _, frontController) {
+    'underscore'
+], function (Backbone, Marionette, $, _) {
     'use strict';
-    var Router = Backbone.Marionette.AppRouter.extend({
-        controller: frontController,
+    var AppRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
-            '*path': 'defaultRoute'
+            '!/openmenus': 'show',
+            '!/openmenus/:id/restaurant': 'show',
+            '!/openmenus/:id/environment': 'show',
+            '!/openmenus/:id/menus': 'show'
         }
     });
-    return new Router();
+    return AppRouter;
 });

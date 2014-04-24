@@ -2,46 +2,53 @@ define([
     'backbone',
     'backbone.marionette',
     'jquery',
-    'underscore'
-], function (Backbone, Marionette, $, _) {
+    'underscore',
+    'apps/private/router',
+    'helpers/vent'
+], function (Backbone, Marionette, $, _, AppRouter, vent) {
     var ModuleManager = Backbone.Marionette.Controller.extend({
-        modules: [
-            {
-                name: 'openMenus',
-                path: 'apps/private/modules/openMenus/module',
-                "export": {}
-            },
-            {
-                name: 'restaurant',
-                path: 'apps/private/modules/restaurant/module',
-                "export": {}
-            },
-            {
-                name: 'environment',
-                path: 'apps/private/modules/environment/module',
-                "export": {}
-            },
-            {
-                name: 'menus',
-                path: 'apps/private/modules/menus/module',
-                "export": {}
-            }
-        ],
+        current: 0,
+        modules: {},
+        moduleNames: ['openMenus', 'restaurant', 'environment', 'menus'],
         initialize: function () {
-            _.each(this.modules, this.loadModule);
+            this.listenTo(vent, 'module:first', this.getFirstModule);
+            this.listenTo(vent, 'module:next', this.getNextModule);
+            this.listenTo(vent, 'module:previous', this.getPreviousModule);
         },
-        wake: function () {
-            _.each(this.modules, this.wakeModule);
+        getFirstModule: function (options) {
+            this.loadModule(0, options);
         },
-        loadModule: function (curModule) {
+        getNextModule: function (options) {
+            if (this.current < this.moduleNames.length - 1) {
+                this.loadModule(++this.current, options);
+            }
+        },
+        getPreviousModule: function (options) {
+            if (this.current > 0) {
+                this.loadModule(--this.current, options);
+            }
+        },
+        loadModule: function (index, options) {
+            var moduleName = this.moduleNames[index],
+                self = this;
             require([
-                curModule.path
-            ], function (module) {
-                curModule["export"] = module;
+                'apps/private/modules/' + moduleName + '/controller'
+            ], function (controller) {
+                self.onModuleLoad(controller, options);
             });
         },
-        wakeModule: function (curModule) {
-            curModule["export"].wake();
+        onModuleLoad: function (controller, options) {
+            var appRouter;
+            if (options.entity instanceof Backbone.Collection) {
+                controller.collection = options.entity;
+            } else {
+                controller.model = options.entity;
+            }
+            appRouter = new AppRouter({
+                controller: controller
+            });
+            Backbone.history.fragment = null;
+            appRouter.navigate(options.route, {trigger: true});
         }
     });
     return new ModuleManager();

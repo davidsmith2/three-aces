@@ -16,11 +16,11 @@ define([
         },
         next: function (e) {
             e.preventDefault();
-            vent.trigger('next:module', this.model);
+            this.trigger('next', this.model);
         },
         previous: function (e) {
             e.preventDefault();
-            vent.trigger('previous:module', this.model);
+            this.trigger('previous', this.model);
         }
 	});
     return ButtonsView;

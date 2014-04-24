@@ -3,9 +3,8 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
 	'hbs!tmpl/private/screens/menus/item'
-], function (Backbone, Marionette, $, _, privateAppVent, MenuTmpl) {
+], function (Backbone, Marionette, $, _, MenuTmpl) {
     'use strict';
 	var MenuItemView = Backbone.Marionette.ItemView.extend({
         template: MenuTmpl,
@@ -20,11 +19,11 @@ define([
         },
         editMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('menu:edit', this.model);
+            this.trigger('menu:edit', this.model.get('_id'));
         },
         deleteMenu: function (e) {
             e.preventDefault();
-            privateAppVent.trigger('menu:delete', this.model);
+            this.trigger('menu:delete', this.model.get('_id'));
         }
     });
     return MenuItemView;

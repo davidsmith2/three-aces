@@ -32,7 +32,7 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.menus)
+                model: new Backbone.Model(screenHeaders.openMenus.screens.menus)
             });
         },
         getViewBody: function () {

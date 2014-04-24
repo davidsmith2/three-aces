@@ -26,7 +26,7 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.environment)
+                model: new Backbone.Model(screenHeaders.openMenus.screens.environment)
             });
         },
         getViewBody: function () {

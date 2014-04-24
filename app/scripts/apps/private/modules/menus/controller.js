@@ -6,10 +6,11 @@ define([
     'helpers/vent',
     'apps/private/modules/menus/views/composite',
     'apps/private/routes',
+    'apps/private/screenHeaders',
     'entities/models/menu',
     'views/generic/buttons',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, MenusView, routes, Menu, ButtonsView, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, MenusView, routes, screenHeaders, Menu, ButtonsView, ScreenHeaderView) {
     'use strict';
     var MenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -31,10 +32,7 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model({
-                    title: 'Menus',
-                    description: 'This page allows you to add new menus and see the menus you\'ve already added.'
-                })
+                model: new Backbone.Model(screenHeaders.menus)
             });
         },
         getViewBody: function () {

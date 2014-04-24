@@ -6,9 +6,10 @@ define([
     'helpers/vent',
     'apps/private/modules/restaurant/views/form',
     'apps/private/routes',
+    'apps/private/screenHeaders',
     'views/generic/buttons',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, RestaurantView, routes, ButtonsView, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, RestaurantView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
     'use strict';
     var RestaurantController = Backbone.Marionette.Controller.extend({
         model: {},
@@ -25,10 +26,7 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model({
-                    title: 'Add restaurant info',
-                    description: 'This page allows you to add some information about your restaurant.'
-                })
+                model: new Backbone.Model(screenHeaders.restaurant)
             });
         },
         getViewBody: function () {

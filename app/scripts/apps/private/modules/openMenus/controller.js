@@ -6,9 +6,10 @@ define([
     'helpers/vent',
     'apps/private/modules/openMenus/views/composite',
     'apps/private/routes',
+    'apps/private/screenHeaders',
     'entities/models/openMenu',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView, routes, OpenMenu, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, routes, screenHeaders, OpenMenu, ScreenHeaderView) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -30,10 +31,7 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model({
-                    title: 'Open Menus',
-                    description: 'This page allows you to add new open menus and see the open menus you\'ve already added.'
-                })
+                model: new Backbone.Model(screenHeaders.openMenus)
             });
         },
         getViewBody: function () {

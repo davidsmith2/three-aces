@@ -6,9 +6,10 @@ define([
     'helpers/vent',
     'apps/private/modules/environment/views/form',
     'apps/private/routes',
+    'apps/private/screenHeaders',
     'views/generic/buttons',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, EnvironmentView, routes, ButtonsView, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, EnvironmentView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
     'use strict';
     var EnvironmentController = Backbone.Marionette.Controller.extend({
         model: {},
@@ -25,10 +26,7 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model({
-                    title: 'Add environment info',
-                    description: 'This page allows you to add some information about your restaurant\'s environment.'
-                })
+                model: new Backbone.Model(screenHeaders.environment)
             });
         },
         getViewBody: function () {

@@ -16,12 +16,10 @@ define([
             'click [href=#delete]': 'delete'
         },
         edit: function (e) {
-            console.log('ui:openMenu:edit')
             e.preventDefault();
             vent.trigger('ui:openMenu:edit', this.model.get('_id'));
         },
         delete: function (e) {
-            console.log('ui:openMenu:delete')
             e.preventDefault();
             vent.trigger('ui:openMenu:delete', this.model.get('_id'));
         }

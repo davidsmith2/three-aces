@@ -40,7 +40,7 @@ define([
         saveField: function (fieldName, fieldValue) {
             var fieldData = {};
             fieldData[fieldName] = fieldValue;
-            this.model.save(fieldData, {patch: true});
+            this.model.save(fieldData);
         },
         getFieldName: function ($field) {
             return $field.attr('name');

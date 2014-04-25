@@ -1,7 +1,5 @@
 module.exports = function (Model) {
-
     var modelName = Model.modelName.toLowerCase();
-
     return {
         index: function (req, res) {
             return Model.find(function (err, models) {
@@ -61,5 +59,4 @@ module.exports = function (Model) {
 
         }
     };
-    
 };

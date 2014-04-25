@@ -38,9 +38,6 @@ define([
             });
         },
         onModuleLoad: function (controller, options) {
-
-            console.log(options.route)
-
             var appRouter;
             if (options.entity instanceof Backbone.Collection) {
                 controller.collection = options.entity;

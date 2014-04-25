@@ -19,12 +19,10 @@ define([
             this.listenTo(this.model, 'change', this.render);
         },
         edit: function (e) {
-            console.log('ui:menu:edit')
             e.preventDefault();
             vent.trigger('ui:menu:edit', this.model.get('_id'));
         },
         delete: function (e) {
-            console.log('ui:menu:delete')
             e.preventDefault();
             vent.trigger('ui:menu:delete', this.model.get('_id'));
         }

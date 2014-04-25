@@ -4,6 +4,7 @@ var controller = require('../generic/index.js')(Model);
 
 module.exports = _.extend(controller, {
     index: function (req, res) {
+        console.log(req.params)
         return Model
             .where('openMenu')
             .equals(req.params.openmenu)

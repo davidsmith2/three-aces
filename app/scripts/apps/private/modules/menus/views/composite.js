@@ -17,7 +17,6 @@ define([
             'click a[href=#add]': 'add'
         },
         add: function (e) {
-            console.log('ui:menu:add')
             e.preventDefault();
             vent.trigger('ui:menu:add');
         }

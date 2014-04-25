@@ -27,9 +27,6 @@ define([
                 };
             },
             menu: function (options) {
-
-                console.log( '!/openmenus/' + options.model.get('openMenu').get('_id') + '/menus/' + options.model.get('_id') )
-
                 return {
                     entity: options.model,
                     route: '!/openmenus/' + options.model.get('openMenu').get('_id') + '/menus/' + options.model.get('_id')

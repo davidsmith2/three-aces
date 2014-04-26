@@ -6,7 +6,6 @@ define([
 ], function (Backbone, MenuItem, MenuItemCollection) {
     'use strict';
     var MenuGroup = Backbone.RelationalModel.extend({
-        urlRoot: '/api/omfs/:id/menus/:id/menu-groups/:id',
         idAttribute: '_id',
         relations: [
             {
@@ -26,6 +25,12 @@ define([
             groupName: '',
             groupUid: '',
             menuItems: []
+        },
+        schema: {
+            groupName: {
+                type: 'Text',
+                title: 'Name'
+            }
         }
     });
     return MenuGroup;

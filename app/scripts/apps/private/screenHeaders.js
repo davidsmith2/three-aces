@@ -23,7 +23,13 @@ define([
                         },
                         menuGroups: {
                             title: 'Menu groups',
-                            description: 'Add a new menu group or update an existing one.'
+                            description: 'Add a new menu group or update an existing one.',
+                            screens: {
+                                menuGroup: {
+                                    title: 'Menu group',
+                                    description: 'Add some information about your menu group.'
+                                }
+                            }
                         }
                     }
                 }

@@ -48,7 +48,9 @@ db.once('open', function callback () {
     app.resource('openmenus', function () {
         this.resource('restaurants');
         this.resource('environments');
-        this.resource('menus');
+        this.resource('menus', function () {
+            this.resource('menugroups');
+        });
     });
 
 	// start server

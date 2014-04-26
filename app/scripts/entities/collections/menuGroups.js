@@ -5,7 +5,9 @@ define([
     'use strict';
     var MenuGroupCollection = Backbone.Collection.extend({
         model: MenuGroup,
-        url: '/api/omfs/:id/menus/:id/menu-groups'
+        url: function () {
+            return '/openmenus/' + this.openMenu.get('openMenu').get('_id') + '/menus/' + this.openMenu.get('_id') + '/menugroups';
+        }
     });
     return MenuGroupCollection;
 });

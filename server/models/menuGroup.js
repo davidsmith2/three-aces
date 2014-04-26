@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
 var menuGroupSchema = new mongoose.Schema({
     groupName: String,
     groupUid: String,
-    menuItems: [menuItemSchema]
+    menuItems: [menuItemSchema],
+    openMenu: String
 });
 
 module.exports = mongoose.model('menuGroup', menuGroupSchema);

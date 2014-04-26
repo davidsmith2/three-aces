@@ -3,9 +3,8 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/router',
     'helpers/vent'
-], function (Backbone, Marionette, $, _, AppRouter, vent) {
+], function (Backbone, Marionette, $, _, vent) {
     var ModuleManager = Backbone.Marionette.Controller.extend({
         current: 0,
         modules: {},
@@ -32,23 +31,19 @@ define([
             var moduleName = this.moduleNames[index],
                 self = this;
             require([
-                'apps/private/modules/' + moduleName + '/controller'
-            ], function (controller) {
-                self.onModuleLoad(controller, options);
+                'apps/private/modules/' + moduleName + '/router'
+            ], function (router) {
+                self.onModuleLoad(router, options);
             });
         },
-        onModuleLoad: function (controller, options) {
-            var appRouter;
+        onModuleLoad: function (router, options) {
             if (options.entity instanceof Backbone.Collection) {
-                controller.collection = options.entity;
+                router.controller.collection = options.entity;
             } else {
-                controller.model = options.entity;
+                router.controller.model = options.entity;
             }
-            appRouter = new AppRouter({
-                controller: controller
-            });
             Backbone.history.fragment = null;
-            appRouter.navigate(options.route, {trigger: true});
+            router.navigate(options.route, {trigger: true});
         }
     });
     return new ModuleManager();

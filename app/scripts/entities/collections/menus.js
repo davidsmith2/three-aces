@@ -6,7 +6,11 @@ define([
     var MenuCollection = Backbone.Collection.extend({
         model: MenuModel,
         url: function () {
-            return '/openmenus/' + this.openMenu.get('_id') + '/menus';
+            var route = '/openmenus/' + this.openMenu.get('_id') + '/menus';
+
+            console.log(route)
+
+            return route;
         }
     });
     return MenuCollection;

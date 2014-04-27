@@ -5,7 +5,7 @@ var menuGroupSchema = new mongoose.Schema({
     groupName: String,
     groupUid: String,
     menuItems: [menuItemSchema],
-    openMenu: String
+    menu: String
 });
 
 module.exports = mongoose.model('menuGroup', menuGroupSchema);

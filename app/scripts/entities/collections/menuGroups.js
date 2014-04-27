@@ -6,7 +6,11 @@ define([
     var MenuGroupCollection = Backbone.Collection.extend({
         model: MenuGroup,
         url: function () {
-            return '/openmenus/' + this.menu.get('openMenu').get('_id') + '/menus/' + this.menu.get('_id') + '/menugroups';
+            var route = '/openmenus/' + this.menu.get('openMenu').get('_id') + '/menus/' + this.menu.get('_id') + '/menugroups';
+
+            console.log(route)
+
+            return route;
         }
     });
     return MenuGroupCollection;

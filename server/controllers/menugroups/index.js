@@ -5,8 +5,8 @@ var controller = require('../generic/index.js')(Model);
 module.exports = _.extend(controller, {
     index: function (req, res) {
         return Model
-            .where('openMenu')
-            .equals(req.params.openmenu)
+            .where('menu')
+            .equals(req.params.menu)
             .find(function (err, models) {
                 if (!err) {
                     return res.send(models);

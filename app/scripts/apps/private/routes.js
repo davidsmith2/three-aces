@@ -71,7 +71,7 @@ define([
             },
             menuGroup: function (options) {
                 var menuGroup = options.model,
-                    menu = menuGroup.get('openMenu'),
+                    menu = menuGroup.get('menu'),
                     openMenu = menu.get('openMenu'),
                     route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id');
 

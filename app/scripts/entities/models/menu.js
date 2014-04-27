@@ -15,7 +15,7 @@ define([
                 relatedModel: MenuGroup,
                 collectionType: MenuGroupCollection,
                 reverseRelation: {
-                    key: 'openMenu',
+                    key: 'menu',
                     includeInJSON: '_id'
                 }
             }

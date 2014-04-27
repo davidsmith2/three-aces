@@ -46,7 +46,7 @@ define([
             console.log('next')
         },
         onPrevious: function (model) {
-            vent.trigger('module:previous', routes.route('menuGroups', {model: model, collection: model.collection}));
+            vent.trigger('module:previous', routes.route('menuGroups', {model: model.get('menu'), collection: model.collection}));
         }
     });
     return new MenuGroupController();

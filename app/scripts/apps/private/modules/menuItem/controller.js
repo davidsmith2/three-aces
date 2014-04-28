@@ -4,14 +4,14 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/modules/menuGroup/views/form',
+    'apps/private/modules/menuItem/views/form',
     'apps/private/routes',
     'apps/private/screenHeaders',
     'views/generic/buttons',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, MenuGroupView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, MenuItemView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
     'use strict';
-    var MenuGroupController = Backbone.Marionette.Controller.extend({
+    var MenuItemController = Backbone.Marionette.Controller.extend({
         model: {},
         view: {},
         show: function () {
@@ -26,11 +26,11 @@ define([
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.openMenus.screens.menus.screens.menuGroups.screens.menuGroup)
+                model: new Backbone.Model(screenHeaders.openMenus.screens.menus.screens.menuGroups.screens.menuGroup.screens.menuItems.screens.menuItem)
             });
         },
         getViewBody: function () {
-            return new MenuGroupView({
+            return new MenuItemView({
                 model: this.model
             });
         },
@@ -43,16 +43,16 @@ define([
             return view;
         },
         onNext: function (model) {
-            var menuItems = model.get('menuItems');
-            menuItems.fetch({
+            var menuItemSizes = model.get('menuItemSizes');
+            menuItemSizes.fetch({
                 success: function (collection) {
-                    vent.trigger('module:next', routes.route('menuItems', {model: model, collection: collection}));
+                    vent.trigger('module:next', routes.route('menuItemSizes', {model: model, collection: collection}));
                 }
             });
         },
         onPrevious: function (model) {
-            vent.trigger('module:previous', routes.route('menuGroups', {model: model.get('menu'), collection: model.collection}));
+            vent.trigger('module:previous', routes.route('menuItems', {model: model.get('menuGroup'), collection: model.collection}));
         }
     });
-    return new MenuGroupController();
+    return new MenuItemController();
 });

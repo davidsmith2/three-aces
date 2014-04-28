@@ -1,22 +1,27 @@
 define([
+    'backbone',
     'backbone.marionette',
     'jquery',
-    'hbs!tmpl/menuItem',
-    'views/menuItemSizes'
-], function (Marionette, $, template, MenuItemSizes) {
+    'underscore',
+    'helpers/vent',
+	'hbs!tmpl/private/screens/menuItems/item'
+], function (Backbone, Marionette, $, _, vent, MenuGroupTmpl) {
     'use strict';
-    var MenuItemView = Marionette.ItemView.extend({
+	var MenuItemView = Backbone.Marionette.ItemView.extend({
+        template: MenuGroupTmpl,
         tagName: 'tr',
-        template: template,
-        onRender: function () {
-            var sizes = this.model.get('menuItemSizes');
-            var sizesView = new MenuItemSizes({
-                collection: sizes
-            });
-            if (sizes.length) {
-                this.$('.menuItemSizesContainer').replaceWith(sizesView.render().el);
-            }
-            this.listenTo(this.model, 'change:menuItemSizes', this.render);
+        ui: {},
+        events: {
+            'click [href=#edit]': 'edit',
+            'click [href=#delete]': 'delete'
+        },
+        edit: function (e) {
+            e.preventDefault();
+            vent.trigger('ui:menuItem:edit', this.model.get('_id'));
+        },
+        delete: function (e) {
+            e.preventDefault();
+            vent.trigger('ui:menuItem:delete', this.model.get('_id'));
         }
     });
     return MenuItemView;

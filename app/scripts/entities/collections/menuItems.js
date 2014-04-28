@@ -5,8 +5,13 @@ define([
     'use strict';
     var MenuItemCollection = Backbone.Collection.extend({
         model: MenuItem,
-        url: '/api/menu-items',
-        comparator: 'menuItemCategory',
+        url: function () {
+            var menuGroup = this.menuGroup,
+                menu = menuGroup.get('menu'),
+                openMenu = menu.get('openMenu'),
+                route = '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
+            return route;
+        },
         forCategory: function (category) {
             var filteredItems, x;
             if (!category) {

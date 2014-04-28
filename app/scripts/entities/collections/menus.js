@@ -7,9 +7,6 @@ define([
         model: MenuModel,
         url: function () {
             var route = '/openmenus/' + this.openMenu.get('_id') + '/menus';
-
-            console.log(route)
-
             return route;
         }
     });

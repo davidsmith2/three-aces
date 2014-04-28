@@ -81,6 +81,33 @@ define([
                     entity: options.model,
                     route: route
                 };
+            },
+            menuItems: function (options) {
+                var menuGroup = options.model,
+                    menu = menuGroup.get('menu'),
+                    openMenu = menu.get('openMenu'),
+                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
+
+                console.log(route)
+
+                return {
+                    entity: options.collection,
+                    route: route
+                };
+            },
+            menuItem: function (options) {
+                var menuItem = options.model,
+                    menuGroup = menuItem.get('menuGroup'),
+                    menu = menuGroup.get('menu'),
+                    openMenu = menu.get('openMenu'),
+                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems/' + menuItem.get('_id');
+
+                console.log(route)
+
+                return {
+                    entity: options.model,
+                    route: route
+                };
             }
         },
         route: function (name, options) {

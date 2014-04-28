@@ -13,8 +13,6 @@ define([
                 key: 'menuItems',
                 relatedModel: MenuItem,
                 collectionType: MenuItemCollection,
-                includeInJSON: true,
-                fetchRelated: true,
                 reverseRelation: {
                     key: 'menuGroup',
                     includeInJSON: '_id'

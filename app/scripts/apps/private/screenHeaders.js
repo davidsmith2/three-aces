@@ -27,7 +27,31 @@ define([
                             screens: {
                                 menuGroup: {
                                     title: 'Menu group',
-                                    description: 'Add some information about your menu group.'
+                                    description: 'Add some information about your menu group.',
+                                    screens: {
+                                        menuItems: {
+                                            title: 'Menu items',
+                                            description: 'Add a new menu item or update an existing one.',
+                                            screens: {
+                                                menuItem: {
+                                                    title: 'Menu item',
+                                                    description: 'Add some information about your menu item.',
+                                                    screens: {
+                                                        menuItemSizes: {
+                                                            title: '',
+                                                            description: '',
+                                                            screens: {
+                                                                menuItemSize: {
+                                                                    title: '',
+                                                                    description: ''
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

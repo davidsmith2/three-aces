@@ -8,7 +8,7 @@ define([
     var ModuleManager = Backbone.Marionette.Controller.extend({
         current: 0,
         modules: {},
-        moduleNames: ['openMenus', 'restaurant', 'environment', 'menus', 'menu', 'menuGroups', 'menuGroup'],
+        moduleNames: ['openMenus', 'restaurant', 'environment', 'menus', 'menu', 'menuGroups', 'menuGroup', 'menuItems', 'menuItem'],
         initialize: function () {
             this.listenTo(vent, 'module:first', this.getFirstModule);
             this.listenTo(vent, 'module:next', this.getNextModule);

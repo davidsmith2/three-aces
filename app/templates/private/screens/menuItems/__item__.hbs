@@ -1,0 +1,58 @@
+<div class="modal hide" id="addMenuItem">
+    <div class="modal-header">
+        <button aria-hidden="true" class="close" type="button">&times;</button>
+        <h2>
+            {{#unless itemUid}}
+            Add a menu item
+            {{else}}
+            Edit a menu item
+            {{/unless}}
+        </h2>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" id="formAddMenuItem">
+            <fieldset>
+                <div class="control-group">
+                    <label for="inputName">Name</label>
+                    <input class="input-xlarge" id="inputName" name="menuItemName" type="text" {{#if menuItemName}}value="{{menuItemName}}"{{/if}}/>
+                </div>
+                <div class="control-group">
+                    <label for="inputDescription">Description</label>
+                    <textarea class="textarea-xlarge" id="inputDescription" name="menuItemDescription" rows="3" type="text" {{#if menuItemDescription}}value="{{menuItemDescription}}"{{/if}}></textarea>
+                </div>
+                <div class="control-group">
+                    <label for="inputCategory">Category</label>
+                    <input class="input-medium" id="inputCategory" name="menuItemCategory" type="text" {{#if menuItemCategory}}value="{{menuItemCategory}}"{{/if}} />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="control-group">
+                    <label class="radio">
+                        <input checked name="menuItemSizeType" type="radio" value="singleSize" />
+                        This item comes in one size
+                    </label>
+                    <label class="radio">
+                        <input {{#if itemUid}}{{#if menuItemSizes}}checked{{/if}}{{/if}} name="menuItemSizeType" type="radio" value="multiSize" />
+                        This item comes in multiple sizes
+                    </label>
+                </div>
+                <div class="control-group{{#if menuItemSizes}} hide{{/if}}" id="price">
+                    <label class="input-prepend">
+                        <span class="add-on">$</span>
+                        <input class="input-small" name="menuItemPrice" type="text" {{#if menuItemPrice}}value="{{menuItemPrice}}"{{/if}}/>
+                    </label>
+                </div>
+                <div class="{{#if menuItemPrice}}hide{{/if}}" id="sizes">
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="control-group">
+                    <button class="btn btn-primary" type="submit">{{#unless itemUid}}Create{{else}}Save{{/unless}}</button>
+                    <button class="btn btn-secondary" type="reset">Cancel</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

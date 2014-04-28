@@ -1,21 +1,23 @@
 define([
+    'backbone',
     'backbone.marionette',
     'jquery',
-    'hbs!tmpl/views/menuItems',
-    'views/menuItem'
-], function (Marionette, $, template, MenuItem) {
+    'underscore',
+    'apps/private/modules/menuItems/views/item',
+    'helpers/vent',
+    'hbs!tmpl/private/screens/menuItems/composite'
+], function (Backbone, Marionette, $, _, MenuItemView, vent, MenuItemsTmpl) {
     'use strict';
     var MenuItemsView = Marionette.CompositeView.extend({
-        itemView: MenuItem,
+        itemView: MenuItemView,
         itemViewContainer: 'tbody',
-        template: template,
+        template: MenuItemsTmpl,
         events: {
-            'click .btn': 'addMenuItem'
+            'click [href=#add]': 'add'
         },
-        addMenuItem: function (e) {
-            var modalId = $(e.target).attr('href');
+        add: function (e) {
             e.preventDefault();
-            this.trigger('addMenuItem', modalId);
+            vent.trigger('ui:menuItem:add');
         }
     });
     return MenuItemsView;

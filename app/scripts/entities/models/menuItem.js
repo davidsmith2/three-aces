@@ -6,7 +6,6 @@ define([
 ], function (Backbone, MenuItemSize, MenuItemSizeCollection) {
     'use strict';
     var MenuItem = Backbone.RelationalModel.extend({
-        urlRoot: '/api/menu-items',
         idAttribute: '_id',
         relations: [
             {
@@ -14,8 +13,6 @@ define([
                 key: 'menuItemSizes',
                 relatedModel: MenuItemSize,
                 collectionType: MenuItemSizeCollection,
-                includeInJSON: true,
-                fetchRelated: true,
                 reverseRelation: {
                     key: 'menuItem',
                     includeInJSON: '_id'
@@ -25,10 +22,22 @@ define([
         defaults: {
             menuItemName: '',
             menuItemDescription: '',
-            menuItemCategory: '',
             menuItemPrice: 0,
-            menuItemSizes: [],
-            itemUid: ''
+            menuItemSizes: []
+        },
+        schema: {
+            menuItemName: {
+                type: 'Text',
+                title: 'Name'
+            },
+            menuItemDescription: {
+                type: 'TextArea',
+                title: 'Description'
+            },
+            menuItemPrice: {
+                type: 'Text',
+                title: 'Price'
+            }
         }
     });
     return MenuItem;

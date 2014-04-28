@@ -49,7 +49,9 @@ db.once('open', function callback () {
         this.resource('restaurants');
         this.resource('environments');
         this.resource('menus', function () {
-            this.resource('menugroups');
+            this.resource('menugroups', function () {
+                this.resource('menuitems');
+            });
         });
     });
 

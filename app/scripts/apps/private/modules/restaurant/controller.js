@@ -5,31 +5,30 @@ define([
     'underscore',
     'helpers/vent',
     'apps/private/modules/restaurant/views/form',
-    'apps/private/routes',
-    'apps/private/screenHeaders',
+    'apps/private/modules/metadata',
     'views/generic/buttons',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, RestaurantView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, RestaurantView, metadata, ButtonsView, ScreenHeaderView) {
     'use strict';
     var RestaurantController = Backbone.Marionette.Controller.extend({
         model: {},
         view: {},
         show: function () {
             this.view.header = this.getViewHeader();
-            this.view.body = this.getViewBody();
+            this.view.content = this.getViewContent();
             this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
                 header: this.view.header,
-                body: this.view.body,
+                content: this.view.content,
                 footer: this.view.footer
             });
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.restaurant)
+                model: new Backbone.Model(metadata.restaurant)
             });
         },
-        getViewBody: function () {
+        getViewContent: function () {
             return new RestaurantView({
                 model: this.model.get('restaurantInfo')
             });
@@ -43,10 +42,10 @@ define([
             return view;
         },
         onNext: function (model) {
-            vent.trigger('module:next', routes.route('environment', {model: model}));
+            vent.trigger('module:load', 'environment', {model: model});
         },
         onPrevious: function (model) {
-            vent.trigger('module:previous', routes.route('openMenus', {collection: model.collection}));
+            vent.trigger('module:load', 'openMenus', {collection: model.collection});
         }
     });
     return new RestaurantController();

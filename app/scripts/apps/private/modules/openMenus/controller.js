@@ -5,11 +5,10 @@ define([
     'underscore',
     'helpers/vent',
     'apps/private/modules/openMenus/views/composite',
-    'apps/private/routes',
-    'apps/private/screenHeaders',
+    'apps/private/modules/metadata',
     'entities/models/openMenu',
     'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView, routes, screenHeaders, OpenMenu, ScreenHeaderView) {
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, metadata, OpenMenu, ScreenHeaderView) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -21,20 +20,20 @@ define([
         },
         show: function () {
             this.view.header = this.getViewHeader();
-            this.view.body = this.getViewBody();
+            this.view.content = this.getViewContent();
             this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
                 header: this.view.header,
-                body: this.view.body,
+                content: this.view.content,
                 footer: this.view.footer
             });
         },
         getViewHeader: function () {
             return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.openMenus)
+                model: new Backbone.Model(metadata.openMenus)
             });
         },
-        getViewBody: function () {
+        getViewContent: function () {
             return new OpenMenusView({
                 collection: this.collection
             });
@@ -57,10 +56,9 @@ define([
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
-            this.view.body.render();
         },
         onNext: function (model) {
-            vent.trigger('module:next', routes.route('restaurant', {model: model}));
+            vent.trigger('module:load', 'restaurant', {model: model});
         }
     });
     return new OpenMenusController();

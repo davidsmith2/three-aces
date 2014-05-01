@@ -5,6 +5,10 @@ define([
             title: 'Open menus',
             description: 'Add a new open menu or update an existing one.',
         },
+        openMenu: {
+            title: 'Open menu',
+            description: 'Bollocks, bollocks and more bollocks.'
+        },
         restaurant: {
             title: 'Restaurant',
             description: 'Add some information about your restaurant.'

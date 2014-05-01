@@ -3,47 +3,30 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent'
-], function (Backbone, Marionette, $, _, vent) {
+    'helpers/vent',
+    'apps/private/modules/events'
+], function (Backbone, Marionette, $, _, vent, events) {
     var ModuleManager = Backbone.Marionette.Controller.extend({
-        current: 0,
-        modules: {},
-        moduleNames: ['openMenus', 'restaurant', 'environment', 'menus', 'menu', 'menuGroups', 'menuGroup', 'menuItems', 'menuItem'],
         initialize: function () {
-            this.listenTo(vent, 'module:first', this.getFirstModule);
-            this.listenTo(vent, 'module:next', this.getNextModule);
-            this.listenTo(vent, 'module:previous', this.getPreviousModule);
+            this.listenTo(vent, 'module:load', this.loadModule);
         },
-        getFirstModule: function (options) {
-            this.loadModule(0, options);
-        },
-        getNextModule: function (options) {
-            if (this.current < this.moduleNames.length - 1) {
-                this.loadModule(++this.current, options);
-            }
-        },
-        getPreviousModule: function (options) {
-            if (this.current > 0) {
-                this.loadModule(--this.current, options);
-            }
-        },
-        loadModule: function (index, options) {
-            var moduleName = this.moduleNames[index],
-                self = this;
+        loadModule: function (moduleName, moduleOptions) {
+            var self = this;
             require([
                 'apps/private/modules/' + moduleName + '/router'
-            ], function (router) {
-                self.onModuleLoad(router, options);
+            ], function (moduleRouter) {
+                self.onModuleLoad(moduleName, moduleOptions, moduleRouter);
             });
         },
-        onModuleLoad: function (router, options) {
-            if (options.entity instanceof Backbone.Collection) {
-                router.controller.collection = options.entity;
+        onModuleLoad: function (moduleName, moduleOptions, moduleRouter) {
+            var evt = events.handle(moduleName, moduleOptions);
+            if (evt.entity instanceof Backbone.Collection) {
+                moduleRouter.controller.collection = evt.entity;
             } else {
-                router.controller.model = options.entity;
+                moduleRouter.controller.model = evt.entity;
             }
             Backbone.history.fragment = null;
-            router.navigate(options.route, {trigger: true});
+            moduleRouter.navigate(evt.route, {trigger: true});
         }
     });
     return new ModuleManager();

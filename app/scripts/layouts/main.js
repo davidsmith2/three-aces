@@ -3,16 +3,16 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/layouts/screen',
+    'hbs!tmpl/layouts/main',
     'helpers/vent'
-], function (Backbone, Marionette, $, _, ScreenTmpl, vent) {
+], function (Backbone, Marionette, $, _, MainTemplate, vent) {
     'use strict';
-    var Screen = Backbone.Marionette.Layout.extend({
-        template: ScreenTmpl,
+    var MainLayout = Backbone.Marionette.Layout.extend({
+        template: MainTemplate,
         regions: {
-            header: '.screen-header',
-            body: '.screen-body',
-            footer: '.screen-footer'
+            header: '#main-header',
+            content: '#main-content',
+            footer: '#main-footer'
         },
         initialize: function () {
             this.listenTo(vent, 'screen:show', this.showViews);
@@ -23,5 +23,5 @@ define([
             }
         }
     });
-    return new Screen();
+    return new MainLayout();
 });

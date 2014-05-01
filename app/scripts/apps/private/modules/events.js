@@ -1,7 +1,7 @@
 define([
 ], function () {
     return {
-        routes: {
+        handlers: {
             openMenus: function (options) {
                 var route = '!/openmenus';
 
@@ -12,6 +12,17 @@ define([
                     route: route
                 };
             },
+            openMenu: function (options) {
+                var openMenu = options.model,
+                    route = '!/openmenus/' + openMenu.get('_id');
+
+                console.log(route)
+
+                return {
+                    entity: openMenu,
+                    route:  route
+                };
+            },
             restaurant: function (options) {
                 var openMenu = options.model,
                     route = '!/openmenus/' + openMenu.get('_id') + '/restaurant';
@@ -19,7 +30,7 @@ define([
                 console.log(route)
 
                 return {
-                    entity: options.model,
+                    entity: openMenu,
                     route:  route
                 };
             },
@@ -30,7 +41,7 @@ define([
                 console.log(route)
 
                 return {
-                    entity: options.model,
+                    entity: openMenu,
                     route: route
                 };
             },
@@ -110,8 +121,8 @@ define([
                 };
             }
         },
-        route: function (name, options) {
-            return this.routes[name](options);
+        handle: function (name, options) {
+            return this.handlers[name](options);
         }
     };
 });

@@ -5,24 +5,24 @@ define([
     'underscore',
     'apps/private/app',
     'helpers/vent',
-    'layouts/screen',
-    'layouts/shell'
-], function (Backbone, Marionette, $, _, privateApp, vent, screenLayout, shellLayout) {
+    'layouts/container',
+    'layouts/main'
+], function (Backbone, Marionette, $, _, privateApp, vent, containerLayout, mainLayout) {
     'use strict';
 
     var app = new Marionette.Application();
 
     app.addRegions({
-        content: '#content'
+        content: '#container'
     });
 
     app.addInitializer(function () {
-        app.content.show(shellLayout);
+        app.content.show(containerLayout);
         vent.trigger('data:get');
     });
 
-    vent.on('privateApp:show', function (shellRegion) {
-        shellRegion.show(screenLayout);
+    vent.on('privateApp:show', function (mainRegion) {
+        mainRegion.show(mainLayout);
         privateApp.wake();
     });
 

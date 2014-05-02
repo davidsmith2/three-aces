@@ -9,7 +9,7 @@ define([
 ], function (Backbone, Marionette, $, _, moduleManager, dataManager, vent) {
     var PrivateApp = Backbone.Marionette.Controller.extend({
         wake: function () {
-            this.listenTo(vent, 'data:get', this.start);
+            this.listenTo(vent, 'openMenus:show', this.start);
         },
         start: function () {
             var self = this;

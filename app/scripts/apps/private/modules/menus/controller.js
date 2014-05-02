@@ -5,12 +5,11 @@ define([
     'underscore',
     'helpers/vent',
     'apps/private/modules/menus/views/composite',
-    'apps/private/routes',
-    'apps/private/screenHeaders',
     'entities/models/menu',
-    'views/generic/buttons',
-    'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, MenusView, routes, screenHeaders, Menu, ButtonsView, ScreenHeaderView) {
+    'apps/private/modules/metadata',
+    'views/generic/mainHeader',
+    'views/generic/mainNav'
+], function (Backbone, Marionette, $, _, vent, MenusView, Menu, metadata, MainHeaderView, MainNavView) {
     'use strict';
     var MenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -21,21 +20,28 @@ define([
             vent.on('ui:menu:delete', this.onDelete, this);
         },
         show: function () {
+            this.view.nav = this.getViewNav();
             this.view.header = this.getViewHeader();
-            this.view.body = this.getViewBody();
+            this.view.content = this.getViewContent();
             this.view.footer = this.getViewFooter();
             vent.trigger('screen:show', {
+                nav: this.view.nav,
                 header: this.view.header,
-                body: this.view.body,
+                content: this.view.content,
                 footer: this.view.footer
             });
         },
-        getViewHeader: function () {
-            return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.menus)
+        getViewNav: function () {
+            return new MainNavView({
+                model: this.collection.openMenu
             });
         },
-        getViewBody: function () {
+        getViewHeader: function () {
+            return new MainHeaderView({
+                model: new Backbone.Model(metadata.menus)
+            });
+        },
+        getViewContent: function () {
             return new MenusView({
                 collection: this.collection
             });
@@ -58,10 +64,6 @@ define([
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
-            this.view.body.render();
-        },
-        onNext: function (model) {
-            vent.trigger('module:next', routes.route('menu', {model: model}));
         }
     });
     return new MenusController();

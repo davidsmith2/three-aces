@@ -17,15 +17,15 @@ define([
             dialog: '#dialog'
         },
         events: {
-            'click #nav [href=#openMenus]': 'home'
+            'click #nav [href=#openMenus]': 'showOpenMenus'
         },
         initialize: function () {},
         onRender: function () {
             vent.trigger('privateApp:show', this.main);
         },
-        home: function (e) {
+        showOpenMenus: function (e) {
             e.preventDefault();
-            vent.trigger('data:get');
+            vent.trigger('openMenus:show');
         }
     });
     return new ContainerLayout();

@@ -18,7 +18,7 @@ define([
 
     app.addInitializer(function () {
         app.content.show(containerLayout);
-        vent.trigger('data:get');
+        vent.trigger('openMenus:show');
     });
 
     vent.on('privateApp:show', function (mainRegion) {

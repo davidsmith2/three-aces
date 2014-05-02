@@ -7,8 +7,8 @@ define([
     'apps/private/modules/openMenus/views/composite',
     'apps/private/modules/metadata',
     'entities/models/openMenu',
-    'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView, metadata, OpenMenu, ScreenHeaderView) {
+    'views/generic/mainHeader'
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, metadata, OpenMenu, MainHeaderView) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -29,7 +29,7 @@ define([
             });
         },
         getViewHeader: function () {
-            return new ScreenHeaderView({
+            return new MainHeaderView({
                 model: new Backbone.Model(metadata.openMenus)
             });
         },

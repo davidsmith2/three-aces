@@ -16,16 +16,14 @@ define([
             footer: '#footer',
             dialog: '#dialog'
         },
-        events: {
-            'click #nav [href=#openMenus]': 'showOpenMenus'
+        initialize: function () {
+            this.listenTo(vent, 'layout:change', this.changeLayout);
         },
-        initialize: function () {},
         onRender: function () {
-            vent.trigger('privateApp:show', this.main);
+            vent.trigger('privateApp:show');
         },
-        showOpenMenus: function (e) {
-            e.preventDefault();
-            vent.trigger('openMenus:show');
+        changeLayout: function (region, layout) {
+            this[region].show(layout);
         }
     });
     return new ContainerLayout();

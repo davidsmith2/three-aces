@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/mainHeader'
+    'hbs!tmpl/layouts/mainHeader'
 ], function (Backbone, Marionette, $, _, MainHeaderTmpl) {
     var MainHeaderView = Backbone.View.extend({
         template: MainHeaderTmpl,

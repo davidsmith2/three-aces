@@ -11,34 +11,36 @@ define([
         template: MainNavTmpl,
         ui: {},
 		events: {
-            'click [href]': 'getModule'
+            'click [href]': 'select'
         },
-        getModule: function (e) {
+        select: function (e) {
             var $el = $(e.target),
                 moduleName = $el.attr('href').slice(1);
             e.preventDefault();
-            if (moduleName === 'menus') {
-                this.getCollectionModule(moduleName, this.model);
+            if (moduleName === 'openMenus') {
+                vent.trigger('openMenus:show');
+            } else if (moduleName === 'menus') {
+                this.selectCollection(moduleName);
             } else {
-                this.getModelModule(moduleName, this.model);
+                this.selectModel(moduleName);
             }
         },
-        getModelModule: function (moduleName, model) {
-            this.loadModule(moduleName, {model: model});
-        },
-        getCollectionModule: function (moduleName, model) {
-            var collection = model.get(moduleName),
+        selectCollection: function (moduleName) {
+            var collection = this.model.get(moduleName),
                 self = this;
             collection.fetch({
                 success: function (_collection) {
-                    self.loadModule(moduleName, {
-                        model: model,
+                    self.load(moduleName, {
+                        model: self.model,
                         collection: _collection
                     });
                 }
             });
         },
-        loadModule: function (moduleName, moduleOptions) {
+        selectModel: function (moduleName) {
+            this.load(moduleName, {model: this.model});
+        },
+        load: function (moduleName, moduleOptions) {
             vent.trigger('module:load', moduleName, moduleOptions);
         }
 	});

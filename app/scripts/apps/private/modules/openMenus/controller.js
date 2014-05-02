@@ -7,8 +7,9 @@ define([
     'apps/private/modules/openMenus/views/composite',
     'apps/private/modules/metadata',
     'entities/models/openMenu',
-    'views/generic/mainHeader'
-], function (Backbone, Marionette, $, _, vent, OpenMenusView, metadata, OpenMenu, MainHeaderView) {
+    'views/generic/mainHeader',
+    'layouts/secondary'
+], function (Backbone, Marionette, $, _, vent, OpenMenusView, metadata, OpenMenu, MainHeaderView, SecondaryLayout) {
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
@@ -22,7 +23,7 @@ define([
             this.view.header = this.getViewHeader();
             this.view.content = this.getViewContent();
             this.view.footer = this.getViewFooter();
-            vent.trigger('screen:show', {
+            vent.trigger('module:change', {
                 header: this.view.header,
                 content: this.view.content,
                 footer: this.view.footer
@@ -45,19 +46,20 @@ define([
             var self = this;
             this.collection.create(new OpenMenu(), {
                 success: function (model) {
-                    self.onNext(model);
+                    self.changeModule(model);
                 }
             });
         },
         onEdit: function (id) {
             var model = this.collection.get(id);
-            this.onNext(model);
+            this.changeModule(model);
         },
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
         },
-        onNext: function (model) {
+        changeModule: function (model) {
+            vent.trigger('layout:change', 'main', new SecondaryLayout());
             vent.trigger('module:load', 'restaurant', {model: model});
         }
     });

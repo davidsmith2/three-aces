@@ -5,8 +5,9 @@ define([
     'underscore',
     'apps/private/modules/manager',
     'helpers/dataManager',
-    'helpers/vent'
-], function (Backbone, Marionette, $, _, moduleManager, dataManager, vent) {
+    'helpers/vent',
+    'layouts/primary'
+], function (Backbone, Marionette, $, _, moduleManager, dataManager, vent, PrimaryLayout) {
     var PrivateApp = Backbone.Marionette.Controller.extend({
         wake: function () {
             this.listenTo(vent, 'openMenus:show', this.start);
@@ -17,10 +18,11 @@ define([
                 if (!Backbone.History.started) {
                     Backbone.history.start();
                 }
-                self.show(collection);
+                self.changeModule(collection);
             });
         },
-        show: function (collection) {
+        changeModule: function (collection) {
+            vent.trigger('layout:change', 'main', new PrimaryLayout());
             vent.trigger('module:load', 'openMenus', {collection: collection});
         }
     });

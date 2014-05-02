@@ -5,9 +5,8 @@ define([
     'underscore',
     'apps/private/app',
     'helpers/vent',
-    'layouts/container',
-    'layouts/main'
-], function (Backbone, Marionette, $, _, privateApp, vent, containerLayout, mainLayout) {
+    'layouts/container'
+], function (Backbone, Marionette, $, _, privateApp, vent, containerLayout) {
     'use strict';
 
     var app = new Marionette.Application();
@@ -21,14 +20,13 @@ define([
         vent.trigger('openMenus:show');
     });
 
-    vent.on('privateApp:show', function (mainRegion) {
-        mainRegion.show(mainLayout);
+    vent.on('privateApp:show', function () {
         privateApp.wake();
     });
 
 /*
     vent.on('publicApp:show', function () {
-        console.log('publicApp:show');
+        publicApp.wake();
     });
 */
 

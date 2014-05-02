@@ -24,7 +24,7 @@ define([
             this.view.header = this.getViewHeader();
             this.view.content = this.getViewContent();
             this.view.footer = this.getViewFooter();
-            vent.trigger('screen:show', {
+            vent.trigger('module:change', {
                 nav: this.view.nav,
                 header: this.view.header,
                 content: this.view.content,

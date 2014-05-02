@@ -14,7 +14,8 @@ define([
             'click [href]': 'getModule'
         },
         getModule: function (e) {
-            var moduleName = $(e.target).attr('href').slice(1);
+            var $el = $(e.target),
+                moduleName = $el.attr('href').slice(1);
             e.preventDefault();
             if (moduleName === 'menus') {
                 this.getCollectionModule(moduleName, this.model);
@@ -23,18 +24,22 @@ define([
             }
         },
         getModelModule: function (moduleName, model) {
-            vent.trigger('module:load', moduleName, {model: model});
+            this.loadModule(moduleName, {model: model});
         },
         getCollectionModule: function (moduleName, model) {
-            var collection = model.get(moduleName);
+            var collection = model.get(moduleName),
+                self = this;
             collection.fetch({
                 success: function (_collection) {
-                    vent.trigger('module:load', moduleName, {
-                        model: collection.openMenu,
+                    self.loadModule(moduleName, {
+                        model: model,
                         collection: _collection
                     });
                 }
             });
+        },
+        loadModule: function (moduleName, moduleOptions) {
+            vent.trigger('module:load', moduleName, moduleOptions);
         }
 	});
     return MainNavView;

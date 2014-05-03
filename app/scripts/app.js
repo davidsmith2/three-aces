@@ -6,7 +6,7 @@ define([
     'apps/private/app',
     'helpers/vent',
     'layouts/container'
-], function (Backbone, Marionette, $, _, privateApp, vent, containerLayout) {
+], function (Backbone, Marionette, $, _, privateApp, vent, ContainerLayout) {
     'use strict';
 
     var app = new Marionette.Application();
@@ -16,7 +16,7 @@ define([
     });
 
     app.addInitializer(function () {
-        app.content.show(containerLayout);
+        app.content.show(new ContainerLayout());
         vent.trigger('openMenus:show');
     });
 

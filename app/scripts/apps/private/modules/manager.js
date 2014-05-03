@@ -19,14 +19,22 @@ define([
             });
         },
         onModuleLoad: function (moduleName, moduleOptions, moduleRouter) {
+
             var evt = events.handle(moduleName, moduleOptions);
+
             if (evt.entity instanceof Backbone.Collection) {
                 moduleRouter.controller.collection = evt.entity;
             } else {
                 moduleRouter.controller.model = evt.entity;
             }
-            Backbone.history.fragment = null;
-            moduleRouter.navigate(evt.route, {trigger: true});
+
+            if (evt.route) {
+                Backbone.history.fragment = null;
+                moduleRouter.navigate(evt.route, {trigger: true});
+            } else {
+                moduleRouter.controller.show();
+            }
+
         }
     });
     return new ModuleManager();

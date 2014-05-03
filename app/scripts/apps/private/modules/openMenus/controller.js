@@ -13,33 +13,33 @@ define([
     'use strict';
     var OpenMenusController = Backbone.Marionette.Controller.extend({
         collection: {},
-        view: {},
+        views: {
+            header: {},
+            body: {},
+            footer: {}
+        },
         initialize: function () {
             vent.on('ui:openMenu:add', this.onAdd, this);
             vent.on('ui:openMenu:edit', this.onEdit, this);
             vent.on('ui:openMenu:delete', this.onDelete, this);
         },
         show: function () {
-            this.view.header = this.getViewHeader();
-            this.view.content = this.getViewContent();
-            this.view.footer = this.getViewFooter();
-            vent.trigger('module:change', {
-                header: this.view.header,
-                content: this.view.content,
-                footer: this.view.footer
-            });
+            this.views.header = this.getHeaderView();
+            this.views.body = this.getBodyView();
+            this.views.footer = this.getFooterView();
+            vent.trigger('layout:primary:showViews', this.views);
         },
-        getViewHeader: function () {
+        getHeaderView: function () {
             return new MainHeaderView({
                 model: new Backbone.Model(metadata.openMenus)
             });
         },
-        getViewContent: function () {
+        getBodyView: function () {
             return new OpenMenusView({
                 collection: this.collection
             });
         },
-        getViewFooter: function () {
+        getFooterView: function () {
             return new Backbone.View();
         },
         onAdd: function () {
@@ -59,7 +59,7 @@ define([
             model.destroy();
         },
         changeModule: function (model) {
-            vent.trigger('layout:change', 'main', new SecondaryLayout());
+            vent.trigger('layout:container:showView', 'main', new SecondaryLayout());
             vent.trigger('module:load', 'restaurant', {model: model});
         }
     });

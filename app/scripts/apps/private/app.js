@@ -22,7 +22,7 @@ define([
             });
         },
         changeModule: function (collection) {
-            vent.trigger('layout:change', 'main', new PrimaryLayout());
+            vent.trigger('layout:container:showView', 'main', new PrimaryLayout());
             vent.trigger('module:load', 'openMenus', {collection: collection});
         }
     });

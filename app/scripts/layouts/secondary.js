@@ -3,17 +3,22 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'layouts/primary',
+    'helpers/vent',
+    'layouts/base',
     'hbs!tmpl/layouts/secondary'
-], function (Backbone, Marionette, $, _, PrimaryLayout, SecondaryTemplate) {
+], function (Backbone, Marionette, $, _, vent, BaseLayout, Template) {
     'use strict';
-    var SecondaryLayout = PrimaryLayout.extend({
-        template: SecondaryTemplate,
+    var SecondaryLayout = BaseLayout.extend({
+        template: Template,
         regions: {
             header: '#main-header',
-            content: '#main-content',
+            body: '#main-body',
             footer: '#main-footer',
             nav: '#main-nav'
+        },
+        initialize: function () {
+            this.listenTo(vent, 'layout:secondary:showViews', this.showViews);
+            this.listenTo(vent, 'layout:secondary:showView', this.showView);
         }
     });
     return SecondaryLayout;

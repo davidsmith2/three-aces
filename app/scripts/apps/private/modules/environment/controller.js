@@ -12,35 +12,35 @@ define([
     'use strict';
     var EnvironmentController = Backbone.Marionette.Controller.extend({
         model: {},
-        view: {},
-        show: function () {
-            this.view.nav = this.getViewNav();
-            this.view.header = this.getViewHeader();
-            this.view.content = this.getViewContent();
-            this.view.footer = this.getViewFooter();
-            vent.trigger('module:change', {
-                nav: this.view.nav,
-                header: this.view.header,
-                content: this.view.content,
-                footer: this.view.footer
-            });
+        views: {
+            nav: {},
+            header: {},
+            body: {},
+            footer: {}
         },
-        getViewNav: function () {
+        show: function () {
+            this.views.header = this.getHeaderView();
+            this.views.body = this.getBodyView();
+            this.views.footer = this.getFooterView();
+            this.views.nav = this.getNavView();
+            vent.trigger('layout:secondary:showViews', this.views);
+        },
+        getNavView: function () {
             return new MainNavView({
                 model: this.model
             });
         },
-        getViewHeader: function () {
+        getHeaderView: function () {
             return new MainHeaderView({
                 model: new Backbone.Model(metadata.environment)
             });
         },
-        getViewContent: function () {
+        getBodyView: function () {
             return new EnvironmentView({
                 model: this.model.get('environment')
             });
         },
-        getViewFooter: function () {
+        getFooterView: function () {
             return new Backbone.View();
         }
     });

@@ -8,62 +8,67 @@ define([
     'entities/models/menu',
     'apps/private/modules/metadata',
     'views/generic/mainHeader',
-    'views/generic/mainNav'
-], function (Backbone, Marionette, $, _, vent, MenusView, Menu, metadata, MainHeaderView, MainNavView) {
+    'views/generic/mainNav',
+    'layouts/secondary'
+], function (Backbone, Marionette, $, _, vent, MenusView, Menu, metadata, MainHeaderView, MainNavView, SecondaryLayout) {
     'use strict';
     var MenusController = Backbone.Marionette.Controller.extend({
         collection: {},
-        view: {},
+        views: {
+            nav: {},
+            header: {},
+            body: {},
+            footer: {}
+        },
         initialize: function () {
             vent.on('ui:menu:add', this.onAdd, this);
             vent.on('ui:menu:edit', this.onEdit, this);
             vent.on('ui:menu:delete', this.onDelete, this);
         },
         show: function () {
-            this.view.nav = this.getViewNav();
-            this.view.header = this.getViewHeader();
-            this.view.content = this.getViewContent();
-            this.view.footer = this.getViewFooter();
-            vent.trigger('module:change', {
-                nav: this.view.nav,
-                header: this.view.header,
-                content: this.view.content,
-                footer: this.view.footer
-            });
+            this.views.nav = this.getNavView();
+            this.views.header = this.getHeaderView();
+            this.views.body = this.getBodyView();
+            this.views.footer = this.getFooterView();
+            vent.trigger('layout:secondary:showViews', this.views);
         },
-        getViewNav: function () {
+        getNavView: function () {
             return new MainNavView({
                 model: this.collection.openMenu
             });
         },
-        getViewHeader: function () {
+        getHeaderView: function () {
             return new MainHeaderView({
                 model: new Backbone.Model(metadata.menus)
             });
         },
-        getViewContent: function () {
+        getBodyView: function () {
             return new MenusView({
                 collection: this.collection
             });
         },
-        getViewFooter: function () {
+        getFooterView: function () {
             return new Backbone.View();
         },
         onAdd: function () {
             var self = this;
             this.collection.create(new Menu(), {
                 success: function (model) {
-                    self.onNext(model);
+                    self.changeModule(model);
                 }
             });
         },
         onEdit: function (id) {
             var model = this.collection.get(id);
-            this.onNext(model);
+            this.changeModule(model);
         },
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
+        },
+        changeModule: function (model) {
+            vent.trigger('layout:container:showView', 'main', new SecondaryLayout());
+            vent.trigger('module:load', 'menu', {model: model});
         }
     });
     return new MenusController();

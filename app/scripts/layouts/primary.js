@@ -3,24 +3,21 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/layouts/primary',
-    'helpers/vent'
-], function (Backbone, Marionette, $, _, PrimaryTemplate, vent) {
+    'helpers/vent',
+    'layouts/base',
+    'hbs!tmpl/layouts/primary'
+], function (Backbone, Marionette, $, _, vent, BaseLayout, Template) {
     'use strict';
-    var PrimaryLayout = Backbone.Marionette.Layout.extend({
-        template: PrimaryTemplate,
+    var PrimaryLayout = BaseLayout.extend({
+        template: Template,
         regions: {
             header: '#main-header',
-            content: '#main-content',
+            body: '#main-body',
             footer: '#main-footer'
         },
         initialize: function () {
-            this.listenTo(vent, 'module:change', this.showViews);
-        },
-        showViews: function (regions) {
-            for (var region in regions) {
-                this[region].show(regions[region]);
-            }
+            this.listenTo(vent, 'layout:primary:showViews', this.showViews);
+            this.listenTo(vent, 'layout:primary:showView', this.showView);
         }
     });
     return PrimaryLayout;

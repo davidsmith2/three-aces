@@ -4,54 +4,44 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/modules/menu/views/form',
-    'apps/private/routes',
-    'apps/private/screenHeaders',
-    'views/generic/buttons',
-    'views/generic/screenHeader'
-], function (Backbone, Marionette, $, _, vent, MenuView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
+    'apps/private/modules/menu/views/item',
+    'apps/private/modules/metadata',
+    'views/generic/mainHeader',
+    'views/generic/mainNav'
+], function (Backbone, Marionette, $, _, vent, MenuView, metadata, MainHeaderView, MainNavView) {
     'use strict';
     var MenuController = Backbone.Marionette.Controller.extend({
         model: {},
-        view: {},
+        views: {
+            nav: {},
+            header: {},
+            body: {},
+            footer: {}
+        },
         show: function () {
-            this.view.header = this.getViewHeader();
-            this.view.body = this.getViewBody();
-            this.view.footer = this.getViewFooter();
-            vent.trigger('screen:show', {
-                header: this.view.header,
-                body: this.view.body,
-                footer: this.view.footer
+            this.views.nav = this.getNavView();
+            this.views.header = this.getHeaderView();
+            this.views.body = this.getBodyView();
+            this.views.footer = this.getFooterView();
+            vent.trigger('layout:secondary:showViews', this.views);
+        },
+        getNavView: function () {
+            return new MainNavView({
+                model: this.model.get('openMenu')
             });
         },
-        getViewHeader: function () {
-            return new ScreenHeaderView({
-                model: new Backbone.Model(screenHeaders.menu)
+        getHeaderView: function () {
+            return new MainHeaderView({
+                model: new Backbone.Model(metadata.menu)
             });
         },
-        getViewBody: function () {
+        getBodyView: function () {
             return new MenuView({
                 model: this.model
             });
         },
-        getViewFooter: function () {
-            var view = new ButtonsView({
-                model: this.model
-            });
-            this.listenTo(view, 'next', this.onNext);
-            this.listenTo(view, 'previous', this.onPrevious);
-            return view;
-        },
-        onNext: function (model) {
-            var menuGroups = model.get('menuGroups');
-            menuGroups.fetch({
-                success: function (collection) {
-                    vent.trigger('module:next', routes.route('menuGroups', {model: model, collection: collection}));
-                }
-            });
-        },
-        onPrevious: function (model) {
-            vent.trigger('module:previous', routes.route('menus', {model: model, collection: model.collection}));
+        getFooterView: function () {
+            return new Backbone.View();
         }
     });
     return new MenuController();

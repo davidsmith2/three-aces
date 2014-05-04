@@ -52,6 +52,7 @@ db.once('open', function callback () {
             this.resource('menugroups', function () {
                 this.resource('menuitems');
             });
+            this.resource('menuitems');
         });
     });
 

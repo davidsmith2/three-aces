@@ -1,11 +1,13 @@
 define([
     'backbone',
+    'entities/models/restaurant',
     'entities/models/environment',
     'entities/models/menu',
     'entities/collections/menus',
-    'entities/models/restaurant',
+    'entities/models/menuItem',
+    'entities/collections/menuItems',
     'backbone-relational'
-], function (Backbone, Environment, Menu, MenuCollection, Restaurant) {
+], function (Backbone, Restaurant, Environment, Menu, MenuCollection, MenuItem, MenuItemCollection) {
     'use strict';
     var OpenMenu = Backbone.RelationalModel.extend({
         urlRoot: '/openmenus',
@@ -40,6 +42,16 @@ define([
                     key: 'openMenu',
                     includeInJSON: '_id'
                 }
+            },
+            {
+                type: Backbone.HasMany,
+                key: 'menuItems',
+                relatedModel: MenuItem,
+                collectionType: MenuItemCollection,
+                reverseRelation: {
+                    key: 'openMenu',
+                    includeInJSON: '_id'
+                }
             }
         ],
         defaults: {
@@ -47,7 +59,8 @@ define([
             omfUpdatedTimestamp: '',
             restaurantInfo: {},
             environment: {},
-            menus: []
+            menus: [],
+            menuItems: []
         }
     });
     return OpenMenu;

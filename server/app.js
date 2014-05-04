@@ -45,6 +45,11 @@ db.once('open', function callback () {
         res.send('API is running');
     });
 
+
+
+
+
+    // routes
     app.resource('openmenus', function () {
         this.resource('restaurants');
         this.resource('environments');
@@ -54,7 +59,13 @@ db.once('open', function callback () {
             });
             this.resource('menuitems');
         });
+        this.resource('menuitems');
     });
+    app.resource('menuitems');
+
+
+
+
 
 	// start server
 	http.createServer(app).listen(app.get('port'), function(){

@@ -12,14 +12,24 @@ var sendResponse = function (err, models, res) {
 
 module.exports = _.extend(controller, {
     index: function (req, res) {
-        if (!req.params.menugroup) {
-            return Model.find(function (err, models) {
-                sendResponse(err, models, res);
-            });
-        } else {
+        if (req.params.menugroup) {
+            // get all menu items for a menu group
             return Model.where('menuGroup').equals(req.params.menugroup).find(function (err, models) {
                 sendResponse(err, models, res);
             });
+        } else if (req.params.menu) {
+            // get all menu items for a menu
+            return Model.where('menu').equals(req.params.menu).find(function (err, models) {
+                sendResponse(err, models, res);
+            });
+        } else if (req.params.openmenu) {
+            // get all menu items for an open menu
+            return Model.where('openMenu').equals(req.params.openmenu).find(function (err, models) {
+                sendResponse(err, models, res);
+            });
         }
+        return Model.find(function (err, models) {
+            sendResponse(err, models, res);
+        });
     }
 });

@@ -76,7 +76,8 @@ define([
                 console.log(route)
 
                 return {
-                    entity: options.collection
+                    entity: options.collection,
+                    route: route
                 };
             },
             menuGroup: function (options) {
@@ -101,7 +102,8 @@ define([
                 console.log(route)
 
                 return {
-                    entity: options.collection
+                    entity: options.collection,
+                    route: route
                 };
             },
             menuItem: function (options) {

@@ -4,11 +4,11 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'apps/private/modules/menu/views/item',
+    'apps/private/modules/menu/views/container',
     'apps/private/modules/metadata',
     'views/generic/mainHeader',
     'views/generic/mainNav'
-], function (Backbone, Marionette, $, _, vent, MenuView, metadata, MainHeaderView, MainNavView) {
+], function (Backbone, Marionette, $, _, vent, MenuContainerView, metadata, MainHeaderView, MainNavView) {
     'use strict';
     var MenuController = Backbone.Marionette.Controller.extend({
         model: {},
@@ -36,7 +36,7 @@ define([
             });
         },
         getBodyView: function () {
-            return new MenuView({
+            return new MenuContainerView({
                 model: this.model
             });
         },

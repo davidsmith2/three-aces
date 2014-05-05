@@ -6,10 +6,7 @@ define([
     var MenuItemCollection = Backbone.Collection.extend({
         model: MenuItem,
         url: function () {
-            var menuGroup = this.menuGroup,
-                menu = menuGroup.get('menu'),
-                openMenu = menu.get('openMenu'),
-                route = '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
+            var route = '/openmenus/' + this.menu.get('openMenu').get('_id') + '/menus/' + this.menu.get('_id') + '/menuitems';
             return route;
         },
         forCategory: function (category) {

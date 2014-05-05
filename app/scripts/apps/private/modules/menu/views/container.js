@@ -4,17 +4,16 @@ define([
     'jquery',
     'underscore',
     'apps/private/modules/menu/views/form',
-    'apps/private/modules/menuItems/views/composite',
     'helpers/vent',
     'hbs!tmpl/private/screens/menu/item',
     'bootstrap'
-], function (Backbone, Marionette, $, _, FormView, MenuItemsView, vent, Template) {
+], function (Backbone, Marionette, $, _, FormView, vent, Template) {
     'use strict';
 	var MenuContainerView = Backbone.Marionette.ItemView.extend({
         template: Template,
         collections: {
             menuGroups: {},
-            menuItems: new Backbone.Collection()
+            menuItems: {}
         },
         views: {
             menu: {},
@@ -30,7 +29,7 @@ define([
         onRender: function () {
             this.loadMenu();
             this.loadMenuGroups();
-            this.listenTo(this.collections.menuGroups, 'sync', this.loadMenuItems);
+            this.loadMenuItems();
         },
         loadMenu: function () {
             this.views.menu = new FormView({
@@ -50,21 +49,16 @@ define([
                 }
             });
         },
-        loadMenuItems: function (_menuGroups) {
+        loadMenuItems: function () {
             var self = this;
-            _menuGroups.each(function (_menuGroup) {
-                var menuItems = _menuGroup.get('menuItems');
-                menuItems.fetch({
-                    success: function (_menuItems) {
-                        self.collections.menuItems.add(_menuItems.models);
-                        if (!self.views.menuItems.el) {
-                            self.views.menuItems = new MenuItemsView({
-                                collection: self.collections.menuItems
-                            }).render().el;
-                        }
-                        vent.trigger('showView', 'menu-items', self.views.menuItems);
-                    }
-                });
+            this.collections.menuItems = this.model.get('menuItems');
+            this.collections.menuItems.fetch({
+                success: function (_menuItems) {
+                    vent.trigger('module:load', 'menuItems', {
+                        model: self.model,
+                        collection: _menuItems
+                    });
+                }
             });
         },
         showView: function (id, view) {

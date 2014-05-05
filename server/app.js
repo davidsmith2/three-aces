@@ -54,14 +54,10 @@ db.once('open', function callback () {
         this.resource('restaurants');
         this.resource('environments');
         this.resource('menus', function () {
-            this.resource('menugroups', function () {
-                this.resource('menuitems');
-            });
+            this.resource('menugroups');
             this.resource('menuitems');
         });
-        this.resource('menuitems');
     });
-    app.resource('menuitems');
 
 
 

@@ -94,12 +94,9 @@ define([
                 };
             },
             menuItems: function (options) {
-                var menuGroup = options.model,
-                    menu = menuGroup.get('menu'),
+                var menu = options.model,
                     openMenu = menu.get('openMenu'),
-                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
-
-                console.log(route)
+                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menuitems';
 
                 return {
                     entity: options.collection,
@@ -108,10 +105,9 @@ define([
             },
             menuItem: function (options) {
                 var menuItem = options.model,
-                    menuGroup = menuItem.get('menuGroup'),
-                    menu = menuGroup.get('menu'),
+                    menu = menuItem.get('menu'),
                     openMenu = menu.get('openMenu'),
-                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems/' + menuItem.get('_id');
+                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menuitems/' + menuItem.get('_id');
 
                 console.log(route)
 

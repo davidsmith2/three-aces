@@ -98,6 +98,8 @@ define([
                     openMenu = menu.get('openMenu'),
                     route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menuitems';
 
+                console.log(route)
+
                 return {
                     entity: options.collection,
                     route: route

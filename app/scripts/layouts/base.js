@@ -13,7 +13,11 @@ define([
             }
         },
         showView: function (region, view) {
+
+            console.log(region)
+
             this[region].show(view);
+
         }
     });
     return BaseLayout;

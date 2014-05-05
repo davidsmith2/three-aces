@@ -20,8 +20,8 @@ define([
         show: function () {
             var view = new MenuItemsView({
                 collection: this.collection
-            }).render().el;
-            vent.trigger('showView', 'menu-items', view);
+            });
+            vent.trigger('layout:menu:showView', 'menuItems', view);
         },
         onAdd: function () {
             var self = this;

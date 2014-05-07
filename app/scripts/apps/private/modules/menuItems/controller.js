@@ -18,10 +18,10 @@ define([
             vent.on('ui:menuItem:delete', this.onDelete, this);
         },
         show: function () {
-            var view = new MenuItemsView({
+            this.view = new MenuItemsView({
                 collection: this.collection
             });
-            vent.trigger('layout:menu:showView', 'menuItems', view);
+            vent.trigger('layout:menu:tabs:showView', 'menuItems', this.view);
         },
         onAdd: function () {
             var self = this;

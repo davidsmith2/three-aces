@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'hbs!tmpl/private/screens/menus/composite',
+    'hbs!tmpl/private/modules/menus/composite',
     'apps/private/modules/menus/views/item'
 ], function (Backbone, Marionette, $, _, vent, MenusTmpl, MenuView) {
     'use strict';

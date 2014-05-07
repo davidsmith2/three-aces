@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-	'hbs!tmpl/private/screens/menuGroups/item'
+	'hbs!tmpl/private/modules/menuGroups/item'
 ], function (Backbone, Marionette, $, _, vent, MenuGroupTmpl) {
     'use strict';
 	var MenuGroupView = Backbone.Marionette.ItemView.extend({

@@ -5,7 +5,7 @@ define([
     'underscore',
     'apps/private/modules/openMenus/views/item',
     'helpers/vent',
-    'hbs!tmpl/private/screens/openMenus/composite'
+    'hbs!tmpl/private/modules/openMenus/composite'
 ], function (Backbone, Marionette, $, _, OpenMenuView, vent, OpenMenusTmpl) {
     'use strict';
     var OpenMenusView = Backbone.Marionette.CompositeView.extend({

@@ -68,6 +68,18 @@ define([
                     route: route
                 };
             },
+            menuInfo: function (options) {
+                var menu = options.model,
+                    openMenu = menu.get('openMenu'),
+                    route = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menuinfo';
+
+                console.log(route)
+
+                return {
+                    entity: options.model,
+                    route: route
+                };
+            },
             menuGroups: function (options) {
                 var menu = options.model,
                     openMenu = menu.get('openMenu'),

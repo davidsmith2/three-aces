@@ -3,15 +3,14 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
-    'apps/private/modules/menu/views/form',
+    'apps/private/modules/menu/layouts/tabs',
     'apps/private/modules/metadata',
+    'helpers/vent',
     'views/generic/mainHeader',
-    'views/generic/mainNav',
-    'layouts/menu'
-], function (Backbone, Marionette, $, _, vent, MenuView, metadata, MainHeaderView, MainNavView, MenuLayout) {
+    'views/generic/mainNav'
+], function (Backbone, Marionette, $, _, TabsLayout, metadata, vent, MainHeaderView, MainNavView) {
     'use strict';
-    var MenuController = Backbone.Marionette.Controller.extend({
+    var FuckController = Backbone.Marionette.Controller.extend({
         model: {},
         collections: {
             menuGroups: {},
@@ -22,9 +21,6 @@ define([
             header: {},
             body: {},
             footer: {}
-        },
-        initialize: function () {
-            this.listenTo(vent, 'controller:menu:loadModule', this.loadModule);
         },
         show: function () {
             this.views.nav = this.getNavView();
@@ -44,7 +40,10 @@ define([
             });
         },
         getBodyView: function () {
-            return new MenuLayout();
+            var tabsLayout = new TabsLayout();
+            this.listenTo(tabsLayout, 'layout:menu:tabs:rendered', this.loadModule);
+            this.listenTo(tabsLayout, 'ui:menu:tab:clicked', this.loadModule);
+            return tabsLayout;
         },
         getFooterView: function () {
             return new Backbone.View();
@@ -52,11 +51,8 @@ define([
         loadModule: function (moduleName) {
             this['load' + moduleName]();
         },
-        loadMenu: function () {
-            var view = new MenuView({
-                model: this.model
-            });
-            vent.trigger('layout:menu:showView', 'menu', view);
+        loadMenuInfo: function () {
+            vent.trigger('module:load', 'menuInfo', {model: this.model});
         },
         loadMenuGroups: function () {
             var self = this;
@@ -83,5 +79,5 @@ define([
             });
         }
     });
-    return new MenuController();
+    return new FuckController();
 });

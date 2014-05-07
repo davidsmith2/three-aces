@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/private/screens/restaurant/item'
+    'hbs!tmpl/private/modules/restaurant/item'
 ], function (Backbone, Marionette, $, _, RestaurantTmpl) {
     'use strict';
 	var RestaurantView = Backbone.Marionette.ItemView.extend({

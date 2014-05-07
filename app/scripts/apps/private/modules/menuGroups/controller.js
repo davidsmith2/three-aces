@@ -19,10 +19,10 @@ define([
             vent.on('ui:menuGroup:delete', this.onDelete, this);
         },
         show: function () {
-            var view = new MenuGroupsView({
+            this.view = new MenuGroupsView({
                 collection: this.collection
             });
-            vent.trigger('layout:menu:showView', 'menuGroups', view);
+            vent.trigger('layout:menu:tabs:showView', 'menuGroups', this.view);
         },
         onAdd: function () {
             var self = this;

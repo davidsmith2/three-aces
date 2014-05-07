@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-	'hbs!tmpl/private/screens/openMenus/item'
+	'hbs!tmpl/private/modules/openMenus/item'
 ], function (Backbone, Marionette, $, _, vent, OpenMenuTmpl) {
     'use strict';
 	var OpenMenuView = Backbone.Marionette.ItemView.extend({

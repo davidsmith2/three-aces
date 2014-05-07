@@ -23,7 +23,11 @@ define([
         },
         menu: {
             title: 'Menu',
-            description: 'Add some information about your menu.'
+            description: 'Create your menu. First fill in some general information. Then create your menu groups. Then add menu items to the menu groups.'
+        },
+        menuInfo: {
+            title: 'Menu info',
+            description: 'Add some general information about your menu.'
         },
         menuGroups: {
             title: 'Menu groups',

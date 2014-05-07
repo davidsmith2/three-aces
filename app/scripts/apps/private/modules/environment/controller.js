@@ -6,8 +6,8 @@ define([
     'helpers/vent',
     'apps/private/modules/environment/views/form',
     'apps/private/modules/metadata',
-    'views/generic/mainHeader',
-    'views/generic/mainNav'
+    'views/mainHeader',
+    'views/mainNav'
 ], function (Backbone, Marionette, $, _, vent, EnvironmentView, metadata, MainHeaderView, MainNavView) {
     'use strict';
     var EnvironmentController = Backbone.Marionette.Controller.extend({

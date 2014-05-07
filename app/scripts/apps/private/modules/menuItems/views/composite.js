@@ -5,7 +5,7 @@ define([
     'underscore',
     'apps/private/modules/menuItems/views/item',
     'helpers/vent',
-    'hbs!tmpl/private/modules/menuItems/composite'
+    'hbs!tmpl/modules/private/menuItems/composite'
 ], function (Backbone, Marionette, $, _, MenuItemView, vent, MenuItemsTmpl) {
     'use strict';
     var MenuItemsView = Marionette.CompositeView.extend({

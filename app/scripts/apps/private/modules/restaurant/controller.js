@@ -6,8 +6,8 @@ define([
     'helpers/vent',
     'apps/private/modules/restaurant/views/form',
     'apps/private/modules/metadata',
-    'views/generic/mainHeader',
-    'views/generic/mainNav'
+    'views/mainHeader',
+    'views/mainNav'
 ], function (Backbone, Marionette, $, _, vent, RestaurantView, metadata, MainHeaderView, MainNavView) {
     'use strict';
     var RestaurantController = Backbone.Marionette.Controller.extend({

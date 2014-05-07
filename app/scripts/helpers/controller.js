@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'helpers/vent',
-    'views/generic/buttons'
+    'views/buttons'
 ], function (Backbone, Marionette, $, _, vent, ButtonsView) {
     'use strict';
     var Controller = Backbone.Marionette.Controller.extend({

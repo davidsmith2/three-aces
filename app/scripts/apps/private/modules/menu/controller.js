@@ -6,8 +6,8 @@ define([
     'apps/private/modules/menu/layouts/tabs',
     'apps/private/modules/metadata',
     'helpers/vent',
-    'views/generic/mainHeader',
-    'views/generic/mainNav'
+    'views/mainHeader',
+    'views/mainNav'
 ], function (Backbone, Marionette, $, _, TabsLayout, metadata, vent, MainHeaderView, MainNavView) {
     'use strict';
     var FuckController = Backbone.Marionette.Controller.extend({

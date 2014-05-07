@@ -6,7 +6,7 @@ define([
     'helpers/vent',
     'apps/private/modules/menuGroup/views/form',
     'apps/private/modules/metadata',
-    'views/generic/mainHeader'
+    'views/mainHeader'
 ], function (Backbone, Marionette, $, _, vent, MenuGroupView, metadata, MainHeaderView) {
     'use strict';
     var MenuGroupController = Backbone.Marionette.Controller.extend({

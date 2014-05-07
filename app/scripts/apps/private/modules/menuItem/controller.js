@@ -7,8 +7,8 @@ define([
     'apps/private/modules/menuItem/views/form',
     'apps/private/routes',
     'apps/private/screenHeaders',
-    'views/generic/buttons',
-    'views/generic/screenHeader'
+    'views/buttons',
+    'views/screenHeader'
 ], function (Backbone, Marionette, $, _, vent, MenuItemView, routes, screenHeaders, ButtonsView, ScreenHeaderView) {
     'use strict';
     var MenuItemController = Backbone.Marionette.Controller.extend({

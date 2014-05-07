@@ -3,7 +3,7 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/private/modules/menu/tabs',
+    'hbs!tmpl/modules/private/menu/tabs',
     'helpers/vent',
     'layouts/base'
 ], function (Backbone, Marionette, $, _, Template, vent, BaseLayout) {

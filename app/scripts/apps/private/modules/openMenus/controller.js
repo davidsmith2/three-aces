@@ -7,7 +7,7 @@ define([
     'apps/private/modules/openMenus/views/composite',
     'apps/private/modules/metadata',
     'entities/models/openMenu',
-    'views/generic/mainHeader',
+    'views/mainHeader',
     'layouts/secondary'
 ], function (Backbone, Marionette, $, _, vent, OpenMenusView, metadata, OpenMenu, MainHeaderView, SecondaryLayout) {
     'use strict';

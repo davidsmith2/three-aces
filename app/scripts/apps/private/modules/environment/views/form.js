@@ -1,5 +1,5 @@
 define([
-    'views/generic/form'
+    'views/form'
 ], function (FormView) {
     'use strict';
 	var EnvironmentView = FormView.extend({});

@@ -7,8 +7,8 @@ define([
     'apps/private/modules/menus/views/composite',
     'entities/models/menu',
     'apps/private/modules/metadata',
-    'views/generic/mainHeader',
-    'views/generic/mainNav',
+    'views/mainHeader',
+    'views/mainNav',
     'layouts/secondary'
 ], function (Backbone, Marionette, $, _, vent, MenusView, Menu, metadata, MainHeaderView, MainNavView, SecondaryLayout) {
     'use strict';

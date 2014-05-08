@@ -3,15 +3,16 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
     'layouts/base',
+    'vents/layout',
     'hbs!tmpl/layouts/dialog',
     'bootstrap'
-], function (Backbone, Marionette, $, _, vent, BaseLayout, DialogTmpl) {
+], function (Backbone, Marionette, $, _, BaseLayout, layoutVent, Template) {
     'use strict';
     var DialogLayout = BaseLayout.extend({
+        type: 'dialog',
         className: 'modal hide',
-        template: DialogTmpl,
+        template: Template,
         regions: {
             title: '.modal-title',
             body: '.modal-body',
@@ -21,11 +22,12 @@ define([
             'click .close': 'hide'
         },
         initialize: function () {
-            this.listenTo(vent, 'layout:dialog:showViews', this.showViews);
-            this.listenTo(vent, 'layout:dialog:showView', this.showView);
+            this.listenTo(layoutVent, 'layout:dialog:showViews', this.showViews);
+            this.listenTo(layoutVent, 'layout:dialog:showView', this.showView);
         },
         onRender: function () {
             this.show();
+            layoutVent.trigger('layout:' + this.type + ':rendered');
         },
         show: function () {
             this.$el.modal('show');

@@ -2,9 +2,10 @@ define([
     'backbone',
     'backbone.marionette',
     'jquery',
+    'underscore',
     'backbone-forms',
     'bootstrap'
-], function (Backbone, Marionette, $) {
+], function (Backbone, Marionette, $, _) {
     'use strict';
 	var FormView = Backbone.View.extend({
 		initialize: function () {

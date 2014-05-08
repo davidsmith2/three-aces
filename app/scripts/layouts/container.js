@@ -3,12 +3,13 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
     'layouts/base',
+    'vents/layout',
     'hbs!tmpl/layouts/container'
-], function (Backbone, Marionette, $, _, vent, BaseLayout, Template) {
+], function (Backbone, Marionette, $, _, BaseLayout, layoutVent, Template) {
     'use strict';
     var ContainerLayout = BaseLayout.extend({
+        type: 'container',
         template: Template,
         regions: {
             header: '#header',
@@ -16,13 +17,6 @@ define([
             main: '#main',
             footer: '#footer',
             dialog: '#dialog'
-        },
-        initialize: function () {
-            this.listenTo(vent, 'layout:container:showViews', this.showViews);
-            this.listenTo(vent, 'layout:container:showView', this.showView);
-        },
-        onRender: function () {
-            vent.trigger('privateApp:show');
         }
     });
     return ContainerLayout;

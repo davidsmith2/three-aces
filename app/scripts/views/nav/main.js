@@ -3,12 +3,13 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/views/mainNav',
-    'helpers/vent'
-], function (Backbone, Marionette, $, _, MainNavTmpl, vent) {
+    'vents/app',
+    'vents/module',
+    'hbs!tmpl/views/nav/main',
+], function (Backbone, Marionette, $, _, appVent, moduleVent, Template) {
     'use strict';
 	var MainNavView = Backbone.Marionette.ItemView.extend({
-        template: MainNavTmpl,
+        template: Template,
         ui: {},
 		events: {
             'click [href]': 'select'
@@ -18,7 +19,7 @@ define([
                 moduleName = $el.attr('href').slice(1);
             e.preventDefault();
             if (moduleName === 'openMenus') {
-                vent.trigger('openMenus:show');
+                appVent.trigger('app:initialized');
             } else if (moduleName === 'menus') {
                 this.selectCollection(moduleName);
             } else {
@@ -38,10 +39,13 @@ define([
             });
         },
         selectModel: function (moduleName) {
+
+            console.log(this.model)
+
             this.load(moduleName, {model: this.model});
         },
         load: function (moduleName, moduleOptions) {
-            vent.trigger('module:load', moduleName, moduleOptions);
+            moduleVent.trigger('module:load', moduleName, moduleOptions);
         }
 	});
     return MainNavView;

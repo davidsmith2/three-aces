@@ -12,17 +12,6 @@ define([
                     route: route
                 };
             },
-            openMenu: function (options) {
-                var openMenu = options.model,
-                    route = '!/openmenus/' + openMenu.get('_id');
-
-                console.log(route)
-
-                return {
-                    entity: openMenu,
-                    route:  route
-                };
-            },
             restaurant: function (options) {
                 var openMenu = options.model,
                     route = '!/openmenus/' + openMenu.get('_id') + '/restaurant';
@@ -30,18 +19,21 @@ define([
                 console.log(route)
 
                 return {
-                    entity: openMenu,
+                    entity: openMenu.get('restaurantInfo'),
                     route:  route
                 };
             },
             environment: function (options) {
+
+                console.log(options)
+
                 var openMenu = options.model,
                     route = '!/openmenus/' + openMenu.get('_id') + '/environment';
 
                 console.log(route)
 
                 return {
-                    entity: openMenu,
+                    entity: openMenu.get('environment'),
                     route: route
                 };
             },

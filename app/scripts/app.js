@@ -4,9 +4,10 @@ define([
     'jquery',
     'underscore',
     'apps/private/app',
-    'helpers/vent',
-    'layouts/container'
-], function (Backbone, Marionette, $, _, privateApp, vent, ContainerLayout) {
+    'layouts/container',
+    'vents/app',
+    'vents/layout'
+], function (Backbone, Marionette, $, _, privateApp, ContainerLayout, appVent, layoutVent) {
     'use strict';
 
     var app = new Marionette.Application();
@@ -15,20 +16,20 @@ define([
         content: '#container'
     });
 
-    app.addInitializer(function () {
-        app.content.show(new ContainerLayout());
-        vent.trigger('openMenus:show');
-    });
-
-    vent.on('privateApp:show', function () {
+    layoutVent.on('layout:container:rendered', function () {
         privateApp.wake();
     });
 
 /*
-    vent.on('publicApp:show', function () {
+    layoutVent.on('publicApp:show', function () {
         publicApp.wake();
     });
 */
+
+    app.addInitializer(function () {
+        app.content.show(new ContainerLayout());
+        appVent.trigger('app:initialized');
+    });
 
     return app;
 

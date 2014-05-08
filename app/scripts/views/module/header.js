@@ -3,10 +3,10 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/views/mainHeader'
-], function (Backbone, Marionette, $, _, MainHeaderTmpl) {
-    var MainHeaderView = Backbone.View.extend({
-        template: MainHeaderTmpl,
+    'hbs!tmpl/views/module/header'
+], function (Backbone, Marionette, $, _, Template) {
+    var HeaderView = Backbone.View.extend({
+        template: Template,
         initialize: function (options) {
             this.model = options.model;
         },
@@ -15,5 +15,5 @@ define([
             return this;
         }
     });
-    return MainHeaderView;
+    return HeaderView;
 });

@@ -5,17 +5,17 @@ define([
     'underscore',
     'layouts/base',
     'vents/layout',
-    'hbs!tmpl/layouts/primary'
+    'hbs!tmpl/layouts/module'
 ], function (Backbone, Marionette, $, _, BaseLayout, layoutVent, Template) {
     'use strict';
-    var PrimaryLayout = BaseLayout.extend({
-        type: 'primary',
+    var ModuleLayout = BaseLayout.extend({
+        type: 'module',
         template: Template,
         regions: {
-            header: '#main-header',
-            body: '#main-body',
-            footer: '#main-footer'
+            header: '.module-header',
+            body: '.module-body',
+            footer: '.module-footer'
         }
     });
-    return PrimaryLayout;
+    return ModuleLayout;
 });

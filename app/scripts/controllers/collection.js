@@ -36,9 +36,6 @@ define([
         onDelete: function (id) {
             var model = this.collection.get(id);
             model.destroy();
-        },
-        onAddOrEdit: function (model) {
-            moduleVent.trigger('module:load', 'restaurant', {model: model});
         }
     });
     return CollectionController;

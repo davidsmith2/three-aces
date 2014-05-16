@@ -12,9 +12,7 @@ define([
         type: 'secondary',
         template: Template,
         regions: {
-            header: '#main-header',
             body: '#main-body',
-            footer: '#main-footer',
             nav: '#main-nav'
         }
     });

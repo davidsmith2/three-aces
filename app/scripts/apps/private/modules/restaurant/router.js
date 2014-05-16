@@ -9,7 +9,7 @@ define([
     var Router = Backbone.Marionette.AppRouter.extend({
         controller: controller,
         appRoutes: {
-            '!/openmenus/:id/restaurant': 'show'
+            '!/openmenus/:open_menu/restaurant': 'show'
         }
     });
     return new Router();

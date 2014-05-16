@@ -18,22 +18,18 @@ define([
             require([
                 'apps/private/modules/' + name + '/router'
             ], function (router) {
+
+                console.log(router)
+
                 self.onModuleLoad(name, options, router);
             });
         },
         onModuleLoad: function (name, options, router) {
             var evt = events.handle(name, options),
                 controller = router.controller;
-            this.setLayout(new controller.relatedLayout());
             this.setEntity(controller, evt.entity);
+            this.setLayout(new controller.relatedLayout(), evt.nav);
             this.setRoute(router, evt.route);
-        },
-        setLayout: function (parentLayout) {
-            layoutVent.trigger('layout:container:showView', 'main', parentLayout);
-            parentLayout.body.show(new ModuleLayout());
-            if (parentLayout.nav) {
-                parentLayout.nav.show(new MainNavView());
-            }
         },
         setEntity: function (controller, entity) {
             if (entity instanceof Backbone.Collection) {
@@ -42,7 +38,19 @@ define([
                 controller.model = entity;
             }
         },
+        setLayout: function (parentLayout, openMenu) {
+            layoutVent.trigger('layout:container:showView', 'main', parentLayout);
+            parentLayout.body.show(new ModuleLayout());
+            if (parentLayout.nav) {
+                parentLayout.nav.show(new MainNavView({
+                    model: openMenu
+                }));
+            }
+        },
         setRoute: function (router, route) {
+
+            console.log(route)
+
             Backbone.history.fragment = null;
             router.navigate(route, {trigger: true});
         }

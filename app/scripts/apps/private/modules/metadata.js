@@ -1,10 +1,6 @@
 define([
 ], function () {
     return {
-        menus: {
-            title: 'Menus',
-            description: 'Add a new menu or update an existing one.'
-        },
         menu: {
             title: 'Menu',
             description: 'Create your menu. First fill in some general information. Then create your menu groups. Then add menu items to the menu groups.'

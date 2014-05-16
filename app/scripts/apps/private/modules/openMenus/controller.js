@@ -6,8 +6,9 @@ define([
     'apps/private/modules/openMenus/views/composite',
     'controllers/collection',
     'entities/models/openMenu',
-    'layouts/primary'
-], function (Backbone, Marionette, $, _, OpenMenusView, CollectionController, OpenMenu, PrimaryLayout) {
+    'layouts/primary',
+    'vents/module'
+], function (Backbone, Marionette, $, _, OpenMenusView, CollectionController, OpenMenu, PrimaryLayout, moduleVent) {
     'use strict';
     var OpenMenusController = CollectionController.extend({
         relatedLayout: PrimaryLayout,
@@ -21,6 +22,9 @@ define([
                 description: 'Add a new open menu or update an existing one.',
                 shortTitle: 'openMenus'
             }
+        },
+        onAddOrEdit: function (model) {
+            moduleVent.trigger('module:load', 'restaurant', {model: model});
         }
     });
     return new OpenMenusController();

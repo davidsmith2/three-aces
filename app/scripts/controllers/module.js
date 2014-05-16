@@ -5,7 +5,7 @@ define([
     'underscore',
     'vents/layout',
     'views/module/header'
-], function (Backbone, Marionette, $, _, layoutVent, HeaderView) {
+], function (Backbone, Marionette, $, _, layoutVent, ModuleHeaderView) {
     'use strict';
     var ModuleController = Backbone.Marionette.Controller.extend({
         relatedLayout: {},
@@ -31,7 +31,7 @@ define([
             layoutVent.trigger('layout:module:showViews', this.views);
         },
         getHeaderView: function () {
-            return new HeaderView({
+            return new ModuleHeaderView({
                 model: new Backbone.Model(this.viewModels.header)
             });
         },

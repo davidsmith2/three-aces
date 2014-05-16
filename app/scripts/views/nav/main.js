@@ -3,10 +3,9 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'vents/app',
     'vents/module',
-    'hbs!tmpl/views/nav/main',
-], function (Backbone, Marionette, $, _, appVent, moduleVent, Template) {
+    'hbs!tmpl/views/nav/main'
+], function (Backbone, Marionette, $, _, moduleVent, Template) {
     'use strict';
 	var MainNavView = Backbone.Marionette.ItemView.extend({
         template: Template,
@@ -16,36 +15,26 @@ define([
         },
         select: function (e) {
             var $el = $(e.target),
-                moduleName = $el.attr('href').slice(1);
+                moduleName = $el.attr('href').slice(1),
+                self = this;
             e.preventDefault();
-            if (moduleName === 'openMenus') {
-                appVent.trigger('app:initialized');
-            } else if (moduleName === 'menus') {
-                this.selectCollection(moduleName);
+            if (moduleName === 'menus') {
+                var menus = this.model.get('menus');
+                menus.fetch({
+                    success: function (_menus) {
+                        self.loadModule(moduleName, {
+                            collection: _menus,
+                            model: self.model
+                        });
+                    }
+                });
             } else {
-                this.selectModel(moduleName);
+                this.loadModule(moduleName, {model: this.model});
             }
         },
-        selectCollection: function (moduleName) {
-            var collection = this.model.get(moduleName),
-                self = this;
-            collection.fetch({
-                success: function (_collection) {
-                    self.load(moduleName, {
-                        model: self.model,
-                        collection: _collection
-                    });
-                }
-            });
-        },
-        selectModel: function (moduleName) {
-
-            console.log(this.model)
-
-            this.load(moduleName, {model: this.model});
-        },
-        load: function (moduleName, moduleOptions) {
+        loadModule: function (moduleName, moduleOptions) {
             moduleVent.trigger('module:load', moduleName, moduleOptions);
+
         }
 	});
     return MainNavView;

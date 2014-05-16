@@ -12,9 +12,7 @@ define([
         type: 'primary',
         template: Template,
         regions: {
-            header: '#main-header',
-            body: '#main-body',
-            footer: '#main-footer'
+            body: '#main-body'
         }
     });
     return PrimaryLayout;

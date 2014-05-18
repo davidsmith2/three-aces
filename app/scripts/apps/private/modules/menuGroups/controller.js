@@ -3,46 +3,29 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
     'apps/private/modules/menuGroups/views/composite',
-    'apps/private/modules/metadata',
+    'controllers/collection',
     'entities/models/menuGroup',
-    'layouts/dialog'
-], function (Backbone, Marionette, $, _, vent, MenuGroupsView, metadata, MenuGroup, DialogLayout) {
+    'layouts/dialog',
+    'vents/layout'
+], function (Backbone, Marionette, $, _, MenuGroupsView, CollectionController, MenuGroup, DialogLayout, layoutVent) {
     'use strict';
-    var MenuGroupsController = Backbone.Marionette.Controller.extend({
-        collection: {},
-        view: {},
-        initialize: function () {
-            vent.on('ui:menuGroup:add', this.onAdd, this);
-            vent.on('ui:menuGroup:edit', this.onEdit, this);
-            vent.on('ui:menuGroup:delete', this.onDelete, this);
+    var MenuGroupsController = CollectionController.extend({
+        relatedModel: MenuGroup,
+        relatedViews: {
+            body: MenuGroupsView
         },
-        show: function () {
-            this.view = new MenuGroupsView({
-                collection: this.collection
-            });
-            vent.trigger('layout:menu:tabs:showView', 'menuGroups', this.view);
+        viewModels: {
+            header: {
+                title: 'Menu groups',
+                description: 'Add a new menu group or update an existing one.'
+            },
+            footer: {
+                shortTitle: 'menuGroups'
+            }
         },
-        onAdd: function () {
-            var self = this;
-            this.collection.create(new MenuGroup(), {
-                success: function (model) {
-                    self.changeModule(model);
-                }
-            });
-        },
-        onEdit: function (id) {
-            var model = this.collection.get(id);
-            this.changeModule(model);
-        },
-        onDelete: function (id) {
-            var model = this.collection.get(id);
-            model.destroy();
-        },
-        changeModule: function (model) {
-            vent.trigger('layout:container:showView', 'dialog', new DialogLayout());
-            vent.trigger('module:load', 'menuGroup', {model: model});
+        onAddOrEdit: function () {
+            console.log('hello')
         }
     });
     return new MenuGroupsController();

@@ -4,39 +4,40 @@ define([
     'jquery',
     'underscore',
     'vents/layout',
+    'views/module/footer',
     'views/module/header'
-], function (Backbone, Marionette, $, _, layoutVent, ModuleHeaderView) {
+], function (Backbone, Marionette, $, _, layoutVent, ModuleFooterView, ModuleHeaderView) {
     'use strict';
     var ModuleController = Backbone.Marionette.Controller.extend({
-        relatedLayout: {},
         viewModels: {
             header: {
                 title: '',
-                description: '',
+                description: ''
+            },
+            footer: {
                 shortTitle: ''
             }
         },
         relatedViews: {
             body: {}
         },
-        views: {
-            header: {},
-            body: {},
-            footer: {}
-        },
+        views: {},
         show: function () {
-            this.views.header = this.getHeaderView();
-            this.views.body = this.getBodyView();
-            this.views.footer = this.getFooterView();
+            this.views.moduleHeader = this.getModuleHeaderView();
+            this.views.moduleBody = this.getModuleBodyView();
+            this.views.moduleFooter = this.getModuleFooterView();
             layoutVent.trigger('layout:module:showViews', this.views);
         },
-        getHeaderView: function () {
+        getModuleHeaderView: function () {
             return new ModuleHeaderView({
                 model: new Backbone.Model(this.viewModels.header)
             });
         },
-        getBodyView: function () {},
-        getFooterView: function () {}
+        getModuleFooterView: function () {
+            return new ModuleFooterView({
+                model: new Backbone.Model(this.viewModels.footer)
+            });
+        }
     });
     return ModuleController;
 });

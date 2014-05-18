@@ -8,7 +8,7 @@ define([
     'use strict';
     var ModelController = ModuleController.extend({
         model: {},
-        getBodyView: function () {
+        getModuleBodyView: function () {
             return new this.relatedViews.body({
                 model: this.model
             });

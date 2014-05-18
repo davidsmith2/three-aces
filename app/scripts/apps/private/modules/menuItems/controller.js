@@ -3,41 +3,29 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
     'apps/private/modules/menuItems/views/composite',
-    'apps/private/modules/metadata',
-    'entities/models/menuItem'
-], function (Backbone, Marionette, $, _, vent, MenuItemsView, metadata, MenuItem) {
+    'controllers/collection',
+    'entities/models/menuItem',
+    'layouts/dialog',
+    'vents/layout'
+], function (Backbone, Marionette, $, _, MenuItemsView, CollectionController, MenuItem, DialogLayout, layoutVent) {
     'use strict';
-    var MenuItemsController = Backbone.Marionette.Controller.extend({
-        collection: {},
-        view: {},
-        initialize: function () {
-            vent.on('ui:menuItem:add', this.onAdd, this);
-            vent.on('ui:menuItem:edit', this.onEdit, this);
-            vent.on('ui:menuItem:delete', this.onDelete, this);
+    var MenuItemsController = CollectionController.extend({
+        relatedModel: MenuItem,
+        relatedViews: {
+            body: MenuItemsView
         },
-        show: function () {
-            this.view = new MenuItemsView({
-                collection: this.collection
-            });
-            vent.trigger('layout:menu:tabs:showView', 'menuItems', this.view);
+        viewModels: {
+            header: {
+                title: 'Menu items',
+                description: 'Add a new menu item or update an existing one.'
+            },
+            footer: {
+                shortTitle: 'menuItems'
+            }
         },
-        onAdd: function () {
-            var self = this;
-            this.collection.create(new MenuItem(), {
-                success: function (model) {
-                    //self.onNext(model);
-                }
-            });
-        },
-        onEdit: function (id) {
-            var model = this.collection.get(id);
-            //this.onNext(model);
-        },
-        onDelete: function (id) {
-            var model = this.collection.get(id);
-            model.destroy();
+        onAddOrEdit: function () {
+            console.log('hello')
         }
     });
     return new MenuItemsController();

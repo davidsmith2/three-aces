@@ -6,12 +6,10 @@ define([
     'apps/private/modules/menus/views/composite',
     'controllers/collection',
     'entities/models/menu',
-    'layouts/secondary',
     'vents/module'
-], function (Backbone, Marionette, $, _, MenusView, CollectionController, Menu, SecondaryLayout, moduleVent) {
+], function (Backbone, Marionette, $, _, MenusView, CollectionController, Menu, moduleVent) {
     'use strict';
     var MenusController = CollectionController.extend({
-        relatedLayout: SecondaryLayout,
         relatedModel: Menu,
         relatedViews: {
             body: MenusView
@@ -19,12 +17,14 @@ define([
         viewModels: {
             header: {
                 title: 'Menus',
-                description: 'Add a new menu or update an existing one.',
+                description: 'Add a new menu or update an existing one.'
+            },
+            footer: {
                 shortTitle: 'menus'
             }
         },
         onAddOrEdit: function (model) {
-            moduleVent.trigger('module:load', 'menu', {model: model});
+            moduleVent.trigger('module:load', 'menuInfo', {model: model});
         }
     });
     return new MenusController();

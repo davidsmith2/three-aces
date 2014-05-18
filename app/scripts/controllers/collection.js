@@ -16,7 +16,7 @@ define([
             this.listenTo(uiVent, 'ui:edit', this.onEdit);
             this.listenTo(uiVent, 'ui:delete', this.onDelete);
         },
-        getBodyView: function () {
+        getModuleBodyView: function () {
             return new this.relatedViews.body({
                 collection: this.collection
             });

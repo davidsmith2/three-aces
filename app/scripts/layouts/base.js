@@ -17,13 +17,14 @@ define([
             layoutVent.trigger('layout:' + this.type + ':rendered', this);
         },
         showViews: function (views) {
-            for (var region in views) {
-                this.showView(region, views[region]);
+            for (var regionName in views) {
+                this.showView(regionName, views[regionName]);
             }
         },
-        showView: function (region, view) {
-            if (view) {
-                this[region].show(view);
+        showView: function (regionName, view) {
+            if (this[regionName].currentView != view) {
+                this[regionName].show(view);
+                this[regionName].currentView = view;
             }
         }
     });

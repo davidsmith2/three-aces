@@ -20,7 +20,7 @@ define([
             'change select': 'saveSelectField'
         },
         render: function () {
-            this.$el.append(this.form.render().el);
+            this.$el.empty().append(this.form.render().el);
             return this;
         },
         saveTextField: function (e) {

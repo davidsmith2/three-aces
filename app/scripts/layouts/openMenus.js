@@ -5,17 +5,15 @@ define([
     'underscore',
     'layouts/base',
     'vents/layout',
-    'hbs!tmpl/layouts/module'
+    'hbs!tmpl/layouts/openMenus'
 ], function (Backbone, Marionette, $, _, BaseLayout, layoutVent, Template) {
     'use strict';
-    var ModuleLayout = BaseLayout.extend({
-        type: 'module',
+    var OpenMenusLayout = BaseLayout.extend({
+        type: 'openMenus',
         template: Template,
         regions: {
-            moduleHeader: '.module-header',
-            moduleBody: '.module-body',
-            moduleFooter: '.module-footer'
+            openMenus: '#openMenus'
         }
     });
-    return ModuleLayout;
+    return OpenMenusLayout;
 });

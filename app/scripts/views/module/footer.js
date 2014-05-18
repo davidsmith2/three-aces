@@ -3,10 +3,10 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'hbs!tmpl/views/module/header'
+    'hbs!tmpl/views/module/footer'
 ], function (Backbone, Marionette, $, _, Template) {
-    var HeaderView = Backbone.Marionette.ItemView.extend({
+    var FooterView = Backbone.Marionette.ItemView.extend({
         template: Template
     });
-    return HeaderView;
+    return FooterView;
 });

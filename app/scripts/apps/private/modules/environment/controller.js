@@ -4,19 +4,19 @@ define([
     'jquery',
     'underscore',
     'apps/private/modules/environment/views/form',
-    'controllers/model',
-    'layouts/secondary'
-], function (Backbone, Marionette, $, _, EnvironmentView, ModelController, SecondaryLayout) {
+    'controllers/model'
+], function (Backbone, Marionette, $, _, EnvironmentView, ModelController) {
     'use strict';
     var EnvironmentController = ModelController.extend({
-        relatedLayout: SecondaryLayout,
         relatedViews: {
             body: EnvironmentView
         },
         viewModels: {
             header: {
                 title: 'Environment',
-                description: 'Add some information about your restaurant\'s environment.',
+                description: 'Add some information about your restaurant\'s environment.'
+            },
+            footer: {
                 shortTitle: 'environment'
             }
         }

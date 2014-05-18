@@ -3,13 +3,11 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'apps/private/modules/manager',
     'helpers/dataManager',
-    'layouts/primary',
-    'layouts/module',
+    'helpers/moduleManager',
     'vents/app',
     'vents/module'
-], function (Backbone, Marionette, $, _, moduleManager, dataManager, PrimaryLayout, ModuleLayout, appVent, moduleVent) {
+], function (Backbone, Marionette, $, _, dataManager, moduleManager, appVent, moduleVent) {
     var PrivateApp = Backbone.Marionette.Controller.extend({
         wake: function () {
             this.listenTo(appVent, 'app:initialized', this.start);

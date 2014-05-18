@@ -18,7 +18,7 @@ define([
         },
         add: function (e) {
             e.preventDefault();
-            uiVent.trigger('ui:add');
+            uiVent.trigger('ui:openMenu:add');
         }
     });
     return OpenMenusView;

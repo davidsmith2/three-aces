@@ -7,8 +7,9 @@ define([
     'controllers/collection',
     'entities/models/menuGroup',
     'layouts/dialog',
-    'vents/layout'
-], function (Backbone, Marionette, $, _, MenuGroupsView, CollectionController, MenuGroup, DialogLayout, layoutVent) {
+    'vents/layout',
+    'vents/ui'
+], function (Backbone, Marionette, $, _, MenuGroupsView, CollectionController, MenuGroup, DialogLayout, layoutVent, uiVent) {
     'use strict';
     var MenuGroupsController = CollectionController.extend({
         relatedModel: MenuGroup,
@@ -23,6 +24,11 @@ define([
             footer: {
                 shortTitle: 'menuGroups'
             }
+        },
+        initialize: function () {
+            this.listenTo(uiVent, 'ui:menuGroup:add', this.onAdd);
+            this.listenTo(uiVent, 'ui:menuGroup:edit', this.onEdit);
+            this.listenTo(uiVent, 'ui:menuGroup:delete', this.onDelete);
         },
         onAddOrEdit: function () {
             console.log('hello')

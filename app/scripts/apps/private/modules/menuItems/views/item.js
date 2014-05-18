@@ -3,12 +3,12 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
+    'vents/ui',
 	'hbs!tmpl/modules/private/menuItems/item'
-], function (Backbone, Marionette, $, _, vent, MenuGroupTmpl) {
+], function (Backbone, Marionette, $, _, uiVent, Template) {
     'use strict';
 	var MenuItemView = Backbone.Marionette.ItemView.extend({
-        template: MenuGroupTmpl,
+        template: Template,
         tagName: 'tr',
         ui: {},
         events: {
@@ -17,11 +17,11 @@ define([
         },
         edit: function (e) {
             e.preventDefault();
-            vent.trigger('ui:menuItem:edit', this.model.get('_id'));
+            uiVent.trigger('ui:menuItem:edit', this.model.get('_id'));
         },
         delete: function (e) {
             e.preventDefault();
-            vent.trigger('ui:menuItem:delete', this.model.get('_id'));
+            uiVent.trigger('ui:menuItem:delete', this.model.get('_id'));
         }
     });
     return MenuItemView;

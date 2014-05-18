@@ -20,11 +20,11 @@ define([
         },
         edit: function (e) {
             e.preventDefault();
-            uiVent.trigger('ui:edit', this.model.get('_id'));
+            uiVent.trigger('ui:menu:edit', this.model.get('_id'));
         },
         delete: function (e) {
             e.preventDefault();
-            uiVent.trigger('ui:delete', this.model.get('_id'));
+            uiVent.trigger('ui:menu:delete', this.model.get('_id'));
         }
     });
     return MenuView;

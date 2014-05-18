@@ -7,8 +7,9 @@ define([
     'controllers/collection',
     'entities/models/menuItem',
     'layouts/dialog',
-    'vents/layout'
-], function (Backbone, Marionette, $, _, MenuItemsView, CollectionController, MenuItem, DialogLayout, layoutVent) {
+    'vents/layout',
+    'vents/ui'
+], function (Backbone, Marionette, $, _, MenuItemsView, CollectionController, MenuItem, DialogLayout, layoutVent, uiVent) {
     'use strict';
     var MenuItemsController = CollectionController.extend({
         relatedModel: MenuItem,
@@ -23,6 +24,11 @@ define([
             footer: {
                 shortTitle: 'menuItems'
             }
+        },
+        initialize: function () {
+            this.listenTo(uiVent, 'ui:menuItem:add', this.onAdd);
+            this.listenTo(uiVent, 'ui:menuItem:edit', this.onEdit);
+            this.listenTo(uiVent, 'ui:menuItem:delete', this.onDelete);
         },
         onAddOrEdit: function () {
             console.log('hello')

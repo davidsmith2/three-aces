@@ -3,19 +3,12 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'controllers/module',
-    'vents/module',
-    'vents/ui'
-], function (Backbone, Marionette, $, _, ModuleController, moduleVent, uiVent) {
+    'controllers/module'
+], function (Backbone, Marionette, $, _, ModuleController) {
     'use strict';
     var CollectionController = ModuleController.extend({
         collection: {},
         relatedModel: {},
-        initialize: function () {
-            this.listenTo(uiVent, 'ui:add', this.onAdd);
-            this.listenTo(uiVent, 'ui:edit', this.onEdit);
-            this.listenTo(uiVent, 'ui:delete', this.onDelete);
-        },
         getModuleBodyView: function () {
             return new this.relatedViews.body({
                 collection: this.collection

@@ -19,6 +19,24 @@
 | PATCH     | /openmenus/:open_menu/menus/:menu
 | DELETE    | /openmenus/:open_menu/menus/:menu
 
+## File organization
+
+* scripts/
+  * app.js - the basic app
+  * init.js - requirejs configuration
+  * main.js - starts the basic app
+  * apps/
+    * private/
+      * private_app.js - allows you to create open menus
+      * apps/
+        * open_menus/
+        * menus/
+    * public/
+      * public_app.js - allows you to order menu items from open menus
+  * common/
+  * entities/ - models, collections and request handlers
+  * vendor/
+
 ## Selected dependencies
 
 ### Client-side

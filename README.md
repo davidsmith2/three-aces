@@ -1,8 +1,12 @@
 # Three Aces
 
-An attempt at a larger-scale, more complex JavaScript application using REST/MVC.
-
 **Note:** This project is under development. As such, the following should be considered notes rather than "official" documentation.
+
+An attempt at a larger-scale, more complex JavaScript application using REST/MVC. The app is based around the OpenMenu specification, a kind of data schema for the restaurant industry. My aim is to create two and possibly three sub-apps:
+
+* an app that allows customers to order menu items from open menus [required]
+* an app that allows restaurant owners to create open menus for their restaurant(s) [required]
+* a monitoring app of some kind [possible]
 
 ## REST API
 
@@ -23,7 +27,7 @@ An attempt at a larger-scale, more complex JavaScript application using REST/MVC
 | PATCH     | /openmenus/:open_menu/menus/:menu
 | DELETE    | /openmenus/:open_menu/menus/:menu
 
-## File organization
+## Project organization
 
 * scripts/
   * app.js - the basic app

@@ -4,14 +4,6 @@ define([
 ], function (App, View) {
     App.module('PrivateApp.OpenMenusApp.List', function (List, App, Backbone, Marionette, $, _) {
 
-        var onNewOrEdit = function (openMenu) {
-            require([
-                'apps/private/apps/open_menus/new/new_controller'
-            ], function (NewController) {
-                NewController.index(openMenu);
-            });
-        };
-
         List.Controller = {
             index: function () {
                 require([
@@ -35,7 +27,11 @@ define([
                             $.when(fetchingOpenMenu).done(function (unsavedOpenMenu) {
                                 openMenus.create(unsavedOpenMenu, {
                                     success: function (savedOpenMenu) {
-                                        onNewOrEdit(savedOpenMenu);
+                                        require([
+                                            'apps/private/apps/open_menus/new/new_controller'
+                                        ], function (NewController) {
+                                            NewController.create(savedOpenMenu);
+                                        });
                                     }
                                 });
                             });
@@ -46,7 +42,11 @@ define([
                         });
 
                         listView.on('itemview:openMenu:edit', function (itemView, options) {
-                            onNewOrEdit(options.model);
+                            require([
+                                'apps/private/apps/open_menus/edit/edit_controller'
+                            ], function (EditController) {
+                                EditController.update(options.model);
+                            });
                         });
 
                         listView.on('itemview:openMenu:delete', function (itemView, options) {

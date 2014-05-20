@@ -28,7 +28,7 @@ define([
         };
 
         var API = {
-            index: function () {
+            showOpenMenus: function () {
                 require([
                     'apps/private/apps/open_menus/list/list_controller'
                 ], function (ListController) {
@@ -39,7 +39,7 @@ define([
 
         App.PrivateApp.on('openMenus:list', function () {
             App.navigate('!/openmenus');
-            API.index();
+            API.showOpenMenus();
         });
 
     });

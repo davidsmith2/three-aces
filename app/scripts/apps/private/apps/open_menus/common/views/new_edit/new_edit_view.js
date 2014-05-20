@@ -1,12 +1,12 @@
 define([
     'app',
     'common/views/form',
-    'hbs!apps/private/apps/open_menus/new/templates/layout'
+    'hbs!apps/private/apps/open_menus/common/views/new_edit/templates/layout'
 ], function (App, FormView, layoutTmpl) {
 
-    App.module('PrivateApp.OpenMenusApp.New.View', function (View, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.OpenMenusApp.Common.Views.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
 
-        View.Layout = Marionette.Layout.extend({
+        NewEdit.Layout = Marionette.Layout.extend({
 			template: layoutTmpl,
 			regions: {
 				restaurantRegion: '#restaurant-region',
@@ -25,10 +25,10 @@ define([
 			}
 		});
 
-        View.Form = FormView.extend({});
+        NewEdit.Form = FormView.extend({});
 
 	});
 
-    return App.PrivateApp.OpenMenusApp.New.View;
+    return App.PrivateApp.OpenMenusApp.Common.Views.NewEdit;
 
 });

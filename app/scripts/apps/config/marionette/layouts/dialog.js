@@ -1,22 +1,16 @@
 define([
-	'backbone',
     'backbone.marionette',
-    'jquery',
-    'underscore',
-    'layouts/base',
-    'vents/layout',
     'hbs!tmpl/layouts/dialog',
     'bootstrap'
-], function (Backbone, Marionette, $, _, BaseLayout, layoutVent, Template) {
+], function (Marionette, Template) {
     'use strict';
-    var DialogLayout = BaseLayout.extend({
-        type: 'dialog',
+    Marionette.Layout.Dialog = Marionette.Layout.extend({
         className: 'modal hide',
         template: Template,
         regions: {
-            title: '.modal-title',
-            body: '.modal-body',
-            footer: '.modal-footer'
+            titleRegion: '.modal-title',
+            bodyRegion: '.modal-body',
+            footerRegion: '.modal-footer'
         },
         events: {
             'click .close': 'hide'
@@ -37,5 +31,5 @@ define([
             this.$el.modal('hide');
         }
     });
-    return DialogLayout;
+    return Marionette.Layout.Dialog;
 });

@@ -36,6 +36,9 @@ define([
                 };
             },
             menuInfo: function (options) {
+
+                console.log(options)
+
                 var menu = options.model,
                     openMenu = menu.get('openMenu'),
                     pathname = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menuinfo';
@@ -45,6 +48,9 @@ define([
                 };
             },
             menuGroups: function (options) {
+
+                console.log(options)
+
                 var menu = options.model,
                     openMenu = menu.get('openMenu'),
                     pathname = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups';
@@ -54,6 +60,9 @@ define([
                 };
             },
             menuItems: function (options) {
+
+                console.log(options)
+
                 var menu = options.model,
                     openMenu = menu.get('openMenu'),
                     pathname = '!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menuitems';

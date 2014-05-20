@@ -7,8 +7,9 @@ define([
     'layouts/openMenu',
     'layouts/menu',
     'layouts/module',
+    'layouts/dialog',
     'vents/layout'
-], function (Backbone, Marionette, $, _, OpenMenusLayout, OpenMenuLayout, MenuLayout, ModuleLayout, layoutVent) {
+], function (Backbone, Marionette, $, _, OpenMenusLayout, OpenMenuLayout, MenuLayout, ModuleLayout, DialogLayout, layoutVent) {
 
     var layouts = {};
 
@@ -16,7 +17,8 @@ define([
         openMenus: OpenMenusLayout,
         openMenu: OpenMenuLayout,
         menu: MenuLayout,
-        module: ModuleLayout
+        module: ModuleLayout,
+        dialog: DialogLayout
     };
 
     var getLayout = function (type, options) {
@@ -64,6 +66,8 @@ define([
                 layoutVent.trigger('layout:menu:showView', 'menuItems', new ModuleLayout());
             },
             menuGroup: function (options) {
+                layoutVent.trigger('layout:container:showView', 'dialog', getLayout('dialog'));
+                layoutVent.trigger('layout:dialog:showView', 'body', new ModuleLayout());
             },
             menuItem: function (options) {
             }

@@ -1,36 +1,60 @@
 define([
     'backbone',
     'backbone.marionette',
-    'jquery',
-    'underscore',
-    'apps/private/app',
-    'layouts/container',
-    'vents/app',
-    'vents/layout'
-], function (Backbone, Marionette, $, _, privateApp, ContainerLayout, appVent, layoutVent) {
-    'use strict';
+    'apps/config/marionette/regions/dialog'
+], function (Backbone, Marionette) {
 
-    var app = new Marionette.Application();
+    var App = new Marionette.Application();
 
-    app.addRegions({
-        content: '#container'
+    App.on('initialize:after', function () {
+        console.log('App has started');
     });
 
-    layoutVent.on('layout:container:rendered', function () {
-        privateApp.wake();
+    App.addRegions({
+        headerRegion: '#header-region',
+        mainRegion: '#main-region',
+        footerRegion: '#footer-region',
+        dialogRegion: Marionette.Region.Dialog.extend({
+            el: '#dialog-region'
+        })
     });
 
-/*
-    layoutVent.on('publicApp:show', function () {
-        publicApp.wake();
-    });
-*/
+    App.navigate = function (route, options) {
+        options || (options = {});
+        Backbone.history.navigate(route, options);
+    };
 
-    app.addInitializer(function () {
-        app.content.show(new ContainerLayout());
-        appVent.trigger('app:initialized');
+    App.getCurrentRoute = function () {
+        return Backbone.history.fragment;
+    };
+
+    App.startSubApp = function (appName, args) {
+        var currentApp = (appName) ? App.module(appName) : null;
+        if (App.currentApp === currentApp) {
+            return;
+        }
+        if (App.currentApp) {
+            App.currentApp.stop();
+        }
+        App.currentApp = currentApp;
+        if (currentApp) {
+            currentApp.start(args);
+        }
+    };
+
+    App.on('initialize:after', function () {
+        if (Backbone.history) {
+            require([
+                'apps/private/private_app'
+            ], function () {
+                Backbone.history.start();
+                if (App.getCurrentRoute() === '') {
+                    App.trigger('privateApp:start');
+                }
+            });
+        }
     });
 
-    return app;
+    return App;
 
 });

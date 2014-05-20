@@ -3,37 +3,22 @@ define([
     'backbone.marionette',
     'jquery',
     'underscore',
-    'helpers/vent',
     'apps/private/modules/menuGroup/views/form',
-    'apps/private/modules/metadata',
-    'views/mainHeader'
-], function (Backbone, Marionette, $, _, vent, MenuGroupView, metadata, MainHeaderView) {
+    'controllers/model'
+], function (Backbone, Marionette, $, _, MenuGroupView, ModelController) {
     'use strict';
-    var MenuGroupController = Backbone.Marionette.Controller.extend({
-        model: {},
-        views: {
-            title: {},
-            body: {},
-            footer: {}
+    var MenuGroupController = ModelController.extend({
+        relatedViews: {
+            body: MenuGroupView
         },
-        show: function () {
-            this.views.title = this.getTitleView();
-            this.views.body = this.getBodyView();
-            this.views.footer = this.getFooterView();
-            vent.trigger('layout:dialog:showViews', this.views);
-        },
-        getTitleView: function () {
-            return new MainHeaderView({
-                model: new Backbone.Model(metadata.menuGroup)
-            });
-        },
-        getBodyView: function () {
-            return new MenuGroupView({
-                model: this.model
-            });
-        },
-        getFooterView: function () {
-            return new Backbone.View();
+        viewModels: {
+            header: {
+                title: 'Menu group',
+                description: 'Add some information about your menu group.'
+            },
+            footer: {
+                shortTitle: 'menuGroup'
+            }
         }
     });
     return new MenuGroupController();

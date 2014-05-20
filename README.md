@@ -23,8 +23,9 @@
 
 ### Client-side
 
-* backbone-forms - for generating forms from Backbone models
-* backbone.marionette - for structuring client code in an MVC-like way
+* backbone - for basic models, views, etc. backbone.marionette builds on this.
+* backbone-forms - for generating HTML forms from Backbone models
+* backbone.marionette - for modules, controllers, views, etc.
 * backbone-relational - for keeping nested client-side models in sync
 * handlebars - for templating
 * requirejs - for asynchronous loading of client-side JavaScript

@@ -27,12 +27,12 @@
   * main.js - starts the basic app
   * apps/
     * private/
-      * private_app.js - allows you to create open menus
-      * apps/
+      * private_app.js - allows you to create open menus [in progress!]
+      * apps/ - private app sub-modules
         * open_menus/
         * menus/
     * public/
-      * public_app.js - allows you to order menu items from open menus
+      * public_app.js - allows you to order menu items from open menus [to do!]
   * common/
   * entities/ - models, collections and request handlers
   * vendor/

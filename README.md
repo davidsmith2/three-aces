@@ -2,7 +2,7 @@
 
 An attempt at a larger-scale, more complex JavaScript application using REST/MVC.
 
-**Note:** This project is in development. As such, the following should not be considered notes rather than "official" documentation.
+**Note:** This project is under development. As such, the following should not considered notes rather than "official" documentation.
 
 ## API
 

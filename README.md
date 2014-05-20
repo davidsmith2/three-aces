@@ -23,14 +23,15 @@
 
 ### Client-side
 
-* backbone-forms - generates forms from Backbone models
+* backbone-forms - for generating forms from Backbone models
 * backbone.marionette - for structuring client code in an MVC-like way
 * backbone-relational - for keeping nested client-side models in sync
 * handlebars - for templating
+* requirejs - for asynchronous loading of client-side JavaScript
 
 ### Server-side
 
-* express - web application framework for Node.js
-* express-resource-new - provides Rails-like server-side controllers
-* MongoDB - for data persistence
+* express - for Node.js integration
+* express-resource-new - for Rails-like server-side controllers
+* mongodb - for data persistence
 * mongoose - for server-side object modelling

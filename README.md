@@ -4,7 +4,7 @@ An attempt at a larger-scale, more complex JavaScript application using REST/MVC
 
 **Note:** This project is under development. As such, the following should be considered notes rather than "official" documentation.
 
-## API
+## REST API
 
 | HTTP verb | URL
 | --------- | ---

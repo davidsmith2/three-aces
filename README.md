@@ -2,13 +2,15 @@
 
 **Note:** This project is under development. As such, the following should be considered notes rather than "official" documentation.
 
-An attempt at a larger-scale, more complex JavaScript application using REST/MVC. The app is based around the OpenMenu specification, a kind of data schema for the restaurant industry. My aim is to create two and possibly three sub-apps:
+This project is an attempt to build a larger-scale, more-complex JavaScript application than the avergae tutorial describes using REST/MVC principles. The app is based upon the OpenMenu specification, a kind of data schema for the restaurant industry. My aim is to create two and possibly three sub-apps:
 
-* an app that allows customers to order menu items from open menus [required]
 * an app that allows restaurant owners to create open menus for their restaurant(s) [required]
+* an app that allows customers to order menu items from open menus [required]
 * a monitoring app of some kind [possible]
 
 ## REST API
+
+### Private app
 
 | HTTP verb | URL
 | --------- | ---
@@ -29,21 +31,22 @@ An attempt at a larger-scale, more complex JavaScript application using REST/MVC
 
 ## Project organization
 
-* scripts/
-  * app.js - the basic app
-  * init.js - requirejs configuration
-  * main.js - starts the basic app
-  * apps/
-    * private/
-      * private_app.js - allows you to create open menus [in progress!]
-      * apps/ - private app sub-modules
-        * open_menus/
-        * menus/
-    * public/
-      * public_app.js - allows you to order menu items from open menus [to do!]
-  * common/
-  * entities/ - models, collections and request handlers
-  * vendor/
+* app/
+  * scripts/
+    * app.js - the basic app
+    * init.js - requirejs configuration
+    * main.js - starts the basic app
+    * apps/
+      * private/
+        * private_app.js - allows you to create open menus [in progress!]
+        * apps/ - private app sub-modules
+          * open_menus/
+          * menus/
+      * public/
+        * public_app.js - allows you to order menu items from open menus [to do!]
+    * common/
+    * entities/ - models, collections and request handlers
+    * vendor/
 
 ## Selected dependencies
 

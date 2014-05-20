@@ -2,11 +2,10 @@
 
 **Note:** This project is under development. As such, the following should be considered notes rather than "official" documentation.
 
-This project is an attempt to build a larger-scale, more-complex JavaScript application than the avergae tutorial describes using REST/MVC principles. The app is based upon the OpenMenu specification, a kind of data schema for the restaurant industry. My aim is to create two and possibly three sub-apps:
+This project is an attempt to build a somewhat large-scale, complex JavaScript application using REST/MVC principles. The app is based on the [OpenMenu specification](http://openmenu.org/), "the first standard to regulate the way restaurants store and share their menus over the Internet." The app should:
 
-* an app that allows restaurant owners to create open menus for their restaurant(s) [required]
-* an app that allows customers to order menu items from open menus [required]
-* a monitoring app of some kind [possible]
+* allow a hypothetical restaurant owner to create open menus for their restaurant(s) [required]
+* allow a hypothetical customer to order menu items from open menus [required]
 
 ## REST API
 

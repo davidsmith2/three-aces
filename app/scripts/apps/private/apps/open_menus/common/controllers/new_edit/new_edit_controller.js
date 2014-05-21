@@ -6,21 +6,39 @@ define([
     App.module('PrivateApp.OpenMenusApp.Common.Controllers.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
 
         var createOrUpdate = function (openMenu) {
-            var layout = new View.Layout({
+
+            var layoutView = new View.Layout();
+
+            var breadcrumbsView = new View.Breadcrumbs();
+
+            var tabsView = new View.Tabs({
                 model: openMenu
             });
+
             var restaurantView = new View.Form({
                 model: openMenu.get('restaurantInfo')
             });
+
             var environmentView = new View.Form({
                 model: openMenu.get('environment')
             });
-            layout.on('show', function () {
+
+            layoutView.on('show', function () {
+                this.topRegion.show(breadcrumbsView);
+                this.bottomRegion.show(tabsView);
+            });
+
+            tabsView.on('show', function () {
                 this.restaurantRegion.show(restaurantView);
                 this.environmentRegion.show(environmentView);
             });
-            layout.on('showMenus', showMenus);
-            App.mainRegion.show(layout);
+
+            tabsView.on('showMenus', showMenus);
+
+            breadcrumbsView.on('showOpenMenus', showOpenMenus);
+
+            App.mainRegion.show(layoutView);
+
         };
 
         var showMenus = function (options) {
@@ -29,6 +47,10 @@ define([
             ], function () {
                 App.PrivateApp.OpenMenusApp.trigger('menus:show', options);
             });
+        };
+
+        var showOpenMenus = function () {
+            App.PrivateApp.trigger('openMenus:show');
         };
 
         NewEdit.Controller = {

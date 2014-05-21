@@ -45,8 +45,8 @@ define([
                             });
                         });
 
-                        listView.on('itemview:menu:delete', function () {
-                            console.log('itemview:menu:delete')
+                        listView.on('itemview:menu:delete', function (itemView, options) {
+                            options.model.destroy();
                         });
 
                         layout.on('show', function () {

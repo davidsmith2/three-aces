@@ -9,16 +9,16 @@ This project is an attempt to build a somewhat large-scale, complex JavaScript a
 
 ## URL design
 
-!/openmenus.html
-!/openmenus.html?action=new
-!/openmenus/:open_menu.html?action=show
-!/openmenus/:open_menu.html?action=edit
-!/openmenus/:open_menu.html?action=delete
-!/openmenus/:open_menu/menus.html
-!/openmenus/:open_menu/menus.html?action=new
-!/openmenus/:open_menu/menus/:menu.html?action=show
-!/openmenus/:open_menu/menus/:menu.html?action=edit
-!/openmenus/:open_menu/menus/:menu.html?action=delete
+* !/openmenus.html
+* !/openmenus.html?action=new
+* !/openmenus/:open_menu.html?action=show
+* !/openmenus/:open_menu.html?action=edit
+* !/openmenus/:open_menu.html?action=delete
+* !/openmenus/:open_menu/menus.html
+* !/openmenus/:open_menu/menus.html?action=new
+* !/openmenus/:open_menu/menus/:menu.html?action=show
+* !/openmenus/:open_menu/menus/:menu.html?action=edit
+* !/openmenus/:open_menu/menus/:menu.html?action=delete
 
 ## REST API
 

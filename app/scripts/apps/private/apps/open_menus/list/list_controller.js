@@ -23,18 +23,7 @@ define([
                         });
 
                         panelView.on('openMenu:new', function () {
-                            var fetchingOpenMenu = App.request('openMenu:entity:new');
-                            $.when(fetchingOpenMenu).done(function (unsavedOpenMenu) {
-                                openMenus.create(unsavedOpenMenu, {
-                                    success: function (savedOpenMenu) {
-                                        require([
-                                            'apps/private/apps/open_menus/new/new_controller'
-                                        ], function (NewController) {
-                                            NewController.create(savedOpenMenu);
-                                        });
-                                    }
-                                });
-                            });
+                            App.PrivateApp.OpenMenusApp.trigger('openMenu:new', openMenus);
                         });
 
                         listView.on('itemview:openMenu:show', function (itemView, options) {
@@ -42,11 +31,7 @@ define([
                         });
 
                         listView.on('itemview:openMenu:edit', function (itemView, options) {
-                            require([
-                                'apps/private/apps/open_menus/edit/edit_controller'
-                            ], function (EditController) {
-                                EditController.update(options.model);
-                            });
+                            App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options);
                         });
 
                         listView.on('itemview:openMenu:delete', function (itemView, options) {

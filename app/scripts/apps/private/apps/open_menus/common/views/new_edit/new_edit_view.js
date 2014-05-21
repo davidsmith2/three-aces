@@ -14,12 +14,12 @@ define([
 				menusRegion: '#menus-region'
 			},
 			triggers: {
-				'click .nav-tabs a[href=#menus-region]': 'showMenusTabPane'
+				'click .nav-tabs a[href=#menus-region]': 'showMenus'
 			},
 			events: {
-				'click .nav-tabs a': 'showTabPane'
+				'click .nav-tabs a': 'show'
 			},
-			showTabPane: function (e) {
+			show: function (e) {
 				e.preventDefault();
 				$(e.target).tab('show');
 			}

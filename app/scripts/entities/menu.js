@@ -24,8 +24,7 @@ define([
 		    defaults: {
 		        currencySymbol: '',
 		        menuName: '',
-		        menuGroups: [],
-		        menuItems: []
+		        menuGroups: []
 		    },
 		    schema: {
 		        menuName: {
@@ -87,7 +86,7 @@ define([
 		});
 
 		App.reqres.setHandler('menu:entity:new', function () {
-			return new Menu.model();
+			return new Menu.Model();
 		});
 
 	});

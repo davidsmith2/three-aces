@@ -28,15 +28,21 @@ define([
                         });
 
                         panelView.on('menu:new', function () {
-                            console.log('menu:new')
+                            App.PrivateApp.MenusApp.trigger('menu:new', {
+                                collection: menus,
+                                region: menusRegion
+                            });
                         });
 
                         listView.on('itemview:menu:show', function () {
                             console.log('itemview:menu:show')
                         });
 
-                        listView.on('itemview:menu:edit', function () {
-                            console.log('itemview:menu:edit')
+                        listView.on('itemview:menu:edit', function (itemView, options) {
+                            App.PrivateApp.MenusApp.trigger('menu:edit', {
+                                model: options.model,
+                                region: menusRegion
+                            });
                         });
 
                         listView.on('itemview:menu:delete', function () {

@@ -16,10 +16,14 @@ define([
 
     });
 
-    App.module('Routers.PrivateApp.OpenMenusApp', function (OpenMenusAppRouter, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.OpenMenusApp.Routers', function (Routers, App, Backbone, Marionette, $, _) {
 
-        OpenMenusAppRouter.Router = Marionette.AppRouter.extend({
-            '!/openmenus': 'index'
+        Routers.Router = Marionette.AppRouter.extend({
+            '!/openmenus.html': 'index',
+            '!/openmenus.html?action=new': 'create',
+            '!/openmenus/:open_menu.html?action=show': 'show',
+            '!/openmenus/:open_menu.html?action=edit': 'update',
+            '!/openmenus/:open_menu.html?action=delete': 'destroy'
         });
 
         var executeAction = function (action, arg) {
@@ -31,15 +35,50 @@ define([
             showOpenMenus: function () {
                 require([
                     'apps/private/apps/open_menus/list/list_controller'
-                ], function (ListController) {
-                    executeAction(ListController.index);
+                ], function (Controller) {
+                    executeAction(Controller.index);
                 });
-            }
+            },
+            newOpenMenu: function (openMenus) {
+                require([
+                    'apps/private/apps/open_menus/new/new_controller'
+                ], function (Controller) {
+                    executeAction(Controller.create, openMenus);
+                });
+            },
+            showOpenMenu: function () {},
+            editOpenMenu: function (options) {
+                require([
+                    'apps/private/apps/open_menus/edit/edit_controller'
+                ], function (Controller) {
+                    executeAction(Controller.update, options);
+                });
+            },
+            deleteOpenMenu: function () {}
         };
 
-        App.PrivateApp.on('openMenus:list', function () {
-            App.navigate('!/openmenus');
+        App.PrivateApp.on('openMenus:show', function () {
+            App.navigate('!/openmenus.html');
             API.showOpenMenus();
+        });
+
+        App.PrivateApp.OpenMenusApp.on('openMenu:new', function (openMenus) {
+            App.navigate('!/openmenus.html?action=new');
+            API.newOpenMenu(openMenus);
+        });
+
+        App.PrivateApp.OpenMenusApp.on('openMenu:show', function (options) {});
+
+        App.PrivateApp.OpenMenusApp.on('openMenu:edit', function (options) {
+            var openMenu = options.model;
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '.html?action=edit');
+            API.editOpenMenu(options);
+        });
+
+        App.PrivateApp.OpenMenusApp.on('openMenu:delete', function (options) {
+            var openMenu = options.model;
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '?.htmlaction=delete');
+            API.deleteOpenMenu();
         });
 
     });

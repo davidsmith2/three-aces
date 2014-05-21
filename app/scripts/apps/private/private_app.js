@@ -9,7 +9,7 @@ define([
             require([
                 'apps/private/apps/open_menus/open_menus_app'
             ], function () {
-                PrivateApp.trigger('openMenus:list');
+                PrivateApp.trigger('openMenus:show');
             });
         });
 

@@ -5,7 +5,17 @@ define([
     App.module('PrivateApp.OpenMenusApp.New', function (New, App, Backbone, Marionette, $, _) {
 
         New.Controller = {
-            create: NewEdit.Controller.create
+            create: function (openMenus) {
+                var fetchingOpenMenu = App.request('openMenu:entity:new');
+                $.when(fetchingOpenMenu).done(function (unsavedOpenMenu) {
+                    openMenus.create(unsavedOpenMenu, {
+                        success: function (savedOpenMenu) {
+                            NewEdit.Controller.createOrUpdate(savedOpenMenu);
+                        }
+                    });
+                });
+
+            }
         };
 
     });

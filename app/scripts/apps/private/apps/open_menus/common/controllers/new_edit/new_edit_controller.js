@@ -19,23 +19,20 @@ define([
                 this.restaurantRegion.show(restaurantView);
                 this.environmentRegion.show(environmentView);
             });
-            layout.on('showMenusTabPane', function (options) {
-                require([
-                    'apps/private/apps/menus/menus_app'
-                ], function () {
-                    App.PrivateApp.OpenMenusApp.trigger('menus:list', options);
-                });
-            });
+            layout.on('showMenus', showMenus);
             App.mainRegion.show(layout);
         };
 
+        var showMenus = function (options) {
+            require([
+                'apps/private/apps/menus/menus_app'
+            ], function () {
+                App.PrivateApp.OpenMenusApp.trigger('menus:show', options);
+            });
+        };
+
         NewEdit.Controller = {
-            create: function (openMenu) {
-                createOrUpdate(openMenu);
-            },
-            update: function (openMenu) {
-                createOrUpdate(openMenu);
-            }
+            createOrUpdate: createOrUpdate
         };
     });
 

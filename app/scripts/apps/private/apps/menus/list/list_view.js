@@ -30,10 +30,6 @@ define([
 	            'click td .js-show': 'menu:show',
 	            'click td .js-edit': 'menu:edit',
 	            'click td .js-delete': 'menu:delete'
-	        },
-	        initialize: function () {
-				var openMenuId = this.model.get('openMenu').get('_id');
-				this.model.set('_openMenuId', openMenuId);
 	        }
 	    });
 

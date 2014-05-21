@@ -7,6 +7,19 @@ This project is an attempt to build a somewhat large-scale, complex JavaScript a
 * allow a hypothetical restaurant owner to create open menus for their restaurant(s) [required]
 * allow a hypothetical customer to order menu items from open menus [required]
 
+## URL design
+
+!/openmenus.html
+!/openmenus.html?action=new
+!/openmenus/:open_menu.html?action=show
+!/openmenus/:open_menu.html?action=edit
+!/openmenus/:open_menu.html?action=delete
+!/openmenus/:open_menu/menus.html
+!/openmenus/:open_menu/menus.html?action=new
+!/openmenus/:open_menu/menus/:menu.html?action=show
+!/openmenus/:open_menu/menus/:menu.html?action=edit
+!/openmenus/:open_menu/menus/:menu.html?action=delete
+
 ## REST API
 
 ### Private app

@@ -1,4 +1,4 @@
-@import 'sass-bootstrap/lib/bootstrap';
+@import url('../bower_components/sass-bootstrap/bootstrap-2.3.2.css');
 
 header {
     border-bottom: 1px solid #ddd;

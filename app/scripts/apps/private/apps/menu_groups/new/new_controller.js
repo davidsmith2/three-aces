@@ -1,17 +1,17 @@
 define([
     'app',
-    'apps/private/apps/menus/common/controllers/new_edit/new_edit_controller'
+    'apps/private/apps/menu_groups/common/controllers/new_edit/new_edit_controller'
 ], function (App, NewEdit) {
-    App.module('PrivateApp.MenusApp.New', function (New, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.MenuGroupsApp.New', function (New, App, Backbone, Marionette, $, _) {
 
         New.Controller = {
             create: function (options) {
-                var fetchingMenu = App.request('menu:entity:new', options.menus);
-                $.when(fetchingMenu).done(function (unsavedMenu) {
-                    options.collection.create(unsavedMenu, {
-                        success: function (savedMenu) {
+                var fetchingMenuGroup = App.request('menuGroup:entity:new', options.menuGroups);
+                $.when(fetchingMenuGroup).done(function (unsavedMenuGroup) {
+                    options.collection.create(unsavedMenuGroup, {
+                        success: function (savedMenuGroup) {
                             NewEdit.Controller.createOrUpdate({
-								model: savedMenu,
+								model: savedMenuGroup,
 								region: options.region
                             });
                         }
@@ -22,6 +22,6 @@ define([
 
     });
 
-    return App.PrivateApp.MenusApp.New.Controller;
+    return App.PrivateApp.MenuGroupsApp.New.Controller;
 
 });

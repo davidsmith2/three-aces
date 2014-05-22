@@ -41,7 +41,7 @@ define([
             },
             newMenuGroup: function (options) {
                 require([
-                    'apps/private/apps/menus_groups/new/new_controller'
+                    'apps/private/apps/menu_groups/new/new_controller'
                 ], function (Controller) {
                     executeAction(Controller.create, options);
                 });
@@ -68,18 +68,18 @@ define([
             API.showMenuGroups(options);
         });
 
-        App.PrivateApp.MenuGroupsApp.on('menuGroups:new', function (options) {
+        App.PrivateApp.MenuGroupsApp.on('menuGroup:new', function (options) {
             var menu = options.collection.menu;
-            var openMenu = options.get('openMenu');
-            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + 'menugroups.html?action=new');
+            var openMenu = menu.get('openMenu');
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups.html?action=new');
             API.newMenuGroup(options);
         });
 
-        App.PrivateApp.MenuGroupsApp.on('menuGroups:edit', function (options) {
+        App.PrivateApp.MenuGroupsApp.on('menuGroup:edit', function (options) {
             var menuGroup = options.model;
             var menu = menuGroup.get('menu');
             var openMenu = menu.get('openMenu');
-            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + 'menugroups' + menuGroup.get('_id') + '.html?action=edit');
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '.html?action=edit');
             API.editMenuGroup(options);
         });
 

@@ -81,7 +81,7 @@ define([
             return API.getMenuGroupEntity(id);
         });
 
-        App.reqres.setHandler('menu:entity:new', function () {
+        App.reqres.setHandler('menuGroup:entity:new', function () {
             return new MenuGroup.Model();
         });
 

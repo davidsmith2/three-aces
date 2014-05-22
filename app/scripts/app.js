@@ -7,7 +7,7 @@ define([
     var App = new Marionette.Application();
 
     App.on('initialize:after', function () {
-        console.log('App has started');
+        console.log('the app has started');
     });
 
     App.addRegions({
@@ -48,9 +48,7 @@ define([
                 'apps/private/private_app'
             ], function (PrivateApp) {
                 Backbone.history.start();
-                if (App.getCurrentRoute() === '') {
-                    PrivateApp.start();
-                }
+                PrivateApp.start();
             });
         }
     });

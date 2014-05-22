@@ -7,11 +7,11 @@ define([
         MenuGroupsApp.startWithParent = false;
 
         MenuGroupsApp.on('start', function () {
-            console.log('MenuGroupsApp is starting');
+            console.log('the menus group app is starting');
         });
 
         MenuGroupsApp.on('stop', function () {
-            console.log('MenuGroupsApp is stopping');
+            console.log('the menus group app is stopping');
         });
 
     });

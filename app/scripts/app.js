@@ -46,10 +46,10 @@ define([
         if (Backbone.history) {
             require([
                 'apps/private/private_app'
-            ], function () {
+            ], function (PrivateApp) {
                 Backbone.history.start();
                 if (App.getCurrentRoute() === '') {
-                    App.trigger('privateApp:start');
+                    PrivateApp.start();
                 }
             });
         }

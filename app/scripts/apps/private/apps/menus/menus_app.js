@@ -7,11 +7,11 @@ define([
         MenusApp.startWithParent = false;
 
         MenusApp.on('start', function () {
-            console.log('MenusApp is starting');
+            console.log('the menus app is starting');
         });
 
         MenusApp.on('stop', function () {
-            console.log('MenusApp is stopping');
+            console.log('the menus app is stopping');
         });
 
     });

@@ -7,11 +7,11 @@ define([
         OpenMenusApp.startWithParent = false;
 
         OpenMenusApp.on('start', function () {
-            console.log('OpenMenusApp is starting');
+            console.log('the open menus app is starting');
         });
 
         OpenMenusApp.on('stop', function () {
-            console.log('OpenMenusApp is stopping');
+            console.log('the open menus app is stopping');
         });
 
     });

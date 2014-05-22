@@ -17,16 +17,27 @@ define([
             layout.on('show', function () {
                 this.menuInfoRegion.show(menuInfoView);
             });
-            layout.on('showMenuGroups', showMenuGroups);
-            menusRegion.show(layout);
-        };
-
-        var showMenuGroups = function (options) {
-            require([
-                'apps/private/apps/menu_groups/menu_groups_app'
-            ], function () {
-                App.PrivateApp.MenusApp.trigger('menuGroups:show', options);
+            layout.on('showMenuGroupsTabPane', function (options) {
+                console.log('starting menu groups app')
+/*
+                require([
+                    'apps/private/apps/menu_groups/menu_groups_app'
+                ], function () {
+                    App.PrivateApp.MenusApp.trigger('menuGroups:list', options);
+                });
+*/
             });
+            layout.on('showMenuItemsTabPane', function (options) {
+                console.log('starting menu items app')
+/*
+                require([
+                    'apps/private/apps/menu_groups/menu_groups_app'
+                ], function () {
+                    App.PrivateApp.MenusApp.trigger('menuGroups:list', options);
+                });
+*/
+            });
+            menusRegion.show(layout);
         };
 
         NewEdit.Controller = {

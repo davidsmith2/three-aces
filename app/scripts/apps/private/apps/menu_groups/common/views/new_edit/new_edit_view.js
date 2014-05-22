@@ -14,13 +14,13 @@ define([
 				menuItemsRegion: '#menu-items-region'
 			},
 			triggers: {
-				'click .nav-tabs a[href=#menu-groups-region]': 'showMenuGroups',
-				'click .nav-tabs a[href=#menu-items-region]': 'showMenuItems'
+				'click .nav-tabs a[href=#menu-groups-region]': 'showMenuGroupsTabPane',
+				'click .nav-tabs a[href=#menu-items-region]': 'showMenuItemsTabPane'
 			},
 			events: {
-				'click .nav-tabs a': 'show'
+				'click .nav-tabs a': 'showTabPane'
 			},
-			show: function (e) {
+			showTabPane: function (e) {
 				e.preventDefault();
 				$(e.target).tab('show');
 			}

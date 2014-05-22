@@ -3,7 +3,8 @@ define([
     'entities/restaurant',
     'entities/environment',
     'entities/menu',
-    'backbone-relational'
+    'backbone-relational',
+    'backbone-forms'
 ], function (App, Restaurant, Environment, Menu) {
 
 	App.module('Entities.OpenMenu', function (OpenMenu, App, Backbone, Marionette, $, _) {

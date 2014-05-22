@@ -1,9 +1,9 @@
 define([
 	'app',
-    'entities/models/menuGroup',
-    'entities/collections/menuGroups',
-    'backbone-relational'
-], function (App, MenuGroup, MenuGroupCollection) {
+    'entities/menu_group',
+    'backbone-relational',
+    'backbone-forms'
+], function (App, MenuGroup) {
 
 	App.module('Entities.Menu', function (Menu, App, Backbone, Marionette, $, _) {
 
@@ -13,8 +13,8 @@ define([
 		        {
 		            type: Backbone.HasMany,
 		            key: 'menuGroups',
-		            relatedModel: MenuGroup,
-		            collectionType: MenuGroupCollection,
+		            relatedModel: MenuGroup.Model,
+		            collectionType: MenuGroup.Collection,
 		            reverseRelation: {
 		                key: 'menu',
 		                includeInJSON: '_id'

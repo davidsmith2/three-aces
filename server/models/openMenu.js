@@ -5,19 +5,19 @@ var openMenuSchema = new mongoose.Schema({
     omf_uuid: String,
     omf_updated_timestamp: String,
     restaurant_info: {
+        restaurant_name: String,
         address_1: String,
         city_town: String,
-        country: String,
-        fax: String,
-        open_menu: String,
-        phone: String,
+        state_province: String,
         postal_code: String,
-        restaurant_name: String,
-        state_province: String
+        country: String,
+        phone: String,
+        fax: String,
+        open_menu: String
     },
     environment: {
-        open_menu: String,
-        takeout_available: Boolean
+        takeout_available: Boolean,
+        open_menu: String
     },
     menus: [menuSchema]
 });

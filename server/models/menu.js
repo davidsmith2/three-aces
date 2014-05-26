@@ -2,9 +2,9 @@ var mongoose = require('mongoose'),
     menuGroupSchema = require('./menuGroup').schema;
 
 var menuSchema = new mongoose.Schema({
-    currency_symbol: String,
-    menu_group: [menuGroupSchema],
     menu_name: String,
+    currency_symbol: String,
+    menu_groups: [menuGroupSchema],
     open_menu: String
 });
 

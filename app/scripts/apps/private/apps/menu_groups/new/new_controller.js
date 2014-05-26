@@ -5,15 +5,12 @@ define([
     App.module('PrivateApp.MenuGroupsApp.New', function (New, App, Backbone, Marionette, $, _) {
 
         New.Controller = {
-            create: function (options) {
-                var fetchingMenuGroup = App.request('menuGroup:entity:new', options.menuGroups);
+            create: function (menuGroups) {
+                var fetchingMenuGroup = App.request('menuGroup:entity:new');
                 $.when(fetchingMenuGroup).done(function (unsavedMenuGroup) {
-                    options.collection.create(unsavedMenuGroup, {
+                    menuGroups.create(unsavedMenuGroup, {
                         success: function (savedMenuGroup) {
-                            NewEdit.Controller.createOrUpdate({
-								model: savedMenuGroup,
-								region: options.region
-                            });
+                            NewEdit.Controller.createOrUpdate(savedMenuGroup);
                         }
                     });
                 });

@@ -7,9 +7,7 @@ define([
 
         var createOrUpdate = function (openMenu) {
 
-            var layoutView = new View.Layout();
-
-            var breadcrumbsView = new View.Breadcrumbs();
+            var dialogView = new View.Dialog();
 
             var tabsView = new View.Tabs({
                 model: openMenu
@@ -23,9 +21,8 @@ define([
                 model: openMenu.get('environment')
             });
 
-            layoutView.on('show', function () {
-                this.topRegion.show(breadcrumbsView);
-                this.bottomRegion.show(tabsView);
+            var buttonsView = new View.Buttons({
+                model: openMenu
             });
 
             tabsView.on('show', function () {
@@ -33,19 +30,32 @@ define([
                 this.environmentRegion.show(environmentView);
             });
 
-            tabsView.on('showMenus', showMenus);
+            dialogView.on('show', function () {
+                this.bodyRegion.show(tabsView);
+                this.footerRegion.show(buttonsView);
+            });
 
-            breadcrumbsView.on('showOpenMenus', showOpenMenus);
+            buttonsView.on('save', function (options) {
+                dialogView.$('.close').trigger('click');
+                showMenus(options.model);
+            });
+            buttonsView.on('cancel', function () {
+                dialogView.$('.close').trigger('click');
+                showOpenMenus();
+            });
 
-            App.mainRegion.show(layoutView);
+            App.dialogRegion.show(dialogView);
 
         };
 
-        var showMenus = function (options) {
+        var showMenus = function (openMenu) {
+
+            console.log(openMenu)
+
             require([
                 'apps/private/apps/menus/menus_app'
             ], function () {
-                App.PrivateApp.OpenMenusApp.trigger('menus:show', options);
+                App.PrivateApp.OpenMenusApp.trigger('menus:show', openMenu);
             });
         };
 

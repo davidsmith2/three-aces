@@ -1,7 +1,6 @@
 define([
     'backbone',
-    'backbone.marionette',
-    'apps/config/marionette/regions/dialog'
+    'backbone.marionette'
 ], function (Backbone, Marionette) {
 
     var App = new Marionette.Application();
@@ -14,9 +13,7 @@ define([
         headerRegion: '#header-region',
         mainRegion: '#main-region',
         footerRegion: '#footer-region',
-        dialogRegion: Marionette.Region.Dialog.extend({
-            el: '#dialog-region'
-        })
+        dialogRegion: '#dialog-region'
     });
 
     App.navigate = function (route, options) {

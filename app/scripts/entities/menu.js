@@ -41,7 +41,8 @@ define([
 	    Menu.Collection = Backbone.Collection.extend({
 	        model: Menu.Model,
 	        url: function () {
-	            return '/openmenus/' + this.openMenu.get('_id') + '/menus';
+	        	var openMenu = this.openMenu;
+	            return '/openmenus/' + openMenu.get('_id') + '/menus';
 	        }
 	    });
 

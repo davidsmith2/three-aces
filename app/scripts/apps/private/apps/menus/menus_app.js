@@ -32,51 +32,49 @@ define([
         };
 
         var API = {
-            showMenus: function (options) {
+            showMenus: function (openMenu) {
                 require([
                     'apps/private/apps/menus/list/list_controller'
                 ], function (Controller) {
-                    executeAction(Controller.index, options);
+                    executeAction(Controller.index, openMenu);
                 });
             },
-            newMenu: function (options) {
+            newMenu: function (menus) {
                 require([
                     'apps/private/apps/menus/new/new_controller'
                 ], function (Controller) {
-                    executeAction(Controller.create, options);
+                    executeAction(Controller.create, menus);
                 });
             },
-            showMenu: function () {
-
-            },
-            editMenu: function (options) {
+            showMenu: function () {},
+            editMenu: function (menu) {
                 require([
                     'apps/private/apps/menus/edit/edit_controller'
                 ], function (Controller) {
-                    executeAction(Controller.update, options);
+                    executeAction(Controller.update, menu);
                 });
             },
-            deleteMenu: function () {
-
-            }
+            deleteMenu: function () {}
         };
 
-        App.PrivateApp.OpenMenusApp.on('menus:show', function (options) {
-            var openMenu = options.model;
+        // triggered from the open menus app new-edit controller
+        App.PrivateApp.OpenMenusApp.on('menus:show', function (openMenu) {
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus.html');
-            API.showMenus(options);
+            API.showMenus(openMenu);
         });
 
-        App.PrivateApp.MenusApp.on('menu:new', function (options) {
-            var openMenu = options.collection.openMenu;
+        // triggered from the menus app list controller
+        App.PrivateApp.MenusApp.on('menu:new', function (menus) {
+            var openMenu = menus.openMenu;
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus.html?action=new');
-            API.newMenu(options);
+            API.newMenu(menus);
         });
 
-        App.PrivateApp.MenusApp.on('menu:edit', function (options) {
-            var openMenu = options.model.get('openMenu');
+        // triggered from the menus app list controller
+        App.PrivateApp.MenusApp.on('menu:edit', function (menu) {
+            var openMenu = menu.get('openMenu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus.html?action=edit');
-            API.editMenu(options);
+            API.editMenu(menu);
         });
 
     });

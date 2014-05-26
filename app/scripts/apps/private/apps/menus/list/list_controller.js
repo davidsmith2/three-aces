@@ -4,14 +4,10 @@ define([
 ], function (App, View) {
     App.module('PrivateApp.MenusApp.List', function (List, App, Backbone, Marionette, $, _) {
         List.Controller = {
-            index: function (options) {
+            index: function (openMenu) {
                 require([
                     'entities/menu'
                 ], function () {
-
-                    var openMenu = options.model;
-
-                    var menusRegion = options.view.menusRegion;
 
                     var layout = new View.Layout();
 
@@ -28,21 +24,15 @@ define([
                         });
 
                         panelView.on('menu:new', function () {
-                            App.PrivateApp.MenusApp.trigger('menu:new', {
-                                collection: menus,
-                                region: menusRegion
-                            });
+                            App.PrivateApp.MenusApp.trigger('menu:new', menus);
                         });
 
-                        listView.on('itemview:menu:show', function () {
-                            console.log('itemview:menu:show')
+                        listView.on('itemview:menu:show', function (itemView, options) {
+                            App.PrivateApp.MenusApp.trigger('menu:show', options.model);
                         });
 
                         listView.on('itemview:menu:edit', function (itemView, options) {
-                            App.PrivateApp.MenusApp.trigger('menu:edit', {
-                                model: options.model,
-                                region: menusRegion
-                            });
+                            App.PrivateApp.MenusApp.trigger('menu:edit', options.model);
                         });
 
                         listView.on('itemview:menu:delete', function (itemView, options) {
@@ -54,7 +44,7 @@ define([
                             this.listRegion.show(listView);
                         });
 
-                        menusRegion.show(layout);
+                        App.mainRegion.show(layout);
 
                     });
 

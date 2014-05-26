@@ -19,6 +19,8 @@
     "backbone-relational": "~0.8.7",
     "backbone-forms": "~0.14.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "bootstrap": "~3.1.1"
+  },
   "directory": "bower_components"
 }

@@ -5,20 +5,37 @@ define([
 
     App.module('PrivateApp.MenusApp.Common.Controllers.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
 
-        var createOrUpdate = function (options) {
-            var menu = options.model;
-            var menusRegion = options.region;
-            var layout = new View.Layout({
-                model: menu
-            });
+        var createOrUpdate = function (menu) {
+
+            var dialogView = new View.Dialog();
+
             var menuInfoView = new View.Form({
                 model: menu
             });
-            layout.on('show', function () {
-                this.menuInfoRegion.show(menuInfoView);
+
+            var buttonsView = new View.Buttons({
+                model: menu
             });
-            layout.on('showMenuGroups', showMenuGroups);
-            menusRegion.show(layout);
+
+            dialogView.on('show', function () {
+                this.bodyRegion.show(menuInfoView);
+                this.footerRegion.show(buttonsView);
+            });
+
+            buttonsView.on('save', function (options) {
+                dialogView.$('.close').trigger('click');
+                showMenuGroups(options.model);
+            });
+
+            buttonsView.on('cancel', function (options) {
+                dialogView.$('.close').trigger('click');
+                showMenus({
+                    model: options.model
+                });
+            });
+
+            App.dialogRegion.show(dialogView);
+
         };
 
         var showMenuGroups = function (options) {
@@ -27,6 +44,10 @@ define([
             ], function () {
                 App.PrivateApp.MenusApp.trigger('menuGroups:show', options);
             });
+        };
+
+        var showMenus = function (options) {
+            App.PrivateApp.OpenMenusApp.trigger('menus:show', options);
         };
 
         NewEdit.Controller = {

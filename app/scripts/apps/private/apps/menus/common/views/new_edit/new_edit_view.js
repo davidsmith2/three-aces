@@ -1,32 +1,17 @@
 define([
     'app',
-    'common/views/form',
-    'hbs!apps/private/apps/menus/common/views/new_edit/templates/layout'
-], function (App, FormView, layoutTmpl) {
+    'apps/private/common/views/buttons',
+    'apps/private/common/views/dialog',
+    'apps/private/common/views/form'
+], function (App, ButtonsView, DialogView, FormView) {
 
     App.module('PrivateApp.MenusApp.Common.Views.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
 
-        NewEdit.Layout = Marionette.Layout.extend({
-			template: layoutTmpl,
-			regions: {
-				menuInfoRegion: '#menu-info-region',
-				menuGroupsRegion: '#menu-groups-region',
-				menuItemsRegion: '#menu-items-region'
-			},
-			triggers: {
-				'click .nav-tabs a[href=#menu-groups-region]': 'showMenuGroups',
-				'click .nav-tabs a[href=#menu-items-region]': 'showMenuItems'
-			},
-			events: {
-				'click .nav-tabs a': 'show'
-			},
-			show: function (e) {
-				e.preventDefault();
-				$(e.target).tab('show');
-			}
-		});
+        NewEdit.Dialog = DialogView.extend({});
 
         NewEdit.Form = FormView.extend({});
+
+        NewEdit.Buttons = ButtonsView.extend({});
 
 	});
 

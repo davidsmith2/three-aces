@@ -33,7 +33,7 @@ define([
                     title: 'Name'
                 },
                 menuItemDescription: {
-                    type: 'TextArea',
+                    type: 'Text',
                     title: 'Description'
                 },
                 menuItemPrice: {
@@ -46,7 +46,10 @@ define([
         MenuItem.Collection = Backbone.Collection.extend({
             model: MenuItem.Model,
             url: function () {
-                return '/openmenus/' + this.menu.get('openMenu').get('_id') + '/menus/' + this.menu.get('_id') + '/menuitems';
+                var menuGroup = this.menuGroup;
+                var menu = menuGroup.get('menu');
+                var openMenu = menu.get('openMenu');
+                return '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
             },
             forCategory: function (category) {
                 var filteredItems, x;
@@ -66,8 +69,8 @@ define([
         });
 
         var API = {
-            getMenuItemEntities: function (menu) {
-                var menuItems = menu.get('menuItems');
+            getMenuItemEntities: function (menuGroup) {
+                var menuItems = menuGroup.get('menuItems');
                 var defer = $.Deferred();
                 menuItems.fetch({
                     success: function (data) {
@@ -97,8 +100,8 @@ define([
             }
         };
 
-        App.reqres.setHandler('menuItem:entities', function () {
-            return API.getMenuItemEntities();
+        App.reqres.setHandler('menuItem:entities', function (menuGroup) {
+            return API.getMenuItemEntities(menuGroup);
         });
 
         App.reqres.setHandler('menuItem:entity', function (id) {

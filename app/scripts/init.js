@@ -33,6 +33,7 @@ require.config({
         /* additional backbone libs */
         'backbone-relational': '../bower_components/backbone-relational/backbone-relational',
         'backbone-forms': '../bower_components/backbone-forms/distribution/backbone-forms',
+        'backbone-forms-bootstrap3': '../bower_components/backbone-forms/distribution/templates/bootstrap3',
         'backbone-super': '../bower_components/backbone-super/backbone-super/backbone-super',
 
         /* alias the bootstrap js lib */

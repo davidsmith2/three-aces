@@ -6,8 +6,8 @@ define([
     App.module('PrivateApp.OpenMenusApp.Edit', function (Edit, App, Backbone, Marionette, $, _) {
 
         Edit.Controller = {
-            update: function (options) {
-				NewEdit.Controller.createOrUpdate(options.model);
+            update: function (openMenu) {
+				NewEdit.Controller.createOrUpdate(openMenu);
             }
         };
 

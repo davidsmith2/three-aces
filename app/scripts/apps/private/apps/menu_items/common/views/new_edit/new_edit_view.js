@@ -5,7 +5,7 @@ define([
     'apps/private/common/views/form'
 ], function (App, ButtonsView, DialogView, FormView) {
 
-    App.module('PrivateApp.MenuGroupsApp.Common.Views.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.MenuItemsApp.Common.Views.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
 
         NewEdit.Dialog = DialogView.extend({});
 
@@ -15,6 +15,6 @@ define([
 
 	});
 
-    return App.PrivateApp.MenuGroupsApp.Common.Views.NewEdit;
+    return App.PrivateApp.MenuItemsApp.Common.Views.NewEdit;
 
 });

@@ -2,16 +2,12 @@ define([
     'app',
     'apps/private/apps/menu_groups/list/list_view'
 ], function (App, View) {
-    App.module('PrivateApp.MenusApp.List', function (List, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.MenuGroupsApp.List', function (List, App, Backbone, Marionette, $, _) {
         List.Controller = {
-            index: function (options) {
+            index: function (menu) {
                 require([
                     'entities/menu_group'
                 ], function () {
-
-                    var menu = options.model;
-
-                    var menuGroupsRegion = options.view.menuGroupsRegion;
 
                     var layout = new View.Layout();
 
@@ -28,21 +24,15 @@ define([
                         });
 
                         panelView.on('menuGroup:new', function () {
-                            App.PrivateApp.MenuGroupsApp.trigger('menuGroup:new', {
-                                collection: menuGroups,
-                                region: menuGroupsRegion
-                            });
+                            App.PrivateApp.MenuGroupsApp.trigger('menuGroup:new', menuGroups);
                         });
 
-                        listView.on('itemview:menuGroup:show', function () {
-                            console.log('itemview:menu:show')
+                        listView.on('itemview:menuGroup:show', function (itemView, options) {
+                            App.PrivateApp.MenuGroupsApp.trigger('menuGroup:show', options.model);
                         });
 
                         listView.on('itemview:menuGroup:edit', function (itemView, options) {
-                            App.PrivateApp.MenuGroupsApp.trigger('menuGroup:edit', {
-                                model: options.model,
-                                region: menuGroupsRegion
-                            });
+                            App.PrivateApp.MenuGroupsApp.trigger('menuGroup:edit', options.model);
                         });
 
                         listView.on('itemview:menuGroup:delete', function (itemView, options) {
@@ -54,7 +44,7 @@ define([
                             this.listRegion.show(listView);
                         });
 
-                        menuGroupsRegion.show(layout);
+                        App.mainRegion.show(layout);
 
                     });
 
@@ -63,6 +53,6 @@ define([
         };
     });
 
-    return App.PrivateApp.MenusApp.List.Controller;
+    return App.PrivateApp.MenuGroupsApp.List.Controller;
 
 });

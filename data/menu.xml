@@ -14,7 +14,7 @@
     <takeout_available>Three Aces</takeout_available>
   </environment_info>
   <menus>
-    <menu name="Main Menu" uid="" currency_symbol="USD" language="en">
+    <menu name="Takeout" uid="" currency_symbol="USD" language="en">
       <menu_groups>
         <menu_group name="Pizzas" uid="">
           <menu_items>
@@ -315,7 +315,7 @@
               <menu_item_price>6.45</menu_item_price>
             </menu_item>
             <menu_item>
-              <menu_item_name>Pasta With Meat Ball</menu_item_name>
+              <menu_item_name>Pasta With Meatballs</menu_item_name>
               <menu_item_price>6.45</menu_item_price>
             </menu_item>
             <menu_item>
@@ -347,7 +347,7 @@
               <menu_item_price>7.35</menu_item_price>
             </menu_item>
             <menu_item>
-              <menu_item_name>Grecian</menu_item_name>
+              <menu_item_name>Grecian Calzone</menu_item_name>
               <menu_item_description>w/ fresh tomatoes, spinach &amp; feta</menu_item_description>
               <menu_item_price>7.35</menu_item_price>
             </menu_item>
@@ -361,17 +361,17 @@
               <menu_item_price>4.95</menu_item_price>
             </menu_item>
             <menu_item>
-              <menu_item_name>Chicken Cobb</menu_item_name>
+              <menu_item_name>Chicken Cobb Wrap</menu_item_name>
               <menu_item_description>w/ bacon, cheese, lettuce, tomato, onions &amp; honey mustard</menu_item_description>
               <menu_item_price>4.95</menu_item_price>
             </menu_item>
             <menu_item>
-              <menu_item_name>Greek Supreme</menu_item_name>
+              <menu_item_name>Greek Supreme Wrap</menu_item_name>
               <menu_item_description>w/ feta Cheese, black olives, lettuce, tomato, onions &amp; Greek dressing</menu_item_description>
               <menu_item_price>4.95</menu_item_price>
             </menu_item>
             <menu_item>
-              <menu_item_name>Crispy Chicken</menu_item_name>
+              <menu_item_name>Crispy Chicken Wrap</menu_item_name>
               <menu_item_description>Chicken Finger, Lettuce, Tomato, Onion, Honey Mustard</menu_item_description>
               <menu_item_price>4.95</menu_item_price>
             </menu_item>

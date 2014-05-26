@@ -46,37 +46,40 @@ define([
                     executeAction(Controller.create, openMenus);
                 });
             },
-            showOpenMenu: function () {},
-            editOpenMenu: function (options) {
+            showOpenMenu: function (openMenu) {},
+            editOpenMenu: function (openMenu) {
                 require([
                     'apps/private/apps/open_menus/edit/edit_controller'
                 ], function (Controller) {
-                    executeAction(Controller.update, options);
+                    executeAction(Controller.update, openMenu);
                 });
             },
-            deleteOpenMenu: function () {}
+            deleteOpenMenu: function (openMenu) {}
         };
 
+        // triggered from private_app.js
         App.PrivateApp.on('openMenus:show', function () {
             App.navigate('!/openmenus.html');
             API.showOpenMenus();
         });
 
+        // triggered from private_app.js
         App.PrivateApp.OpenMenusApp.on('openMenu:new', function (openMenus) {
             App.navigate('!/openmenus.html?action=new');
             API.newOpenMenu(openMenus);
         });
 
-        App.PrivateApp.OpenMenusApp.on('openMenu:show', function (options) {});
+        // triggered from the open menus app list controller
+        App.PrivateApp.OpenMenusApp.on('openMenu:show', function (openMenu) {});
 
-        App.PrivateApp.OpenMenusApp.on('openMenu:edit', function (options) {
-            var openMenu = options.model;
+        // triggered from the open menus app list controller
+        App.PrivateApp.OpenMenusApp.on('openMenu:edit', function (openMenu) {
             App.navigate('!/openmenus/' + openMenu.get('_id') + '.html?action=edit');
-            API.editOpenMenu(options);
+            API.editOpenMenu(openMenu);
         });
 
-        App.PrivateApp.OpenMenusApp.on('openMenu:delete', function (options) {
-            var openMenu = options.model;
+        // triggered from the open menus app list controller
+        App.PrivateApp.OpenMenusApp.on('openMenu:delete', function (openMenu) {
             App.navigate('!/openmenus/' + openMenu.get('_id') + '?.htmlaction=delete');
             API.deleteOpenMenu();
         });

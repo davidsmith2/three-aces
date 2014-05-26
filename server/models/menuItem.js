@@ -6,8 +6,6 @@ var menuItemSchema = new mongoose.Schema({
     menuItemDescription: String,
     menuItemPrice: Number,
     menuItemSizes: [menuItemSizeSchema],
-    openMenu: String,
-    menu: String,
     menuGroup: String
 });
 

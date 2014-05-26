@@ -37,7 +37,9 @@ define([
         MenuGroup.Collection = Backbone.Collection.extend({
             model: MenuGroup.Model,
             url: function () {
-                return '/openmenus/' + this.menu.get('openMenu').get('_id') + '/menus/' + this.menu.get('_id') + '/menugroups';
+                var menu = this.menu;
+                var openMenu = menu.get('openMenu');
+                return '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups';
             }
         });
 

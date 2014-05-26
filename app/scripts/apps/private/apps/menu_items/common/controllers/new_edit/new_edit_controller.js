@@ -1,24 +1,24 @@
 define([
     'app',
-    'apps/private/apps/menu_groups/common/views/new_edit/new_edit_view'
+    'apps/private/apps/menu_items/common/views/new_edit/new_edit_view'
 ], function (App, View) {
 
-    App.module('PrivateApp.MenuGroupsApp.Common.Controllers.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.MenuItemsApp.Common.Controllers.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
 
-        var createOrUpdate = function (menuGroup) {
+        var createOrUpdate = function (menuItem) {
 
             var dialogView = new View.Dialog();
 
-            var menuGroupView = new View.Form({
-                model: menuGroup
+            var menuItemView = new View.Form({
+                model: menuItem
             });
 
             var buttonsView = new View.Buttons({
-                model: menuGroup
+                model: menuItem
             });
 
             dialogView.on('show', function () {
-                this.bodyRegion.show(menuGroupView);
+                this.bodyRegion.show(menuItemView);
                 this.footerRegion.show(buttonsView);
             });
 
@@ -29,25 +29,19 @@ define([
 
             buttonsView.on('cancel', function (options) {
                 dialogView.$('.close').trigger('click');
-                showMenuGroups({
-                    model: options.model
-                });
+                showMenuItems(options.model);
             });
 
             App.dialogRegion.show(dialogView);
 
         };
 
-        var showMenuItems = function (menuGroup) {
+        var showMenuItems = function (menuItem) {
             require([
                 'apps/private/apps/menu_items/menu_items_app'
             ], function () {
-                App.PrivateApp.MenuGroupsApp.trigger('menuItems:show', menuGroup);
+                App.PrivateApp.MenuGroupsApp.trigger('menuItems:show', menuItem.get('menuGroup'));
             });
-        };
-
-        var showMenuGroups = function (menu) {
-            App.PrivateApp.MenusApp.trigger('menuGroups:show', menu);
         };
 
         NewEdit.Controller = {
@@ -56,6 +50,6 @@ define([
 
     });
 
-    return App.PrivateApp.MenuGroupsApp.Common.Controllers.NewEdit;
+    return App.PrivateApp.MenuItemsApp.Common.Controllers.NewEdit;
 
 });

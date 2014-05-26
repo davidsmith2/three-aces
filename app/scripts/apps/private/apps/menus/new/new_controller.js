@@ -5,15 +5,12 @@ define([
     App.module('PrivateApp.MenusApp.New', function (New, App, Backbone, Marionette, $, _) {
 
         New.Controller = {
-            create: function (options) {
-                var fetchingMenu = App.request('menu:entity:new', options.menus);
+            create: function (menus) {
+                var fetchingMenu = App.request('menu:entity:new');
                 $.when(fetchingMenu).done(function (unsavedMenu) {
-                    options.collection.create(unsavedMenu, {
+                    menus.create(unsavedMenu, {
                         success: function (savedMenu) {
-                            NewEdit.Controller.createOrUpdate({
-								model: savedMenu,
-								region: options.region
-                            });
+                            NewEdit.Controller.createOrUpdate(savedMenu);
                         }
                     });
                 });

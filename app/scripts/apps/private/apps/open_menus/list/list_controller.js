@@ -27,11 +27,11 @@ define([
                         });
 
                         listView.on('itemview:openMenu:show', function (itemView, options) {
-                            console.log('showing open menu')
+                            App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
                         });
 
                         listView.on('itemview:openMenu:edit', function (itemView, options) {
-                            App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options);
+                            App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options.model);
                         });
 
                         listView.on('itemview:openMenu:delete', function (itemView, options) {

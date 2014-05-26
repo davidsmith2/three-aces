@@ -19,6 +19,11 @@ This project is an attempt to build a somewhat large-scale, complex JavaScript a
 * !/openmenus/:open_menu/menus/:menu.html?action=show
 * !/openmenus/:open_menu/menus/:menu.html?action=edit
 * !/openmenus/:open_menu/menus/:menu.html?action=delete
+* !/openmenus/:open_menu/menus/:menu/menugroups.html
+* !/openmenus/:open_menu/menus/:menu/menugroups.html?action=new
+* !/openmenus/:open_menu/menus/:menu/menugroups/:menu_group.html?action=show
+* !/openmenus/:open_menu/menus/:menu/menugroups/:menu_group.html?action=edit
+* !/openmenus/:open_menu/menus/:menu/menugroups/:menu_group.html?action=delete
 
 ## REST API
 
@@ -40,6 +45,11 @@ This project is an attempt to build a somewhat large-scale, complex JavaScript a
 | GET       | /openmenus/:open_menu/menus/:menu
 | PATCH     | /openmenus/:open_menu/menus/:menu
 | DELETE    | /openmenus/:open_menu/menus/:menu
+| GET       | /openmenus/:open_menu/menus/:menu/menugroups
+| POST      | /openmenus/:open_menu/menus/:menu/menugroups
+| GET       | /openmenus/:open_menu/menus/:menu/menugroups/:menu_group
+| PATCH     | /openmenus/:open_menu/menus/:menu/menugroups/:menu_group
+| DELETE    | /openmenus/:open_menu/menus/:menu/menugroups/:menu_group
 
 ## Project organization
 

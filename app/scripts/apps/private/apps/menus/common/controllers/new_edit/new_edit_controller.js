@@ -23,31 +23,31 @@ define([
             });
 
             buttonsView.on('save', function (options) {
+                var menu = options.model;
                 dialogView.$('.close').trigger('click');
-                showMenuGroups(options.model);
+                showMenuGroups(menu);
             });
 
             buttonsView.on('cancel', function (options) {
+                var openMenu = options.model.get('openMenu');
                 dialogView.$('.close').trigger('click');
-                showMenus({
-                    model: options.model
-                });
+                showMenus(openMenu);
             });
 
             App.dialogRegion.show(dialogView);
 
         };
 
-        var showMenuGroups = function (options) {
+        var showMenuGroups = function (menu) {
             require([
                 'apps/private/apps/menu_groups/menu_groups_app'
             ], function () {
-                App.PrivateApp.MenusApp.trigger('menuGroups:show', options);
+                App.PrivateApp.MenusApp.trigger('menuGroups:show', menu);
             });
         };
 
-        var showMenus = function (options) {
-            App.PrivateApp.OpenMenusApp.trigger('menus:show', options);
+        var showMenus = function (openMenu) {
+            App.PrivateApp.OpenMenusApp.trigger('menus:show', openMenu);
         };
 
         NewEdit.Controller = {

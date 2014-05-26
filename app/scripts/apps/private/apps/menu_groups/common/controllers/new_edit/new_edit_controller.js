@@ -23,15 +23,15 @@ define([
             });
 
             buttonsView.on('save', function (options) {
+                var menuGroup = options.model;
                 dialogView.$('.close').trigger('click');
-                showMenuItems(options.model);
+                showMenuItems(menuGroup);
             });
 
             buttonsView.on('cancel', function (options) {
+                var menu = options.model.get('menu');
                 dialogView.$('.close').trigger('click');
-                showMenuGroups({
-                    model: options.model
-                });
+                showMenuGroups(menu);
             });
 
             App.dialogRegion.show(dialogView);

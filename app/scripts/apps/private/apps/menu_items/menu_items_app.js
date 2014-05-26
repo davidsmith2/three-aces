@@ -27,7 +27,7 @@ define([
         });
 
         var executeAction = function (action, arg) {
-            App.startSubApp('PrivateApp.MenuGroupsApp');
+            App.startSubApp('PrivateApp.MenuItemsApp');
             action(arg);
         };
 

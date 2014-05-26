@@ -49,9 +49,6 @@ define([
         };
 
         var showMenus = function (openMenu) {
-
-            console.log(openMenu)
-
             require([
                 'apps/private/apps/menus/menus_app'
             ], function () {

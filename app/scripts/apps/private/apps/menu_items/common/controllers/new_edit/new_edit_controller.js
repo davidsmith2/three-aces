@@ -23,24 +23,26 @@ define([
             });
 
             buttonsView.on('save', function (options) {
+                var menuGroup = options.model.get('menuGroup');
                 dialogView.$('.close').trigger('click');
-                showMenuItems(options.model);
+                showMenuItems(menuGroup);
             });
 
             buttonsView.on('cancel', function (options) {
+                var menuGroup = options.model.get('menuGroup');
                 dialogView.$('.close').trigger('click');
-                showMenuItems(options.model);
+                showMenuItems(menuGroup);
             });
 
             App.dialogRegion.show(dialogView);
 
         };
 
-        var showMenuItems = function (menuItem) {
+        var showMenuItems = function (menuGroup) {
             require([
                 'apps/private/apps/menu_items/menu_items_app'
             ], function () {
-                App.PrivateApp.MenuGroupsApp.trigger('menuItems:show', menuItem.get('menuGroup'));
+                App.PrivateApp.MenuGroupsApp.trigger('menuItems:show', menuGroup);
             });
         };
 

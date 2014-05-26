@@ -12,7 +12,7 @@ define([
 		    relations: [
 		        {
 		            type: Backbone.HasMany,
-		            key: 'menuGroups',
+		            key: 'menu_groups',
 		            relatedModel: MenuGroup.Model,
 		            collectionType: MenuGroup.Collection,
 		            reverseRelation: {
@@ -22,18 +22,18 @@ define([
 		        }
 		    ],
 		    defaults: {
-		        currencySymbol: '',
-		        menuName: '',
-		        menuGroups: []
+		        currency_symbol: '',
+		        menu_name: '',
+		        menu_groups: []
 		    },
 		    schema: {
-		        menuName: {
+		        menu_name: {
 		            type: 'Text',
-		            title: 'Name'
+		            title: 'Menu name'
 		        },
-		        currencySymbol: {
+		        currency_symbol: {
 		            type: 'Text',
-		            title: 'Currency Symbol'
+		            title: 'Currency symbol'
 		        }
 		    }
 		});
@@ -41,7 +41,7 @@ define([
 	    Menu.Collection = Backbone.Collection.extend({
 	        model: Menu.Model,
 	        url: function () {
-	        	var openMenu = this.openMenu;
+				var openMenu = this.open_menu;
 	            return '/openmenus/' + openMenu.get('_id') + '/menus';
 	        }
 	    });

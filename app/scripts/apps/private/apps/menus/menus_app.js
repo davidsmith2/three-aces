@@ -65,14 +65,14 @@ define([
 
         // triggered from the menus app list controller
         App.PrivateApp.MenusApp.on('menu:new', function (menus) {
-            var openMenu = menus.openMenu;
+            var openMenu = menus.open_menu;
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus.html?action=new');
             API.newMenu(menus);
         });
 
         // triggered from the menus app list controller
         App.PrivateApp.MenusApp.on('menu:edit', function (menu) {
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus.html?action=edit');
             API.editMenu(menu);
         });

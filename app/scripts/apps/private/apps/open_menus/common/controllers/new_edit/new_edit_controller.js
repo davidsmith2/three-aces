@@ -14,7 +14,7 @@ define([
             });
 
             var restaurantView = new View.Form({
-                model: openMenu.get('restaurantInfo')
+                model: openMenu.get('restaurant_info')
             });
 
             var environmentView = new View.Form({

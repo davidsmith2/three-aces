@@ -9,13 +9,13 @@ define([
         Environment.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
             url: function () {
-                return '/openmenus/' + this.get('openMenu').get('_id') + '/environment';
+                return '/openmenus/' + this.get('open_menu').get('_id') + '/environment';
             },
             defaults: {
-                takeoutAvailable: false
+                takeout_available: false
             },
             schema: {
-                takeoutAvailable: {
+                takeout_available: {
                     type: 'Checkbox',
                     title: 'Takeout available?'
                 }

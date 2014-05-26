@@ -58,21 +58,21 @@ define([
         };
 
         App.PrivateApp.MenusApp.on('menuGroups:show', function (menu) {
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups.html');
             API.showMenuGroups(menu);
         });
 
         App.PrivateApp.MenuGroupsApp.on('menuGroup:new', function (menuGroups) {
             var menu = menuGroups.menu;
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups.html?action=new');
             API.newMenuGroup(menuGroups);
         });
 
         App.PrivateApp.MenuGroupsApp.on('menuGroup:edit', function (menuGroup) {
             var menu = menuGroup.get('menu');
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '.html?action=edit');
             API.editMenuGroup(menuGroup);
         });

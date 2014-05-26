@@ -9,39 +9,39 @@ define([
         Restaurant.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
             url: function () {
-                return '/openmenus/' + this.get('openMenu').get('_id') + '/restaurant';
+                return '/openmenus/' + this.get('open_menu').get('_id') + '/restaurant';
             },
             defaults: {
-                address1: '',
-                cityTown: '',
+                address_1: '',
+                city_town: '',
                 country: '',
                 fax: '',
                 phone: '',
-                postalCode: '',
-                restaurantName: '',
-                stateProvince: ''
+                postal_code: '',
+                restaurant_name: '',
+                state_province: ''
             },
             schema: {
-                restaurantName: {
+                restaurant_name: {
                     type: 'Text',
-                    title: 'Name'
+                    title: 'Restaurant name'
                 },
-                address1: {
+                address_1: {
                     type: 'Text',
                     title: 'Address 1'
                 },
-                cityTown: {
+                city_town: {
                     type: 'Text',
-                    title: 'City/Town'
+                    title: 'City/town'
                 },
-                stateProvince: {
+                state_province: {
                     type: 'Select',
                     options: ['', 'MA', 'VA'],
-                    title: 'State/Province'
+                    title: 'State/province'
                 },
-                postalCode: {
+                postal_code: {
                     type: 'Text',
-                    title: 'Postal Code'
+                    title: 'Postal code'
                 },
                 country: {
                     type: 'Select',

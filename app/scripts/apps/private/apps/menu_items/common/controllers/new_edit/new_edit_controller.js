@@ -23,13 +23,13 @@ define([
             });
 
             buttonsView.on('save', function (options) {
-                var menuGroup = options.model.get('menuGroup');
+                var menuGroup = options.model.get('menu_group');
                 dialogView.$('.close').trigger('click');
                 showMenuItems(menuGroup);
             });
 
             buttonsView.on('cancel', function (options) {
-                var menuGroup = options.model.get('menuGroup');
+                var menuGroup = options.model.get('menu_group');
                 dialogView.$('.close').trigger('click');
                 showMenuItems(menuGroup);
             });

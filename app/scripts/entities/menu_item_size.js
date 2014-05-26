@@ -9,21 +9,25 @@ define([
         MenuItemSize.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
             defaults: {
-                menuItemSizeName: '',
-                menuItemSizePrice: 0
+                menu_item_size_name: '',
+                menu_item_size_price: 0
             }
         });
 
         MenuItemSize.Collection = Backbone.Collection.extend({
             model: MenuItemSize.Model,
             url: function () {
-                //return '/openmenus/' + this.menu.get('openMenu').get('_id') + '/menus/' + this.menu.get('_id') + '/menuitems';
+                var menuItem = this.menuItem;
+                var menuGroup = menuItem.get('menu_group');
+                var menu = menuGroup.get('menu');
+                var openMenu = menu.get('open_menu');
+                return '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
             }
         });
 
         var API = {
             getMenuItemSizeEntities: function (menuItem) {
-                var menuItemSizes = menuItem.get('menuItemSizes');
+                var menuItemSizes = menuItem.get('menu_item_sizes');
                 var defer = $.Deferred();
                 menuItemSizes.fetch({
                     success: function (data) {

@@ -14,7 +14,7 @@ module.exports = _.extend(controller, {
     index: function (req, res) {
         if (req.params.menugroup) {
             // get all menu items for a menu group
-            return Model.where('menuGroup').equals(req.params.menugroup).find(function (err, models) {
+            return Model.where('menu_group').equals(req.params.menugroup).find(function (err, models) {
                 sendResponse(err, models, res);
             });
         } else if (req.params.menu) {
@@ -24,7 +24,7 @@ module.exports = _.extend(controller, {
             });
         } else if (req.params.openmenu) {
             // get all menu items for an open menu
-            return Model.where('openMenu').equals(req.params.openmenu).find(function (err, models) {
+            return Model.where('open_menu').equals(req.params.openmenu).find(function (err, models) {
                 sendResponse(err, models, res);
             });
         }

@@ -12,24 +12,24 @@ define([
             relations: [
                 {
                     type: Backbone.HasMany,
-                    key: 'menuItems',
+                    key: 'menu_items',
                     relatedModel: MenuItem.Model,
                     collectionType: MenuItem.Collection,
                     reverseRelation: {
-                        key: 'menuGroup',
+                        key: 'menu_group',
                         includeInJSON: '_id'
                     }
                 }
             ],
             defaults: {
-                groupName: '',
-                groupUid: '',
-                menuItems: []
+                group_name: '',
+                group_uid: '',
+                menu_items: []
             },
             schema: {
-                groupName: {
+                group_name: {
                     type: 'Text',
-                    title: 'Name'
+                    title: 'Group name'
                 }
             }
         });
@@ -38,14 +38,14 @@ define([
             model: MenuGroup.Model,
             url: function () {
                 var menu = this.menu;
-                var openMenu = menu.get('openMenu');
+                var openMenu = menu.get('open_menu');
                 return '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups';
             }
         });
 
         var API = {
             getMenuGroupEntities: function (menu) {
-                var menuGroups = menu.get('menuGroups');
+                var menuGroups = menu.get('menu_groups');
                 var defer = $.Deferred();
                 menuGroups.fetch({
                     success: function (data) {

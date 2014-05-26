@@ -59,23 +59,23 @@ define([
 
         App.PrivateApp.MenuGroupsApp.on('menuItems:show', function (menuGroup) {
             var menu = menuGroup.get('menu');
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems.html');
             API.showMenuItems(menuGroup);
         });
 
         App.PrivateApp.MenuItemsApp.on('menuItem:new', function (menuItems) {
-            var menuGroup = menuItems.menuGroup;
+            var menuGroup = menuItems.menu_group;
             var menu = menuGroup.get('menu');
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems.html?action=new');
             API.newMenuItem(menuItems);
         });
 
         App.PrivateApp.MenuItemsApp.on('menuItem:edit', function (menuItem) {
-            var menuGroup = menuItem.get('menuGroup');
+            var menuGroup = menuItem.get('menu_group');
             var menu = menuGroup.get('menu');
-            var openMenu = menu.get('openMenu');
+            var openMenu = menu.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems/' + menuItem.get('_id') + '.html?action=edit');
             API.editMenuItem(menuItem);
         });

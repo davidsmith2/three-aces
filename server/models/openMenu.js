@@ -2,22 +2,22 @@ var mongoose = require('mongoose'),
     menuSchema = require('./menu').schema;
 
 var openMenuSchema = new mongoose.Schema({
-    omfUuid: String,
-    omfUpdatedTimestamp: String,
-    restaurantInfo: {
-        address1: String,
-        cityTown: String,
+    omf_uuid: String,
+    omf_updated_timestamp: String,
+    restaurant_info: {
+        address_1: String,
+        city_town: String,
         country: String,
         fax: String,
-        openMenu: String,
+        open_menu: String,
         phone: String,
-        postalCode: String,
-        restaurantName: String,
-        stateProvince: String
+        postal_code: String,
+        restaurant_name: String,
+        state_province: String
     },
     environment: {
-        openMenu: String,
-        takeoutAvailable: Boolean
+        open_menu: String,
+        takeout_available: Boolean
     },
     menus: [menuSchema]
 });

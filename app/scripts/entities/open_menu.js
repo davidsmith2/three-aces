@@ -15,11 +15,11 @@ define([
 	        relations: [
 	            {
 	                type: Backbone.HasOne,
-	                key: 'restaurantInfo',
+	                key: 'restaurant_info',
 	                relatedModel: Restaurant.Model,
 	                reverseRelation: {
 	                    type: Backbone.HasOne,
-	                    key: 'openMenu',
+	                    key: 'open_menu',
 	                    includeInJSON: '_id'
 	                }
 	            },
@@ -29,7 +29,7 @@ define([
 	                relatedModel: Environment.Model,
 	                reverseRelation: {
 	                    type: Backbone.HasOne,
-	                    key: 'openMenu',
+	                    key: 'open_menu',
 	                    includeInJSON: '_id'
 	                }
 	            },
@@ -39,15 +39,15 @@ define([
 	                relatedModel: Menu.Model,
 	                collectionType: Menu.Collection,
 	                reverseRelation: {
-	                    key: 'openMenu',
+	                    key: 'open_menu',
 	                    includeInJSON: '_id'
 	                }
 	            }
 	        ],
 	        defaults: {
-	            omfUuid: '',
-	            omfUpdatedTimestamp: '',
-	            restaurantInfo: {},
+	            omf_uuid: '',
+	            omf_updated_timestamp: '',
+	            restaurant_info: {},
 	            environment: {},
 	            menus: []
 	        }

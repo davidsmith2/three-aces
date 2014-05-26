@@ -2,10 +2,10 @@ var mongoose = require('mongoose'),
     menuItemSchema = require('./menuItem').schema;
 
 var menuGroupSchema = new mongoose.Schema({
-    groupName: String,
-    groupUid: String,
+    group_name: String,
+    group_uid: String,
     menu: String,
-    menuItems: [menuItemSchema]
+    menu_items: [menuItemSchema]
 });
 
 module.exports = mongoose.model('menuGroup', menuGroupSchema);

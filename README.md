@@ -57,11 +57,16 @@ This project is an attempt to build a somewhat large-scale, complex JavaScript a
 | GET       | /openmenus/:open_menu/menus/:menu
 | PATCH     | /openmenus/:open_menu/menus/:menu
 | DELETE    | /openmenus/:open_menu/menus/:menu
-| GET       | /openmenus/:open_menu/menus/:menu/menugroups
-| POST      | /openmenus/:open_menu/menus/:menu/menugroups
-| GET       | /openmenus/:open_menu/menus/:menu/menugroups/:menu_group
-| PATCH     | /openmenus/:open_menu/menus/:menu/menugroups/:menu_group
-| DELETE    | /openmenus/:open_menu/menus/:menu/menugroups/:menu_group
+| GET       | /menus/:menu/menugroups
+| POST      | /menus/:menu/menugroups
+| GET       | /menus/:menu/menugroups/:menu_group
+| PATCH     | /menus/:menu/menugroups/:menu_group
+| DELETE    | /menus/:menu/menugroups/:menu_group
+| GET       | /menugroups/:menu_group/menuitems
+| POST      | /menugroups/:menu_group/menuitems
+| GET       | /menugroups/:menu_group/menuitems/:menu_item
+| PATCH     | /menugroups/:menu_group/menuitems/:menu_item
+| DELETE    | /menugroups/:menu_group/menuitems/:menu_item
 
 ## Project organization
 

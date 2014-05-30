@@ -9,21 +9,33 @@ This project is an attempt to build a somewhat large-scale, complex JavaScript a
 
 ## URL design
 
+### Open menus
 * !/openmenus.html
 * !/openmenus.html?action=new
 * !/openmenus/:open_menu.html?action=show
 * !/openmenus/:open_menu.html?action=edit
 * !/openmenus/:open_menu.html?action=delete
+
+### Menus
 * !/openmenus/:open_menu/menus.html
 * !/openmenus/:open_menu/menus.html?action=new
 * !/openmenus/:open_menu/menus/:menu.html?action=show
 * !/openmenus/:open_menu/menus/:menu.html?action=edit
 * !/openmenus/:open_menu/menus/:menu.html?action=delete
-* !/openmenus/:open_menu/menus/:menu/menugroups.html
-* !/openmenus/:open_menu/menus/:menu/menugroups.html?action=new
-* !/openmenus/:open_menu/menus/:menu/menugroups/:menu_group.html?action=show
-* !/openmenus/:open_menu/menus/:menu/menugroups/:menu_group.html?action=edit
-* !/openmenus/:open_menu/menus/:menu/menugroups/:menu_group.html?action=delete
+
+### Menu groups
+* !/menus/:menu/menugroups.html
+* !/menus/:menu/menugroups.html?action=new
+* !/menus/:menu/menugroups/:menu_group.html?action=show
+* !/menus/:menu/menugroups/:menu_group.html?action=edit
+* !/menus/:menu/menugroups/:menu_group.html?action=delete
+
+### Menu items
+* !/menugroups/:menu_group/menuitems.html
+* !/menugroups/:menu_group/menuitems.html?action=new
+* !/menugroups/:menu_group/menuitems/:menu_item.html?action=show
+* !/menugroups/:menu_group/menuitems/:menu_item.html?action=edit
+* !/menugroups/:menu_group/menuitems/:menu_item.html?action=delete
 
 ## REST API
 

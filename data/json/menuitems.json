@@ -1,0 +1,5 @@
+{ "_id" : { "$oid" : "5457cfce0a9310ae1ade31e1" }, "menu_item_name" : "Pasta With Sauce", "menu_item_description" : "", "menu_item_price" : 5.4, "menu_item_sizes" : "[]", "menu_group" : "5457cfbd0a9310ae1ade31e0" }
+{ "_id" : { "$oid" : "5457cfce0a9310ae1ade31e2" }, "menu_item_name" : "Pasta With Sausage", "menu_item_description" : "", "menu_item_price" : 6.45, "menu_item_sizes" : "[]", "menu_group" : "5457cfbd0a9310ae1ade31e0" }
+{ "_id" : { "$oid" : "5457cfce0a9310ae1ade31e3" }, "menu_item_name" : "Pasta With Meatballs", "menu_item_description" : "", "menu_item_price" : 6.45, "menu_item_sizes" : "[]", "menu_group" : "5457cfbd0a9310ae1ade31e0" }
+{ "_id" : { "$oid" : "5457cfce0a9310ae1ade31e4" }, "menu_item_name" : "Pasta With Veal", "menu_item_description" : "", "menu_item_price" : 7.25, "menu_item_sizes" : "[]", "menu_group" : "5457cfbd0a9310ae1ade31e0" }
+{ "_id" : { "$oid" : "5457cfce0a9310ae1ade31e5" }, "menu_item_name" : "Pasta With Chicken Cutlet", "menu_item_description" : "", "menu_item_price" : 7.25, "menu_item_sizes" : "[]", "menu_group" : "5457cfbd0a9310ae1ade31e0" }

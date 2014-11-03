@@ -1,5 +1,0 @@
-omf_uuid
-omf_updated_timestamp
-restaurant_info
-environment
-menus

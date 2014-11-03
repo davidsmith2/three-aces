@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "5457d8250a9310ae1ade31e6" }, "restaurant_name" : "Three Aces", "address_1" : "1613 Massachusetts Ave", "city_town" : "Cambridge", "state_province" : "MA", "postal_code" : 2139, "country" : "United States", "phone" : "617-491-2884", "fax" : "617-491-2889", "open_menu" : "5457cedc0a9310ae1ade31dc" }

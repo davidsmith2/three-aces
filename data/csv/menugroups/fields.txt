@@ -1,4 +1,0 @@
-group_name
-group_uid
-menu_items
-menu

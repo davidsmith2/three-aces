@@ -1,0 +1,10 @@
+openmenus
+restaurants
+environments
+menus
+menugroups
+menuitems
+
+mongoimport -d three-aces -c [collection] --type json [collection].json --drop
+
+mongoexport --db three-aces --collection [collection] --out [collection].json

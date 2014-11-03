@@ -1,31 +1,18 @@
-var Model = require('../../models/openMenu');
+var _ = require('underscore')._;
+var Model = require('../../models/environment');
+var controller = require('../generic/index.js')(Model);
 
-module.exports = {
-    options: {
-        name: 'environment'
-    },
+module.exports = _.extend(controller, {
     index: function (req, res) {
-        return Model.findById(req.params.openmenu, function (err, model) {
-            if (!err) {
-                return res.send(model.get('environment'));
-            } else {
-                return console.log(err);
-            }
-        });
-    },
-    create: function (req, res) {
-        return Model.findById(req.params.openmenu, function (err, model) {
-            for (var key in req.body) {
-                model.environment[key] = req.body[key];
-            }
-            return model.save(function (err) {
+        return Model
+            .where('open_menu')
+            .equals(req.params.openmenu)
+            .find(function (err, models) {
                 if (!err) {
-                    console.log('environment modified');
+                    return res.send(models);
                 } else {
-                    console.log(err);
+                    return console.log(err);
                 }
-                return res.send(model.environment);
             });
-        });
     }
-};
+});

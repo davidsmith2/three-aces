@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<omf uuid="" created_date="" accuracy="" private="">
+  <restaurant_info>
+    <restaurant_name>Three Aces</restaurant_name>
+    <address_1>1613 Massachusetts Ave</address_1>
+    <city_town>Cambridge</city_town>
+    <state_province>MA</state_province>
+    <postal_code>02139</postal_code>
+    <country>United States</country>
+    <phone>617-491-2884</phone>
+    <fax>617-491-2889</fax>
+  </restaurant_info>
+  <environment_info>
+    <takeout_available>Three Aces</takeout_available>
+  </environment_info>
+  <menus>
+    <menu name="Takeout" uid="" currency_symbol="USD" language="en">
+      <menu_groups>
+        <menu_group name="Pizzas" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Pizza With Tomato &amp; Cheese</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>5.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>9.75</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pizza With Onions</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>6.85</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>10.85</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pizza With Peppers</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>6.85</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>10.85</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pizza With Broccoli</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>6.85</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>10.85</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pizza With Grilled Chicken</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>7.95</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>11.80</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Special Pizzas" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Three Aces Special Pizza</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>9.80</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>15.80</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Mediterranean Pizza</menu_item_name>
+              <menu_item_description>w/ sliced tomatoes, olives, spinach, fresh garlic, mozzarella &amp; feta cheese</menu_item_description>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>9.80</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>15.80</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Vegetarian Pizza</menu_item_name>
+              <menu_item_description>w/ sliced tomatoes, onion, peppers, mushrooms, broccoli &amp; mozzarella</menu_item_description>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>9.80</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>15.80</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Meat Lovers Pizza</menu_item_name>
+              <menu_item_description>w/ pepperoni, Hamburg sausage &amp; bacon</menu_item_description>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>9.80</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>15.80</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>BBQ Grilled Chicken Pizza</menu_item_name>
+              <menu_item_description>w/ a choice of vegetables</menu_item_description>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>9.80</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>15.80</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Special Dinners" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Chicken Wing Dinner</menu_item_name>
+              <menu_item_price>7.25</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Gyro Plate</menu_item_name>
+              <menu_item_price>7.25</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Chicken Finger Plate</menu_item_name>
+              <menu_item_price>7.25</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>3-Piece Chicken Dinner</menu_item_name>
+              <menu_item_price>7.25</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Chicken Kabob Plate</menu_item_name>
+              <menu_item_description>w/ rice, salad &amp; pita bread</menu_item_description>
+              <menu_item_price>7.85</menu_item_price>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Side Orders" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Onion Rings</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>2.60</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>2.95</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>French Fries</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>2.25</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>2.65</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Spicy Fries</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>2.60</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>2.95</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Chicken Wings</menu_item_name>
+              <menu_item_price>5.75</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Buffalo Wings</menu_item_name>
+              <menu_item_price>5.75</menu_item_price>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Salads" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Garden Salad</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>3.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>4.50</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Greek Salad</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>5.50</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Antipasto Salad</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>5.50</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Chef Salad</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>5.50</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Kabob Salad</menu_item_name>
+              <menu_item_description>w/ grilled chicken &amp; feta cheese</menu_item_description>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>5.45</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>6.45</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Pastas" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Pasta With Sauce</menu_item_name>
+              <menu_item_price>5.40</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pasta With Sausage</menu_item_name>
+              <menu_item_price>6.45</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pasta With Meatballs</menu_item_name>
+              <menu_item_price>6.45</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pasta With Veal</menu_item_name>
+              <menu_item_price>7.25</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Pasta With Chicken Cutlet</menu_item_name>
+              <menu_item_price>7.25</menu_item_price>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Calzones" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Vegetarian Calzone</menu_item_name>
+              <menu_item_price>7.35</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Sausage Calzone</menu_item_name>
+              <menu_item_price>7.35</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Ham &amp; Cheese Calzone</menu_item_name>
+              <menu_item_price>7.35</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Chicken Cutlet Calzone</menu_item_name>
+              <menu_item_price>7.35</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Grecian Calzone</menu_item_name>
+              <menu_item_description>w/ fresh tomatoes, spinach &amp; feta</menu_item_description>
+              <menu_item_price>7.35</menu_item_price>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Wraps" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Turkey Club Wrap</menu_item_name>
+              <menu_item_description>w/ cheese, lettuce, tomato, onions &amp; mayo</menu_item_description>
+              <menu_item_price>4.95</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Chicken Cobb Wrap</menu_item_name>
+              <menu_item_description>w/ bacon, cheese, lettuce, tomato, onions &amp; honey mustard</menu_item_description>
+              <menu_item_price>4.95</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Greek Supreme Wrap</menu_item_name>
+              <menu_item_description>w/ feta Cheese, black olives, lettuce, tomato, onions &amp; Greek dressing</menu_item_description>
+              <menu_item_price>4.95</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Crispy Chicken Wrap</menu_item_name>
+              <menu_item_description>Chicken Finger, Lettuce, Tomato, Onion, Honey Mustard</menu_item_description>
+              <menu_item_price>4.95</menu_item_price>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Steak Wrap</menu_item_name>
+              <menu_item_price>4.95</menu_item_price>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+        <menu_group name="Grinders" uid="">
+          <menu_items>
+            <menu_item>
+              <menu_item_name>Meatless Grinder</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>4.95</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Hamburger Grinder</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.50</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>4.95</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Cheeseburger Grinder</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.75</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>5.75</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Meatball Grinder</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.75</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>5.75</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+            <menu_item>
+              <menu_item_name>Sausage Grinder</menu_item_name>
+              <menu_item_sizes>
+                <menu_item_size>
+                  <menu_item_size_name>Small</menu_item_size_name>
+                  <menu_item_size_price>4.75</menu_item_size_price>
+                </menu_item_size>
+                <menu_item_size>
+                  <menu_item_size_name>Large</menu_item_size_name>
+                  <menu_item_size_price>5.75</menu_item_size_price>
+                </menu_item_size>
+              </menu_item_sizes>
+            </menu_item>
+          </menu_items>
+        </menu_group>
+      </menu_groups>
+    </menu>
+  </menus>
+</omf>

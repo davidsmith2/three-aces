@@ -1,0 +1,2 @@
+omf_uuid,omf_updated_timestamp,restaurant_info,environment,menus
+"","","{ ""address_1"" : ""1613 Massachusetts Ave"", ""city_town"" : ""Cambridge"", ""country"" : ""United States"", ""fax"" : ""617-491-2889"", ""open_menu"" : ""5383d2af620d457b70000007"", ""phone"" : ""617-491-2884"", ""postal_code"" : ""02139"", ""restaurant_name"" : ""Three Aces"", ""state_province"" : ""MA"" }","{ ""open_menu"" : ""5383d2af620d457b70000007"", ""takeout_available"" : true }","[]"

@@ -1,0 +1,4 @@
+menu_name
+currency_symbol
+menu_groups
+open_menu

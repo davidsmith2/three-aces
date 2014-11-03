@@ -1,59 +1,45 @@
 require.config({
-
-    baseUrl: '/scripts',
-
-    /* starting point for application */
-    deps: ['backbone.marionette', 'bootstrap', 'main'],
-
-
-    shim: {
-        backbone: {
-            deps: [
-                'underscore',
-                'jquery'
-            ],
-            exports: 'Backbone'
-        },
-        bootstrap: {
-            deps: ['jquery'],
-            exports: 'jquery'
-        }
-    },
-
-    paths: {
-        jquery: '../bower_components/jquery/jquery',
-        backbone: '../bower_components/backbone-amd/backbone',
-        underscore: '../bower_components/underscore-amd/underscore',
-
-        /* alias all marionette libs */
-        'backbone.marionette': '../bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
-        'backbone.wreqr': '../bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
-        'backbone.babysitter': '../bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
-
-        /* additional backbone libs */
-        'backbone-relational': '../bower_components/backbone-relational/backbone-relational',
-        'backbone-forms': '../bower_components/backbone-forms/distribution/backbone-forms',
-        'backbone-forms-bootstrap3': '../bower_components/backbone-forms/distribution/templates/bootstrap3',
-        'backbone-super': '../bower_components/backbone-super/backbone-super/backbone-super',
-
-        /* alias the bootstrap js lib */
-        bootstrap: 'vendor/bootstrap',
-
-        /* Alias text.js for template loading and shortcut the templates dir to tmpl */
-        text: '../bower_components/requirejs-text/text',
-        tmpl: '../templates',
-
-        /* handlebars from the require handlerbars plugin below */
-        handlebars: '../bower_components/require-handlebars-plugin/Handlebars',
-
-        /* require handlebars plugin - Alex Sexton */
-        i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
-        json2: '../bower_components/require-handlebars-plugin/hbs/json2',
-        hbs: '../bower_components/require-handlebars-plugin/hbs'
-
-    },
-
-    hbs: {
-        disableI18n: true
-    }
+	baseUrl: '/scripts',
+	deps: ['backbone.marionette', 'bootstrap', 'main'],
+	shim: {
+		backbone: {
+			deps: [
+				'underscore',
+				'jquery'
+			],
+			exports: 'Backbone'
+		},
+		'backbone.marionette': {
+			deps: [
+				'backbone'
+			],
+			exports: 'Marionette'
+		},
+		bootstrap: {
+			deps: ['jquery'],
+			exports: 'jquery'
+		}
+	},
+	paths: {
+		backbone: 'lib/vendor/backbone/backbone',
+		'backbone.babysitter': 'lib/vendor/backbone.babysitter/backbone.babysitter',
+		'backbone-forms': 'lib/vendor/backbone-forms/backbone-forms',
+		'backbone-forms-bootstrap3': 'lib/vendor/backbone-forms/bootstrap3',
+		'backbone.marionette': 'lib/vendor/backbone.marionette/backbone.marionette',
+		'backbone-relational': 'lib/vendor/backbone-relational/backbone-relational',
+		'backbone-super': 'lib/vendor/backbone-super/backbone-super/backbone-super',
+		'backbone.wreqr': 'lib/vendor/backbone.wreqr/backbone.wreqr',
+		bootstrap: 'lib/vendor/bootstrap/bootstrap',
+		handlebars: 'lib/vendor/require-handlebars-plugin/Handlebars',
+		hbs: 'lib/vendor/require-handlebars-plugin/hbs',
+		i18nprecompile: 'lib/vendor/require-handlebars-plugin/i18nprecompile',
+		jquery: 'lib/vendor/jquery/jquery',
+		json2: 'lib/vendor/require-handlebars-plugin/json2',
+		text: 'lib/vendor/requirejs-text/text',
+		tmpl: '../templates',
+		underscore: 'lib/vendor/underscore/underscore'
+	},
+	hbs: {
+		disableI18n: true
+	}
 });

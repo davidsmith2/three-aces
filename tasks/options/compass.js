@@ -1,12 +1,12 @@
 module.exports = {
     options: {
-        sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: 'app/bower_components',
-        relativeAssets: true
+        imagesDir: '<%= yeoman.app %>/images',
+        importPath: '<%= yeoman.app %>/styles',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
+        relativeAssets: true,
+        sassDir: '<%= yeoman.app %>/styles'
     },
     dist: {},
     server: {

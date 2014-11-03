@@ -37,10 +37,10 @@
       "jquery.migrate": "bower_components/jquery/jquery-migrate.js",
       "modernizr": "bower_components/modernizr/modernizr.js",
       "require-handlebars-plugin": [
-		"bower_components/require-handlebars-plugin/Handlebars.js",
-		"bower_components/require-handlebars-plugin/hbs.js",
-		"bower_components/require-handlebars-plugin/json2.js",
-		"bower_components/require-handlebars-plugin/i18nprecompile.js"
+    		"bower_components/require-handlebars-plugin/Handlebars.js",
+    		"bower_components/require-handlebars-plugin/hbs.js",
+        "bower_components/require-handlebars-plugin/hbs/i18nprecompile.js",
+    		"bower_components/require-handlebars-plugin/hbs/json2.js"
       ],
       "sinon": "bower_components/sinon/lib/sinon.js"
     }

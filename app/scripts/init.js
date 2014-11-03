@@ -30,11 +30,13 @@ require.config({
 		'backbone-super': 'lib/vendor/backbone-super/backbone-super/backbone-super',
 		'backbone.wreqr': 'lib/vendor/backbone.wreqr/backbone.wreqr',
 		bootstrap: 'lib/vendor/bootstrap/bootstrap',
+		chai: 'lib/vendor/chai/chai',
 		handlebars: 'lib/vendor/require-handlebars-plugin/Handlebars',
 		hbs: 'lib/vendor/require-handlebars-plugin/hbs',
 		i18nprecompile: 'lib/vendor/require-handlebars-plugin/i18nprecompile',
 		jquery: 'lib/vendor/jquery/jquery',
 		json2: 'lib/vendor/require-handlebars-plugin/json2',
+		mocha: 'lib/vendor/mocha/mocha',
 		text: 'lib/vendor/requirejs-text/text',
 		tmpl: '../templates',
 		underscore: 'lib/vendor/underscore/underscore'

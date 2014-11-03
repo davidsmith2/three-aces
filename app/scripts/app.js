@@ -5,10 +5,6 @@ define([
 
     var App = new Marionette.Application();
 
-    App.on('initialize:after', function () {
-        console.log('the app has started');
-    });
-
     App.addRegions({
         headerRegion: '#header-region',
         mainRegion: '#main-region',
@@ -39,7 +35,8 @@ define([
         }
     };
 
-    App.on('initialize:after', function () {
+    App.on('start', function () {
+        console.log('the app has started');
         if (Backbone.history) {
             require([
                 'apps/private/private_app'

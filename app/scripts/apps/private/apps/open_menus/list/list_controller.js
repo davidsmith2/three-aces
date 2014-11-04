@@ -1,57 +1,53 @@
 define([
-    'app',
-    'apps/private/apps/open_menus/list/list_view'
+	'app',
+	'apps/private/apps/open_menus/list/list_view'
 ], function (App, View) {
-    App.module('PrivateApp.OpenMenusApp.List', function (List, App, Backbone, Marionette, $, _) {
 
-        List.Controller = {
-            index: function () {
-                require([
-                    'entities/open_menu'
-                ], function () {
+	App.module('PrivateApp.OpenMenusApp.List', function (List, App, Backbone, Marionette, $, _) {
 
-                    var layout = new View.Layout();
+		var index = function () {
+			require([
+				'entities/open_menu'
+			], getData);
+		};
 
-                    var panelView = new View.Panel();
+		var getData = function () {
+			$.when(App.request('openMenu:entities')).done(showViews);
+		};
 
-                    var fetchingOpenMenus = App.request('openMenu:entities');
+		var showViews = function (openMenus) {
+			var panelView,
+				openMenusView,
+				layoutView;
+			panelView = new View.Panel();
+			panelView.on('openMenu:new', function () {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:new', openMenus);
+			});
+			openMenusView = new View.OpenMenus({
+				collection: openMenus
+			});
+			openMenusView.on('itemview:openMenu:show', function (itemView, options) {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
+			});
+			openMenusView.on('itemView:openMenu:edit', function (itemView, options) {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options.model);
+			});
+			openMenusView.on('openMenu:delete', function (itemView, options) {
+				options.model.destroy();
+			});
+			layoutView = new View.Layout();
+			layoutView.on('show', function () {
+				this.panelRegion.show(panelView);
+				this.listRegion.show(openMenusView);
+			});
+			App.mainRegion.show(layoutView);
+		};
 
-                    $.when(fetchingOpenMenus).done(function (openMenus) {
+		List.Controller = {
+			index: index
+		};
+	});
 
-                        var listView = new View.OpenMenus({
-                            collection: openMenus
-                        });
-
-                        panelView.on('openMenu:new', function () {
-                            App.PrivateApp.OpenMenusApp.trigger('openMenu:new', openMenus);
-                        });
-
-                        listView.on('itemview:openMenu:show', function (itemView, options) {
-                            App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
-                        });
-
-                        listView.on('itemview:openMenu:edit', function (itemView, options) {
-                            App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options.model);
-                        });
-
-                        listView.on('itemview:openMenu:delete', function (itemView, options) {
-                            options.model.destroy();
-                        });
-
-                        layout.on('show', function () {
-                            this.panelRegion.show(panelView);
-                            this.listRegion.show(listView);
-                        });
-
-                        App.mainRegion.show(layout);
-
-                    });
-
-                });
-            }
-        };
-    });
-
-    return App.PrivateApp.OpenMenusApp.List.Controller;
+	return App.PrivateApp.OpenMenusApp.List.Controller;
 
 });

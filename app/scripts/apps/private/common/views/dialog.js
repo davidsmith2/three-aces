@@ -4,7 +4,7 @@ define([
     'hbs!apps/private/common/views/templates/dialog',
     'bootstrap'
 ], function (Marionette, $, Template) {
-    var DialogLayout = Marionette.Layout.extend({
+    var DialogLayout = Marionette.LayoutView.extend({
         className: 'modal',
         template: Template,
         regions: {

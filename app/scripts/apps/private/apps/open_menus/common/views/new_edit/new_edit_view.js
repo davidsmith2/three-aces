@@ -17,7 +17,7 @@ define([
 			}
 		});
 
-        NewEdit.Tabs = Marionette.Layout.extend({
+        NewEdit.Tabs = Marionette.LayoutView.extend({
 			template: tabsTmpl,
 			regions: {
 				restaurantRegion: '#restaurant-region',

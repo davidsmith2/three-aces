@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
-var restaurantSchema = new mongoose.Schema({
+var restaurantSchema = new Schema({
     restaurant_name: String,
     address_1: String,
     city_town: String,
@@ -12,4 +13,4 @@ var restaurantSchema = new mongoose.Schema({
     open_menu: String
 });
 
-module.exports = mongoose.model('restaurant', restaurantSchema);
+module.exports = mongoose.model('Restaurant', restaurantSchema);

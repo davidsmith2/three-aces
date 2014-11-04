@@ -39,10 +39,10 @@ define([
         console.log('the app has started');
         if (Backbone.history) {
             require([
-                'apps/private/private_app'
-            ], function (PrivateApp) {
+                'apps/public/public_app'
+            ], function (PublicApp) {
                 Backbone.history.start();
-                PrivateApp.start();
+                PublicApp.start();
             });
         }
     });

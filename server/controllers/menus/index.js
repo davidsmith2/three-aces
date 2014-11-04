@@ -1,15 +1,16 @@
 var _ = require('underscore')._;
-var Model = require('../../models/menu');
-var controller = require('../generic/index.js')(Model);
+var Menu = require('../../models/menu');
+var controller = require('../_index.js')(Menu);
 
 module.exports = _.extend(controller, {
     index: function (req, res) {
-        return Model
-            .where('open_menu')
-            .equals(req.params.openmenu)
-            .find(function (err, models) {
+        return Menu
+            .find({
+            	open_menu: req.params.openmenu
+            })
+            .exec(function (err, menus) {
                 if (!err) {
-                    return res.send(models);
+                    return res.send(menus);
                 } else {
                     return console.log(err);
                 }

@@ -1,11 +1,13 @@
 var mongoose = require('mongoose'),
-    menuGroupSchema = require('./menuGroup').schema;
+	Schema = mongoose.Schema;
 
-var menuSchema = new mongoose.Schema({
-    menu_name: String,
-    currency_symbol: String,
-    menu_groups: [menuGroupSchema],
-    open_menu: String
+var menuGroupSchema = require('./menuGroup').schema;
+
+var menuSchema = new Schema({
+	menu_name: String,
+	currency_symbol: String,
+	menu_groups: [menuGroupSchema],
+	open_menu: String
 });
 
-module.exports = mongoose.model('menu', menuSchema);
+module.exports = mongoose.model('Menu', menuSchema);

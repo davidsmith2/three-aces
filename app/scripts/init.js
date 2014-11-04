@@ -18,6 +18,9 @@ require.config({
 		bootstrap: {
 			deps: ['jquery'],
 			exports: 'jquery'
+		},
+		json2: {
+			exports: 'JSON'
 		}
 	},
 	paths: {
@@ -29,13 +32,12 @@ require.config({
 		'backbone-super': 'lib/vendor/backbone-super/backbone-super/backbone-super',
 		bootstrap: 'lib/vendor/bootstrap/bootstrap',
 		chai: 'lib/vendor/chai/chai',
-		handlebars: 'lib/custom/require-handlebars-plugin/hbs/handlebars',
+		handlebars: 'lib/vendor/handlebars/handlebars',
 		hbs: 'lib/custom/require-handlebars-plugin/hbs',
-		i18nprecompile: 'lib/custom/require-handlebars-plugin/hbs/i18nprecompile',
 		jquery: 'lib/vendor/jquery/jquery',
-		json2: 'lib/custom/require-handlebars-plugin/hbs/json2',
+		json2: 'lib/vendor/json2/json2',
 		mocha: 'lib/vendor/mocha/mocha',
-		underscore: 'lib/custom/require-handlebars-plugin/hbs/underscore'
+		underscore: 'lib/vendor/underscore/underscore'
 	},
 	hbs: {
 		disableI18n: true

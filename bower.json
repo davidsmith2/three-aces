@@ -2,32 +2,37 @@
   "name": "three-aces",
   "version": "0.0.0",
   "dependencies": {
-	"backbone": "*",
-	"backbone-forms": "*",
-	"backbone-relational": "*",
-	"backbone.marionette": "*",
-	"bootstrap": "*",
-	"jquery": "*",
-	"modernizr": "*",
-	"requirejs": "*"
+    "backbone": "*",
+    "backbone-forms": "*",
+    "backbone-relational": "*",
+    "backbone.marionette": "*",
+    "bootstrap": "*",
+    "handlebars": "~2.0.0",
+    "jquery": "*",
+    "json2": "*",
+    "modernizr": "*",
+    "requirejs": "*",
+    "require-handlebars-plugin": "~0.10.0",
+    "underscore": "1.6.0"
   },
   "devDependencies": {
-	"chai": "~1.7.2",
-	"mocha": "~1.12.0",
-	"sinon": "~1.7.3"
+    "chai": "~1.7.2",
+    "mocha": "~1.12.0",
+    "sinon": "~1.7.3"
   },
   "install": {
-	"path": "app/scripts/lib/vendor",
-	"sources": {
-	  "backbone-forms": [
-		"bower_components/backbone-forms/distribution/backbone-forms.js",
-		"bower_components/backbone-forms/distribution/templates/bootstrap3.js"
-	  ],
-	  "backbone.marionette": "bower_components/backbone.marionette/lib/backbone.marionette.js",
-	  "bootstrap": "bower_components/bootstrap/dist/js/bootstrap.js",
-	  "jquery": "bower_components/jquery/dist/jquery.js",
-	  "modernizr": "bower_components/modernizr/modernizr.js",
-	  "sinon": "bower_components/sinon/lib/sinon.js"
-	}
+    "path": "app/scripts/lib/vendor",
+    "sources": {
+      "backbone-forms": [
+        "bower_components/backbone-forms/distribution/backbone-forms.js",
+        "bower_components/backbone-forms/distribution/templates/bootstrap3.js"
+      ],
+      "backbone.marionette": "bower_components/backbone.marionette/lib/backbone.marionette.js",
+      "bootstrap": "bower_components/bootstrap/dist/js/bootstrap.js",
+      "jquery": "bower_components/jquery/dist/jquery.js",
+      "json2": "bower_components/json2/json2.js",
+      "modernizr": "bower_components/modernizr/modernizr.js",
+      "sinon": "bower_components/sinon/lib/sinon.js"
+    }
   }
 }

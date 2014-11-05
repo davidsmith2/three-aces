@@ -8,7 +8,8 @@ define([
     'backbone-forms-bootstrap3'
 ], function (Backbone, Marionette, $, _) {
 	var FormView = Backbone.View.extend({
-		initialize: function () {
+		initialize: function (options) {
+			this.options = options;
             this.form = new Backbone.Form({
                 model: this.model
             });
@@ -21,6 +22,9 @@ define([
         },
         render: function () {
             this.$el.empty().append(this.form.render().el);
+            if (this.options.isReadOnly) {
+	            this.$('.form-control').prop('disabled', true);
+            }
             return this;
         },
         saveTextField: function (e) {

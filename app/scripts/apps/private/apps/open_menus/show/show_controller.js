@@ -11,10 +11,12 @@ define([
 			show: function (openMenu) {
 				var layoutView = new LayoutView();
 				var restaurantView = new FormView({
-					model: openMenu.get('restaurant_info')
+					model: openMenu.get('restaurant_info'),
+					isReadOnly: true
 				});
 				var environmentView = new FormView({
-					model: openMenu.get('environment')
+					model: openMenu.get('environment'),
+					isReadOnly: true
 				});
 				var tabsView = new TabsView();
 				layoutView.on('show', function () {

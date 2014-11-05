@@ -5,7 +5,7 @@ define([
 	'apps/private/apps/open_menus/show/views/tabs'
 ], function (App, FormView, LayoutView, TabsView) {
 
-	App.module('PrivateApp.OpenMenusApp.Show', function (Show, App, Backbone, Marionette, $, _) {
+	App.module('PrivateApp.OpenMenusApp.Show', function (Show, App, Backbone, Marionette, $) {
 
 		Show.Controller = {
 			show: function (openMenu) {
@@ -25,10 +25,17 @@ define([
 					this.c.show(tabsView);
 				});
 				tabsView.on('show', function () {
-					var menusView = new Marionette.CollectionView({
-						collection: openMenu.get('menus')
+					var self = this;
+					$.when(App.request('menu:entities', openMenu)).done(function (menus) {
+						require([
+							'apps/private/apps/open_menus/show/views/menus',
+						], function (MenusView) {
+							var menusView = new MenusView({
+								collection: menus
+							});
+							self.menusRegion.show(menusView);
+						});
 					});
-					this.menusRegion.show(menusView);
 				});
 				App.mainRegion.show(layoutView);
 			}

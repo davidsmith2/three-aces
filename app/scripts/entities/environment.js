@@ -8,9 +8,6 @@ define([
 
         Environment.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
-            url: function () {
-                return '/openmenus/' + this.get('open_menu').get('_id') + '/environment';
-            },
             defaults: {
                 takeout_available: false
             },
@@ -21,6 +18,14 @@ define([
                 }
             }
         });
+
+	    Environment.Collection = Backbone.Collection.extend({
+	        model: Environment.Model,
+	        url: function () {
+				var openMenu = this.open_menu;
+	            return '/openmenus/' + openMenu.get('_id') + '/environments';
+	        }
+	    });
 
     });
 

@@ -1,11 +1,9 @@
 define([
     'app',
-    'apps/private/apps/open_menus/dialog/views/breadcrumbs',
-    'apps/private/apps/open_menus/dialog/views/tabs',
     'apps/private/common/views/buttons',
     'apps/private/common/views/dialog',
     'apps/private/common/views/form'
-], function (App, BreadcrumbsView, TabsView, ButtonsView, DialogView, FormView) {
+], function (App, ButtonsView, DialogView, FormView) {
 
     App.module('PrivateApp.OpenMenusApp.Common.Controllers.Dialog', function (Dialog, App, Backbone, Marionette, $, _) {
 
@@ -13,35 +11,23 @@ define([
 
             var dialogView = new DialogView();
 
-            var tabsView = new TabsView({
-                model: openMenu
-            });
-
-            var restaurantView = new FormView({
-                model: openMenu.get('restaurant_info')
-            });
-
-            var environmentView = new FormView({
-                model: openMenu.get('environment')
-            });
-
             var buttonsView = new ButtonsView({
                 model: openMenu
             });
 
-            tabsView.on('show', function () {
-                this.restaurantRegion.show(restaurantView);
-                this.environmentRegion.show(environmentView);
+            var formView = new FormView({
+                model: openMenu.get('restaurant_info')
             });
 
             dialogView.on('show', function () {
-                this.bodyRegion.show(tabsView);
+                $(this.titleRegion.el).html('<h3>Title</h3>');
+                this.bodyRegion.show(formView);
                 this.footerRegion.show(buttonsView);
             });
 
             buttonsView.on('save', function (options) {
                 dialogView.$('.close').trigger('click');
-                showMenus(options.model);
+                showOpenMenu(this.model);
             });
 
             buttonsView.on('cancel', function () {
@@ -53,12 +39,8 @@ define([
 
         };
 
-        var showMenus = function (openMenu) {
-            require([
-                'apps/private/apps/menus/menus_app'
-            ], function () {
-                App.PrivateApp.OpenMenusApp.trigger('menus:show', openMenu);
-            });
+        var showOpenMenu = function (openMenu) {
+            App.PrivateApp.OpenMenusApp.trigger('openMenu:show', openMenu);
         };
 
         var showOpenMenus = function () {

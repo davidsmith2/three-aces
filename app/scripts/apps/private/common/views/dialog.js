@@ -9,6 +9,7 @@ define([
         template: template,
         regions: {
             headerRegion: '.modal-header',
+            titleRegion: '.modal-title',
             bodyRegion: '.modal-body',
             footerRegion: '.modal-footer'
         },

@@ -4,7 +4,7 @@ define([
     'backbone-forms'
 ], function (App) {
 
-    App.module('Entities.Restaurant', function (Restaurant, App, Backbone, Marionette, $, _) {
+    App.module('Entities.Restaurant', function (Restaurant, App, Backbone) {
 
         Restaurant.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',

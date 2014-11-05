@@ -46,7 +46,13 @@ define([
                     executeAction(Controller.create, openMenus);
                 });
             },
-            showOpenMenu: function (openMenu) {},
+            showOpenMenu: function (openMenu) {
+                require([
+                    'apps/private/apps/open_menus/show/show_controller'
+                ], function (Controller) {
+                    executeAction(Controller.show, openMenu);
+                });
+            },
             editOpenMenu: function (openMenu) {
                 require([
                     'apps/private/apps/open_menus/edit/edit_controller'
@@ -72,7 +78,10 @@ define([
         });
 
         // triggered from the open menus app list controller
-        App.PrivateApp.OpenMenusApp.on('openMenu:show', function (openMenu) {});
+        App.PrivateApp.OpenMenusApp.on('openMenu:show', function (openMenu) {
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '.html?action=show');
+            API.showOpenMenu(openMenu);
+        });
 
         // triggered from the open menus app list controller
         App.PrivateApp.OpenMenusApp.on('openMenu:edit', function (openMenu) {

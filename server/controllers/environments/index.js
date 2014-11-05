@@ -3,6 +3,9 @@ var Environment = require('../../models/environment');
 var controller = require('../_index.js')(Environment);
 
 module.exports = _.extend(controller, {
+	options: {
+		name: 'environment'
+	},
     index: function (req, res) {
         return Environment
             .find({

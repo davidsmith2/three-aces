@@ -1,7 +1,7 @@
 define([
     'app',
-    'apps/private/apps/open_menus/common/controllers/new_edit/new_edit_controller'
-], function (App, NewEdit) {
+    'apps/private/apps/open_menus/dialog/dialog_controller'
+], function (App, Dialog) {
     App.module('PrivateApp.OpenMenusApp.New', function (New, App, Backbone, Marionette, $, _) {
 
         New.Controller = {
@@ -10,7 +10,7 @@ define([
                 $.when(fetchingOpenMenu).done(function (unsavedOpenMenu) {
                     openMenus.create(unsavedOpenMenu, {
                         success: function (savedOpenMenu) {
-                            NewEdit.Controller.createOrUpdate(savedOpenMenu);
+                            Dialog.Controller.show(savedOpenMenu);
                         }
                     });
                 });

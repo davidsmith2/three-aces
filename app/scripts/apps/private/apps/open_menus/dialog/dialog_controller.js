@@ -1,27 +1,31 @@
 define([
     'app',
-    'apps/private/apps/open_menus/common/views/new_edit/new_edit_view'
-], function (App, View) {
+    'apps/private/apps/open_menus/dialog/views/breadcrumbs',
+    'apps/private/apps/open_menus/dialog/views/tabs',
+    'apps/private/common/views/buttons',
+    'apps/private/common/views/dialog',
+    'apps/private/common/views/form'
+], function (App, BreadcrumbsView, TabsView, ButtonsView, DialogView, FormView) {
 
-    App.module('PrivateApp.OpenMenusApp.Common.Controllers.NewEdit', function (NewEdit, App, Backbone, Marionette, $, _) {
+    App.module('PrivateApp.OpenMenusApp.Common.Controllers.Dialog', function (Dialog, App, Backbone, Marionette, $, _) {
 
-        var createOrUpdate = function (openMenu) {
+        var show = function (openMenu) {
 
-            var dialogView = new View.Dialog();
+            var dialogView = new DialogView();
 
-            var tabsView = new View.Tabs({
+            var tabsView = new TabsView({
                 model: openMenu
             });
 
-            var restaurantView = new View.Form({
+            var restaurantView = new FormView({
                 model: openMenu.get('restaurant_info')
             });
 
-            var environmentView = new View.Form({
+            var environmentView = new FormView({
                 model: openMenu.get('environment')
             });
 
-            var buttonsView = new View.Buttons({
+            var buttonsView = new ButtonsView({
                 model: openMenu
             });
 
@@ -39,6 +43,7 @@ define([
                 dialogView.$('.close').trigger('click');
                 showMenus(options.model);
             });
+
             buttonsView.on('cancel', function () {
                 dialogView.$('.close').trigger('click');
                 showOpenMenus();
@@ -60,11 +65,11 @@ define([
             App.PrivateApp.trigger('openMenus:show');
         };
 
-        NewEdit.Controller = {
-            createOrUpdate: createOrUpdate
+        Dialog.Controller = {
+            show: show
         };
     });
 
-    return App.PrivateApp.OpenMenusApp.Common.Controllers.NewEdit;
+    return App.PrivateApp.OpenMenusApp.Common.Controllers.Dialog;
 
 });

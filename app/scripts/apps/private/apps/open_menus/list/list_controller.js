@@ -18,9 +18,9 @@ define([
 		};
 
 		var showViews = function (openMenus) {
-			var panelView,
+			var layoutView,
 				openMenusView,
-				layoutView;
+				panelView;
 			layoutView = new LayoutView();
 			openMenusView = new OpenMenusView({
 				collection: openMenus

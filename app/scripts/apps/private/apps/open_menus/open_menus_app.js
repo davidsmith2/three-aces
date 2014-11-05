@@ -54,7 +54,9 @@ define([
                     executeAction(Controller.update, openMenu);
                 });
             },
-            deleteOpenMenu: function (openMenu) {}
+            deleteOpenMenu: function (openMenu) {
+            	openMenu.destroy();
+            }
         };
 
         // triggered from private_app.js
@@ -81,7 +83,7 @@ define([
         // triggered from the open menus app list controller
         App.PrivateApp.OpenMenusApp.on('openMenu:delete', function (openMenu) {
             App.navigate('!/openmenus/' + openMenu.get('_id') + '?.htmlaction=delete');
-            API.deleteOpenMenu();
+            API.deleteOpenMenu(openMenu);
         });
 
     });

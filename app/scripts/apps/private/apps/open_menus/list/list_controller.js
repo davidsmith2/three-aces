@@ -1,7 +1,9 @@
 define([
 	'app',
-	'apps/private/apps/open_menus/list/list_view'
-], function (App, View) {
+	'apps/private/apps/open_menus/list/views/layout',
+	'apps/private/apps/open_menus/list/views/open_menus',
+	'apps/private/apps/open_menus/list/views/panel'
+], function (App, LayoutView, OpenMenusView, PanelView) {
 
 	App.module('PrivateApp.OpenMenusApp.List', function (List, App, Backbone, Marionette, $, _) {
 
@@ -19,26 +21,26 @@ define([
 			var panelView,
 				openMenusView,
 				layoutView;
-			panelView = new View.Panel();
-			panelView.on('openMenu:new', function () {
-				App.PrivateApp.OpenMenusApp.trigger('openMenu:new', openMenus);
-			});
-			openMenusView = new View.OpenMenus({
+			layoutView = new LayoutView();
+			openMenusView = new OpenMenusView({
 				collection: openMenus
 			});
-			openMenusView.on('itemview:openMenu:show', function (itemView, options) {
-				App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
-			});
-			openMenusView.on('itemView:openMenu:edit', function (itemView, options) {
-				App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options.model);
-			});
-			openMenusView.on('openMenu:delete', function (itemView, options) {
-				options.model.destroy();
-			});
-			layoutView = new View.Layout();
+			panelView = new PanelView();
 			layoutView.on('show', function () {
 				this.panelRegion.show(panelView);
 				this.listRegion.show(openMenusView);
+			});
+			openMenusView.on('childview:openMenu:show', function (itemView, options) {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
+			});
+			openMenusView.on('childview:openMenu:edit', function (itemView, options) {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options.model);
+			});
+			openMenusView.on('childview:openMenu:delete', function (itemView, options) {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:delete', options.model);
+			});
+			panelView.on('openMenu:new', function () {
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:new', openMenus);
 			});
 			App.mainRegion.show(layoutView);
 		};

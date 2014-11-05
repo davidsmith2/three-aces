@@ -20,7 +20,6 @@ module.exports = _.extend(controller, {
 		return OpenMenu
 			.findById(_id)
 			.exec(function (err, openMenu) {
-				console.log(typeof openMenu._id)
 				if (!err) {
 					return res.send(openMenu);
 				} else {

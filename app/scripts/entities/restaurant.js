@@ -12,14 +12,14 @@ define([
                 return '/openmenus/' + this.get('open_menu').get('_id') + '/restaurant';
             },
             defaults: {
+                restaurant_name: '',
                 address_1: '',
                 city_town: '',
+                state_province: '',
+                postal_code: '',
                 country: '',
                 fax: '',
-                phone: '',
-                postal_code: '',
-                restaurant_name: '',
-                state_province: ''
+                phone: ''
             },
             schema: {
                 restaurant_name: {

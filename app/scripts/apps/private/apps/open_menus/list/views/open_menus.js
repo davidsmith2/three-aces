@@ -1,13 +1,10 @@
 define([
 	'backbone.marionette',
-	'apps/private/apps/open_menus/list/views/open_menu',
-	'hbs!apps/private/apps/open_menus/list/views/templates/open_menus'
-], function (Marionette, View, template) {
-	return Marionette.CompositeView.extend({
-		className: 'table table-striped table-bordered',
-		childView: View,
-		childViewContainer: 'tbody',
+	'apps/private/apps/open_menus/list/views/open_menu'
+], function (Marionette, OpenMenuView, template) {
+	return Marionette.CollectionView.extend({
 		tagName: 'table',
-		template: template
+		className: 'table table-striped',
+		childView: OpenMenuView
 	});
 });

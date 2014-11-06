@@ -5,14 +5,13 @@ define([
 	return Marionette.ItemView.extend({
 		template: template,
 		tagName: 'tr',
+		className: 'row',
 		ui: {
 			'show':     '.js-show',
-			'edit':     '.js-edit',
 			'delete':   '.js-delete'
 		},
 		triggers: {
 			'click @ui.show':   'openMenu:show',
-			'click @ui.edit':   'openMenu:edit',
 			'click @ui.delete': 'openMenu:delete'
 		}
 	});

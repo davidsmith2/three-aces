@@ -5,9 +5,9 @@ define([
 	return Marionette.LayoutView.extend({
 		template: template,
 		regions: {
-			'a': '#a',
-			'b': '#b',
-			'c': '#c'
+			'restaurantRegion': '#restaurant-region',
+			'environmentRegion': '#environment-region',
+			'menusRegion': '#menus-region'
 		}
 	});
 });

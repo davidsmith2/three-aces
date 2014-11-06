@@ -5,10 +5,11 @@ define([
 	return Marionette.ItemView.extend({
 		template: template,
 		tagName: 'tr',
+		className: 'row',
 		triggers: {
-			'click td .js-show': 'menu:show',
-			'click td .js-edit': 'menu:edit',
-			'click td .js-delete': 'menu:delete'
+			'click td .js-show': 	'menu:show',
+			'click td .js-edit': 	'menu:edit',
+			'click td .js-delete': 	'menu:delete'
 		}
 	});
 });

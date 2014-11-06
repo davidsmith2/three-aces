@@ -41,7 +41,8 @@ define([
 						},
 						headingCallback: function ($el) {
 							var panelButtonView = new PanelButtonView({
-								model: this.model
+								model: this.model,
+				                isReadOnly: true
 							});
 							panelButtonView.render();
 							panelButtonView.on('edit', function (a) {

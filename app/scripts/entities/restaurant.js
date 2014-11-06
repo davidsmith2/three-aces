@@ -24,24 +24,24 @@ define([
             schema: {
                 restaurant_name: {
                     type: 'Text',
-                    title: 'Restaurant name'
+                    title: 'Name'
                 },
                 address_1: {
                     type: 'Text',
-                    title: 'Address 1'
+                    title: 'Address'
                 },
                 city_town: {
                     type: 'Text',
-                    title: 'City/town'
+                    title: 'City'
                 },
                 state_province: {
                     type: 'Select',
                     options: ['', 'MA', 'VA'],
-                    title: 'State/province'
+                    title: 'State'
                 },
                 postal_code: {
                     type: 'Text',
-                    title: 'Postal code'
+                    title: 'ZIP'
                 },
                 country: {
                     type: 'Select',

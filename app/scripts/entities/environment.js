@@ -17,7 +17,7 @@ define([
             schema: {
                 takeout_available: {
                     type: 'Checkbox',
-                    title: 'Takeout available?'
+                    title: 'Takeout?'
                 }
             }
         });

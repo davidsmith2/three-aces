@@ -23,7 +23,7 @@ define([
 							panelButtonView.on('edit', function (a) {
 								console.log(a)
 							});
-							$el.append('<h3 class="panel-title pull-left">Restaurant</h3>');
+							$el.append('<h2 class="panel-title pull-left">Restaurant</h2>');
 							$el.addClass('clearfix').append(panelButtonView.el);
 						},
 						bodyCallback: function ($el, region) {
@@ -47,7 +47,7 @@ define([
 							panelButtonView.on('edit', function (a) {
 								console.log(a)
 							});
-							$el.append('<h3 class="panel-title pull-left">Environment</h3>');
+							$el.append('<h2 class="panel-title pull-left">Environment</h2>');
 							$el.addClass('clearfix').append(panelButtonView.el);
 						},
 						bodyCallback: function ($el, region) {
@@ -61,7 +61,7 @@ define([
 					var menusView = new PanelView({
 						collection: menus,
 						headingCallback: function ($el) {
-							$el.append('<h3 class="panel-title">Menus</h3>');
+							$el.append('<h2 class="panel-title">Menus</h2>');
 						},
 						bodyCallback: function ($el, region) {
 				            var bodyView = new MenusView({

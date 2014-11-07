@@ -1,57 +1,48 @@
 define([
-    'app',
-    'apps/private/common/views/buttons',
-    'apps/private/common/views/dialog',
-    'apps/private/common/views/form'
-], function (App, ButtonsView, DialogView, FormView) {
-
-    App.module('PrivateApp.OpenMenusApp.Common.Controllers.Dialog', function (Dialog, App, Backbone, Marionette, $, _) {
-
-        var show = function (openMenu) {
-
-            var dialogView = new DialogView();
-
-            var buttonsView = new ButtonsView({
-                model: openMenu
-            });
-
-            var formView = new FormView({
-                model: openMenu.get('restaurant_info')
-            });
-
-            dialogView.on('show', function () {
-                $(this.titleRegion.el).html('<h3>Title</h3>');
-                this.bodyRegion.show(formView);
-                this.footerRegion.show(buttonsView);
-            });
-
-            buttonsView.on('save', function (options) {
-                dialogView.$('.close').trigger('click');
-                showOpenMenu(this.model);
-            });
-
-            buttonsView.on('cancel', function () {
-                dialogView.$('.close').trigger('click');
-                showOpenMenus();
-            });
-
-            App.dialogRegion.show(dialogView);
-
-        };
-
-        var showOpenMenu = function (openMenu) {
-            App.PrivateApp.OpenMenusApp.trigger('openMenu:show', openMenu);
-        };
-
-        var showOpenMenus = function () {
-            App.PrivateApp.trigger('openMenus:show');
-        };
-
-        Dialog.Controller = {
-            show: show
-        };
-    });
-
-    return App.PrivateApp.OpenMenusApp.Common.Controllers.Dialog;
-
+	'app',
+	'apps/private/common/views/dialog',
+	'apps/private/common/views/form',
+	'apps/private/apps/open_menus/dialog/views/footer'
+], function (App, DialogView, DialogBodyView, DialogFooterView) {
+	App.module('PrivateApp.OpenMenusApp.Common.Controllers.Dialog', function (Dialog, App, Backbone, Marionette, $) {
+		var show = function (openMenu) {
+			var dialogView,
+				dialogTitle,
+				dialogBodyView,
+				dialogFooterView;
+			dialogView = new DialogView();
+			dialogTitle = '<h3>Title</h3>';
+			dialogBodyView = new DialogBodyView({
+				model: openMenu.get('restaurant_info')
+			});
+			dialogFooterView = new DialogFooterView({
+				model: openMenu
+			});
+			dialogView.on('show', function () {
+				$(this.titleRegion.el).html(dialogTitle);
+				this.bodyRegion.show(dialogBodyView);
+				this.footerRegion.show(dialogFooterView);
+			});
+			dialogFooterView.on('save', function (options) {
+				options.model.save();
+				dialogView.dismiss();
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
+			});
+			dialogFooterView.on('saveClose', function (options) {
+				options.model.save();
+				dialogView.dismiss();
+				App.PrivateApp.trigger('openMenus:show');
+			});
+			dialogFooterView.on('cancel', function (options) {
+				options.model.destroy();
+				dialogView.dismiss();
+				App.PrivateApp.trigger('openMenus:show');
+			});
+			App.dialogRegion.show(dialogView);
+		};
+		Dialog.Controller = {
+			show: show
+		};
+	});
+	return App.PrivateApp.OpenMenusApp.Common.Controllers.Dialog;
 });

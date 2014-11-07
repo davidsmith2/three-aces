@@ -14,14 +14,17 @@ define([
             footerRegion: '.modal-footer'
         },
         events: {
-            'click .close': 'closeDialog'
+            'click .close': 'onClickClose'
         },
         onShow: function () {
             this.$el.modal('show');
             $('.modal-backdrop').css({'z-index': 0});
         },
-        closeDialog: function (e) {
+        onClickClose: function (e) {
             e.preventDefault();
+            this.dismiss();
+        },
+        dismiss: function () {
             this.stopListening();
             //this.close();
             this.$el.modal('hide');

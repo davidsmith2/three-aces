@@ -5,7 +5,7 @@ define([
 	'backbone-forms',
 	'backbone-forms-bootstrap3'
 ], function (Backbone, $) {
-	var FormView = Backbone.View.extend({
+	return Backbone.View.extend({
 		initialize: function (options) {
 			this.options = options;
 			this.form = new Backbone.Form({
@@ -14,9 +14,9 @@ define([
 			this.on('render', this.onRender, this);
 		},
 		events: {
-			'blur input[type=text]': 'saveTextField',
-			'change input[type=checkbox]': 'saveCheckboxField',
-			'change select': 'saveSelectField'
+			'blur input[type=text]': 'setTextField',
+			'change input[type=checkbox]': 'setCheckboxField',
+			'change select': 'setSelectField'
 		},
 		render: function () {
 			this.$el.empty().append(this.form.render().el);
@@ -35,25 +35,25 @@ define([
 			}
 			this.$('input[type=checkbox]', 'input[type=radio]').removeClass('form-control');
 		},
-		saveTextField: function (e) {
+		setTextField: function (e) {
 			var $field = this.getField(e);
 			var fieldValue = $field.val();
-			this.saveField(this.getFieldName($field), fieldValue);
+			this.setField(this.getFieldName($field), fieldValue);
 		},
-		saveCheckboxField: function (e) {
+		setCheckboxField: function (e) {
 			var $field = this.getField(e);
 			var fieldValue = ($field.is(':checked')) ? 1 : 0;
-			this.saveField(this.getFieldName($field), fieldValue);
+			this.setField(this.getFieldName($field), fieldValue);
 		},
-		saveSelectField: function (e) {
+		setSelectField: function (e) {
 			var $field = this.getField(e);
 			var fieldValue = $field.find(':selected').text();
-			this.saveField(this.getFieldName($field), fieldValue);
+			this.setField(this.getFieldName($field), fieldValue);
 		},
-		saveField: function (fieldName, fieldValue) {
+		setField: function (fieldName, fieldValue) {
 			var fieldData = {};
 			fieldData[fieldName] = fieldValue;
-			this.model.save(fieldData);
+			this.model.set(fieldData);
 		},
 		getFieldName: function ($field) {
 			return $field.attr('name');
@@ -62,5 +62,4 @@ define([
 			return $(e.target);
 		}
 	});
-	return FormView;
 });

@@ -17,11 +17,8 @@ define([
 			this.options = options;
 		},
 		onRender: function () {
-			if (this.options.headingCallback) {
-				this.options.headingCallback(this.ui.heading, this.headingRegion);
-			}
-			if (this.options.bodyCallback) {
-				this.options.bodyCallback(this.ui.body, this.bodyRegion);
+			if (this.options.callback) {
+				this.options.callback(this);
 			}
 		}
 	});

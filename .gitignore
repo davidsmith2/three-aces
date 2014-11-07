@@ -1,9 +1,11 @@
 node_modules
 bower_components
 
-app/scripts/lib/vendor
 dist
 temp
+
+app/scripts/apps/common/views/unused
+app/scripts/lib/vendor
 
 .sass-cache
 .tmp/

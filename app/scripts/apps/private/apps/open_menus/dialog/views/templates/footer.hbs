@@ -1,3 +1,9 @@
-<button class="btn btn-primary js-save">Save</button>
-<button class="btn btn-secondary js-save-close">Save and close</button>
-<button class="btn btn-secondary js-cancel">Cancel</button>
+{{#if buttons.save}}
+	<button class="btn btn-primary js-save">Save</button>
+{{/if}}
+{{#if buttons.saveClose}}
+	<button class="btn btn-secondary js-save-close">Save and close</button>
+{{/if}}
+{{#if buttons.cancel}}
+	<button class="btn btn-secondary js-cancel">Cancel</button>
+{{/if}}

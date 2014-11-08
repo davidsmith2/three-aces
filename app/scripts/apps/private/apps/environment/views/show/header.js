@@ -1,6 +1,6 @@
 define([
 	'backbone.marionette',
-	'hbs!apps/private/apps/restaurant/show/views/templates/panel_heading'
+	'hbs!apps/private/apps/environment/views/show/templates/header'
 ],
 
 function (Marionette, template) {

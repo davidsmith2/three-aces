@@ -1,6 +1,6 @@
 define([
 	'app',
-	'apps/private/apps/environment/show/views/panel_heading',
+	'apps/private/apps/environment/views/show/header',
 	'apps/private/common/views/form/form',
 	'apps/private/common/views/panel/panel'
 ],

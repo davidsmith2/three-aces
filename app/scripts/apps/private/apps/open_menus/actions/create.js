@@ -12,7 +12,7 @@ define([
             App.execute('dialog:show', {
                 model: openMenu.get('restaurant_info'),
                 callback: function (dialog) {
-					var dialogTitle = '<h3>Restaurant</h3>';
+					var dialogTitle = '<h2 class="h2-modal-title">Create an open menu</h2>';
 					var dialogBodyView = new FormView({
 						model: openMenu.get('restaurant_info')
 					});

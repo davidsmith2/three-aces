@@ -1,2 +1,7 @@
 @import url('lib/vendor/bootstrap.css');
 @import url('lib/vendor/bootstrap3.css');
+
+.h2-modal-title {
+	margin-top: 0;
+	margin-bottom: 0;
+}

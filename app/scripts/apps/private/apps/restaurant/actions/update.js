@@ -12,7 +12,7 @@ function (App, DialogView, FormView) {
 				var dialogTitle,
 					dialogBodyView,
 					dialogFooterView;
-				dialogTitle = '<h3>Restaurant</h3>';
+				dialogTitle = '<h2 class="h2-modal-title">Edit restaurant</h2>';
 				dialogBodyView = new FormView({
 					model: options.model
 				});

@@ -2,9 +2,9 @@ define([
 	'jquery',
 	'app',
 	'apps/private/apps/open_menus/show/views/open_menu',
-	'apps/private/apps/open_menus/environment/router',
-	'apps/private/apps/open_menus/menus/router',
-	'apps/private/apps/open_menus/restaurant/router'
+	'apps/private/apps/environment/router',
+	'apps/private/apps/menus/router',
+	'apps/private/apps/restaurant/router'
 ],
 
 function ($, App, OpenMenuView) {

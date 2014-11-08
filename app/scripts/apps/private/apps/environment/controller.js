@@ -1,7 +1,7 @@
 define([
 	'app',
-	'apps/private/apps/open_menus/environment/actions/show',
-	'apps/private/apps/open_menus/environment/actions/update'
+	'apps/private/apps/environment/actions/show',
+	'apps/private/apps/environment/actions/update'
 ],
 function (App, showAction, updateAction) {
 	App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {

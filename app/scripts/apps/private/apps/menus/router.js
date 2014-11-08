@@ -1,6 +1,6 @@
 define([
     'app',
-    'apps/private/apps/open_menus/menus/controller'
+    'apps/private/apps/menus/controller'
 ],
 function (App, controller) {
 	App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {

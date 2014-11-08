@@ -1,6 +1,6 @@
 define([
 	'app',
-	'apps/private/apps/open_menus/menus/actions/index'
+	'apps/private/apps/menus/actions/index'
 ],
 function (App, indexAction) {
 	App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {

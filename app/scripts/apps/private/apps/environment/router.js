@@ -1,31 +1,30 @@
 define([
     'app',
-    'apps/private/apps/open_menus/restaurant/controller'
+    'apps/private/apps/environment/controller'
 ],
 function (App, controller) {
-
 	App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {
-		OpenMenusApp.RestaurantRouter = Marionette.AppRouter.extend({
+		OpenMenusApp.EnvironmentRouter = Marionette.AppRouter.extend({
 			routes: {
-				'!/openmenus/:open_menu/restaurant': ''
+				'!/openmenus/:open_menu/environment': ''
 			}
 		});
 		var executeAction = function (action, arg) {
 	        App.startSubApp('PrivateApp.OpenMenuApp');
 	        action(arg);
 		};
-        App.vent.on('restaurant:show', function (options) {
+        App.vent.on('environment:show', function (options) {
             executeAction(controller.show, options);
         });
-        App.vent.on('restaurant:edit', function (options) {
+        App.vent.on('environment:edit', function (options) {
         	var openMenu = options.model.get('open_menu');
-            App.navigate('!/openmenus/' + openMenu.get('_id') + '/restaurant');
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '/environment');
             executeAction(controller.update, options);
         });
-        App.vent.on('restaurant:save restaurant:cancel', function (options) {
+        App.vent.on('environment:save environment:cancel', function (options) {
         	var openMenu = options.model.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id'));
         });
 	});
-	return new App.PrivateApp.OpenMenusApp.RestaurantRouter();
+	return new App.PrivateApp.OpenMenusApp.EnvironmentRouter();
 });

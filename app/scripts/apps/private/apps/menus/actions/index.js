@@ -1,8 +1,8 @@
 define([
 	'jquery',
 	'app',
-	'apps/private/apps/open_menus/show/views/menus',
-	'apps/private/apps/open_menus/show/views/panel'
+	'apps/private/apps/menus/index/views/menus',
+	'apps/private/apps/menus/index/views/panel'
 ],
 
 function ($, App, MenusView, PanelView) {

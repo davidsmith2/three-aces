@@ -1,7 +1,7 @@
 define([
 	'backbone.marionette',
 	'app',
-	'hbs!apps/private/apps/open_menus/dialog/views/templates/footer'
+	'hbs!apps/private/common/views/dialog/templates/dialog-footer'
 ], function (Marionette, App, Template) {
 	var DialogFooterView = Marionette.ItemView.extend({
 		template: Template,
@@ -12,12 +12,7 @@ define([
 		},
 		initialize: function (options) {
 			if (options.buttons) {
-				this.initButtons(options.buttons);
-			}
-		},
-		initButtons: function (buttons) {
-			for (var button in buttons) {
-				this.model.set('buttons', buttons);
+				this.model.set('buttons', options.buttons);
 			}
 		}
 	});

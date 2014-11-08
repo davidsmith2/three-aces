@@ -1,6 +1,6 @@
 define([
 	'backbone.marionette',
-	'hbs!apps/private/apps/open_menus/show/views/templates/open_menu'
+	'hbs!apps/private/apps/open_menus/show/views/templates/layout'
 ], function (Marionette, template) {
 	return Marionette.LayoutView.extend({
 		template: template,

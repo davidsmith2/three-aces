@@ -1,7 +1,7 @@
 define([
 	'backbone.marionette',
 	'jquery',
-	'hbs!apps/private/apps/open_menus/show/views/templates/panel'
+	'hbs!apps/private/common/views/panel/templates/panel'
 ], function (Marionette, $, template) {
 	return Marionette.LayoutView.extend({
 		template: template,

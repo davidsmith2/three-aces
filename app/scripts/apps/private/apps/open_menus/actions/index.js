@@ -1,8 +1,8 @@
 define([
 	'jquery',
 	'app',
-	'apps/private/apps/open_menus/index/views/open_menus_heading',
-	'apps/private/apps/open_menus/index/views/open_menus_table'
+	'apps/private/apps/open_menus/views/index/header',
+	'apps/private/apps/open_menus/views/index/table'
 ], function ($, App, OpenMenusHeadingView, OpenMenusTableView) {
 	return function () {
 		$.when(App.request('openMenu:entities')).done(function (openMenus) {
@@ -22,8 +22,8 @@ define([
 				headingView: openMenusHeadingView,
 				bodyView: openMenusTableView,
 				callbacks: {
-					onRender: function (panelView) {
-						panelView.ui.heading.addClass('clearfix');
+					onRender: function (panel) {
+						panel.ui.heading.addClass('clearfix');
 					}
 				}
 			});

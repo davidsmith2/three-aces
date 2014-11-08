@@ -1,7 +1,7 @@
 define([
 	'jquery',
 	'app',
-	'apps/private/apps/open_menus/show/views/layout',
+	'apps/private/apps/open_menus/views/show/layout',
 	'apps/private/apps/environment/router',
 	'apps/private/apps/menus/router',
 	'apps/private/apps/restaurant/router'

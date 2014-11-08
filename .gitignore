@@ -4,7 +4,7 @@ bower_components
 dist
 temp
 
-app/scripts/apps/common/views/unused
+app/scripts/apps/private/common/views/unused
 app/scripts/apps/private/apps/unused
 
 app/scripts/lib/vendor

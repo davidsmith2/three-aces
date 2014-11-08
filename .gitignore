@@ -5,6 +5,8 @@ dist
 temp
 
 app/scripts/apps/common/views/unused
+app/scripts/apps/private/apps/unused
+
 app/scripts/lib/vendor
 
 .sass-cache

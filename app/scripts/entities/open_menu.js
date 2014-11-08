@@ -63,28 +63,22 @@ define([
 				var openMenus = new OpenMenu.Collection();
 				var defer = $.Deferred();
 				openMenus.fetch({
-					success: function (data) {
-						defer.resolve(data);
+					success: function (collection) {
+						defer.resolve(collection);
 					}
 				});
 				var promise = defer.promise();
 				return promise;
 			},
-			getOpenMenuEntity: function (openMenuId) {
-				var openMenu = new OpenMenu.Model({
-					_id: openMenuId
-				});
+			getOpenMenuEntity: function (id) {
+				var openMenus = new OpenMenu.Collection();
 				var defer = $.Deferred();
-				setTimeout(function () {
-					openMenu.fetch({
-						success: function (data) {
-							defer.resolve(data);
-						},
-						error: function () {
-							defer.resolve(undefined);
-						}
-					});
-				}, 2000);
+				openMenus.fetch({
+					success: function (collection) {
+						var model = collection.get(id);
+						defer.resolve(model);
+					}
+				});
 				var promise = defer.promise();
 				return promise;
 			}

@@ -1,7 +1,7 @@
 define([
 	'app',
 	'apps/private/apps/open_menus/dialog/views/footer',
-	'apps/private/apps/open_menus/show/views/layout',
+	'apps/private/apps/open_menus/show/views/open_menu',
 	'apps/private/apps/open_menus/show/views/menus',
 	'apps/private/apps/open_menus/show/views/panel',
 	'apps/private/apps/open_menus/show/views/panel_button',

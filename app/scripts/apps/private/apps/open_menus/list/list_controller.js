@@ -31,7 +31,7 @@ define([
 				this.listRegion.show(openMenusView);
 			});
 			openMenusView.on('childview:openMenu:show', function (itemView, options) {
-				App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model);
+				App.PrivateApp.OpenMenusApp.trigger('openMenu:show', options.model.get('id'));
 			});
 			openMenusView.on('childview:openMenu:edit', function (itemView, options) {
 				App.PrivateApp.OpenMenusApp.trigger('openMenu:edit', options.model);

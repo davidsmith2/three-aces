@@ -1,7 +1,7 @@
 define([
 	'app',
-	'apps/private/common/views/dialog',
-	'apps/private/common/views/form'
+	'apps/private/common/views/dialog/dialog',
+	'apps/private/common/views/form/form'
 ],
 
 function (App, DialogView, FormView) {

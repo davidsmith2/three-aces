@@ -1,9 +1,9 @@
 define([
 	'jquery',
 	'app',
-	'apps/private/common/views/dialog',
-	'apps/private/common/views/dialog-footer',
-	'apps/private/common/views/form'
+	'apps/private/common/views/dialog/dialog',
+	'apps/private/common/views/dialog/dialog-footer',
+	'apps/private/common/views/form/form'
 ], function ($, App, DialogView, DialogFooterView, FormView) {
 	return function () {
 		var gettingOpenMenu = App.request('openMenu:entity:new'),

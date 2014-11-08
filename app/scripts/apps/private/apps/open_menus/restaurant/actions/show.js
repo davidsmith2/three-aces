@@ -2,7 +2,7 @@ define([
 	'app',
 	'apps/private/apps/open_menus/show/views/panel',
 	'apps/private/apps/open_menus/show/views/panel_button',
-	'apps/private/common/views/form'
+	'apps/private/common/views/form/form'
 ],
 
 function (App, PanelView, PanelButtonView, FormView) {

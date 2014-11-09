@@ -38,12 +38,16 @@ define([
 		showDialog: function (options) {
 			var dialogView = new DialogView(options);
 			options.region.show(dialogView);
-			dialogView.headerRegion.show(options.headerView);
-			dialogView.bodyRegion.show(options.bodyView);
-			dialogView.footerRegion.show(options.footerView);
+            dialogView.bodyRegion.show(options.bodyView);
+			if (options.headerView) {
+                dialogView.headerRegion.show(options.headerView);
+            }
+			if (options.footerView) {
+                dialogView.footerRegion.show(options.footerView);
+            }
 			if (options.callback) {
-				options.callback(dialogView);
-			}
+                options.callback(dialogView);
+            }
 		}
 	};
 	App.commands.setHandler('dialog:show', API.showDialog);

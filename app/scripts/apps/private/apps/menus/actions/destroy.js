@@ -3,20 +3,19 @@ define([
     'backbone',
     'backbone.marionette',
     'app',
-    'apps/private/apps/open_menus/views/destroy/header',
-    'apps/private/apps/open_menus/views/destroy/body',
-    'apps/private/apps/open_menus/views/destroy/footer'
+    'apps/private/apps/menus/views/destroy/header',
+    'apps/private/apps/menus/views/destroy/body',
+    'apps/private/apps/menus/views/destroy/footer'
 ],
-
 function (_, Backbone, Marionette, App, HeaderView, BodyView, FooterView) {
-	return function (openMenu) {
+	return function (menu) {
         var headerView,
             bodyView,
             footerView;
-        _.extend(openMenu.attributes, {title: 'Delete this open menu?'});
-        headerView = new HeaderView({model: openMenu});
-        bodyView = new BodyView({model: openMenu});
-        footerView = new FooterView({model: openMenu});
+        _.extend(menu.attributes, {title: 'Delete this menu?'});
+        headerView = new HeaderView({model: menu});
+        bodyView = new BodyView({model: menu});
+        footerView = new FooterView({model: menu});
         App.execute('dialog:show', {
             region: App.dialogRegion,
             headerView: headerView,
@@ -24,7 +23,7 @@ function (_, Backbone, Marionette, App, HeaderView, BodyView, FooterView) {
             footerView: footerView,
             callback: function (dialog) {
                 footerView.on('yes no', dialog.dismiss, dialog);
-                footerView.on('yes', openMenu.destroy, openMenu);
+                footerView.on('yes', menu.destroy, menu);
             }
         });
 	};

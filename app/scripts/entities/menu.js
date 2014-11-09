@@ -5,7 +5,7 @@ define([
     'backbone-forms'
 ], function (App, MenuGroup) {
 
-	App.module('Entities.Menu', function (Menu, App, Backbone, Marionette, $, _) {
+	App.module('Entities.Menu', function (Menu, App, Backbone, Marionette, $) {
 
 		Menu.Model = Backbone.RelationalModel.extend({
 		    idAttribute: '_id',
@@ -22,7 +22,7 @@ define([
 		        }
 		    ],
 		    defaults: {
-		        currency_symbol: '',
+		        currency_symbol: '$',
 		        menu_name: '',
 		        menu_groups: []
 		    },

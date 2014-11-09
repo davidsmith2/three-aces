@@ -46,6 +46,9 @@ function (App, controller, environmentController, menusController, restaurantCon
         App.vent.on('menu:index', function (options) {
             executeAction(menusController.index, options);
         });
+        App.vent.on('menu:delete', function (menu) {
+            executeAction(menusController.destroy, menu);
+        });
     });
     return new App.PrivateApp.OpenMenuApp.Router();
 });

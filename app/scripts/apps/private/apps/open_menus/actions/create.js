@@ -1,55 +1,56 @@
 define([
 	'jquery',
+	'backbone',
 	'app',
-	'apps/private/common/views/dialog/dialog',
-	'apps/private/common/views/dialog/dialog-footer',
-	'apps/private/common/views/form/form'
-], function ($, App, DialogView, DialogFooterView, FormView) {
+	'apps/private/apps/open_menus/views/create/footer',
+	'apps/private/apps/open_menus/views/create/header',
+	'apps/private/common/views/form/form',
+    'apps/private/common/views/dialog/dialog'
+], function ($, Backbone, App, FooterView, HeaderView, FormView) {
 	return function () {
 		var gettingOpenMenu = App.request('openMenu:entity:new'),
 			gettingOpenMenus = App.request('openMenu:entities');
 		$.when(gettingOpenMenu, gettingOpenMenus).done(function (openMenu, openMenus) {
-            App.execute('dialog:show', {
-                model: openMenu.get('restaurant_info'),
-                callback: function (dialog) {
-					var dialogTitle = '<h2 class="h2-modal-title">Create an open menu</h2>';
-					var dialogBodyView = new FormView({
-						model: openMenu.get('restaurant_info')
-					});
-					var dialogFooterView = App.request('dialog:footer:create', {
-						model: openMenu,
-						buttons: {
-							save: true,
-							saveClose: true,
-							cancel: true
-						}
-					});
-					dialogFooterView.on('save', function (options) {
-						openMenus.create(options.model, {
-							success: function () {
-								dialog.dismiss();
-								App.vent.trigger('openMenu:show', options.model.get('_id'));
-							}
-						});
-					});
-					dialogFooterView.on('saveClose', function (options) {
-						openMenus.create(options.model, {
-							success: function () {
-								dialog.dismiss();
-								App.vent.trigger('openMenus:index');
-							}
-						});
-					});
-					dialogFooterView.on('cancel', function (options) {
-						options.model.destroy();
-						dialog.dismiss();
+			var headerView,
+				formView,
+				footerView;
+			headerView = new HeaderView({
+				model: new Backbone.Model({
+					title: 'Create an open menu'
+				})
+			});
+			formView = new FormView({
+				model: openMenu.get('restaurant_info')
+			});
+			footerView = new FooterView({
+				model: openMenu
+			});
+			footerView.on('save', function (options) {
+				openMenus.create(options.model, {
+					success: function () {
+						App.vent.trigger('openMenu:show', options.model.get('_id'));
+					}
+				});
+			});
+			footerView.on('saveClose', function (options) {
+				openMenus.create(options.model, {
+					success: function () {
 						App.vent.trigger('openMenus:index');
-					});
-					dialog.ui.title.html(dialogTitle);
-					dialog.bodyRegion.show(dialogBodyView);
-					dialog.footerRegion.show(dialogFooterView);
-                }
-            });
+					}
+				});
+			});
+			footerView.on('cancel', function (options) {
+				options.model.destroy();
+			});
+			App.execute('dialog:show', {
+				region: App.dialogRegion,
+				headerView: headerView,
+				bodyView: formView,
+				footerView: footerView,
+				callback: function (dialog) {
+					footerView.on('save saveClose cancel', dialog.dismiss, dialog);
+				}
+			});
 		});
 	};
 });

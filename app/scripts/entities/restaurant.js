@@ -18,8 +18,8 @@ define([
                 state_province: '',
                 postal_code: '',
                 country: '',
-                fax: '',
-                phone: ''
+                phone: '',
+                fax: ''
             },
             schema: {
                 restaurant_name: {

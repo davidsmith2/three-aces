@@ -23,9 +23,6 @@ define([
 		onShow: function () {
 			this.$el.modal('show');
 			$('.modal-backdrop').css({'z-index': 0});
-			if (this.options.callback) {
-				this.options.callback(this);
-			}
 		},
 		onClickClose: function (e) {
 			e.preventDefault();
@@ -40,7 +37,13 @@ define([
 	var API = {
 		showDialog: function (options) {
 			var dialogView = new DialogView(options);
-			App.dialogRegion.show(dialogView);
+			options.region.show(dialogView);
+			dialogView.headerRegion.show(options.headerView);
+			dialogView.bodyRegion.show(options.bodyView);
+			dialogView.footerRegion.show(options.footerView);
+			if (options.callback) {
+				options.callback(dialogView);
+			}
 		}
 	};
 	App.commands.setHandler('dialog:show', API.showDialog);

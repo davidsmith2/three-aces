@@ -1,46 +1,46 @@
 define([
-	'app',
-	'apps/private/common/views/dialog/dialog',
-	'apps/private/common/views/form/form'
+    'underscore',
+    'backbone',
+    'app',
+    'apps/private/apps/environment/views/update/header',
+    'apps/private/apps/environment/views/update/footer',
+    'apps/private/common/views/form/form'
 ],
-
-function (App, DialogView, FormView) {
-	return function (options) {
+function (_, Backbone, App, HeaderView, FooterView, FormView) {
+    return function (options) {
+        var headerView,
+            formView,
+            footerView;
+        _.extend(options.model.attributes, {
+            title: 'Edit environment'
+        });
+        headerView = new HeaderView({
+            model: options.model
+        });
+        formView = new FormView({
+            model: options.model
+        });
+        footerView = new FooterView({
+            model: options.model
+        });
+        footerView.on('cancel', function (options) {
+            App.vent.trigger('environment:cancel', {model: options.model});
+        });
         App.execute('dialog:show', {
-            model: options.model,
+            region: App.dialogRegion,
+            headerView: headerView,
+            bodyView: formView,
+            footerView: footerView,
             callback: function (dialog) {
-				var dialogTitle,
-					dialogBodyView,
-					dialogFooterView;
-				dialogTitle = '<h2 class="h2-modal-title">Edit environment</h2>';
-				dialogBodyView = new FormView({
-					model: options.model
-				});
-				dialogFooterView = App.request('dialog:footer:create', {
-					model: options.model,
-					buttons: {
-						save: true,
-						saveClose: false,
-						cancel: true
-					}
-				});
-				dialogFooterView.on('save', function (options) {
-					options.model.save(options.model.attributes);
-					dialog.dismiss();
-					App.vent.trigger('environment:save', {
-						model: options.model
-					});
-				});
-				dialogFooterView.on('cancel', function (options) {
-					dialog.dismiss();
-					App.vent.trigger('environment:cancel', {
-						model: options.model
-					});
-				});
-				dialog.ui.title.html(dialogTitle);
-				dialog.bodyRegion.show(dialogBodyView);
-				dialog.footerRegion.show(dialogFooterView);
+                footerView.on('save', function (options) {
+                    options.model.save(options.model.attributes, {
+                        success: function (environment) {
+                            App.vent.trigger('environment:save', {model: environment});
+                        }
+                    });
+                });
+                footerView.on('save cancel', dialog.dismiss, dialog);
             }
         });
-	};
+    };
 });

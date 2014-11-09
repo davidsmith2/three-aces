@@ -1,40 +1,42 @@
 define([
-	'backbone',
+	'backbone.marionette',
+    'backbone',
 	'jquery',
 	'bootstrap',
 	'backbone-forms',
 	'backbone-forms-bootstrap3'
-], function (Backbone, $) {
-	return Backbone.View.extend({
+], function (Marionette, Backbone, $) {
+	return Marionette.ItemView.extend({
+        template: false,
+        events: {
+            'blur input[type=text]': 'setTextField',
+            'change input[type=checkbox]': 'setCheckboxField',
+            'change select': 'setSelectField'
+        },
 		initialize: function (options) {
 			this.options = options;
 			this.form = new Backbone.Form({
 				model: this.model
 			});
-			this.on('render', this.onRender, this);
 		},
-		events: {
-			'blur input[type=text]': 'setTextField',
-			'change input[type=checkbox]': 'setCheckboxField',
-			'change select': 'setSelectField'
-		},
-		render: function () {
-			this.$el.empty().append(this.form.render().el);
-			this.trigger('render');
-			return this;
-		},
+        onBeforeRender: function () {
+            this.renderForm();
+        },
 		onRender: function () {
-			this.$('.control-label')
-				.removeClass('col-sm-2')
-				.addClass('col-sm-3')
-				.next('div')
-				.removeClass('col-sm-10')
-				.addClass('col-sm-9');
-			if (this.options.isReadOnly) {
-				this.$('.form-control').prop('disabled', true);
-			}
-			this.$('input[type=checkbox]', 'input[type=radio]').removeClass('form-control');
+            this.decorateForm();
 		},
+        renderForm: function () {
+            this.$el.empty().append(this.form.render().el);
+        },
+        decorateForm: function () {
+            this.$('.control-label')
+                .removeClass('col-sm-2')
+                .addClass('col-sm-3')
+                .next('div')
+                .removeClass('col-sm-10')
+                .addClass('col-sm-9');
+            this.$('input[type=checkbox]', 'input[type=radio]').removeClass('form-control');
+        },
 		setTextField: function (e) {
 			var $field = this.getField(e);
 			var fieldValue = $field.val();

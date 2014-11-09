@@ -1,14 +1,17 @@
 define([
-    'app',
-    'apps/private/apps/open_menus/router'
+    'app'
 ], function (App) {
     App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp) {
-        OpenMenusApp.startWithParent = false;
         OpenMenusApp.on('start', function () {
-            console.log('the open menus app is starting');
+            console.log('open menus app: started');
+            require([
+                'apps/private/apps/open_menus/router'
+            ], function () {
+                App.vent.trigger('openMenus:index');
+            });
         });
         OpenMenusApp.on('stop', function () {
-            console.log('the open menus app is stopping');
+            console.log('open menus app: stopped');
         });
     });
     return App.PrivateApp.OpenMenusApp;

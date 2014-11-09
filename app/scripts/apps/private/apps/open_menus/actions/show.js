@@ -1,31 +1,12 @@
 define([
 	'jquery',
 	'app',
-	'apps/private/apps/open_menus/views/show/layout',
-	'apps/private/apps/environment/router',
-	'apps/private/apps/menus/router',
-	'apps/private/apps/restaurant/router'
+    'apps/private/apps/open_menu/app'
 ],
-
-function ($, App, OpenMenuView) {
+function ($, App, OpenMenuApp) {
 	return function (id) {
 		$.when(App.request('openMenu:entity', id)).done(function (openMenu) {
-			var openMenuView = new OpenMenuView({
-				model: openMenu
-			});
-			App.mainRegion.show(openMenuView);
-			App.vent.trigger('restaurant:show', {
-				model: openMenu.get('restaurant_info'),
-				region: openMenuView.restaurantRegion
-			});
-			App.vent.trigger('environment:show', {
-				model: openMenu.get('environment'),
-				region: openMenuView.environmentRegion
-			});
-			App.vent.trigger('menu:index', {
-				model: openMenu,
-				region: openMenuView.menusRegion
-			});
+            OpenMenuApp.start(openMenu);
 		});
 	};
 });

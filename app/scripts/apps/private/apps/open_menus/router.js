@@ -16,16 +16,16 @@ function (App, controller) {
         var executeAction = function (path, trigger) {
             App.navigate(path, {trigger: trigger});
         };
-        App.vent.on('openMenus:index', function () {
+        OpenMenusApp.on('openMenus:index', function () {
             executeAction('!/openmenus/index', true);
         });
-        App.vent.on('openMenu:new', function () {
+        OpenMenusApp.on('openMenu:new', function () {
             executeAction('!/openmenus/create', true);
         });
-        App.vent.on('openMenu:show', function (id) {
+        OpenMenusApp.on('openMenu:show', function (id) {
             executeAction('!/openmenus/' + id, true);
         });
-        App.vent.on('openMenu:delete', function (id) {
+        OpenMenusApp.on('openMenu:delete', function (id) {
             executeAction('!/openmenus/destroy/' + id, true);
         });
     });

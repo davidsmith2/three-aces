@@ -10,11 +10,6 @@ define([
 		},
 		triggers: {
 			'click @ui.new': 'openMenu:new'
-		},
-		initialize: function () {
-			this.on('openMenu:new', function () {
-				App.vent.trigger('openMenu:new');
-			});
 		}
 	});
 });

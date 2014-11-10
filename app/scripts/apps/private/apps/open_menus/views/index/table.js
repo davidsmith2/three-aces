@@ -8,14 +8,6 @@ define([
 		tagName: 'table',
 		className: 'table table-striped',
 		childView: TableRowView,
-		emptyView: EmptyView,
-		initialize: function (options) {
-			this.on('childview:openMenu:show', function (itemView, options) {
-				App.vent.trigger('openMenu:show', options.model.get('_id'));
-			});
-			this.on('childview:openMenu:delete', function (itemView, options) {
-				App.vent.trigger('openMenu:delete', options.model.get('_id'));
-			});
-		}
+		emptyView: EmptyView
 	});
 });

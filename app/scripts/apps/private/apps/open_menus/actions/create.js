@@ -7,6 +7,7 @@ define([
 	'apps/private/common/views/form/form',
     'apps/private/common/views/dialog/dialog'
 ], function ($, Backbone, App, FooterView, HeaderView, FormView) {
+    var OpenMenusApp = App.PrivateApp.OpenMenusApp;
 	return function () {
 		var gettingOpenMenu = App.request('openMenu:entity:new'),
 			gettingOpenMenus = App.request('openMenu:entities');
@@ -28,14 +29,14 @@ define([
 			footerView.on('save', function (options) {
 				openMenus.create(options.model, {
 					success: function () {
-						App.vent.trigger('openMenu:show', options.model.get('_id'));
+						OpenMenusApp.trigger('openMenu:show', options.model.get('_id'));
 					}
 				});
 			});
 			footerView.on('saveClose', function (options) {
 				openMenus.create(options.model, {
 					success: function () {
-						App.vent.trigger('openMenus:index');
+						OpenMenusApp.trigger('openMenus:index');
 					}
 				});
 			});

@@ -3,34 +3,31 @@ define([
     'apps/private/apps/open_menus/controller'
 ],
 function (App, controller) {
-
-	App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {
-		OpenMenusApp.Router = Marionette.AppRouter.extend({
-			routes: {
-				'!/openmenus': '',
-				'!/openmenus/:open_menu': ''
-			}
-		});
-		var executeAction = function (action, arg) {
-	        App.startSubApp('PrivateApp.OpenMenusApp');
-	        action(arg);
-		};
+    App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {
+        OpenMenusApp.Router = Marionette.AppRouter.extend({
+            controller: controller,
+            appRoutes: {
+                '!/openmenus/index': 'index',
+                '!/openmenus/create': 'create',
+                '!/openmenus/:open_menu': 'show',
+                '!/openmenus/destroy/:open_menu': 'destroy'
+            }
+        });
+        var executeAction = function (path, trigger) {
+            App.navigate(path, {trigger: trigger});
+        };
         App.vent.on('openMenus:index', function () {
-            App.navigate('!/openmenus');
-            executeAction(controller.index);
+            executeAction('!/openmenus/index', true);
         });
         App.vent.on('openMenu:new', function () {
-            App.navigate('!/openmenus');
-            executeAction(controller.create);
+            executeAction('!/openmenus/create', true);
         });
         App.vent.on('openMenu:show', function (id) {
-            App.navigate('!/openmenus/' + id);
-            executeAction(controller.show, id);
+            executeAction('!/openmenus/' + id, true);
         });
-        App.vent.on('openMenu:delete', function (openMenu) {
-            App.navigate('!/openmenus/' + openMenu.get('_id'));
-            executeAction(controller.destroy, openMenu);
+        App.vent.on('openMenu:delete', function (id) {
+            executeAction('!/openmenus/destroy/' + id, true);
         });
-	});
-	return new App.PrivateApp.OpenMenusApp.Router();
+    });
+    return new App.PrivateApp.OpenMenusApp.Router();
 });

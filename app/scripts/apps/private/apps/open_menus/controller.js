@@ -9,10 +9,10 @@ define([
 function (App, createAction, destroyAction, indexAction, showAction) {
 	App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {
 		OpenMenusApp.Controller = Marionette.Controller.extend({
+            index: indexAction,
 			create: createAction,
-			destroy: destroyAction,
-			index: indexAction,
-			show: showAction
+			show: showAction,
+            destroy: destroyAction
 		});
 	});
 	return new App.PrivateApp.OpenMenusApp.Controller();

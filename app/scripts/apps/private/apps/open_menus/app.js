@@ -7,7 +7,7 @@ define([
             require([
                 'apps/private/apps/open_menus/router'
             ], function () {
-                OpenMenusApp.trigger('openMenus:index');
+                OpenMenusApp.trigger('openmenu:index');
             });
         });
         OpenMenusApp.on('stop', function () {

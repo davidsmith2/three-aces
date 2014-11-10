@@ -11,8 +11,8 @@ define([
 			'delete':   '.js-delete'
 		},
 		triggers: {
-			'click @ui.show':   'openMenu:show',
-			'click @ui.delete': 'openMenu:delete'
+			'click @ui.show':   'openmenu:show',
+			'click @ui.delete': 'openmenu:delete'
 		}
 	});
 });

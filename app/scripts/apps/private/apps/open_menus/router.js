@@ -8,25 +8,25 @@ function (App, controller) {
             controller: controller,
             appRoutes: {
                 '!/openmenus/index': 'index',
-                '!/openmenus/create': 'create',
+                '!/openmenus/new': 'create',
                 '!/openmenus/:open_menu': 'show',
-                '!/openmenus/destroy/:open_menu': 'destroy'
+                '!/openmenus/delete/:open_menu': 'destroy'
             }
         });
         var executeAction = function (path, trigger) {
             App.navigate(path, {trigger: trigger});
         };
-        OpenMenusApp.on('openMenus:index', function () {
+        OpenMenusApp.on('openmenu:index', function () {
             executeAction('!/openmenus/index', true);
         });
-        OpenMenusApp.on('openMenu:new', function () {
-            executeAction('!/openmenus/create', true);
+        OpenMenusApp.on('openmenu:new', function () {
+            executeAction('!/openmenus/new', true);
         });
-        OpenMenusApp.on('openMenu:show', function (id) {
+        OpenMenusApp.on('openmenu:show', function (id) {
             executeAction('!/openmenus/' + id, true);
         });
-        OpenMenusApp.on('openMenu:delete', function (id) {
-            executeAction('!/openmenus/destroy/' + id, true);
+        OpenMenusApp.on('openmenu:delete', function (id) {
+            executeAction('!/openmenus/delete/' + id, true);
         });
     });
     return new App.PrivateApp.OpenMenusApp.Router();

@@ -29,14 +29,14 @@ define([
 			footerView.on('save', function (options) {
 				openMenus.create(options.model, {
 					success: function () {
-						OpenMenusApp.trigger('openMenu:show', options.model.get('_id'));
+						OpenMenusApp.trigger('openmenu:show', options.model.get('_id'));
 					}
 				});
 			});
 			footerView.on('saveClose', function (options) {
 				openMenus.create(options.model, {
 					success: function () {
-						OpenMenusApp.trigger('openMenus:index');
+						OpenMenusApp.trigger('openmenu:index');
 					}
 				});
 			});

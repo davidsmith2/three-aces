@@ -9,7 +9,7 @@ define([
 			'new': '.js-new'
 		},
 		triggers: {
-			'click @ui.new': 'openMenu:new'
+			'click @ui.new': 'openmenu:new'
 		}
 	});
 });

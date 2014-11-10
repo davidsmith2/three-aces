@@ -12,14 +12,14 @@ define([
                 tableView;
 			headerView = new HeaderView();
 			tableView = new TableView({collection: openMenus});
-            headerView.on('openMenu:new', function () {
-                OpenMenusApp.trigger('openMenu:new');
+            headerView.on('openmenu:new', function () {
+                OpenMenusApp.trigger('openmenu:new');
             });
-            tableView.on('childview:openMenu:show', function (itemView, options) {
-                OpenMenusApp.trigger('openMenu:show', options.model.get('_id'));
+            tableView.on('childview:openmenu:show', function (itemView, options) {
+                OpenMenusApp.trigger('openmenu:show', options.model.get('_id'));
             });
-            tableView.on('childview:openMenu:delete', function (itemView, options) {
-                OpenMenusApp.trigger('openMenu:delete', options.model.get('_id'));
+            tableView.on('childview:openmenu:delete', function (itemView, options) {
+                OpenMenusApp.trigger('openmenu:delete', options.model.get('_id'));
             });
 			App.execute('panel:show', {
 				region: App.mainRegion,

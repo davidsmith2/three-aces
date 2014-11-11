@@ -9,6 +9,12 @@ require.config({
 			],
 			exports: 'Backbone'
 		},
+        'backbone-forms-bootstrap3': {
+            deps: [
+                'backbone-forms',
+                'bootstrap'
+            ]
+        },
 		'backbone.marionette': {
 			deps: [
 				'backbone'

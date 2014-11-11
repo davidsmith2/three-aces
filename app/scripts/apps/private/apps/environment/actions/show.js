@@ -21,6 +21,7 @@ function ($, _, App, HeaderView, DefinitionListView) {
             bodyView: definitionListView,
             callback: function (panel) {
                 panel.ui.heading.addClass('clearfix');
+                App.PrivateApp.EnvironmentApp.on('environment:save', definitionListView.render);
             }
         });
 	};

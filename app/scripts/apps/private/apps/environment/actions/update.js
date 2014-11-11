@@ -22,7 +22,7 @@ function ($, _, App, HeaderView, FooterView, FormView) {
                 }
             });
         });
-        footerView.on('cancel', function () {
+        footerView.on('cancel', function (options) {
             App.PrivateApp.EnvironmentApp.trigger('environment:cancel', environment);
         });
         App.execute('dialog:show', {

@@ -1,13 +1,12 @@
 define([
+    'jquery',
     'underscore',
-    'backbone',
-    'backbone.marionette',
     'app',
     'apps/private/apps/menus/views/destroy/header',
     'apps/private/apps/menus/views/destroy/body',
     'apps/private/apps/menus/views/destroy/footer'
 ],
-function (_, Backbone, Marionette, App, HeaderView, BodyView, FooterView) {
+function ($, _, App, HeaderView, BodyView, FooterView) {
 	return function (menu) {
         var headerView,
             bodyView,
@@ -22,8 +21,11 @@ function (_, Backbone, Marionette, App, HeaderView, BodyView, FooterView) {
             bodyView: bodyView,
             footerView: footerView,
             callback: function (dialog) {
-                footerView.on('yes no', dialog.dismiss, dialog);
-                footerView.on('yes', menu.destroy, menu);
+                footerView.on('confirm', menu.destroy, menu);
+                footerView.on('confirm cancel', function () {
+                    dialog.dismiss();
+                    App.navigate('!/openmenus/' + menu.get('open_menu'));
+                });
             }
         });
 	};

@@ -6,8 +6,8 @@ function (Marionette, template) {
     return Marionette.ItemView.extend({
         template: template,
         triggers: {
-            'click .js-yes': 'yes',
-            'click .js-no': 'no'
+            'click .js-confirm': 'confirm',
+            'click .js-cancel': 'cancel'
         }
     });
 });

@@ -4,11 +4,11 @@ define([
     'apps/private/apps/menus/actions/destroy'
 ],
 function (App, indexAction, destroyAction) {
-	App.module('PrivateApp.OpenMenuApp', function (OpenMenuApp, App, Backbone, Marionette) {
-		OpenMenuApp.MenuController = Marionette.Controller.extend({
+	App.module('PrivateApp.MenusApp', function (MenusApp, App, Backbone, Marionette) {
+		MenusApp.Controller = Marionette.Controller.extend({
 			index: indexAction,
             destroy: destroyAction
 		});
 	});
-	return new App.PrivateApp.OpenMenuApp.MenuController();
+	return new App.PrivateApp.MenusApp.Controller();
 });

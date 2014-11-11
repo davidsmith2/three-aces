@@ -1,25 +1,20 @@
 define([
+    'jquery',
     'underscore',
     'app',
     'apps/private/apps/restaurant/views/show/header',
     'apps/private/apps/restaurant/views/show/definitionList'
 ],
-function (_, App, HeaderView, DefinitionListView) {
-    return function (options) {
-        var headerView,
+function ($, _, App, HeaderView, DefinitionListView) {
+    return function (openMenu) {
+        var restaurant = openMenu.get('restaurant_info'),
+            headerView,
             definitionListView;
-        _.extend(options.model.attributes, {
-            title: 'Restaurant'
-        });
-        headerView = new HeaderView({
-            model: options.model
-        });
-        definitionListView = new DefinitionListView({
-            model: options.model
-        });
-        headerView.on('edit', function (options) {
-            options.model.on('change', definitionListView.render, definitionListView);
-            App.vent.trigger('restaurant:edit', options);
+        _.extend(restaurant.attributes, {title: 'Restaurant'});
+        headerView = new HeaderView({model: restaurant});
+        definitionListView = new DefinitionListView({model: restaurant});
+        headerView.on('edit', function () {
+            App.PrivateApp.RestaurantApp.trigger('restaurant:edit', openMenu);
         });
         App.execute('panel:show', {
             region: App.restaurantRegion,

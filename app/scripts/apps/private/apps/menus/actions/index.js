@@ -6,11 +6,12 @@ define([
 ],
 
 function ($, App, HeaderView, TableView) {
-	return function (options) {
-		$.when(App.request('menu:entities', options.model)).done(function (menus) {
+	return function (openMenu) {
+		$.when(App.request('menu:entities', openMenu)).done(function (menus) {
             var headerView = new HeaderView();
-            var tableView = new TableView({
-                collection: menus
+            var tableView = new TableView({collection: menus});
+            tableView.on('childview:menu:delete', function (itemView, options) {
+                App.PrivateApp.MenusApp.trigger('menu:delete', options.model);
             });
 			App.execute('panel:show', {
 				region: App.menusRegion,

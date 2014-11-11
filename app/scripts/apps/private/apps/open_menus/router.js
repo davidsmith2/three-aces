@@ -3,9 +3,6 @@ define([
     'apps/private/apps/open_menus/controller'
 ],
 function (App, controller) {
-    var executeAction = function (path, trigger) {
-        App.navigate(path, {trigger: trigger});
-    };
     App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {
         OpenMenusApp.Router = Marionette.AppRouter.extend({
             controller: controller,
@@ -13,20 +10,22 @@ function (App, controller) {
                 '!/openmenus/index': 'index',
                 '!/openmenus/new': 'create',
                 '!/openmenus/:open_menu': 'show',
-                '!/openmenus/delete/:open_menu': 'destroy'
+                '!/openmenus/:open_menu/delete': 'destroy'
             }
         });
         OpenMenusApp.on('openmenu:index', function () {
-            executeAction('!/openmenus/index', true);
+            App.navigate('!/openmenus/index', {trigger: true});
         });
         OpenMenusApp.on('openmenu:new', function () {
-            executeAction('!/openmenus/new', true);
+            App.navigate('!/openmenus/new', {trigger: true});
         });
-        OpenMenusApp.on('openmenu:show', function (id) {
-            executeAction('!/openmenus/' + id, true);
+        OpenMenusApp.on('openmenu:show', function (openMenu) {
+            App.navigate('!/openmenus/' + openMenu.get('_id'));
+            controller.show(openMenu);
         });
-        OpenMenusApp.on('openmenu:delete', function (id) {
-            executeAction('!/openmenus/delete/' + id, true);
+        OpenMenusApp.on('openmenu:delete', function (openMenu) {
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '/delete');
+            controller.destroy(openMenu);
         });
     });
     return new App.PrivateApp.OpenMenusApp.Router();

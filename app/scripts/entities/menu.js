@@ -57,7 +57,9 @@ define([
 				var promise = defer.promise();
 				return promise;
 			},
-			getMenuEntity: function (menuId) {
+			getMenuEntity: function (id) {
+				Menu.Model.findOrCreate({id: id});
+/*
 				var menu = new Menu.Model({
 					_id: menuId
 				});
@@ -74,6 +76,7 @@ define([
 				}, 2000);
 				var promise = defer.promise();
 				return promise;
+*/
 			}
 		};
 

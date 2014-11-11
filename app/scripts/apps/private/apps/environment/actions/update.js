@@ -1,30 +1,30 @@
 define([
+    'jquery',
     'underscore',
-    'backbone',
     'app',
     'apps/private/apps/environment/views/update/header',
     'apps/private/apps/environment/views/update/footer',
     'apps/private/common/views/form/form'
 ],
-function (_, Backbone, App, HeaderView, FooterView, FormView) {
-    return function (options) {
-        var headerView,
+function ($, _, App, HeaderView, FooterView, FormView) {
+    return function (openMenu) {
+        var environment = openMenu.get('environment'),
+            headerView,
             formView,
             footerView;
-        _.extend(options.model.attributes, {
-            title: 'Edit environment'
+        _.extend(environment.attributes, {title: 'Edit environment'});
+        headerView = new HeaderView({model: environment});
+        formView = new FormView({model: environment});
+        footerView = new FooterView({model: environment});
+        footerView.on('save', function (options) {
+            options.model.save(options.model.attributes, {
+                success: function () {
+                    App.PrivateApp.EnvironmentApp.trigger('environment:save', openMenu.get('_id'));
+                }
+            });
         });
-        headerView = new HeaderView({
-            model: options.model
-        });
-        formView = new FormView({
-            model: options.model
-        });
-        footerView = new FooterView({
-            model: options.model
-        });
-        footerView.on('cancel', function (options) {
-            App.vent.trigger('environment:cancel', {model: options.model});
+        footerView.on('cancel', function () {
+            App.PrivateApp.EnvironmentApp.trigger('environment:cancel', openMenu.get('_id'));
         });
         App.execute('dialog:show', {
             region: App.dialogRegion,
@@ -32,13 +32,6 @@ function (_, Backbone, App, HeaderView, FooterView, FormView) {
             bodyView: formView,
             footerView: footerView,
             callback: function (dialog) {
-                footerView.on('save', function (options) {
-                    options.model.save(options.model.attributes, {
-                        success: function (environment) {
-                            App.vent.trigger('environment:save', {model: environment});
-                        }
-                    });
-                });
                 footerView.on('save cancel', dialog.dismiss, dialog);
             }
         });

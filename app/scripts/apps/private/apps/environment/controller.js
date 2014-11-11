@@ -4,11 +4,11 @@ define([
 	'apps/private/apps/environment/actions/update'
 ],
 function (App, showAction, updateAction) {
-	App.module('PrivateApp.OpenMenuApp', function (OpenMenuApp, App, Backbone, Marionette) {
-		OpenMenuApp.EnvironmentController = Marionette.Controller.extend({
+	App.module('PrivateApp.EnvironmentApp', function (EnvironmentApp, App, Backbone, Marionette) {
+		EnvironmentApp.Controller = Marionette.Controller.extend({
 			show: showAction,
 			update: updateAction
 		});
 	});
-	return new App.PrivateApp.OpenMenuApp.EnvironmentController();
+	return new App.PrivateApp.EnvironmentApp.Controller();
 });

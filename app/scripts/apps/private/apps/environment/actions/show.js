@@ -1,21 +1,20 @@
 define([
+    'jquery',
     'underscore',
 	'app',
 	'apps/private/apps/environment/views/show/header',
     'apps/private/apps/environment/views/show/definitionList'
 ],
-function (_, App, HeaderView, DefinitionListView) {
-	return function (options) {
-        var headerView,
+function ($, _, App, HeaderView, DefinitionListView) {
+	return function (openMenu) {
+        var environment = openMenu.get('environment'),
+            headerView,
             definitionListView;
-        _.extend(options.model.attributes, {
-            title: 'Environment'
-        });
-        headerView = new HeaderView({
-            model: options.model
-        });
-        definitionListView = new DefinitionListView({
-            model: options.model
+        _.extend(environment.attributes, {title: 'Environment'});
+        headerView = new HeaderView({model: environment});
+        definitionListView = new DefinitionListView({model: environment});
+        headerView.on('edit', function () {
+            App.PrivateApp.EnvironmentApp.trigger('environment:edit', openMenu);
         });
         App.execute('panel:show', {
             region: App.environmentRegion,
@@ -23,10 +22,6 @@ function (_, App, HeaderView, DefinitionListView) {
             bodyView: definitionListView,
             callback: function (panel) {
                 panel.ui.heading.addClass('clearfix');
-                headerView.on('edit', function (options) {
-                    options.model.on('change', definitionListView.render, definitionListView);
-                    App.vent.trigger('environment:edit', options);
-                });
             }
         });
 	};

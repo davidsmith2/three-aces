@@ -1,12 +1,12 @@
 define([
 	'jquery',
-	'backbone',
+    'underscore',
 	'app',
 	'apps/private/apps/open_menus/views/create/footer',
 	'apps/private/apps/open_menus/views/create/header',
 	'apps/private/common/views/form/form',
     'apps/private/common/views/dialog/dialog'
-], function ($, Backbone, App, FooterView, HeaderView, FormView) {
+], function ($, _, App, FooterView, HeaderView, FormView) {
     var OpenMenusApp = App.PrivateApp.OpenMenusApp;
 	return function () {
 		var gettingOpenMenu = App.request('openMenu:entity:new'),
@@ -15,10 +15,9 @@ define([
 			var headerView,
 				formView,
 				footerView;
+            _.extend(openMenu.attributes, {title: 'Create an open menu'});
 			headerView = new HeaderView({
-				model: new Backbone.Model({
-					title: 'Create an open menu'
-				})
+				model: openMenu
 			});
 			formView = new FormView({
 				model: openMenu.get('restaurant_info')

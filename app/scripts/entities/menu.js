@@ -1,8 +1,7 @@
 define([
 	'app',
     'entities/menu_group',
-    'backbone-relational',
-    'backbone-forms'
+    'backbone-relational'
 ], function (App, MenuGroup) {
 
 	App.module('Entities.Menu', function (Menu, App, Backbone, Marionette, $) {

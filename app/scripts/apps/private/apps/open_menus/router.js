@@ -3,6 +3,9 @@ define([
     'apps/private/apps/open_menus/controller'
 ],
 function (App, controller) {
+    var executeAction = function (path, trigger) {
+        App.navigate(path, {trigger: trigger});
+    };
     App.module('PrivateApp.OpenMenusApp', function (OpenMenusApp, App, Backbone, Marionette) {
         OpenMenusApp.Router = Marionette.AppRouter.extend({
             controller: controller,
@@ -13,9 +16,6 @@ function (App, controller) {
                 '!/openmenus/delete/:open_menu': 'destroy'
             }
         });
-        var executeAction = function (path, trigger) {
-            App.navigate(path, {trigger: trigger});
-        };
         OpenMenusApp.on('openmenu:index', function () {
             executeAction('!/openmenus/index', true);
         });

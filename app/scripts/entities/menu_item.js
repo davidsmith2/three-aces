@@ -1,8 +1,7 @@
 define([
     'app',
     'entities/menu_item_size',
-    'backbone-relational',
-    'backbone-forms'
+    'backbone-relational'
 ], function (App, MenuItemSize) {
 
     App.module('Entities.MenuItem', function (MenuItem, App, Backbone, Marionette, $, _) {

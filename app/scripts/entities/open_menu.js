@@ -5,9 +5,7 @@ define([
     'entities/menu',
     'backbone-relational'
 ], function (App, Restaurant, Environment, Menu) {
-
-	App.module('Entities.OpenMenu', function (OpenMenu, App, Backbone, Marionette, $, _) {
-
+	App.module('Entities.OpenMenu', function (OpenMenu, App, Backbone, Marionette, $) {
 		OpenMenu.Model = Backbone.RelationalModel.extend({
 	        urlRoot: '/openmenus',
 	        idAttribute: '_id',
@@ -51,12 +49,10 @@ define([
 	            menus: []
 	        }
 		});
-
 		OpenMenu.Collection = Backbone.Collection.extend({
 	        model: OpenMenu.Model,
 	        url: '/openmenus'
 		});
-
 		var API = {
 			getOpenMenuEntities: function () {
 				var openMenus = new OpenMenu.Collection();
@@ -82,21 +78,15 @@ define([
 				return promise;
 			}
 		};
-
 		App.reqres.setHandler('openMenu:entities', function () {
 			return API.getOpenMenuEntities();
 		});
-
 		App.reqres.setHandler('openMenu:entity', function (id) {
 			return API.getOpenMenuEntity(id);
 		});
-
 		App.reqres.setHandler('openMenu:entity:new', function () {
 			return new OpenMenu.Model();
 		});
-
 	});
-
 	return App.Entities.OpenMenu;
-
 });

@@ -16,10 +16,10 @@ define([
                 OpenMenusApp.trigger('openmenu:new');
             });
             tableView.on('childview:openmenu:show', function (itemView, options) {
-                OpenMenusApp.trigger('openmenu:show', options.model);
+                OpenMenusApp.trigger('openmenu:show', options.model.get('_id'));
             });
             tableView.on('childview:openmenu:delete', function (itemView, options) {
-                OpenMenusApp.trigger('openmenu:delete', options.model);
+                OpenMenusApp.trigger('openmenu:delete', options.model.get('_id'));
             });
 			App.execute('panel:show', {
 				region: App.mainRegion,

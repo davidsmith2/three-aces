@@ -6,15 +6,14 @@ define([
     'apps/private/apps/environment/views/show/definitionList'
 ],
 function ($, _, App, HeaderView, DefinitionListView) {
-	return function (openMenu) {
-        var environment = openMenu.get('environment'),
-            headerView,
+	return function (environment) {
+        var headerView,
             definitionListView;
         _.extend(environment.attributes, {title: 'Environment'});
         headerView = new HeaderView({model: environment});
         definitionListView = new DefinitionListView({model: environment});
         headerView.on('edit', function () {
-            App.PrivateApp.EnvironmentApp.trigger('environment:edit', openMenu);
+            App.PrivateApp.EnvironmentApp.trigger('environment:edit', environment);
         });
         App.execute('panel:show', {
             region: App.environmentRegion,

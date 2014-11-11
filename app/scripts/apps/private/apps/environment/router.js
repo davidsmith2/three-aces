@@ -10,15 +10,17 @@ function (App, controller) {
                 '!/openmenus/:open_menu/environment/edit': 'update'
             }
         });
-        EnvironmentApp.on('environment:show', function (openMenu) {
-            controller.show(openMenu);
+        EnvironmentApp.on('environment:show', function (environment) {
+            controller.show(environment);
         });
-        EnvironmentApp.on('environment:edit', function (openMenu) {
+        EnvironmentApp.on('environment:edit', function (environment) {
+            var openMenu = environment.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/environment/edit');
-            controller.update(openMenu);
+            controller.update(environment);
         });
-        EnvironmentApp.on('environment:save environment:cancel', function (id) {
-            App.navigate('!/openmenus/' + id);
+        EnvironmentApp.on('environment:save environment:cancel', function (environment) {
+            var openMenu = environment.get('open_menu');
+            App.navigate('!/openmenus/' + openMenu.get('_id'));
         });
     });
     return new App.PrivateApp.EnvironmentApp.Router();

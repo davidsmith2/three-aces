@@ -28,7 +28,7 @@ define([
 			footerView.on('save', function (options) {
 				openMenus.create(options.model, {
 					success: function (openMenu) {
-						OpenMenusApp.trigger('openmenu:show', openMenu);
+						OpenMenusApp.trigger('openmenu:show', openMenu.get('_id'));
 					}
 				});
 			});

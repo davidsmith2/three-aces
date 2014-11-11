@@ -7,9 +7,8 @@ define([
     'apps/private/common/views/form/form'
 ],
 function ($, _, App, HeaderView, FooterView, FormView) {
-    return function (openMenu) {
-        var environment = openMenu.get('environment'),
-            headerView,
+    return function (environment) {
+        var headerView,
             formView,
             footerView;
         _.extend(environment.attributes, {title: 'Edit environment'});
@@ -19,12 +18,12 @@ function ($, _, App, HeaderView, FooterView, FormView) {
         footerView.on('save', function (options) {
             options.model.save(options.model.attributes, {
                 success: function () {
-                    App.PrivateApp.EnvironmentApp.trigger('environment:save', openMenu.get('_id'));
+                    App.PrivateApp.EnvironmentApp.trigger('environment:save', environment);
                 }
             });
         });
         footerView.on('cancel', function () {
-            App.PrivateApp.EnvironmentApp.trigger('environment:cancel', openMenu.get('_id'));
+            App.PrivateApp.EnvironmentApp.trigger('environment:cancel', environment);
         });
         App.execute('dialog:show', {
             region: App.dialogRegion,

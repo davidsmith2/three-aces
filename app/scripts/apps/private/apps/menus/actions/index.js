@@ -11,7 +11,9 @@ function ($, App, HeaderView, TableView) {
             var headerView = new HeaderView();
             var tableView = new TableView({collection: menus});
             tableView.on('childview:menu:delete', function (itemView, options) {
-                App.PrivateApp.MenusApp.trigger('menu:delete', options.model);
+                var menu = options.model,
+                    openMenu = menu.get('open_menu');
+                App.PrivateApp.MenusApp.trigger('menu:delete', openMenu.get('_id'), menu.get('_id'));
             });
 			App.execute('panel:show', {
 				region: App.menusRegion,

@@ -10,15 +10,17 @@ function (App, controller) {
                 '!/openmenus/:open_menu/restaurant/edit': 'update'
             }
         });
-        RestaurantApp.on('restaurant:show', function (openMenu) {
-            controller.show(openMenu);
+        RestaurantApp.on('restaurant:show', function (restaurant) {
+            controller.show(restaurant);
         });
-        RestaurantApp.on('restaurant:edit', function (openMenu) {
+        RestaurantApp.on('restaurant:edit', function (restaurant) {
+            var openMenu = restaurant.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/restaurant/edit');
-            controller.update(openMenu);
+            controller.update(restaurant);
         });
-        RestaurantApp.on('restaurant:save restaurant:cancel', function (id) {
-            App.navigate('!/openmenus/' + id);
+        RestaurantApp.on('restaurant:save restaurant:cancel', function (restaurant) {
+            var openMenu = restaurant.get('open_menu');
+            App.navigate('!/openmenus/' + openMenu.get('_id'));
         });
     });
     return new App.PrivateApp.RestaurantApp.Router();

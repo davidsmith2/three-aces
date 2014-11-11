@@ -7,9 +7,8 @@ define([
     'apps/private/common/views/form/form'
 ],
 function ($, _, App, HeaderView, FooterView, FormView) {
-    return function (openMenu) {
-        var restaurant = openMenu.get('restaurant_info'),
-            headerView,
+    return function (restaurant) {
+        var headerView,
             formView,
             footerView;
         _.extend(restaurant.attributes, {title: 'Edit restaurant'});
@@ -19,12 +18,12 @@ function ($, _, App, HeaderView, FooterView, FormView) {
         footerView.on('save', function (options) {
             options.model.save(options.model.attributes, {
                 success: function () {
-                    App.PrivateApp.RestaurantApp.trigger('restaurant:save', openMenu.get('_id'));
+                    App.PrivateApp.RestaurantApp.trigger('restaurant:save', restaurant);
                 }
             });
         });
         footerView.on('cancel', function () {
-            App.PrivateApp.RestaurantApp.trigger('restaurant:cancel', openMenu.get('_id'));
+            App.PrivateApp.RestaurantApp.trigger('restaurant:cancel', restaurant);
         });
         App.execute('dialog:show', {
             region: App.dialogRegion,

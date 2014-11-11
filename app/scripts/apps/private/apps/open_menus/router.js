@@ -7,25 +7,23 @@ function (App, controller) {
         OpenMenusApp.Router = Marionette.AppRouter.extend({
             controller: controller,
             appRoutes: {
-                '!/openmenus/index': 'index',
+                '!/openmenus': 'index',
                 '!/openmenus/new': 'create',
                 '!/openmenus/:open_menu': 'show',
                 '!/openmenus/:open_menu/delete': 'destroy'
             }
         });
         OpenMenusApp.on('openmenu:index', function () {
-            App.navigate('!/openmenus/index', {trigger: true});
+            App.navigate('!/openmenus', {trigger: true});
         });
         OpenMenusApp.on('openmenu:new', function () {
             App.navigate('!/openmenus/new', {trigger: true});
         });
-        OpenMenusApp.on('openmenu:show', function (openMenu) {
-            App.navigate('!/openmenus/' + openMenu.get('_id'));
-            controller.show(openMenu);
+        OpenMenusApp.on('openmenu:show', function (id) {
+            App.navigate('!/openmenus/' + id, {trigger: true});
         });
-        OpenMenusApp.on('openmenu:delete', function (openMenu) {
-            App.navigate('!/openmenus/' + openMenu.get('_id') + '/delete');
-            controller.destroy(openMenu);
+        OpenMenusApp.on('openmenu:delete', function (id) {
+            App.navigate('!/openmenus/' + id + '/delete', {trigger: true});
         });
         OpenMenusApp.on('openmenu:delete:done', function () {
             App.navigate('!/openmenus');

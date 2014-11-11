@@ -7,16 +7,16 @@ function (App, controller) {
         MenusApp.Router = Marionette.AppRouter.extend({
             controller: controller,
             appRoutes: {
+                '!/openmenus/:open_menu/menus': 'index',
                 '!/openmenus/:open_menu/menus/:menu/delete': 'destroy'
             }
         });
         MenusApp.on('menu:index', function (openMenu) {
+            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus');
             controller.index(openMenu);
         });
-        MenusApp.on('menu:delete', function (menu) {
-            var openMenu = menu.get('open_menu');
-            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/delete');
-            controller.destroy(menu);
+        MenusApp.on('menu:delete', function (openMenuId, menuId) {
+            App.navigate('!/openmenus/' + openMenuId + '/menus/' + menuId + '/delete', {trigger: true});
         });
         MenusApp.on('menu:delete:done', function (menu) {
             var openMenu = menu.get('open_menu');

@@ -18,7 +18,7 @@ function (_, App, HeaderView, DefinitionListView) {
             model: options.model
         });
         App.execute('panel:show', {
-            region: options.region,
+            region: App.environmentRegion,
             headingView: headerView,
             bodyView: definitionListView,
             callback: function (panel) {

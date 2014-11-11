@@ -22,7 +22,7 @@ function (_, App, HeaderView, DefinitionListView) {
             App.vent.trigger('restaurant:edit', options);
         });
         App.execute('panel:show', {
-            region: options.region,
+            region: App.restaurantRegion,
             headingView: headerView,
             bodyView: definitionListView,
             callback: function (panel) {

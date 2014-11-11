@@ -19,7 +19,7 @@ function (App, controller, environmentController, menusController, restaurantCon
             App.startSubApp('PrivateApp.OpenMenuApp');
             action(arg);
         };
-        App.vent.on('restaurant:show', function (options) {
+        OpenMenuApp.on('restaurant:show', function (options) {
             executeAction(restaurantController.show, options);
         });
         App.vent.on('restaurant:edit', function (options) {
@@ -31,7 +31,7 @@ function (App, controller, environmentController, menusController, restaurantCon
             var openMenu = options.model.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id'));
         });
-        App.vent.on('environment:show', function (options) {
+        OpenMenuApp.on('environment:show', function (options) {
             executeAction(environmentController.show, options);
         });
         App.vent.on('environment:edit', function (options) {
@@ -43,7 +43,7 @@ function (App, controller, environmentController, menusController, restaurantCon
             var openMenu = options.model.get('open_menu');
             App.navigate('!/openmenus/' + openMenu.get('_id'));
         });
-        App.vent.on('menu:index', function (options) {
+        OpenMenuApp.on('menu:index', function (options) {
             executeAction(menusController.index, options);
         });
         App.vent.on('menu:delete', function (menu) {

@@ -1,8 +1,7 @@
 define([
 	'app',
 	'apps/private/apps/menus/actions/index',
-    'apps/private/apps/menus/actions/destroy',
-    'entities/menu'
+    'apps/private/apps/menus/actions/destroy'
 ],
 function (App, indexAction, destroyAction) {
 	App.module('PrivateApp.OpenMenuApp', function (OpenMenuApp, App, Backbone, Marionette) {

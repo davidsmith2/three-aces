@@ -21,10 +21,14 @@ function ($, _, App, HeaderView, BodyView, FooterView) {
             bodyView: bodyView,
             footerView: footerView,
             callback: function (dialog) {
-                footerView.on('confirm', menu.destroy, menu);
-                footerView.on('confirm cancel', function () {
+                footerView.on('confirm', function (options) {
+                    App.PrivateApp.MenusApp.trigger('menu:delete:done', options.model);
+                    menu.destroy();
                     dialog.dismiss();
-                    App.navigate('!/openmenus/' + menu.get('open_menu'));
+                });
+                footerView.on('cancel', function (options) {
+                    App.PrivateApp.MenusApp.trigger('menu:delete:done', options.model);
+                    dialog.dismiss();
                 });
             }
         });

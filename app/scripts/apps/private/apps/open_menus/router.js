@@ -27,6 +27,9 @@ function (App, controller) {
             App.navigate('!/openmenus/' + openMenu.get('_id') + '/delete');
             controller.destroy(openMenu);
         });
+        OpenMenusApp.on('openmenu:delete:done', function () {
+            App.navigate('!/openmenus');
+        });
     });
     return new App.PrivateApp.OpenMenusApp.Router();
 });

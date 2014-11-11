@@ -22,11 +22,11 @@ function (_, $, App, HeaderView, BodyView, FooterView) {
             bodyView: bodyView,
             footerView: footerView,
             callback: function (dialog) {
+                footerView.on('confirm', openMenu.destroy, openMenu);
                 footerView.on('confirm cancel', function () {
                     dialog.dismiss();
-                    App.navigate('!/openmenus');
+                    App.PrivateApp.OpenMenusApp.trigger('openmenu:delete:done');
                 });
-                footerView.on('confirm', openMenu.destroy, openMenu);
             }
         });
 	};

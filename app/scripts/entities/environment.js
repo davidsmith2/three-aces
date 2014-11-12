@@ -2,9 +2,7 @@ define([
     'app',
     'backbone-relational'
 ], function (App) {
-
     App.module('Entities.Environment', function (Environment, App, Backbone) {
-
         Environment.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
 	        url: function () {
@@ -20,9 +18,7 @@ define([
                 }
             }
         });
-
     });
-
     return App.Entities.Environment;
 
 });

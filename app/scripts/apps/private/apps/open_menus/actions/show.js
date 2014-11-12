@@ -14,9 +14,9 @@ function ($, App, LayoutView, RestaurantApp, EnvironmentApp, MenusApp) {
             });
             App.mainRegion.show(layoutView);
             App.addRegions(layoutView.regions);
-            RestaurantApp.start(openMenu.get('restaurant_info'));
-            EnvironmentApp.start(openMenu.get('environment'));
-            MenusApp.start(openMenu);
+            RestaurantApp.start(openMenu.get('_id'));
+            EnvironmentApp.start(openMenu.get('_id'));
+            MenusApp.start(openMenu.get('_id'));
         });
 	};
 });

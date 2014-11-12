@@ -10,6 +10,7 @@ define([
 		$.when(App.request('openMenu:entities')).done(function (openMenus) {
             var headerView,
                 tableView;
+            App.PrivateApp.collections.openMenus = openMenus;
 			headerView = new HeaderView();
 			tableView = new TableView({collection: openMenus});
             headerView.on('openmenu:new', function () {

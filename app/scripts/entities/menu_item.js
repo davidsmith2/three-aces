@@ -4,7 +4,7 @@ define([
     'backbone-relational'
 ], function (App, MenuItemSize) {
 
-    App.module('Entities.MenuItem', function (MenuItem, App, Backbone, Marionette, $, _) {
+    App.module('Entities.MenuItem', function (MenuItem, App, Backbone, Marionette, $) {
 
         MenuItem.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
@@ -44,48 +44,28 @@ define([
 
         MenuItem.Collection = Backbone.Collection.extend({
             model: MenuItem.Model,
-            url: function () {
-                var menuGroup = this.menu_group;
-                var menu = menuGroup.get('menu');
-                var openMenu = menu.get('open_menu');
-                return '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups/' + menuGroup.get('_id') + '/menuitems';
-            }
+            url: '/menuitems'
         });
 
         var API = {
-            getMenuItemEntities: function (menuGroup) {
-                var menuItems = menuGroup.get('menu_items');
+            getMenuItemEntities: function () {
+                var menuItems = new MenuItem.Collection();
                 var defer = $.Deferred();
                 menuItems.fetch({
-                    success: function (data) {
-                        defer.resolve(data);
+                    success: function (collection) {
+                        defer.resolve(collection);
                     }
                 });
                 var promise = defer.promise();
                 return promise;
             },
-            getMenuItemEntity: function (menuItemId) {
-                var menuItem = new MenuItem.Model({
-                    _id: menuItemId
-                });
-                var defer = $.Deferred();
-                setTimeout(function () {
-                    menuItem.fetch({
-                        success: function (data) {
-                            defer.resolve(data);
-                        },
-                        error: function () {
-                            defer.resolve(undefined);
-                        }
-                    });
-                }, 2000);
-                var promise = defer.promise();
-                return promise;
+            getMenuItemEntity: function (id) {
+                return MenuItem.Model.findOrCreate({_id: id});
             }
         };
 
-        App.reqres.setHandler('menuItem:entities', function (menuGroup) {
-            return API.getMenuItemEntities(menuGroup);
+        App.reqres.setHandler('menuItem:entities', function () {
+            return API.getMenuItemEntities();
         });
 
         App.reqres.setHandler('menuItem:entity', function (id) {

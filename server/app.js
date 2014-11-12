@@ -3,8 +3,6 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var async = require('async');
-var hbs = require('express-hbs');
 var mongoose = require('mongoose');
 require('express-resource-new');
 
@@ -45,11 +43,7 @@ db.once('open', function callback () {
         res.send('API is running');
     });
 
-
-
-
-
-    // routes
+    // api
     app.resource('openmenus', function () {
         this.resource('restaurants');
         this.resource('environments');
@@ -58,11 +52,9 @@ db.once('open', function callback () {
 	            this.resource('menuitems');
             });
         });
+	    this.resource('menugroups');
+	    this.resource('menuitems');
     });
-
-
-
-
 
 	// start server
 	http.createServer(app).listen(app.get('port'), function(){

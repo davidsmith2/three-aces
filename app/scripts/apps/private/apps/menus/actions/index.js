@@ -6,8 +6,8 @@ define([
 ],
 
 function ($, App, HeaderView, TableView) {
-	return function (openMenu) {
-		$.when(App.request('menu:entities', openMenu)).done(function (menus) {
+	return function (openMenuId) {
+		$.when(App.request('menu:entities', openMenuId)).done(function (menus) {
             var headerView = new HeaderView();
             var tableView = new TableView({collection: menus});
             tableView.on('childview:menu:delete', function (itemView, options) {

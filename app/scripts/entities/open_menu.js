@@ -35,6 +35,7 @@ define([
 	                key: 'menus',
 	                relatedModel: Menu.Model,
 	                collectionType: Menu.Collection,
+	                autoFetch: true,
 	                reverseRelation: {
 	                    key: 'open_menu',
 	                    includeInJSON: '_id'
@@ -66,16 +67,7 @@ define([
 				return promise;
 			},
 			getOpenMenuEntity: function (id) {
-				var openMenus = new OpenMenu.Collection();
-				var defer = $.Deferred();
-				openMenus.fetch({
-					success: function (collection) {
-						var model = collection.get(id);
-						defer.resolve(model);
-					}
-				});
-				var promise = defer.promise();
-				return promise;
+				return OpenMenu.Model.findOrCreate({_id: id});
 			}
 		};
 		App.reqres.setHandler('openMenu:entities', function () {
@@ -87,6 +79,14 @@ define([
 		App.reqres.setHandler('openMenu:entity:new', function () {
 			return new OpenMenu.Model();
 		});
+        App.reqres.setHandler('restaurant:entity', function (openMenuId) {
+            var openMenu = API.getOpenMenuEntity(openMenuId);
+            return openMenu.get('restaurant_info');
+        });
+        App.reqres.setHandler('environment:entity', function (openMenuId) {
+            var openMenu = API.getOpenMenuEntity(openMenuId);
+            return openMenu.get('environment');
+        });
 	});
 	return App.Entities.OpenMenu;
 });

@@ -35,47 +35,28 @@ define([
 
         MenuGroup.Collection = Backbone.Collection.extend({
             model: MenuGroup.Model,
-            url: function () {
-                var menu = this.menu;
-                var openMenu = menu.get('open_menu');
-                return '/openmenus/' + openMenu.get('_id') + '/menus/' + menu.get('_id') + '/menugroups';
-            }
+            url: '/menugroups'
         });
 
         var API = {
-            getMenuGroupEntities: function (menu) {
-                var menuGroups = menu.get('menu_groups');
+            getMenuGroupEntities: function () {
+                var menuGroups = new MenuGroup.Collection();
                 var defer = $.Deferred();
                 menuGroups.fetch({
-                    success: function (data) {
-                        defer.resolve(data);
+                    success: function (collection) {
+                        defer.resolve(collection);
                     }
                 });
                 var promise = defer.promise();
                 return promise;
             },
-            getMenuGroupEntity: function (menuGroupId) {
-                var menuGroup = new MenuGroup.Model({
-                    _id: menuGroupId
-                });
-                var defer = $.Deferred();
-                setTimeout(function () {
-                    menuGroup.fetch({
-                        success: function (data) {
-                            defer.resolve(data);
-                        },
-                        error: function () {
-                            defer.resolve(undefined);
-                        }
-                    });
-                }, 2000);
-                var promise = defer.promise();
-                return promise;
+            getMenuGroupEntity: function (id) {
+                return MenuGroup.Model.findOrCreate({_id: id});
             }
         };
 
-        App.reqres.setHandler('menuGroup:entities', function (menu) {
-            return API.getMenuGroupEntities(menu);
+        App.reqres.setHandler('menuGroup:entities', function () {
+            return API.getMenuGroupEntities();
         });
 
         App.reqres.setHandler('menuGroup:entity', function (id) {

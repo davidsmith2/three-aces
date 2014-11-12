@@ -11,16 +11,14 @@ function (App, controller) {
                 '!/openmenus/:open_menu/menus/:menu/delete': 'destroy'
             }
         });
-        MenusApp.on('menu:index', function (openMenu) {
-            App.navigate('!/openmenus/' + openMenu.get('_id') + '/menus');
-            controller.index(openMenu);
+        MenusApp.on('menu:index', function (openMenuId) {
+            controller.index(openMenuId);
         });
         MenusApp.on('menu:delete', function (openMenuId, menuId) {
             App.navigate('!/openmenus/' + openMenuId + '/menus/' + menuId + '/delete', {trigger: true});
         });
-        MenusApp.on('menu:delete:done', function (menu) {
-            var openMenu = menu.get('open_menu');
-            App.navigate('!/openmenus/' + openMenu.get('_id'));
+        MenusApp.on('menu:delete:done', function (openMenuId) {
+            App.navigate('!/openmenus/' + openMenuId);
         });
     });
     return new App.PrivateApp.MenusApp.Router();

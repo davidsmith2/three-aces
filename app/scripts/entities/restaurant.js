@@ -2,9 +2,7 @@ define([
     'app',
     'backbone-relational'
 ], function (App) {
-
     App.module('Entities.Restaurant', function (Restaurant, App, Backbone) {
-
         Restaurant.Model = Backbone.RelationalModel.extend({
             idAttribute: '_id',
             url: function () {
@@ -51,7 +49,5 @@ define([
             }
         });
     });
-
     return App.Entities.Restaurant;
-
 });

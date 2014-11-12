@@ -7,6 +7,11 @@ define([
     'apps/private/apps/menus/views/destroy/footer'
 ],
 function ($, _, App, HeaderView, BodyView, FooterView) {
+    var onBeforeDialogDismiss = function (dialog, options) {
+        var openMenu = options.model.get('open_menu');
+        App.PrivateApp.MenusApp.trigger('menu:delete:done', openMenu.get('_id'));
+        dialog.dismiss();
+    };
 	return function (openMenuId, menuId) {
         $.when(App.request('menu:entity', menuId)).done(function (menu) {
             var headerView,
@@ -23,13 +28,11 @@ function ($, _, App, HeaderView, BodyView, FooterView) {
                 footerView: footerView,
                 callback: function (dialog) {
                     footerView.on('confirm', function (options) {
-                        App.PrivateApp.MenusApp.trigger('menu:delete:done', options.model);
+                        onBeforeDialogDismiss(dialog, options);
                         menu.destroy();
-                        dialog.dismiss();
                     });
                     footerView.on('cancel', function (options) {
-                        App.PrivateApp.MenusApp.trigger('menu:delete:done', options.model);
-                        dialog.dismiss();
+                        onBeforeDialogDismiss(dialog, options);
                     });
                 }
             });

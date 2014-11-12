@@ -8,7 +8,8 @@ define([
 ],
 function ($, App, LayoutView, RestaurantApp, EnvironmentApp, MenusApp) {
 	return function (id) {
-        $.when(App.request('openMenu:entity', id)).done(function (openMenu) {
+        var gettingOpenMenu = App.request('openmenu:entity', id);
+        $.when(gettingOpenMenu).done(function (openMenu) {
             var layoutView = new LayoutView({
                 model: openMenu
             });

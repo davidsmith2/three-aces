@@ -9,7 +9,8 @@ define([
 
 function (_, $, App, HeaderView, BodyView, FooterView) {
 	return function (id) {
-        $.when(App.request('openMenu:entity', id)).done(function (openMenu) {
+        var gettingOpenMenu = App.request('openmenu:entity', id);
+        $.when(gettingOpenMenu).done(function (openMenu) {
             var headerView,
                 bodyView,
                 footerView;

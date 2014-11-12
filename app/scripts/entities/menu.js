@@ -63,17 +63,14 @@ define([
             },
             getMenuEntity: function (id) {
                 return Menu.Model.findOrCreate({_id: id});
+            },
+            getMenuEntityNew: function () {
+                return new Menu.Model();
             }
         };
-        App.reqres.setHandler('menu:entities', function (openMenuId) {
-            return API.getMenuEntities(openMenuId);
-        });
-        App.reqres.setHandler('menu:entity', function (id) {
-            return API.getMenuEntity(id);
-        });
-        App.reqres.setHandler('menu:entity:new', function () {
-            return new Menu.Model();
-        });
+        App.reqres.setHandler('menu:entities', API.getMenuEntities);
+        App.reqres.setHandler('menu:entity', API.getMenuEntity);
+        App.reqres.setHandler('menu:entity:new', API.getMenuEntityNew);
     });
     return App.Entities.Menu;
 });

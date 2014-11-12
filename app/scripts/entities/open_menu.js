@@ -35,7 +35,6 @@ define([
                     key: 'menus',
                     relatedModel: Menu.Model,
                     collectionType: Menu.Collection,
-                    autoFetch: true,
                     reverseRelation: {
                         key: 'open_menu',
                         includeInJSON: '_id'
@@ -81,9 +80,9 @@ define([
                 return openMenu.get('environment');
             }
         };
-        App.reqres.setHandler('openMenu:entities', API.getOpenMenuEntities);
-        App.reqres.setHandler('openMenu:entity', API.getOpenMenuEntity);
-        App.reqres.setHandler('openMenu:entity:new', API.getOpenMenuEntityNew);
+        App.reqres.setHandler('openmenu:entities', API.getOpenMenuEntities);
+        App.reqres.setHandler('openmenu:entity', API.getOpenMenuEntity);
+        App.reqres.setHandler('openmenu:entity:new', API.getOpenMenuEntityNew);
         App.reqres.setHandler('restaurant:entity', API.getRestaurantEntity);
         App.reqres.setHandler('environment:entity', API.getEnvironmentEntity);
     });

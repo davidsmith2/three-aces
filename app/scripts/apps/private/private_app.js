@@ -7,6 +7,7 @@ define([
         PrivateApp.startWithParent = false;
         PrivateApp.collections = {};
         PrivateApp.on('start', function () {
+            console.log('private app: started');
             require(['apps/private/apps/open_menus/app']);
         });
         PrivateApp.on('stop', function () {

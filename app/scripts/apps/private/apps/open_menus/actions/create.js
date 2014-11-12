@@ -10,7 +10,7 @@ define([
     var PrivateApp = App.PrivateApp,
         OpenMenusApp = PrivateApp.OpenMenusApp;
     return function () {
-        var gettingOpenMenu = App.request('openMenu:entity:new');
+        var gettingOpenMenu = App.request('openmenu:entity:new');
         $.when(gettingOpenMenu).done(function (openMenu) {
             var headerView,
                 formView,

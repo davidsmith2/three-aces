@@ -7,7 +7,8 @@ define([
 ], function ($, App, HeaderView, TableView) {
     var OpenMenusApp = App.PrivateApp.OpenMenusApp;
 	return function () {
-		$.when(App.request('openMenu:entities')).done(function (openMenus) {
+        var gettingOpenMenus = App.request('openmenu:entities');
+		$.when(gettingOpenMenus).done(function (openMenus) {
             var headerView,
                 tableView;
             App.PrivateApp.collections.openMenus = openMenus;

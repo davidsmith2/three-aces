@@ -8,7 +8,6 @@ define([
 		className: 'row',
 		triggers: {
 			'click td .js-show': 'menu:show',
-			'click td .js-edit': 'menu:edit',
 			'click td .js-delete': 'menu:delete'
 		}
 	});

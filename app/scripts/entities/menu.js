@@ -29,7 +29,8 @@ define([
                     title: 'Menu name'
                 },
                 currency_symbol: {
-                    type: 'Text',
+                    type: 'Select',
+                    options: ['$'],
                     title: 'Currency symbol'
                 }
             }

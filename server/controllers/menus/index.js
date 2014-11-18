@@ -21,5 +21,29 @@ module.exports = _.extend(controller, {
                 }
             });
         }
+    },
+    show: function (req, res) {
+        console.log(req.params)
+/*
+        return Model.findById(req.params[modelName], function (err, model) {
+            if (!err) {
+                return res.send(model);
+            } else {
+                return console.log(err);
+            }
+        });
+*/
+    },
+    create: function (req, res) {
+        var menu = new Menu(req.body);
+        menu.open_menu = req.params.openmenu;
+        menu.save(function (err, model) {
+            if (!err) {
+                console.log('menu created');
+                return res.send(menu);
+            } else {
+                return console.log(err);
+            }
+        });
     }
 });
